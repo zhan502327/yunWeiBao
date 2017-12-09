@@ -1,0 +1,167 @@
+//
+//  YWPrefixHeader.pch
+//  运维宝
+//
+//  Created by 贾斌 on 2017/10/19.
+//  Copyright © 2017年 com.stYW. All rights reserved.
+//
+
+#ifndef YWPrefixHeader_pch
+#define YWPrefixHeader_pch
+
+
+#import "NSDate+MJ.h"
+#import "UIView+Extension.h"
+#import "UIImage+Extension.h"
+#import "UIBarButtonItem+Extension.h"
+#import "NSString+Emoji.h"
+#import "NSString+Extension.h"
+#import "UIViewController+HUD.h"
+#import "UIViewController+DismissKeyboard.h"
+#import "UIImageView+Extention.h"
+#import "UIViewExt.h"
+#import "LMConst.h"
+#import "NSObject+Value.h"
+#import "NSString+MD5.h"
+#import "Singleton.h"
+#import "GolbalManager.h"
+#import "SGPageView.h"
+
+//三方类库
+#import "MJExtension.h"
+#import "MJRefresh.h"
+#import "FMDB.h"
+#import "UIImageView+WebCache.h"
+#import "AFNetworking.h"
+#import "SVProgressHUD.h"
+#import "MBProgressHUD+MJ.h"
+#import "Masonry.h"
+#import "UIView+AutoLayout.h"
+#import "IQKeyBoardManager.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
+
+//工具类
+#import "HMHttpTool.h"
+
+//判断系统
+#define IOS8 ([[[UIDevice currentDevice]systemVersion] floatValue] >= 8.0?YES:NO)
+
+#define IOS9 ([[[UIDevice currentDevice]systemVersion] floatValue] >= 9.0?YES:NO)
+//判断是否是iPhone5
+#define isIPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+//是否iPhone6
+#define isIPhone6 ([UIScreen instancesRespondToSelector:@selector(nativeBounds)] ? CGSizeEqualToSize(CGSizeMake(375*2, 667*2),[[UIScreen mainScreen] nativeBounds].size) : NO)
+//是否iPhone6plus
+#define isIPhone6plus ([UIScreen instancesRespondToSelector:@selector(nativeBounds)] ? CGSizeEqualToSize(CGSizeMake(414.000000*3, 736.000000*3),[[UIScreen mainScreen] currentMode].size) : NO)
+
+#define SCREEN_HEIGHT              ([[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0?[[UIScreen mainScreen] bounds].size.height :[[UIScreen mainScreen] bounds].size.height-20)
+#define SCREEN_WIDTH                [[UIScreen mainScreen] bounds].size.width
+#define YWRect (SCREEN_WIDTH - 40)/3
+#define     HEADER_HEIGHT               64
+#define     FOOTER_HEIGHT               49
+// cell之间的间距
+#define YWCellMargin 10
+// cell的内边距
+#define YWCellInset 10// cell之间的间距
+
+
+#define YWMargin 10
+
+//三方框架
+#pragma warning-TODO
+#define kStoreAppId     @"1060049944" // （appid数字串）
+
+#define ADDOBJECT(value) value.length > 0 ? value : @""
+
+// 字体
+
+#define PFR [[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0 ? @"PingFangSC-Regular" : @"PingFang SC"
+
+
+#define PFR20Font [UIFont fontWithName:PFR size:20];
+#define PFR18Font [UIFont fontWithName:PFR size:18];
+#define PFR16Font [UIFont fontWithName:PFR size:16];
+#define PFR15Font [UIFont fontWithName:PFR size:15];
+#define PFR14Font [UIFont fontWithName:PFR size:14];
+#define PFR13Font [UIFont fontWithName:PFR size:13];
+#define PFR12Font [UIFont fontWithName:PFR size:12];
+#define PFR11Font [UIFont fontWithName:PFR size:11];
+#define PFR10Font [UIFont fontWithName:PFR size:10];
+
+// 普通字体
+#define FONT_6  [UIFont systemFontOfSize: 6.0]
+#define FONT_8  [UIFont systemFontOfSize: 8.0]
+#define FONT_BOLD_8 [UIFont boldSystemFontOfSize: 8.0]
+#define FONT_9 [UIFont systemFontOfSize: 9.0]
+#define FONT_BOLD_9 [UIFont boldSystemFontOfSize: 9.0]
+#define FONT_10 [UIFont systemFontOfSize: 10.0]
+#define FONT_11 [UIFont systemFontOfSize: 11.0]
+
+#define FONT_BOLD_10 [UIFont boldSystemFontOfSize: 10.0]
+#define FONT_12 [UIFont systemFontOfSize: 12.0]
+#define FONT_13 [UIFont systemFontOfSize: 13.0]
+#define FONT_14 [UIFont systemFontOfSize: 14.0]
+#define FONT_15 [UIFont systemFontOfSize: 15.0]
+#define FONT_BOLD_14 [UIFont boldSystemFontOfSize: 14.0]
+#define FONT_BOLD_13 [UIFont boldSystemFontOfSize: 13.0]
+#define FONT_BOLD_12 [UIFont boldSystemFontOfSize: 12.0]
+#define FONT_BOLD_11 [UIFont boldSystemFontOfSize: 11.5]
+#define FONT_16 [UIFont systemFontOfSize: 16.0]
+#define FONT_ALL_15_3   [UIFont systemFontOfSize: 15.3]
+#define FONT_PIng_14_5   [UIFont systemFontOfSize: 14.3]
+#define FONT_BOLD_16 [UIFont boldSystemFontOfSize: 16.0]
+#define FONT_BOLD_15 [UIFont boldSystemFontOfSize: 15.0]
+#define FONT_BOLD_17 [UIFont boldSystemFontOfSize: 17.0]
+#define FONT_18 [UIFont systemFontOfSize: 18.0]
+#define FONT_17 [UIFont systemFontOfSize: 17.0]
+#define FONT_BOLD_18 [UIFont boldSystemFontOfSize: 18.0]
+#define FONT_20 [UIFont systemFontOfSize: 20.0]
+#define FONT_BOLD_20 [UIFont boldSystemFontOfSize:20.0]
+#define FONT_22 [UIFont systemFontOfSize: 22.0]
+#define FONT_24 [UIFont systemFontOfSize: 24.0]
+#define FONT_BOLD_22 [UIFont boldSystemFontOfSize:22.0]
+#define FONT_BOLD_24 [UIFont boldSystemFontOfSize:24.0]
+#define FONT_BOLD_26 [UIFont boldSystemFontOfSize:26.0]
+#define FONT_BOLD_30 [UIFont boldSystemFontOfSize:30.0]
+#define FONT_30 [UIFont systemFontOfSize: 30.0]
+#define FONT_52 [UIFont systemFontOfSize: 52.0]
+
+#define COLOR_Line [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1.0]
+
+#define YWRandomColor YWColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+
+#define YWColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+#define BGCLOLOR    YWColor(237, 240, 237)
+#define TABCLOLOR    YWColor(16,16,17)
+#define MAINCLOLOR    RGBColor(251,78,6,1)
+
+//提现转入 订单按钮等
+#define DEALCLOLOR    YWColor(88, 152, 245)
+//购物车结算页面 等
+#define REDCLOLOR    YWColor(255,62,63)
+//退出   登录 重设密码等
+#define LOGINCLOLOR    YWColor(253,153,1)
+#define MAINBGCLOLOR    YWColor(228, 219, 199);
+#define TABLEVIEWBGCLOLOR    YWColor(250, 242, 221);
+
+#define RGBColor(r,g,b,l) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:l]
+
+//日志输出
+#ifdef DEBUG
+#define YWLog(...) NSLog(__VA_ARGS__)
+#else
+#define YWLog(...)
+#endif
+//后台返回null的处理
+#ifdef DEBUG
+#define NULLSAFE_ENABLED 0
+#endif
+//用于真机打印
+#ifdef DEBUG
+#define PhoneLog(format, ...) printf("\n[%s] %s [第%d行] %s\n", __TIME__, __FUNCTION__, __LINE__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String]);
+#else
+#define PhoneLog(format, ...)
+#endif
+
+#endif /* YWPrefixHeader_pch */
