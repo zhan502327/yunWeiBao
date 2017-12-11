@@ -38,6 +38,9 @@
     statusBtn.clipsToBounds = YES;
     [self addSubview:self.statusBtn];
     
+    
+//    hhh
+    
     UILabel *statusLabel = [[UILabel alloc] init];
     self.statusLabel = statusLabel;
     statusLabel.font = FONT_13;
