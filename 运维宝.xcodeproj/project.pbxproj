@@ -3456,7 +3456,7 @@
 				TargetAttributes = {
 					12287EAD1F9838B8007D67D5 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = TGN7CVJYQ4;
+						DevelopmentTeam = QK3H5LN4MT;
 						ProvisioningStyle = Automatic;
 					};
 					12287EC61F9838B8007D67D5 = {
@@ -4078,7 +4078,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = TGN7CVJYQ4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QK3H5LN4MT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/vendor/AMap",
@@ -4106,8 +4108,9 @@
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/3rdparty/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/3rdparty/UMeng",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stlm.---";
+				PRODUCT_BUNDLE_IDENTIFIER = zhongDianLian.aliyun.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -4116,7 +4119,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = TGN7CVJYQ4;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QK3H5LN4MT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/vendor/AMap",
@@ -4144,8 +4149,9 @@
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/3rdparty/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/3rdparty/UMeng",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stlm.---";
+				PRODUCT_BUNDLE_IDENTIFIER = zhongDianLian.aliyun.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

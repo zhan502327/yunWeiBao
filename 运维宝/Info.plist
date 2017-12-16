@@ -65,6 +65,7 @@
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>mqqwpa</string>
 		<string>weixin</string>
 		<string>mqq</string>
 	</array>

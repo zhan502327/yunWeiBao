@@ -18,6 +18,8 @@
 #import "YWBrandCoreOne.h"
 #import "YWBrandCoreTwo.h"
 
+#import <TencentOpenAPI/QQApiInterface.h>
+
 @interface YWServiceSuportController ()
 
 /** 最新主播列表 */
@@ -160,16 +162,17 @@
         //技术支持类型
         YWSupportLineCell *cell = [YWSupportLineCell cellWithTableView:tableView];
         
-        cell.didTapQQBtn = ^{
-            NSURL *url = [NSURL URLWithString:@"mqq://"];
-            //是否安装QQ
-            if([[UIApplication sharedApplication] canOpenURL:url])
+        cell.didTapQQBtn = ^{            
+            
+            //是否安装QQ mqqwpa  mqq
+            if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"mqqwpa://"]])
             {
-                //用来接收临时消息的客服QQ号码(注意此QQ号需开通QQ推广功能,否则陌生人向他发送消息会失败)
-                NSString *QQ = onlineModel.qq;
-                //调用QQ客户端,发起QQ临时会话
-                NSString *url = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",QQ];
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                QQApiWPAObject *wpaObj = [QQApiWPAObject objectWithUin:onlineModel.qq];
+                SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:wpaObj];
+                QQApiSendResultCode sent = [QQApiInterface sendReq:req];
+                YWLog(@"qq-点击啦qq按钮 %d",sent);
+
+                //sent为状态值打印,Command+左键 点击QQApiSendResultCode即可查看.
             }else{
                 [SVProgressHUD showErrorWithStatus:@"未安装QQ"];
             }
