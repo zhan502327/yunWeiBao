@@ -154,46 +154,62 @@
 {
     
     if (indexPath.section == 2) {
+        YWOnlineInfo *onlineModel = self.onlines[indexPath.row];
+        
+        
         //技术支持类型
         YWSupportLineCell *cell = [YWSupportLineCell cellWithTableView:tableView];
+        
         cell.didTapQQBtn = ^{
             NSURL *url = [NSURL URLWithString:@"mqq://"];
-            if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                [[UIApplication sharedApplication] openURL:url];
+            //是否安装QQ
+            if([[UIApplication sharedApplication] canOpenURL:url])
+            {
+                //用来接收临时消息的客服QQ号码(注意此QQ号需开通QQ推广功能,否则陌生人向他发送消息会失败)
+                NSString *QQ = onlineModel.qq;
+                //调用QQ客户端,发起QQ临时会话
+                NSString *url = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",QQ];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
             }else{
-                
                 [SVProgressHUD showErrorWithStatus:@"未安装QQ"];
             }
-
             YWLog(@"qq-点击啦qq按钮");
         };
         cell.didTapWeChatBtn = ^{
+//            
+//            NSURL *url = [NSURL URLWithString:@"weixin://"];
+//            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+//                [[UIApplication sharedApplication] openURL:url];
+//            }else{
+//                
+//                [SVProgressHUD showErrorWithStatus:@"未安装微信"];
+//                NSLog(@"no---");
+//                
+//            }
             
-            NSURL *url = [NSURL URLWithString:@"weixin://"];
-            if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                [[UIApplication sharedApplication] openURL:url];
-            }else{
-                
-                [SVProgressHUD showErrorWithStatus:@"未安装微信"];
-                NSLog(@"no---");
-                
-            }
-            
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            pasteboard.string = onlineModel.weixin;
+            [SVProgressHUD showSuccessWithStatus:@"微信号已复制至剪切板"];
+
             YWLog(@"weChat-点击啦微信按钮");
         };
         
         cell.didTapMsgBtn = ^{
             
-            NSURL *url = [NSURL URLWithString:@"mailto://"];
-            if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                [[UIApplication sharedApplication] openURL:url];
-            }else{
-                
-                [SVProgressHUD showErrorWithStatus:@"未打开邮件"];
-                NSLog(@"no---");
-                
-            }
+//            NSURL *url = [NSURL URLWithString:@"mailto://"];
+//            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+//                [[UIApplication sharedApplication] openURL:url];
+//            }else{
+//                
+//                [SVProgressHUD showErrorWithStatus:@"未打开邮件"];
+//                NSLog(@"no---");
+//                
+//            }
 
+            
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            pasteboard.string = onlineModel.email;
+            [SVProgressHUD showSuccessWithStatus:@"邮箱号已复制至剪切板"];
             YWLog(@"msg-点击啦短信按钮");
         };
         
@@ -203,11 +219,12 @@
     
     //创建在线支持cell
     YWSupportPhoneCell *cell = [YWSupportPhoneCell cellWithTableView:tableView];
-    //拨打电话处理
-    cell.didNamePhoneLab = ^(UILabel *label) {
+    //拨打电话处理    
+    [cell setDidNamePhoneLab:^(UILabel *label){
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",label.text]];
-        [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
-    };
+        
+        [[UIApplication sharedApplication] openURL:url];
+    }];
     
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
@@ -231,11 +248,11 @@
             cell.supportLab.text = [NSString stringWithFormat:@"%@",self.supportGroup.brand.core1.company];
             cell.namePhone.text = self.supportGroup.brand.core1.mobile;
         }else if (indexPath.row == 2){
-            //第一区第二行
+            //第一区第三行
             cell.supportLab.text = [NSString stringWithFormat:@"%@",self.supportGroup.brand.core2.company];
             cell.namePhone.text = self.supportGroup.brand.core2.mobile;
         }else if (indexPath.row == 3){
-            //第一区第二行
+            //第一区第四行
             cell.supportLab.text = @"热线电话";
             cell.namePhone.text = self.supportGroup.brand.hotline;
         }
@@ -276,7 +293,6 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    
     return 30;
 }
 
@@ -284,12 +300,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 35;
-    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

@@ -158,7 +158,8 @@
         cell.didNamePhoneLab = ^(UILabel *label) {
             //拨打电话处理
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",label.text]];
-            [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+            [[UIApplication sharedApplication] openURL:url];
+
         };
     }
     cell.titleLab.text = self.titles[indexPath.row];

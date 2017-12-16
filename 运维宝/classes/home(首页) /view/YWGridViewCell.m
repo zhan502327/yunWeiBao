@@ -39,7 +39,6 @@
     [self addSubview:self.statusBtn];
     
     
-//    hhh
     
     UILabel *statusLabel = [[UILabel alloc] init];
     self.statusLabel = statusLabel;
@@ -50,7 +49,7 @@
     
     [self.statusBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         [make.top.mas_equalTo(self)setOffset:YWMargin*0.4];
-        make.size.mas_equalTo(CGSizeMake(45, 45));
+        make.size.mas_equalTo(CGSizeMake(35, 35));
         make.centerX.mas_equalTo(self);
         
     }];

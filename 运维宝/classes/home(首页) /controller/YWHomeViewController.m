@@ -270,7 +270,7 @@ static NSString *const GridCellID = @"GridCellID";
     _collectionView.backgroundColor = MAINBGCLOLOR;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    _collectionView.frame = CGRectMake(0,headView.height-86, SCREEN_WIDTH,85);
+    _collectionView.frame = CGRectMake(0,headView.height-86, SCREEN_WIDTH,70);
     _collectionView.showsVerticalScrollIndicator = NO;
     _collectionView.scrollEnabled = NO;
     //注册
@@ -363,7 +363,7 @@ static NSString *const GridCellID = @"GridCellID";
         return 40;
 
     }else if (indexPath.row == 1){
-        return 35;
+        return 50;
 
     }
     

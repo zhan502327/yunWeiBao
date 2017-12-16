@@ -107,11 +107,13 @@
             self.deviceDetils = deviceArr;
             //获得模型数据
             [self.tableView reloadData];
-            /**停止刷新*/
-            [self.tableView.mj_header endRefreshing];
-            [self.tableView.mj_footer endRefreshing];
+
             
         }
+        
+        /**停止刷新*/
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         
     } failure:^(NSError *error) {
         /**停止刷新*/
@@ -244,7 +246,7 @@
     if (indexPath.row == 0) {
         return 80;
     }
-    return 50;
+    return 60;
 }
 
 - (void)didReceiveMemoryWarning {

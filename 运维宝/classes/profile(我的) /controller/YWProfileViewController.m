@@ -33,7 +33,7 @@
 - (NSArray *)titleArr
 {
     if (!_titleArr) {
-        _titleArr = @[@"关于我们",@"意见反馈",@"检查更新",@"分享",];
+        _titleArr = @[@"关于我们",@"意见反馈",@"分享",];
     }
     return _titleArr;
 }
@@ -48,11 +48,10 @@
     //退出登陆注册
     [self setupFooter];
     NSString *str1 = @"(";
-     NSString *str2 = @")";
+    NSString *str2 = @")";
     
     
-    self.userNick.text = [NSString stringWithFormat:@"姓名:%@%@%@%@",[GolbalManager sharedManager].logUser.nick,str1,[GolbalManager sharedManager].logUser.account
-,str2];
+    self.userNick.text = [NSString stringWithFormat:@"姓名:%@%@%@%@",[GolbalManager sharedManager].logUser.nick,str1,[GolbalManager sharedManager].logUser.account,str2];
     //用户ID
     self.userAcount.hidden = YES;
     //self.userAcount.text = [NSString stringWithFormat:@"ID:%@",kGetData(@"tel1")];
@@ -95,16 +94,19 @@
     MineHeadView *headView =  [[MineHeadView alloc] initWithFrame:CGRectZero loginButtonClick:^{
         
         //点击头部事件
-//        LMLoginController *login = [[LMLoginController alloc] init];
-//        
-//        YWNavViewController *nav = [[YWNavViewController alloc] initWithRootViewController:login];
-//        [self.navigationController presentViewController:nav animated:YES completion:nil];
+        LMLoginController *login = [[LMLoginController alloc] init];
+        
+        YWNavViewController *nav = [[YWNavViewController alloc] initWithRootViewController:login];
+        [self.navigationController presentViewController:nav animated:YES completion:nil];
         
     }];
     
     headView.backgroundColor = [UIColor clearColor];
     _headView = headView;
-    //[headView.iconView.iconImageView sd_setImageWithURL:kGetData(@"photo_path") placeholderImage:[UIImage imageNamed:@"iconbg"]];
+    [headView.iconView.iconImageView sd_setImageWithURL:kGetData(@"photo_path") placeholderImage:[UIImage imageNamed:@"userIcon"]];
+    
+
+    
     headView.frame = CGRectMake(0, 0, SCREEN_WIDTH,210);
     //账户金额明细工具条
     UIView *bgview = [[UIView alloc] init];
@@ -223,7 +225,12 @@
         [self.navigationController pushViewController:advice animated:YES];
         
     }else if (indexPath.row == 2){
-#pragma mark-TODO_UPDATA
+        
+        
+        //分享
+        YWShareController *share = [[YWShareController alloc] init];
+        [self.navigationController pushViewController:share animated:YES];
+        
         //检查更新
 //        NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
 //
@@ -243,19 +250,20 @@
 //            }else{
                 //弹框提示不需要更新
         
-        
-        [SVProgressHUD showWithStatus:@"正在检查版本信息"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-             [SVProgressHUD showInfoWithStatus:@"当前已是最新版本"];
-        });
+//        
+//        [SVProgressHUD showWithStatus:@"正在检查版本信息"];
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//             [SVProgressHUD showInfoWithStatus:@"当前已是最新版本"];
+//        });
         
 
 //    }
-    }else if (indexPath.row == 3){
-        //分享
-        YWShareController *share = [[YWShareController alloc] init];
-        [self.navigationController pushViewController:share animated:YES];
     }
+//    else if (indexPath.row == 3){
+//        //分享
+//        YWShareController *share = [[YWShareController alloc] init];
+//        [self.navigationController pushViewController:share animated:YES];
+//    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -126,26 +126,35 @@
     
     [self.resultDatas removeAllObjects];
     [HMHttpTool post:url params:params success:^(id responseObj) {
+        /**停止刷新*/
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         
         YWLog(@"getDeviceDoc--%@",responseObj);
-        NSArray *deviceDict = responseObj[@"data"][@"asstes"];
         NSString *status = responseObj[@"code"];
         NSString *msg = responseObj[@"tip"];
-        
-        if ([status isEqual:@1]) { // 数据已经加载完毕, 没有更多数据了人庆丰
+
+        if ([status intValue] == 0) {
+            [SVProgressHUD showErrorWithStatus:msg];
+
+        }else{
+            NSArray *deviceDict = responseObj[@"data"][@"asstes"];
             
-            self.resultDatas = [YWSerch mj_objectArrayWithKeyValuesArray:deviceDict];
-            
-            YWLog(@"self.resultDatas--%@",self.resultDatas);
-            
-            [self.tableView reloadData];
-            /**停止刷新*/
-            [self.tableView.mj_header endRefreshing];
-            [self.tableView.mj_footer endRefreshing];
+            if ([status isEqual:@1]) { // 数据已经加载完毕, 没有更多数据了人庆丰
+                
+                self.resultDatas = [YWSerch mj_objectArrayWithKeyValuesArray:deviceDict];
+                
+                YWLog(@"self.resultDatas--%@",self.resultDatas);
+                
+                [self.tableView reloadData];
+                /**停止刷新*/
+                [self.tableView.mj_header endRefreshing];
+                [self.tableView.mj_footer endRefreshing];
+                
+            }
             
         }
-        
-        //[SVProgressHUD showErrorWithStatus:msg];
+
         
     } failure:^(NSError *error) {
         

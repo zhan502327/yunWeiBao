@@ -53,19 +53,28 @@
 - (void)addChildrenVc
 {
     //添加子控制器
+
+    //-----
     YWServiceSuportController *serviceSuport = [[YWServiceSuportController alloc] init];
     serviceSuport.deviceSercice = self.deviceSercice;
     serviceSuport.a_id = self.a_id;
+ 
+    //-----
+    YWSpareMangeController *spareMange = [[YWSpareMangeController alloc] init];
+    spareMange.deviceSercice = self.deviceSercice;
+    spareMange.a_id = self.a_id;
+    
+    //-----
     YWTroubleController *trouble = [[YWTroubleController alloc] init];
     trouble.deviceSercice = self.deviceSercice;
 
-    YWSpareMangeController *spareMange = [[YWSpareMangeController alloc] init];
-    spareMange.deviceSercice = self.deviceSercice;
-
-    spareMange.a_id = self.a_id;
+    //-----
     YWMaintenanceLogController *maintenanceLog = [[YWMaintenanceLogController alloc] init];
     maintenanceLog.deviceSercice = self.deviceSercice;
     maintenanceLog.a_id = self.a_id;
+  
+    
+    
     NSArray *childArr = @[serviceSuport,spareMange,trouble,maintenanceLog];
     /// pageContentView
     CGFloat contentViewHeight = SCREEN_HEIGHT - HEADER_HEIGHT - 44;
