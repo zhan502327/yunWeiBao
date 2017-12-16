@@ -257,6 +257,10 @@ singleton_implementation(LMLoginController)
                 
                 [GolbalManager sharedManager].logUser = user;
                 [GolbalManager sharedManager].isLogin = YES;
+                
+                //存储登录
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isLogin"];
+                
                 //存储用户token
                 kDataPersistence(user.token,@"token");
                 //存储用户ID
@@ -272,7 +276,7 @@ singleton_implementation(LMLoginController)
                 //存储用户ID
                 kDataPersistence(user.app_title,@"app_title");
 
-                
+                [[NSUserDefaults standardUserDefaults] synchronize];
                 
                 [self leftBtnAction];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

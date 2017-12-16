@@ -3457,7 +3457,7 @@
 					12287EAD1F9838B8007D67D5 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = QK3H5LN4MT;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					12287EC61F9838B8007D67D5 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -4079,9 +4079,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = QK3H5LN4MT;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/vendor/AMap",
@@ -4111,8 +4111,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zhongDianLian.aliyun.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2750898a-c458-4d33-a42b-9f30821395ec";
-				PROVISIONING_PROFILE_SPECIFIER = zhongDianLian_distribution;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -4122,9 +4122,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = QK3H5LN4MT;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/vendor/AMap",
@@ -4154,8 +4154,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zhongDianLian.aliyun.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2750898a-c458-4d33-a42b-9f30821395ec";
-				PROVISIONING_PROFILE_SPECIFIER = zhongDianLian_distribution;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

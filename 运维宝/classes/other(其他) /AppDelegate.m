@@ -40,8 +40,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
    
-    //判断是否登录状态
-    if ([GolbalManager sharedManager].isLogin) {
+    //判断是否登录状态 isLogin  [GolbalManager sharedManager].isLogin
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"isLogin"]) {
         [UIView transitionWithView:self.window
                           duration:0.25
                            options:UIViewAnimationOptionTransitionCrossDissolve
@@ -50,6 +50,8 @@
 
                         }
                         completion:nil];
+
+        
     }else{
         //去登录界面
         self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -57,10 +59,12 @@
         LMLoginController *controller = [[LMLoginController alloc] init];
         YWNavViewController *nav = [[YWNavViewController alloc] initWithRootViewController:controller];
         self.window.rootViewController = nav;
-        //显示窗口(成为主窗口)
-        [self.window makeKeyAndVisible];
         
     }
+    //显示窗口(成为主窗口)
+
+    [self.window makeKeyAndVisible];
+
     
     //处理键盘
     IQKeyboardManager *mgr = [IQKeyboardManager sharedManager];
