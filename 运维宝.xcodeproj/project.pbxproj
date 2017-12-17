@@ -432,6 +432,14 @@
 		12FCB4981FB0112000B4CA1B /* YWStationDeviceListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB4971FB0112000B4CA1B /* YWStationDeviceListController.m */; };
 		12FCB49B1FB0309E00B4CA1B /* YWDeviceDetil.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB49A1FB0309E00B4CA1B /* YWDeviceDetil.m */; };
 		12FCB4A11FB0345300B4CA1B /* YWDeviceDetilInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB4A01FB0345300B4CA1B /* YWDeviceDetilInfo.m */; };
+		5B19ADED1FE665310068CB80 /* TTOpenInAppActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19ADE51FE6652F0068CB80 /* TTOpenInAppActivity.m */; };
+		5B19ADEE1FE665310068CB80 /* TTOpenInAppActivity.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADE61FE6652F0068CB80 /* TTOpenInAppActivity.png */; };
+		5B19ADEF1FE665310068CB80 /* TTOpenInAppActivity7.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADE71FE6652F0068CB80 /* TTOpenInAppActivity7.png */; };
+		5B19ADF01FE665310068CB80 /* TTOpenInAppActivity7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADE81FE6652F0068CB80 /* TTOpenInAppActivity7@2x.png */; };
+		5B19ADF11FE665310068CB80 /* TTOpenInAppActivity8.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADE91FE6652F0068CB80 /* TTOpenInAppActivity8.png */; };
+		5B19ADF21FE665310068CB80 /* TTOpenInAppActivity8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADEA1FE6652F0068CB80 /* TTOpenInAppActivity8@2x.png */; };
+		5B19ADF31FE665310068CB80 /* TTOpenInAppActivity8@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADEB1FE6652F0068CB80 /* TTOpenInAppActivity8@3x.png */; };
+		5B19ADF41FE665310068CB80 /* TTOpenInAppActivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADEC1FE6652F0068CB80 /* TTOpenInAppActivity@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1262,6 +1270,15 @@
 		12FCB49A1FB0309E00B4CA1B /* YWDeviceDetil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWDeviceDetil.m; sourceTree = "<group>"; };
 		12FCB49F1FB0345300B4CA1B /* YWDeviceDetilInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YWDeviceDetilInfo.h; sourceTree = "<group>"; };
 		12FCB4A01FB0345300B4CA1B /* YWDeviceDetilInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWDeviceDetilInfo.m; sourceTree = "<group>"; };
+		5B19ADE41FE6652F0068CB80 /* TTOpenInAppActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTOpenInAppActivity.h; sourceTree = "<group>"; };
+		5B19ADE51FE6652F0068CB80 /* TTOpenInAppActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTOpenInAppActivity.m; sourceTree = "<group>"; };
+		5B19ADE61FE6652F0068CB80 /* TTOpenInAppActivity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTOpenInAppActivity.png; sourceTree = "<group>"; };
+		5B19ADE71FE6652F0068CB80 /* TTOpenInAppActivity7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTOpenInAppActivity7.png; sourceTree = "<group>"; };
+		5B19ADE81FE6652F0068CB80 /* TTOpenInAppActivity7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity7@2x.png"; sourceTree = "<group>"; };
+		5B19ADE91FE6652F0068CB80 /* TTOpenInAppActivity8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTOpenInAppActivity8.png; sourceTree = "<group>"; };
+		5B19ADEA1FE6652F0068CB80 /* TTOpenInAppActivity8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity8@2x.png"; sourceTree = "<group>"; };
+		5B19ADEB1FE6652F0068CB80 /* TTOpenInAppActivity8@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity8@3x.png"; sourceTree = "<group>"; };
+		5B19ADEC1FE6652F0068CB80 /* TTOpenInAppActivity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1321,6 +1338,7 @@
 		120B42481FB34E34000640E4 /* 3rdparty */ = {
 			isa = PBXGroup;
 			children = (
+				5B19ADE31FE6652F0068CB80 /* TTOpenInAppActivity */,
 				12E175341FBC0F210041CB10 /* NullSafe */,
 				123730E91FB5952800C724A8 /* JHChart */,
 				120B42491FB34E34000640E4 /* Bugly */,
@@ -3388,6 +3406,22 @@
 			path = NullSafe;
 			sourceTree = "<group>";
 		};
+		5B19ADE31FE6652F0068CB80 /* TTOpenInAppActivity */ = {
+			isa = PBXGroup;
+			children = (
+				5B19ADE41FE6652F0068CB80 /* TTOpenInAppActivity.h */,
+				5B19ADE51FE6652F0068CB80 /* TTOpenInAppActivity.m */,
+				5B19ADE61FE6652F0068CB80 /* TTOpenInAppActivity.png */,
+				5B19ADE71FE6652F0068CB80 /* TTOpenInAppActivity7.png */,
+				5B19ADE81FE6652F0068CB80 /* TTOpenInAppActivity7@2x.png */,
+				5B19ADE91FE6652F0068CB80 /* TTOpenInAppActivity8.png */,
+				5B19ADEA1FE6652F0068CB80 /* TTOpenInAppActivity8@2x.png */,
+				5B19ADEB1FE6652F0068CB80 /* TTOpenInAppActivity8@3x.png */,
+				5B19ADEC1FE6652F0068CB80 /* TTOpenInAppActivity@2x.png */,
+			);
+			path = TTOpenInAppActivity;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3501,6 +3535,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B19ADF11FE665310068CB80 /* TTOpenInAppActivity8.png in Resources */,
 				1228814C1F984E7F007D67D5 /* 95CE3D78-9606-430E-9B7F-C5BAD72D2D90.codesnippet in Resources */,
 				120B42A81FB34E34000640E4 /* sr_refresh@2X.png in Resources */,
 				1228813C1F984E7F007D67D5 /* 0D6975F9-C05D-4FA2-A566-1523C39F6B16.codesnippet in Resources */,
@@ -3515,6 +3550,7 @@
 				1228813B1F984E7F007D67D5 /* 05D1EB67-DA6A-4AE2-AE04-A683B5065ECA.codesnippet in Resources */,
 				120B42BE1FB47A9E000640E4 /* Default@2x.png in Resources */,
 				1228826C1F985024007D67D5 /* LICENSE in Resources */,
+				5B19ADF01FE665310068CB80 /* TTOpenInAppActivity7@2x.png in Resources */,
 				1218E9951FA99AEE00C48B91 /* ShareSDK.bundle in Resources */,
 				122881481F984E7F007D67D5 /* 6F926535-11A2-49F2-ADF8-776BF4982361.codesnippet in Resources */,
 				122881511F984E7F007D67D5 /* D226E98D-6630-4E19-BFF2-5B8E536DFE70.codesnippet in Resources */,
@@ -3525,6 +3561,7 @@
 				122881EC1F984E7F007D67D5 /* LICENSE.txt in Resources */,
 				122882651F985024007D67D5 /* w_star_white@3x.png in Resources */,
 				1228814E1F984E7F007D67D5 /* C111A937-498A-4706-93D3-4F29D86E8FCD.codesnippet in Resources */,
+				5B19ADF41FE665310068CB80 /* TTOpenInAppActivity@2x.png in Resources */,
 				122881521F984E7F007D67D5 /* D4FB6F07-4FB2-446E-825D-4BCDF19F478D.codesnippet in Resources */,
 				1218E9B31FA9A17500C48B91 /* image.bundle in Resources */,
 				122881551F984E7F007D67D5 /* EA467D07-0DA8-4A44-9496-2674C8D21C13.codesnippet in Resources */,
@@ -3546,13 +3583,16 @@
 				1228813E1F984E7F007D67D5 /* 1A69DADD-1DEC-4250-B217-86EB30E8EDF9.codesnippet in Resources */,
 				122882611F985024007D67D5 /* w_star_red@2x.png in Resources */,
 				122882621F985024007D67D5 /* w_star_red@3x.png in Resources */,
+				5B19ADF31FE665310068CB80 /* TTOpenInAppActivity8@3x.png in Resources */,
 				122881411F984E7F007D67D5 /* 34E99E58-FB7E-4AAE-9346-291A969ACBF2.codesnippet in Resources */,
 				120B42BD1FB47A9E000640E4 /* Default-568h@2x.png in Resources */,
 				122881AF1F984E7F007D67D5 /* LICENSE in Resources */,
 				1218E98C1FA99AEE00C48B91 /* ShareSDKUI.bundle in Resources */,
 				122881401F984E7F007D67D5 /* 2FFB5AF9-06B2-4959-9C01-702F9CFA0CDF.codesnippet in Resources */,
 				122882631F985024007D67D5 /* w_star_white.png in Resources */,
+				5B19ADEE1FE665310068CB80 /* TTOpenInAppActivity.png in Resources */,
 				122882641F985024007D67D5 /* w_star_white@2x.png in Resources */,
+				5B19ADEF1FE665310068CB80 /* TTOpenInAppActivity7.png in Resources */,
 				1218E98F1FA99AEE00C48B91 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				1228813F1F984E7F007D67D5 /* 1EDB0718-DC41-4322-9086-4B4E50E2FDC5.codesnippet in Resources */,
 				122882601F985024007D67D5 /* w_star_red.png in Resources */,
@@ -3560,6 +3600,7 @@
 				1228814A1F984E7F007D67D5 /* 8A288E49-DAE1-4E3E-923E-0AC6A885F648.codesnippet in Resources */,
 				1228814D1F984E7F007D67D5 /* 9FD350E8-1D13-465B-8882-879EAA259681.codesnippet in Resources */,
 				122881421F984E7F007D67D5 /* 3EE4CB05-3745-456A-B181-EDCE10F5F9C8.codesnippet in Resources */,
+				5B19ADF21FE665310068CB80 /* TTOpenInAppActivity8@2x.png in Resources */,
 				122881D51F984E7F007D67D5 /* MJRefresh.bundle in Resources */,
 				122881541F984E7F007D67D5 /* E872A8A5-F656-4EAB-8FA1-C5B1358C8BA6.codesnippet in Resources */,
 			);
@@ -3719,6 +3760,7 @@
 				120B42A91FB34E34000640E4 /* SRRefreshView.m in Sources */,
 				122881B81F984E7F007D67D5 /* View+MASAdditions.m in Sources */,
 				120B42471FB336A6000640E4 /* ZYDownloadProgressView.m in Sources */,
+				5B19ADED1FE665310068CB80 /* TTOpenInAppActivity.m in Sources */,
 				122AF4691F9A0E6D00225F9E /* YWMaintenanceLogController.m in Sources */,
 				122C550F1FAC92CB006D212F /* YWDeviceTemp.m in Sources */,
 				122423731F9C7452007DE5DE /* YWLineHistoryController.m in Sources */,
