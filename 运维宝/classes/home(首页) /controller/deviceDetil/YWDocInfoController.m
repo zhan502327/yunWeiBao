@@ -14,7 +14,7 @@
 #import "ZYDownloadProgressView.h"
 #import "HWProgressView.h"
 
-@interface YWDocInfoController ()
+@interface YWDocInfoController ()<UIDocumentInteractionControllerDelegate>
 {
     //ZYDownloadProgressView *_progressView;
     CGFloat _progress;
@@ -217,11 +217,163 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (indexPath.section == 0 && self.docInfos.count>0) {
+        
+        YWDeviceDocs *deviceModel = self.drawInfos[indexPath.row];;
+        
+    } else if (indexPath.section == 1){
+        
+        YWDeviceDocs *deviceModel = self.docInfos[indexPath.row];
+    }else if (indexPath.section == 2 && self.docInfos.count>0){
+        
+        YWDeviceDocs *deviceModel = self.assetInfos[indexPath.row];;
+    }
+
+    
+    
+    
     [self tableViewClick];
     //添加定时器
     [self addTimer];
     
 }
+
+
+-(BOOL) isFileExist:(NSString *)docPath
+
+{
+    
+    //获取Documents 下的文件路径
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSString *documentsDirectory = [paths lastObject];
+
+    
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:docPath];
+//    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:docPath]; //docPath为文件名
+
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    BOOL result = [fileManager fileExistsAtPath:filePath];
+    
+    NSLog(@"这个文件已经存在：%@",result?@"是的":@"不存在");
+    if (result) {
+        //文件已经存在,直接打开
+        UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"是否打开文件" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * cancelAction  =[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        
+        [alertController addAction:cancelAction];
+        
+        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [self openDocxWithPath:filePath];
+        }]];
+        
+//        [alertController.actions setValue:[UIColor colorWithHexString:@"3998ef"] forKey:@"_titleTextColor"];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+    }else {
+        //文件不存在,要下载
+        UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"是否下载并打开打开文件" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * cancelAction  =[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        
+        [alertController addAction:cancelAction];
+        
+        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [self downloadDocxWithDocPath:documentsDirectory fileName:docPath];
+        }]];
+        
+//        [alertController.actions setValue:[UIColor colorWithHexString:@"3998ef"] forKey:@"_titleTextColor"];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+    }
+
+    return result;
+
+}
+
+
+/**
+ 下载文件
+ 
+ @param docPath 文件路径
+ @param fileName 文件名
+ */
+-(void)downloadDocxWithDocPath:(NSString *)docPath fileName:(NSString *)fileName {
+    [MBProgressHUD showMessage:@"正在下载文件" toView:self.view];
+    NSString *urlString = @"http://66.6.66.111:8888/UploadFile/";
+    
+    urlString = [urlString stringByAppendingString:fileName];
+    
+    NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSProgress *progress;
+    NSURLSessionDownloadTask *task = [manager downloadTaskWithRequest:request progress:&progress destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        NSString *path = [docPath stringByAppendingPathComponent:fileName];
+        NSLog(@"文件路径＝＝＝%@",path);
+        return [NSURL fileURLWithPath:path];//这里返回的是文件下载到哪里的路径 要注意的是必须是携带协议file://
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        [MBProgressHUD hideHUDForView:self.view];
+        [MBProgressHUD showSuccess:@"下载完成,正在打开" toView:self.view];
+        //        if (error) {
+        //
+        //        }else {
+        NSString *name = [filePath path];
+        NSLog(@"下载完成文件路径＝＝＝%@",name);
+        [self openDocxWithPath:name];//打开文件
+        //        }
+    }];
+    [task resume];//开始下载 要不然不会进行下载的
+    
+}
+
+/**
+ 打开文件
+ 
+ @param filePath 文件路径
+ */
+-(void)openDocxWithPath:(NSString *)filePath {
+    
+    UIDocumentInteractionController *doc= [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:filePath]];
+    doc.delegate = self;
+    [doc presentPreviewAnimated:YES];
+}
+#pragma mark - UIDocumentInteractionControllerDelegate
+//必须实现的代理方法 预览窗口以模式窗口的形式显示，因此需要在该方法中返回一个view controller ，作为预览窗口的父窗口。如果你不实现该方法，或者在该方法中返回 nil，或者你返回的 view controller 无法呈现模式窗口，则该预览窗口不会显示。
+
+- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller{
+    
+    return self;
+}
+
+- (UIView*)documentInteractionControllerViewForPreview:(UIDocumentInteractionController*)controller {
+    
+    return self.view;
+}
+
+- (CGRect)documentInteractionControllerRectForPreview:(UIDocumentInteractionController*)controller {
+    
+    return CGRectMake(0, 30, SCREEN_WIDTH , SCREEN_HEIGHT);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  *  弹出view

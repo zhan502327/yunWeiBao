@@ -175,7 +175,11 @@
 - (void)logoutBtnClick
 {
     //退出登录
-    [GolbalManager sharedManager].isLogin = NO;
+//    [GolbalManager sharedManager].isLogin = NO;
+    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isLogin"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     LMLoginController *login = [[LMLoginController alloc] init];
     [UIApplication sharedApplication].keyWindow.rootViewController = login;
     
