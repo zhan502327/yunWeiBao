@@ -54,38 +54,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x8fd0;&#x7ef4;&#x5b9d;/classes/service(&#x670d;&#x52a1;) /controller/&#x670d;&#x52a1;&#x8be6;&#x60c5;/YWServiceSuportController.m"
-            timestampString = "535037997.6566"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "-getServiceSupport"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x8fd0;&#x7ef4;&#x5b9d;/classes/service(&#x670d;&#x52a1;) /controller/&#x670d;&#x52a1;&#x8be6;&#x60c5;/YWServiceSuportController.m"
-            timestampString = "535037999.903669"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "-getServiceSupport"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -127,70 +95,6 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "161"
             endingLineNumber = "161"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x8fd0;&#x7ef4;&#x5b9d;/classes/service(&#x670d;&#x52a1;) /controller/&#x670d;&#x52a1;&#x8be6;&#x60c5;/YWServiceSuportController.m"
-            timestampString = "535039899.51122"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[YWServiceSuportController tableView:cellForRowAtIndexPath:]"
-                  moduleName = "&#x8fd0;&#x7ef4;&#x5b9d;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhandongbo/Desktop/%E8%BF%90%E7%BB%B4%E5%AE%9D(%E6%B5%8B%E8%AF%95%E7%89%88)%20/%E8%BF%90%E7%BB%B4%E5%AE%9D/classes/service(%E6%9C%8D%E5%8A%A1)%20/controller/%E6%9C%8D%E5%8A%A1%E8%AF%A6%E6%83%85/YWServiceSuportController.m"
-                  timestampString = "535123479.423854"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "165"
-                  endingLineNumber = "165"
-                  offsetFromSymbolStart = "304">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__61-[YWServiceSuportController tableView:cellForRowAtIndexPath:]_block_invoke"
-                  moduleName = "&#x8fd0;&#x7ef4;&#x5b9d;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhandongbo/Desktop/%E8%BF%90%E7%BB%B4%E5%AE%9D(%E6%B5%8B%E8%AF%95%E7%89%88)%20/%E8%BF%90%E7%BB%B4%E5%AE%9D/classes/service(%E6%9C%8D%E5%8A%A1)%20/controller/%E6%9C%8D%E5%8A%A1%E8%AF%A6%E6%83%85/YWServiceSuportController.m"
-                  timestampString = "535123479.426012"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "168"
-                  endingLineNumber = "168"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x8fd0;&#x7ef4;&#x5b9d;/classes/service(&#x670d;&#x52a1;) /controller/&#x670d;&#x52a1;&#x8be6;&#x60c5;/YWServiceSuportController.m"
-            timestampString = "535042001.024171"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
