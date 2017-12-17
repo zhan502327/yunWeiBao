@@ -31,7 +31,7 @@
     UIButton *statusBtn = [[UIButton alloc] init];
     self.statusBtn = statusBtn;
     statusBtn.userInteractionEnabled = NO;
-    statusBtn.backgroundColor = REDCLOLOR;
+    statusBtn.backgroundColor = [UIColor clearColor];
     statusBtn.layer.cornerRadius = 10;
     statusBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     [statusBtn setTitle:@"68" forState:UIControlStateNormal];
