@@ -84,13 +84,23 @@ static NSString *const GridCellID = @"GridCellID";
     [super viewDidLoad];
     
     self.title = @"运维宝";
+    self.deviceNums = [NSMutableArray array];
+    
+    self.myStations = [NSMutableArray array];
+    
     //头部view
-    [self setUpHeaderView];
+    
     // 首先自动刷新一次
-    [self autoRefresh];
+//    [self autoRefresh];
+    self.currentPage = 1;
+    
+    [self getDeviceList];
+    [self getMyStations];
+    
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
-    
+
+
     //删除系统分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     //登陆成功通知
@@ -101,7 +111,11 @@ static NSString *const GridCellID = @"GridCellID";
 
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self autoRefresh];
 
+}
 //用户模型数据
 - (void)logUser:(NSNotification *)notifacation
 {
@@ -139,17 +153,15 @@ static NSString *const GridCellID = @"GridCellID";
     // 设置header和footer
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.currentPage = 1;
-        self.deviceNums = [NSMutableArray array];
-        
-        self.myStations = [NSMutableArray array];
+
         [self getDeviceList];
         [self getMyStations];
     }];
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        self.currentPage++;
-        [self getDeviceList];
-        [self getMyStations];
-    }];
+//    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+//        self.currentPage++;
+//        [self getDeviceList];
+//        [self getMyStations];
+//    }];
     [self.tableView.mj_header beginRefreshing];
     
 }
@@ -188,6 +200,10 @@ static NSString *const GridCellID = @"GridCellID";
             [statusArr addObject:statusNum.offline];
             self.deviceNums = statusArr;
             //获得模型数据
+            
+            
+            [self setUpHeaderView];
+
             [self.tableView reloadData];
             [self.collectionView reloadData];
             /**停止刷新*/
@@ -229,6 +245,7 @@ static NSString *const GridCellID = @"GridCellID";
             
             self.stations = station;
             //获得模型数据
+            [self.collectionView reloadData];
             [self.tableView reloadData];
             /**停止刷新*/
             [self.tableView.mj_header endRefreshing];

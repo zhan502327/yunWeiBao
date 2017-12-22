@@ -41,7 +41,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
    
     //判断是否登录状态 isLogin  [GolbalManager sharedManager].isLogin
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"isLogin"]) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isLogin"] == YES) {
         [UIView transitionWithView:self.window
                           duration:0.25
                            options:UIViewAnimationOptionTransitionCrossDissolve
@@ -50,7 +50,6 @@
 
                         }
                         completion:nil];
-
         
     }else{
         //去登录界面

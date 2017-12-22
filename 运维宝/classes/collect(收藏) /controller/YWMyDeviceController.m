@@ -138,14 +138,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     return 36;
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     //执行跳转设备详情
     YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
     //传递当前行的模型数据
@@ -157,7 +154,6 @@
     //deviceDetil.is_collection = device.
     deviceDetil.stationName = device.name;
     [self.navigationController pushViewController:deviceDetil animated:YES];
-    
 }
 
 - (void)didReceiveMemoryWarning {

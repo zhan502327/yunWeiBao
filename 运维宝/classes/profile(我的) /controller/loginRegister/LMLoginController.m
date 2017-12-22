@@ -139,7 +139,7 @@ singleton_implementation(LMLoginController)
     // 密码输入框
     UITextField *password = [[UITextField alloc] init];
     password.clearButtonMode = UITextFieldViewModeWhileEditing;
-    password.keyboardType = UIKeyboardTypeNumberPad;
+//    password.keyboardType = UIKeyboardTypeNumberPad;
     //password.text = @"123456";
     password.placeholder = @"请输入密码";
     password.font = FONT_14;
@@ -268,11 +268,11 @@ singleton_implementation(LMLoginController)
                 //存储用户ID
                 kDataPersistence(user.account,@"account");
                 //存储用户ID
-                //kDataPersistence(user.nick,@"nick");
+                kDataPersistence(user.nick,@"nick");
                 //存储用户ID
                 kDataPersistence(user.photo_path,@"photo_path");
                 //存储用户ID
-                //kDataPersistence(user.tel1,@"tel1");
+                kDataPersistence(user.tel1,@"tel1");
                 //存储用户ID
                 kDataPersistence(user.app_title,@"app_title");
 

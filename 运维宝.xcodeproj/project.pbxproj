@@ -432,6 +432,7 @@
 		12FCB4981FB0112000B4CA1B /* YWStationDeviceListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB4971FB0112000B4CA1B /* YWStationDeviceListController.m */; };
 		12FCB49B1FB0309E00B4CA1B /* YWDeviceDetil.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB49A1FB0309E00B4CA1B /* YWDeviceDetil.m */; };
 		12FCB4A11FB0345300B4CA1B /* YWDeviceDetilInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB4A01FB0345300B4CA1B /* YWDeviceDetilInfo.m */; };
+		4D088DA11FED475F00ABE8DC /* YWWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D088DA01FED475F00ABE8DC /* YWWebViewController.m */; };
 		5B19ADED1FE665310068CB80 /* TTOpenInAppActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19ADE51FE6652F0068CB80 /* TTOpenInAppActivity.m */; };
 		5B19ADEE1FE665310068CB80 /* TTOpenInAppActivity.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADE61FE6652F0068CB80 /* TTOpenInAppActivity.png */; };
 		5B19ADEF1FE665310068CB80 /* TTOpenInAppActivity7.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADE71FE6652F0068CB80 /* TTOpenInAppActivity7.png */; };
@@ -1270,6 +1271,8 @@
 		12FCB49A1FB0309E00B4CA1B /* YWDeviceDetil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWDeviceDetil.m; sourceTree = "<group>"; };
 		12FCB49F1FB0345300B4CA1B /* YWDeviceDetilInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YWDeviceDetilInfo.h; sourceTree = "<group>"; };
 		12FCB4A01FB0345300B4CA1B /* YWDeviceDetilInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWDeviceDetilInfo.m; sourceTree = "<group>"; };
+		4D088D9F1FED475F00ABE8DC /* YWWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWWebViewController.h; sourceTree = "<group>"; };
+		4D088DA01FED475F00ABE8DC /* YWWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWWebViewController.m; sourceTree = "<group>"; };
 		5B19ADE41FE6652F0068CB80 /* TTOpenInAppActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTOpenInAppActivity.h; sourceTree = "<group>"; };
 		5B19ADE51FE6652F0068CB80 /* TTOpenInAppActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTOpenInAppActivity.m; sourceTree = "<group>"; };
 		5B19ADE61FE6652F0068CB80 /* TTOpenInAppActivity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTOpenInAppActivity.png; sourceTree = "<group>"; };
@@ -1633,6 +1636,8 @@
 				1224236F1F9C743A007DE5DE /* YWDocInfoController.m */,
 				122423711F9C7452007DE5DE /* YWLineHistoryController.h */,
 				122423721F9C7452007DE5DE /* YWLineHistoryController.m */,
+				4D088D9F1FED475F00ABE8DC /* YWWebViewController.h */,
+				4D088DA01FED475F00ABE8DC /* YWWebViewController.m */,
 			);
 			path = deviceDetil;
 			sourceTree = "<group>";
@@ -3760,6 +3765,7 @@
 				120B42A91FB34E34000640E4 /* SRRefreshView.m in Sources */,
 				122881B81F984E7F007D67D5 /* View+MASAdditions.m in Sources */,
 				120B42471FB336A6000640E4 /* ZYDownloadProgressView.m in Sources */,
+				4D088DA11FED475F00ABE8DC /* YWWebViewController.m in Sources */,
 				5B19ADED1FE665310068CB80 /* TTOpenInAppActivity.m in Sources */,
 				122AF4691F9A0E6D00225F9E /* YWMaintenanceLogController.m in Sources */,
 				122C550F1FAC92CB006D212F /* YWDeviceTemp.m in Sources */,
@@ -4123,7 +4129,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QK3H5LN4MT;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/vendor/AMap",
@@ -4166,7 +4172,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QK3H5LN4MT;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/vendor/AMap",

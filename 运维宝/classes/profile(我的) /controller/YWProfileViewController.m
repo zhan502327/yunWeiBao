@@ -37,6 +37,18 @@
     }
     return _titleArr;
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    NSString *str1 = @"(";
+    NSString *str2 = @")";
+    
+    
+    
+    
+    self.userNick.text = [NSString stringWithFormat:@"姓名:%@%@%@%@",kGetData(@"nick"),str1,kGetData(@"account"),str2];
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,7 +61,7 @@
     [self setupFooter];
     NSString *str1 = @"(";
     NSString *str2 = @")";
-    
+
     
     self.userNick.text = [NSString stringWithFormat:@"姓名:%@%@%@%@",[GolbalManager sharedManager].logUser.nick,str1,[GolbalManager sharedManager].logUser.account,str2];
     //用户ID

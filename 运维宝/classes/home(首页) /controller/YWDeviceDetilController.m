@@ -59,6 +59,14 @@
 //个人资料页面
 - (void)serviceDetil
 {
+    
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:[YWServiceDetilController class]]) {
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }
+    }
+    
     //跳转到服务详情页面
     YWServiceDetilController *service = [[YWServiceDetilController alloc] init];
     service.a_id = self.a_id;
@@ -178,16 +186,23 @@
 
     [self.view addSubview:header];
     
+    
+    //状态监测
     YWDeviceStatusController *deviceStatus = [[YWDeviceStatusController alloc] init];
     deviceStatus.a_id = self.a_id;
+   
+    //设备信息
     YWDeviceInfoController *deviceInfo = [[YWDeviceInfoController alloc] init];
-    
     deviceInfo.a_id = self.a_id;
-    YWDocInfoController *docInfo = [[YWDocInfoController alloc] init];
     
+    //文档信息
+    YWDocInfoController *docInfo = [[YWDocInfoController alloc] init];
     docInfo.a_id = self.a_id;
+   
+    //趋势分析
     YWLineHistoryController *lineHistory = [[YWLineHistoryController alloc] init];
     lineHistory.a_id = self.a_id;
+    
     NSArray *childArr = @[deviceStatus,deviceInfo,docInfo,lineHistory];
     /// pageContentView
     CGFloat contentViewHeight = SCREEN_HEIGHT - HEADER_HEIGHT - 84;
@@ -233,12 +248,14 @@
     NSString *url = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
     params[@"token"] = kGetData(@"token");
     params[@"account_id"] = kGetData(@"account_id");
-    //if (self.a_id) {
-        params[@"a_id"] = self.a_id;
-    //} else {
-     //   params[@"a_id"] = self.station.a_id;
-    //}
-    
+//    if (self.a_id) {
+//        params[@"a_id"] = self.a_id;
+//    } else {
+//        params[@"a_id"] = self.station.a_id;
+//    }
+//    params[@"a_id"] = self.a_id;
+    params[@"s_id"] = self.station.station_id;
+
     //判断当前电站是否收藏
     if (self.is_collection) {
         params[@"act"] = @"del";
@@ -252,7 +269,7 @@
     [HMHttpTool post:url params:params success:^(id responseObj) {
         NSDictionary *dict = responseObj[@"data"];
         NSString *status = responseObj[@"code"];
-        //NSString *msg = responseObj[@"tip"];
+        NSString *msg = responseObj[@"tip"];
         YWLog(@"collectViewBtnClick--%@",responseObj);
         if ([status isEqual:@1]) { // 数据
             //请求成功要做的事
@@ -261,16 +278,21 @@
             self.is_collection = self.station.is_collection;
             if (self.is_collection) {
                 
-                self.collectView.selected = YES;
-                [self.collectView setImage:[UIImage imageNamed:@"activity_wodedianzhan_yishouchang"] forState:UIControlStateSelected];
-            } else {
                 self.collectView.selected = NO;
                 [self.collectView setImage:[UIImage imageNamed:@"activity_wodedianzhan_shouchang"] forState:UIControlStateNormal];
+            } else {
+            
+        
+                self.collectView.selected = YES;
+                [self.collectView setImage:[UIImage imageNamed:@"activity_wodedianzhan_yishouchang"] forState:UIControlStateSelected];
             }
             
+        }else{
+            NSLog(@"%@",msg);
         }
         
     } failure:^(NSError *error) {
+        
         /**停止刷新*/
         //[self.tableView.mj_header endRefreshing];
         //[self.tableView.mj_footer endRefreshing];
