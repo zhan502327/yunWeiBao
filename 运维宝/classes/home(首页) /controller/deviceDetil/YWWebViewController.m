@@ -27,15 +27,8 @@
     webView.scalesPageToFit = YES;
     [self.view addSubview:webView];
     
-
-    
-    
-
     [MBProgressHUD showMessage:@"正在下载文件" toView:self.view];
 
-    
-    
-    
     
     NSURL *url = [NSURL URLWithString:self.filePath];
 //    创建URL
@@ -48,7 +41,7 @@
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     NSLog(@"error----- %@",error);
-    
+    [MBProgressHUD hideHUDForView:self.view];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{

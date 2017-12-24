@@ -13,7 +13,8 @@
 #import "YWDocInfoController.h"
 #import "YWServiceDetilController.h"
 #import "YWMyStations.h"
-#import "YWLineHistoryController.h"
+#import "YWLineHistoryController.h"//
+#import "YWDBLineViewController.h"//
 #import "YWDeviceInfo.h"
 
 @interface YWDeviceDetilController ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>
@@ -200,8 +201,12 @@
     docInfo.a_id = self.a_id;
    
     //趋势分析
-    YWLineHistoryController *lineHistory = [[YWLineHistoryController alloc] init];
+//    YWLineHistoryController *lineHistory = [[YWLineHistoryController alloc] init];
+//    lineHistory.a_id = self.a_id;
+//
+    YWDBLineViewController *lineHistory = [[YWDBLineViewController alloc] init];
     lineHistory.a_id = self.a_id;
+    
     
     NSArray *childArr = @[deviceStatus,deviceInfo,docInfo,lineHistory];
     /// pageContentView

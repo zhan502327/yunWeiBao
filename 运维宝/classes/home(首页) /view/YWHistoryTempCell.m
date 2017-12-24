@@ -54,6 +54,7 @@
     //设备名称
     UIButton *tempBtn1 = [[UIButton alloc] init];
     self.tempBtn1 = tempBtn1;
+    tempBtn1.selected = YES;
     tempBtn1.layer.cornerRadius = 3;
     tempBtn1.clipsToBounds = YES;
     //tempBtn1.layer.borderWidth = 1.5;
@@ -68,6 +69,7 @@
     
     UIButton *tempBtn2 = [[UIButton alloc] init];
     self.tempBtn2 = tempBtn2;
+    tempBtn2.selected = YES;
     tempBtn2.layer.cornerRadius = 3;
     tempBtn2.clipsToBounds = YES;
     //tempBtn2.layer.borderWidth = 1.5;
@@ -81,6 +83,7 @@
     
     UIButton *tempBtn3 = [[UIButton alloc] init];
     self.tempBtn3 = tempBtn3;
+    tempBtn3.selected = YES;
     tempBtn3.layer.cornerRadius = 3;
     tempBtn3.clipsToBounds = YES;
     //tempBtn3.layer.borderWidth = 1.5;
@@ -126,10 +129,7 @@
 /**qq*/
 - (void)CbtnClick:(UIButton *)button
 {
-   
-//    if (!button.selected) {
-//        button.backgroundColor = YWColor(128, 128, 128);
-//    }
+
     
     button.selected = !button.selected;
     if (self.didTapCBtn) {
@@ -140,9 +140,6 @@
 /**微信*/
 - (void)BbtnClick:(UIButton *)button
 {
-//    if (!button.selected) {
-//        button.backgroundColor = YWColor(128, 128, 128);
-//    }
    
     button.selected = !button.selected;
     if (self.didTapBBtn) {
@@ -154,14 +151,8 @@
 /**短信*/
 - (void)AbtnClick:(UIButton *)button
 {
-    
-//    if (!button.selected) {
-//        button.backgroundColor = YWColor(128, 128, 128);
-//    }
-    
     button.selected = !button.selected;
     if (self.didTapABtn) {
-    
         self.didTapABtn(self.tempBtn3);
     }
     

@@ -433,6 +433,7 @@
 		12FCB49B1FB0309E00B4CA1B /* YWDeviceDetil.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB49A1FB0309E00B4CA1B /* YWDeviceDetil.m */; };
 		12FCB4A11FB0345300B4CA1B /* YWDeviceDetilInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB4A01FB0345300B4CA1B /* YWDeviceDetilInfo.m */; };
 		4D088DA11FED475F00ABE8DC /* YWWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D088DA01FED475F00ABE8DC /* YWWebViewController.m */; };
+		4D088DA41FEFB59B00ABE8DC /* YWDBLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D088DA31FEFB59B00ABE8DC /* YWDBLineViewController.m */; };
 		5B19ADED1FE665310068CB80 /* TTOpenInAppActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19ADE51FE6652F0068CB80 /* TTOpenInAppActivity.m */; };
 		5B19ADEE1FE665310068CB80 /* TTOpenInAppActivity.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADE61FE6652F0068CB80 /* TTOpenInAppActivity.png */; };
 		5B19ADEF1FE665310068CB80 /* TTOpenInAppActivity7.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADE71FE6652F0068CB80 /* TTOpenInAppActivity7.png */; };
@@ -1273,6 +1274,8 @@
 		12FCB4A01FB0345300B4CA1B /* YWDeviceDetilInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YWDeviceDetilInfo.m; sourceTree = "<group>"; };
 		4D088D9F1FED475F00ABE8DC /* YWWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWWebViewController.h; sourceTree = "<group>"; };
 		4D088DA01FED475F00ABE8DC /* YWWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWWebViewController.m; sourceTree = "<group>"; };
+		4D088DA21FEFB59B00ABE8DC /* YWDBLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWDBLineViewController.h; sourceTree = "<group>"; };
+		4D088DA31FEFB59B00ABE8DC /* YWDBLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWDBLineViewController.m; sourceTree = "<group>"; };
 		5B19ADE41FE6652F0068CB80 /* TTOpenInAppActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTOpenInAppActivity.h; sourceTree = "<group>"; };
 		5B19ADE51FE6652F0068CB80 /* TTOpenInAppActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTOpenInAppActivity.m; sourceTree = "<group>"; };
 		5B19ADE61FE6652F0068CB80 /* TTOpenInAppActivity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTOpenInAppActivity.png; sourceTree = "<group>"; };
@@ -1636,6 +1639,8 @@
 				1224236F1F9C743A007DE5DE /* YWDocInfoController.m */,
 				122423711F9C7452007DE5DE /* YWLineHistoryController.h */,
 				122423721F9C7452007DE5DE /* YWLineHistoryController.m */,
+				4D088DA21FEFB59B00ABE8DC /* YWDBLineViewController.h */,
+				4D088DA31FEFB59B00ABE8DC /* YWDBLineViewController.m */,
 				4D088D9F1FED475F00ABE8DC /* YWWebViewController.h */,
 				4D088DA01FED475F00ABE8DC /* YWWebViewController.m */,
 			);
@@ -3851,6 +3856,7 @@
 				122881DA1F984E7F007D67D5 /* UIView+MJExtension.m in Sources */,
 				122881EA1F984E7F007D67D5 /* UIImageView+WebCache.m in Sources */,
 				1228825A1F985024007D67D5 /* DCNumericalScrollView.m in Sources */,
+				4D088DA41FEFB59B00ABE8DC /* YWDBLineViewController.m in Sources */,
 				122AF4531F99CCF100225F9E /* YWGridViewCell.m in Sources */,
 				122881751F984E7F007D67D5 /* IQBarButtonItem.m in Sources */,
 				122881591F984E7F007D67D5 /* CorePageControl.m in Sources */,
