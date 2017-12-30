@@ -41,6 +41,12 @@
 /** 温度检测 */
 @property(nonatomic, strong) YWDeviceTemp *deviceTemp;
 
+
+/**
+ 环境温度
+ */
+@property (nonatomic, copy) NSString *temperatureAvrage;
+
 @end
 
 @implementation YWDeviceStatusController
@@ -63,7 +69,7 @@
     //状态监测图
     [self setupStatusView];
     //温升历史曲线
-    [self setupTemHostoryView];
+//    [self setupTemHostoryView];
     
     
 }
@@ -86,6 +92,7 @@
         NSDictionary *statusDict = responseObj[@"data"][@"status"];
         
         NSArray *temperatureDict = responseObj[@"data"][@"temperature"];
+        self.temperatureAvrage = responseObj[@"data"][@"temperature"][@"ambient"];
         NSString *status = responseObj[@"code"];
         //NSString *msg = responseObj[@"tip"];
         //YWLog(@"设备列表--%@",responseObj);
@@ -94,6 +101,9 @@
             self.deviceStatus = [YWDeviceStatus mj_objectWithKeyValues:statusDict];
             //温升
             self.deviceTemp = [YWDeviceTemp mj_objectWithKeyValues:temperatureDict];
+            //温升历史曲线
+            [self setupTemHostoryView];
+
             //获得模型数据
             [self.statusTableView reloadData];
             [self.tempTableView reloadData];
@@ -202,10 +212,11 @@
     temHistoryBtn2.titleLabel.font = FONT_14;
     
     temHistoryBtn2.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, 0);
-    [temHistoryBtn2 setTitle:@"环境温度" forState:UIControlStateNormal];
+    [temHistoryBtn2 setTitle:[NSString stringWithFormat:@"环境温度%@℃",self.temperatureAvrage] forState:UIControlStateNormal];
     [temHistoryBtn2 setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [temHistoryBtn2 setImage:[UIImage imageNamed:@"activity_wodedianzhan_wendu"] forState:UIControlStateNormal];
-    temHistoryBtn2.frame = CGRectMake(temHistoryBtnW*2+10,15,temHistoryBtnW, 20);
+//    temHistoryBtn2.frame = CGRectMake(temHistoryBtnW*2+10,15,temHistoryBtnW, 20);
+    temHistoryBtn2.frame = CGRectMake(SCREEN_WIDTH - 200,15,200, 20);
     [temHistoryView addSubview:temHistoryBtn2];
     
     //表格控件
