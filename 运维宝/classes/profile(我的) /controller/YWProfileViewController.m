@@ -47,7 +47,7 @@
     
     
     self.userNick.text = [NSString stringWithFormat:@"姓名:%@%@%@%@",kGetData(@"nick"),str1,kGetData(@"account"),str2];
-
+    
 }
 
 - (void)viewDidLoad {
@@ -61,7 +61,7 @@
     [self setupFooter];
     NSString *str1 = @"(";
     NSString *str2 = @")";
-
+    
     
     self.userNick.text = [NSString stringWithFormat:@"姓名:%@%@%@%@",[GolbalManager sharedManager].logUser.nick,str1,[GolbalManager sharedManager].logUser.account,str2];
     //用户ID
@@ -71,7 +71,7 @@
     //刷新页面
     //登陆成功通知
     [YWNotificationCenter addObserver:self selector:@selector(logUser:) name:YWLogUserNotification object:nil];
-
+    
 }
 
 //用户模型数据
@@ -96,7 +96,7 @@
 - (void)logOut
 {
     //退出登录
-
+    
 }
 // 1.用户头部view
 - (void)setUpHeaderView
@@ -115,11 +115,20 @@
     
     headView.backgroundColor = [UIColor clearColor];
     _headView = headView;
-    [headView.iconView.iconImageView sd_setImageWithURL:kGetData(@"photo_path") placeholderImage:[UIImage imageNamed:@"userIcon"]];
     
-
     
-    headView.frame = CGRectMake(0, 0, SCREEN_WIDTH,210);
+    NSString *urlStr = @"/assets_doucment_down.php";
+    NSString *urlString = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
+    
+    
+    NSString *fileName = [NSString stringWithFormat:@"?token=%@&account_id=%@&file_id=%@",kGetData(@"token"), kGetData(@"account_id"), kGetData(@"photo_id")];
+    urlString = [urlString stringByAppendingString:fileName];
+    
+    [headView.iconView.iconImageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"userIcon"]];
+    
+    
+    
+    headView.frame = CGRectMake(0, 0, SCREEN_WIDTH,250);
     //账户金额明细工具条
     UIView *bgview = [[UIView alloc] init];
     //bgview.backgroundColor = [UIColor darkGrayColor];
@@ -140,17 +149,17 @@
     [bgview addSubview:titleLabel];
     
     //提示标题
-//    UILabel *detilLabel = [[UILabel alloc] init];
-//    self.userAcount = detilLabel;
-//    detilLabel.textAlignment = NSTextAlignmentRight;
-//    detilLabel.numberOfLines = 0;
-//    detilLabel.text = @"ID:";
-//    detilLabel.textColor = [UIColor darkGrayColor];
-//    detilLabel.font = [UIFont systemFontOfSize:15];
-//    CGFloat detilLabelX = SCREEN_WIDTH - margin*2 -labW;
-//    detilLabel.frame = CGRectMake(detilLabelX, 5, labW, 25);
-//    [bgview addSubview:detilLabel];
-
+    //    UILabel *detilLabel = [[UILabel alloc] init];
+    //    self.userAcount = detilLabel;
+    //    detilLabel.textAlignment = NSTextAlignmentRight;
+    //    detilLabel.numberOfLines = 0;
+    //    detilLabel.text = @"ID:";
+    //    detilLabel.textColor = [UIColor darkGrayColor];
+    //    detilLabel.font = [UIFont systemFontOfSize:15];
+    //    CGFloat detilLabelX = SCREEN_WIDTH - margin*2 -labW;
+    //    detilLabel.frame = CGRectMake(detilLabelX, 5, labW, 25);
+    //    [bgview addSubview:detilLabel];
+    
     [headView addSubview:bgview];
     self.tableView.tableHeaderView = headView;
     [self.view addSubview:headView];
@@ -159,6 +168,7 @@
     //[headView.iconView.iconImageView addGestureRecognizer:iconViewTap];
     
 }
+
 
 - (void)setupFooter
 {
@@ -187,7 +197,7 @@
 - (void)logoutBtnClick
 {
     //退出登录
-//    [GolbalManager sharedManager].isLogin = NO;
+    //    [GolbalManager sharedManager].isLogin = NO;
     
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isLogin"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -213,7 +223,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+    
     YWProfileViewCell *cell = [YWProfileViewCell cellWithTableView:tableView];
     
     cell.titleLabel.text = self.titleArr[indexPath.row];
@@ -234,7 +244,7 @@
         
     } else if (indexPath.row == 1){
         //意见反馈
-
+        
         
         YWAdviceController *advice = [[YWAdviceController alloc] init];
         
@@ -248,44 +258,44 @@
         [self.navigationController pushViewController:share animated:YES];
         
         //检查更新
-//        NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
-//
-//        NSString *nowVersion = [infoDict objectForKey:@"CFBundleVersion"];
-//        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@", kStoreAppId]];
-//        NSString * file =  [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
-//
-//        NSRange substr = [file rangeOfString:@"\"version\":\""];
-//        NSRange range1 = NSMakeRange(substr.location+substr.length,10);
-//        NSRange substr2 =[file rangeOfString:@"\"" options:nil range:range1];
-//        NSRange range2 = NSMakeRange(substr.location+substr.length, substr2.location-substr.location-substr.length);
-//        NSString *newVersion =[file substringWithRange:range2];
-//            if(![nowVersion isEqualToString:newVersion])
-//            {
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"版本有更新"delegate:self cancelButtonTitle:@"取消"otherButtonTitles:@"更新",nil];
-//                [alert show];
-//            }else{
-                //弹框提示不需要更新
+        //        NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+        //
+        //        NSString *nowVersion = [infoDict objectForKey:@"CFBundleVersion"];
+        //        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@", kStoreAppId]];
+        //        NSString * file =  [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+        //
+        //        NSRange substr = [file rangeOfString:@"\"version\":\""];
+        //        NSRange range1 = NSMakeRange(substr.location+substr.length,10);
+        //        NSRange substr2 =[file rangeOfString:@"\"" options:nil range:range1];
+        //        NSRange range2 = NSMakeRange(substr.location+substr.length, substr2.location-substr.location-substr.length);
+        //        NSString *newVersion =[file substringWithRange:range2];
+        //            if(![nowVersion isEqualToString:newVersion])
+        //            {
+        //                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"版本有更新"delegate:self cancelButtonTitle:@"取消"otherButtonTitles:@"更新",nil];
+        //                [alert show];
+        //            }else{
+        //弹框提示不需要更新
         
-//        
-//        [SVProgressHUD showWithStatus:@"正在检查版本信息"];
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//             [SVProgressHUD showInfoWithStatus:@"当前已是最新版本"];
-//        });
+        //
+        //        [SVProgressHUD showWithStatus:@"正在检查版本信息"];
+        //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //             [SVProgressHUD showInfoWithStatus:@"当前已是最新版本"];
+        //        });
         
-
-//    }
+        
+        //    }
     }
-//    else if (indexPath.row == 3){
-//        //分享
-//        YWShareController *share = [[YWShareController alloc] init];
-//        [self.navigationController pushViewController:share animated:YES];
-//    }
+    //    else if (indexPath.row == 3){
+    //        //分享
+    //        YWShareController *share = [[YWShareController alloc] init];
+    //        [self.navigationController pushViewController:share animated:YES];
+    //    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 35;
+    return 40;
 }
 //移除通知
 - (void)dealloc

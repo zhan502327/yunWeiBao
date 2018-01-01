@@ -39,6 +39,8 @@
 /** 图片 */
 @property (nonatomic, copy  ) NSString   *photo_path;
 
+@property (nonatomic, copy) NSString *photo_id;
+
 
 /** 是否是新人 */
 @property (nonatomic, assign) NSUInteger newStar;

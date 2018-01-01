@@ -58,22 +58,22 @@ singleton_implementation(LMLoginController)
         self.userName.text = self.acount.name;
         self.password.text = self.acount.pwd;
     };
-   
+    
     [self setupAllChildView];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"address4_guanbi" highImageName:@"" target:self action:@selector(leftBtnAction)];
- 
+    
     //输入框文字改变发出通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged) name:UITextFieldTextDidChangeNotification object:self.userName];
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged) name:UITextFieldTextDidChangeNotification object:self.password];
-   
+    
 }
 
 #pragma mark - custom
 
 - (void)setupNavigationView {
     
-   UINavigationBar *navigationBar = self.navigationController.navigationBar;
+    UINavigationBar *navigationBar = self.navigationController.navigationBar;
     //    去除导航栏下方的横线 透明
     [navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [navigationBar setShadowImage:[UIImage new]];
@@ -91,7 +91,7 @@ singleton_implementation(LMLoginController)
 {
     
     [self dismissViewControllerAnimated:YES completion:nil];
-        
+    
 }
 - (void)setupAllChildView
 {
@@ -105,13 +105,13 @@ singleton_implementation(LMLoginController)
     CGFloat iconX = (SCREEN_WIDTH-iconViewWH)*0.5;
     icon.frame = CGRectMake(iconX,50, iconViewWH, iconViewWH);
     [self.view addSubview:_iconImageView];
-
+    
     //电话输入框
     CGFloat viewX = 30;
     CGFloat viewY = CGRectGetMaxY(icon.frame)+50;
     CGFloat viewW = SCREEN_WIDTH - viewX*2;
     CGFloat viewH = 40;
-
+    
     UITextField *userName = [[UITextField alloc] init];
     //userName.text = @"13600976198";
     userName.placeholder = @"请输入11位手机号";
@@ -139,7 +139,7 @@ singleton_implementation(LMLoginController)
     // 密码输入框
     UITextField *password = [[UITextField alloc] init];
     password.clearButtonMode = UITextFieldViewModeWhileEditing;
-//    password.keyboardType = UIKeyboardTypeNumberPad;
+    //    password.keyboardType = UIKeyboardTypeNumberPad;
     //password.text = @"123456";
     password.placeholder = @"请输入密码";
     password.font = FONT_14;
@@ -181,7 +181,7 @@ singleton_implementation(LMLoginController)
     CGFloat registerY = CGRectGetMaxY(loginBtn.frame)+10;
     CGFloat registerW = 100;
     CGFloat margin = (SCREEN_WIDTH - registerW*3)/4;
-
+    
     
     UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     registerBtn.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -192,7 +192,7 @@ singleton_implementation(LMLoginController)
     CGFloat registerX = viewX;
     registerBtn.frame = CGRectMake(registerX-10, registerY, registerW, 25);
     _registerBtn = registerBtn;
-
+    
     // 5、重置密码按钮
     
     UIButton *setPwd = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -217,17 +217,19 @@ singleton_implementation(LMLoginController)
     } else if (self.password.text.length == 0){
         [SVProgressHUD showErrorWithStatus:@"请输入密码"];
     }else{
-    
+        
         [SVProgressHUD showWithStatus:@"正在登录中"];
-    //发送登录请求
+        //发送登录请求
         NSMutableDictionary *param = [NSMutableDictionary  dictionary];
         //手机号
         param[@"mobile"] = self.userName.text;
         //密码
         param[@"password"] = self.password.text;
+        
+//        param[@"client_id"] = kGetData(@"token");
         NSString *shortStr = @"/user_login.php";
         NSString *url = [YWBaseURL stringByAppendingFormat:@"%@",shortStr];
-
+        
         [HMHttpTool get:url params:param success:^(id responseObj) {
             
             NSDictionary *dict = responseObj[@"data"];
@@ -239,7 +241,7 @@ singleton_implementation(LMLoginController)
                 [SVProgressHUD showSuccessWithStatus:msg];
                 YWTabbarController *tabbar = [[YWTabbarController alloc] init];
                 [UIApplication sharedApplication].keyWindow.rootViewController = tabbar;
-
+                
                 //[SVProgressHUD dismiss];
                 //账号模型
                 YXAcount *acount = [[YXAcount alloc] init];
@@ -258,6 +260,9 @@ singleton_implementation(LMLoginController)
                 [GolbalManager sharedManager].logUser = user;
                 [GolbalManager sharedManager].isLogin = YES;
                 
+                
+   
+                
                 //存储登录
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isLogin"];
                 
@@ -271,28 +276,54 @@ singleton_implementation(LMLoginController)
                 kDataPersistence(user.nick,@"nick");
                 //存储用户ID
                 kDataPersistence(user.photo_path,@"photo_path");
+                
+                kDataPersistence(user.photo_id, @"photo_id");
                 //存储用户ID
                 kDataPersistence(user.tel1,@"tel1");
                 //存储用户ID
                 kDataPersistence(user.app_title,@"app_title");
-
+                
                 [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                
+                
+//                ===========================
+                
+                
+                
+                //                NSString *fileName = [NSString stringWithFormat:@"?token=%@&account_id=%@&file_id=%@&file_path=%@",kGetData(@"token"), kGetData(@"account_id"), deviceModel.file_id, deviceModel.file_path];
+                //                urlString = [urlString stringByAppendingString:fileName];
+                
+                
+                //                http://app.connel.cn/api/assets_doucment_down.php
+                //                "photo_id" = 10173;  http://app.connel.cn/api
+                
+                
+                NSString *urlStr = @"/assets_doucment_down.php";
+                NSString *urlString = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
+
+                
+//                =============================
                 
                 [self leftBtnAction];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    
+                    
                     [SVProgressHUD dismiss];
                     
                 });
-    
+                
+            }else{
+                [SVProgressHUD showErrorWithStatus:@"请输入正确账号或密码"];
+//                [SVProgressHUD dismiss];
+
             }
             
-            } failure:^(NSError *error) {
+        } failure:^(NSError *error) {
             
             YWLog(@"请求失败--%@", error);
             
         }];
-
+        
     }
     
 }
@@ -304,7 +335,7 @@ singleton_implementation(LMLoginController)
     [self.navigationController pushViewController:registerVc animated:YES];
     
     YWLog(@"registerBtn");
-
+    
 }
 
 // 重置密码
@@ -313,7 +344,7 @@ singleton_implementation(LMLoginController)
     LMSetPwdViewController *setpwd = [[LMSetPwdViewController alloc] init];
     [self.navigationController pushViewController:setpwd animated:YES];
     YWLog(@"setPwdBtn");
-
+    
 }
 
 //监听通知

@@ -218,6 +218,10 @@
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSLog(@"\n>>>[DeviceToken Success]:%@\n\n", token);
     
+    kDataPersistence(token, @"token");
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
     // 向个推服务器注册deviceToken
     [GeTuiSdk registerDeviceToken:token];
 }

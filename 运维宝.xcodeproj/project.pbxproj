@@ -3559,7 +3559,6 @@
 					12287EAD1F9838B8007D67D5 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = QK3H5LN4MT;
-						ProvisioningStyle = Manual;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -4201,8 +4200,6 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "运维宝/运维宝.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
-				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QK3H5LN4MT;
@@ -4236,8 +4233,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zhongDianLian.aliyun.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2626388c-24e7-41b8-a9e4-bbd5886a8d77";
-				PROVISIONING_PROFILE_SPECIFIER = "zhongdianlian-dis";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -4251,8 +4246,6 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "运维宝/运维宝.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
-				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QK3H5LN4MT;
@@ -4286,8 +4279,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zhongDianLian.aliyun.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2626388c-24e7-41b8-a9e4-bbd5886a8d77";
-				PROVISIONING_PROFILE_SPECIFIER = "zhongdianlian-dis";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
