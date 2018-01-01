@@ -434,6 +434,18 @@
 		12FCB4A11FB0345300B4CA1B /* YWDeviceDetilInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB4A01FB0345300B4CA1B /* YWDeviceDetilInfo.m */; };
 		4D088DA11FED475F00ABE8DC /* YWWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D088DA01FED475F00ABE8DC /* YWWebViewController.m */; };
 		4D088DA41FEFB59B00ABE8DC /* YWDBLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D088DA31FEFB59B00ABE8DC /* YWDBLineViewController.m */; };
+		4DB860251FF90C390051374A /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB860241FF90C390051374A /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		4DB860271FF90C460051374A /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB860261FF90C460051374A /* libstdc++.6.0.9.tbd */; };
+		4DB8602B1FF90FEE0051374A /* GTExtensionSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB860291FF90FEE0051374A /* GTExtensionSDK.framework */; };
+		4DB8602C1FF90FEE0051374A /* GTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB8602A1FF90FEE0051374A /* GTSDK.framework */; };
+		4DB8602E1FF910680051374A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB8602D1FF910670051374A /* libc++.tbd */; };
+		4DB860301FF910860051374A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB8602F1FF910850051374A /* Security.framework */; };
+		4DB860321FF910920051374A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB860311FF910920051374A /* MobileCoreServices.framework */; };
+		4DB860341FF9109B0051374A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB860331FF9109B0051374A /* SystemConfiguration.framework */; };
+		4DB860361FF910A60051374A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB860351FF910A60051374A /* CoreTelephony.framework */; };
+		4DB860381FF910B00051374A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB860371FF910B00051374A /* AVFoundation.framework */; };
+		4DB8603A1FF910B90051374A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB860391FF910B90051374A /* CoreLocation.framework */; };
+		4DB8603C1FF911A20051374A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB8603B1FF911A20051374A /* AdSupport.framework */; };
 		5B19ADED1FE665310068CB80 /* TTOpenInAppActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19ADE51FE6652F0068CB80 /* TTOpenInAppActivity.m */; };
 		5B19ADEE1FE665310068CB80 /* TTOpenInAppActivity.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADE61FE6652F0068CB80 /* TTOpenInAppActivity.png */; };
 		5B19ADEF1FE665310068CB80 /* TTOpenInAppActivity7.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADE71FE6652F0068CB80 /* TTOpenInAppActivity7.png */; };
@@ -1276,6 +1288,19 @@
 		4D088DA01FED475F00ABE8DC /* YWWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWWebViewController.m; sourceTree = "<group>"; };
 		4D088DA21FEFB59B00ABE8DC /* YWDBLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWDBLineViewController.h; sourceTree = "<group>"; };
 		4D088DA31FEFB59B00ABE8DC /* YWDBLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWDBLineViewController.m; sourceTree = "<group>"; };
+		4DB860231FF90BC60051374A /* 运维宝.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "运维宝.entitlements"; sourceTree = "<group>"; };
+		4DB860241FF90C390051374A /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		4DB860261FF90C460051374A /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		4DB860291FF90FEE0051374A /* GTExtensionSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTExtensionSDK.framework; sourceTree = "<group>"; };
+		4DB8602A1FF90FEE0051374A /* GTSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTSDK.framework; sourceTree = "<group>"; };
+		4DB8602D1FF910670051374A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		4DB8602F1FF910850051374A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		4DB860311FF910920051374A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		4DB860331FF9109B0051374A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4DB860351FF910A60051374A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		4DB860371FF910B00051374A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4DB860391FF910B90051374A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4DB8603B1FF911A20051374A /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		5B19ADE41FE6652F0068CB80 /* TTOpenInAppActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTOpenInAppActivity.h; sourceTree = "<group>"; };
 		5B19ADE51FE6652F0068CB80 /* TTOpenInAppActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTOpenInAppActivity.m; sourceTree = "<group>"; };
 		5B19ADE61FE6652F0068CB80 /* TTOpenInAppActivity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTOpenInAppActivity.png; sourceTree = "<group>"; };
@@ -1292,13 +1317,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DB8603C1FF911A20051374A /* AdSupport.framework in Frameworks */,
+				4DB860251FF90C390051374A /* UserNotifications.framework in Frameworks */,
+				4DB8603A1FF910B90051374A /* CoreLocation.framework in Frameworks */,
+				4DB860381FF910B00051374A /* AVFoundation.framework in Frameworks */,
+				4DB860361FF910A60051374A /* CoreTelephony.framework in Frameworks */,
+				4DB860341FF9109B0051374A /* SystemConfiguration.framework in Frameworks */,
+				4DB860321FF910920051374A /* MobileCoreServices.framework in Frameworks */,
+				4DB860301FF910860051374A /* Security.framework in Frameworks */,
+				1218E9A01FA99C1300C48B91 /* libsqlite3.tbd in Frameworks */,
+				1218E99A1FA99BC500C48B91 /* libz.tbd in Frameworks */,
+				4DB8602E1FF910680051374A /* libc++.tbd in Frameworks */,
+				4DB8602C1FF90FEE0051374A /* GTSDK.framework in Frameworks */,
+				4DB860271FF90C460051374A /* libstdc++.6.0.9.tbd in Frameworks */,
 				1218E99C1FA99BD200C48B91 /* libstdc++.tbd in Frameworks */,
 				120B42981FB34E34000640E4 /* Bolts.framework in Frameworks */,
 				122882851F985194007D67D5 /* libsqlite3.0.tbd in Frameworks */,
 				1218E98B1FA99AEE00C48B91 /* ShareSDKExtension.framework in Frameworks */,
 				1218E98D1FA99AEE00C48B91 /* ShareSDKUI.framework in Frameworks */,
 				122881A51F984E7F007D67D5 /* AMapFoundationKit.framework in Frameworks */,
-				1218E99A1FA99BC500C48B91 /* libz.tbd in Frameworks */,
 				120B42931FB34E34000640E4 /* Bugly.framework in Frameworks */,
 				122881A61F984E7F007D67D5 /* AMapLocationKit.framework in Frameworks */,
 				1218E98E1FA99AEE00C48B91 /* TencentOpenAPI.framework in Frameworks */,
@@ -1309,9 +1346,9 @@
 				120B42991FB34E34000640E4 /* Parse.framework in Frameworks */,
 				1218E98A1FA99AEE00C48B91 /* ShareSDK.framework in Frameworks */,
 				1218E9901FA99AEE00C48B91 /* libWeiboSDK.a in Frameworks */,
-				1218E9A01FA99C1300C48B91 /* libsqlite3.tbd in Frameworks */,
 				122881A81F984E7F007D67D5 /* MAMapKit.framework in Frameworks */,
 				122881A71F984E7F007D67D5 /* AMapSearchKit.framework in Frameworks */,
+				4DB8602B1FF90FEE0051374A /* GTExtensionSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1344,6 +1381,7 @@
 		120B42481FB34E34000640E4 /* 3rdparty */ = {
 			isa = PBXGroup;
 			children = (
+				4DB860281FF90FEE0051374A /* GtSdkLib */,
 				5B19ADE31FE6652F0068CB80 /* TTOpenInAppActivity */,
 				12E175341FBC0F210041CB10 /* NullSafe */,
 				123730E91FB5952800C724A8 /* JHChart */,
@@ -1682,6 +1720,7 @@
 		12287EB01F9838B8007D67D5 /* 运维宝 */ = {
 			isa = PBXGroup;
 			children = (
+				4DB860231FF90BC60051374A /* 运维宝.entitlements */,
 				12287F111F983CDC007D67D5 /* classes */,
 				12287EB11F9838B8007D67D5 /* Supporting Files */,
 			);
@@ -3250,6 +3289,16 @@
 		122882831F985194007D67D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4DB8603B1FF911A20051374A /* AdSupport.framework */,
+				4DB860391FF910B90051374A /* CoreLocation.framework */,
+				4DB860371FF910B00051374A /* AVFoundation.framework */,
+				4DB860351FF910A60051374A /* CoreTelephony.framework */,
+				4DB860331FF9109B0051374A /* SystemConfiguration.framework */,
+				4DB860311FF910920051374A /* MobileCoreServices.framework */,
+				4DB8602F1FF910850051374A /* Security.framework */,
+				4DB8602D1FF910670051374A /* libc++.tbd */,
+				4DB860261FF90C460051374A /* libstdc++.6.0.9.tbd */,
+				4DB860241FF90C390051374A /* UserNotifications.framework */,
 				1218E99F1FA99C1300C48B91 /* libsqlite3.tbd */,
 				1218E99E1FA99C0800C48B91 /* ImageIO.framework */,
 				1218E99D1FA99BF200C48B91 /* JavaScriptCore.framework */,
@@ -3416,6 +3465,15 @@
 			path = NullSafe;
 			sourceTree = "<group>";
 		};
+		4DB860281FF90FEE0051374A /* GtSdkLib */ = {
+			isa = PBXGroup;
+			children = (
+				4DB860291FF90FEE0051374A /* GTExtensionSDK.framework */,
+				4DB8602A1FF90FEE0051374A /* GTSDK.framework */,
+			);
+			path = GtSdkLib;
+			sourceTree = "<group>";
+		};
 		5B19ADE31FE6652F0068CB80 /* TTOpenInAppActivity */ = {
 			isa = PBXGroup;
 			children = (
@@ -3502,6 +3560,15 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = QK3H5LN4MT;
 						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					12287EC61F9838B8007D67D5 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -4132,9 +4199,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "运维宝/运维宝.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
 				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QK3H5LN4MT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4149,6 +4219,7 @@
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/3rdparty/ShareSDK/Support/Optional",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/3rdparty/ShareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/3rdparty/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/3rdparty/GtSdkLib",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "运维宝/YWPrefixHeader.pch";
@@ -4167,6 +4238,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2626388c-24e7-41b8-a9e4-bbd5886a8d77";
 				PROVISIONING_PROFILE_SPECIFIER = "zhongdianlian-dis";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -4175,9 +4249,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "运维宝/运维宝.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
 				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QK3H5LN4MT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4192,6 +4269,7 @@
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/3rdparty/ShareSDK/Support/Optional",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/3rdparty/ShareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/3rdparty/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/3rdparty/GtSdkLib",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "运维宝/YWPrefixHeader.pch";
@@ -4210,6 +4288,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2626388c-24e7-41b8-a9e4-bbd5886a8d77";
 				PROVISIONING_PROFILE_SPECIFIER = "zhongdianlian-dis";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

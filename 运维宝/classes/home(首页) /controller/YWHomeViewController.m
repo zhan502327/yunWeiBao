@@ -265,8 +265,7 @@ static NSString *const GridCellID = @"GridCellID";
 - (void)setUpHeaderView
 {
     //头部view
-    UIView *headView = [[UIView alloc] init];
-    
+    UIView *headView = [[UIView alloc] init];    
     UIImageView *headerPicView = [[UIImageView alloc] init];
     headerPicView.image = [UIImage imageNamed:@"banner"];
     headerPicView.contentMode = UIViewContentModeScaleAspectFit;
@@ -274,12 +273,14 @@ static NSString *const GridCellID = @"GridCellID";
     headView.frame = CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT*0.37);
     [headView addSubview:headerPicView];
     //设置frame
-    [headerPicView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(headView);
-        make.left.mas_equalTo(headView);
-        make.right.mas_equalTo(headView);
-        make.height.mas_equalTo(headView.height-85);
-    }];
+    headerPicView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH*0.39);
+
+//    [headerPicView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(headView);
+//        make.left.mas_equalTo(headView);
+//        make.right.mas_equalTo(headView);
+//        make.height.mas_equalTo(headView.height-85);
+//    }];
     
     //状态按钮工具条
     UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
@@ -287,7 +288,9 @@ static NSString *const GridCellID = @"GridCellID";
     _collectionView.backgroundColor = MAINBGCLOLOR;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    _collectionView.frame = CGRectMake(0,headView.height-86, SCREEN_WIDTH,70);
+//    _collectionView.frame = CGRectMake(0,headView.height-86, SCREEN_WIDTH,70);
+    _collectionView.frame = CGRectMake(0,CGRectGetMaxY(headerPicView.frame), SCREEN_WIDTH,CGRectGetMaxY(headView.frame) - CGRectGetMaxY(headerPicView.frame));
+
     _collectionView.showsVerticalScrollIndicator = NO;
     _collectionView.scrollEnabled = NO;
     //注册

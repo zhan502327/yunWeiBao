@@ -48,15 +48,15 @@
     [self addSubview:statusLabel];
     
     [self.statusBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        [make.top.mas_equalTo(self)setOffset:YWMargin*0.4];
-        make.size.mas_equalTo(CGSizeMake(35, 35));
+        [make.top.mas_equalTo(self)setOffset:YWMargin*0.5];
+        make.size.mas_equalTo(CGSizeMake(55, 55));
         make.centerX.mas_equalTo(self);
         
     }];
     
     [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self);
-        [make.top.mas_equalTo(self.statusBtn.mas_bottom)setOffset:5];
+        [make.top.mas_equalTo(self.statusBtn.mas_bottom)setOffset:10];
     }];
 
 }

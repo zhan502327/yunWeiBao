@@ -137,9 +137,6 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
-
-    
     self.firststartsign = 0;
     
     //温升历史曲线
@@ -578,6 +575,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     //每周
     UIButton *weekBtn = [[UIButton alloc] init];
     self.weekBtn = weekBtn;
+    weekBtn.backgroundColor = [UIColor redColor];
     weekBtn.titleLabel.font = FONT_12;
     [weekBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     
@@ -2102,6 +2100,8 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 
 - (UITableView *)avgeTableView
 {
+    CGFloat averageW = SCREEN_WIDTH*0.20;
+
     if (!_avgeTableView) {
         _avgeTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         _avgeTableView.delegate = self;
@@ -2112,7 +2112,9 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
         _avgeTableView.backgroundColor = BGCLOLOR;
         _avgeTableView.showsVerticalScrollIndicator = NO;
         [self.view addSubview:_avgeTableView];
-        _avgeTableView.frame = CGRectMake(20,68,65,90);
+//        _avgeTableView.frame = CGRectMake(20,68,65,90);
+        _avgeTableView.frame = CGRectMake(20,68,averageW,90);
+
     }
     return _avgeTableView;
 }
@@ -2129,6 +2131,8 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 
 - (UITableView *)timeTableView
 {
+    CGFloat averageW = SCREEN_WIDTH*0.20;
+
     if (!_timeTableView) {
         _timeTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         _timeTableView.delegate = self;
@@ -2139,7 +2143,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
         _timeTableView.backgroundColor = BGCLOLOR;
         _timeTableView.showsVerticalScrollIndicator = NO;
         [self.view addSubview:_timeTableView];
-        _timeTableView.frame = CGRectMake(89,68,65,210);
+        _timeTableView.frame = CGRectMake(20 + averageW + 5,68,averageW,210);
     }
     return _timeTableView;
 }
