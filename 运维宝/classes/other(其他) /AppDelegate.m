@@ -33,6 +33,11 @@
 
 @interface AppDelegate ()
 
+{
+//    角标
+    NSInteger _badge;
+}
+
 @end
 
 @implementation AppDelegate
@@ -166,6 +171,8 @@
 }
 
 - (void)initGeTuiSDK{
+    _badge = 0;
+    
     // 通过个推平台分配的appId、 appKey 、appSecret 启动SDK，注：该方法需要在主线程中调用
     [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
     // 注册 APNs
@@ -239,6 +246,9 @@
     // 处理APNs代码，通过userInfo可以取到推送的信息（包括内容，角标，自定义参数等）。如果需要弹窗等其他操作，则需要自行编码。
     NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo);
     
+    _badge ++;
+    [GeTuiSdk setBadge:_badge]; //同步本地角标值到服务器
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:_badge]; //APP 显示角标需开发者调用系统方法进行设置
     
     
     
@@ -341,11 +351,20 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    _badge = 0;
+    [GeTuiSdk resetBadge]; //重置角标计数
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0]; // APP 清空角标
+    
 }
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    _badge = 0;
+    [GeTuiSdk resetBadge]; //重置角标计数
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0]; // APP 清空角标
+    
+    
 }
 
 

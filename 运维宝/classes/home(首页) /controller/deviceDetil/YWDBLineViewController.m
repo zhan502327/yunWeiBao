@@ -42,27 +42,13 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 @interface YWDBLineViewController ()
 <UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource, UIWebViewDelegate>
 {
-    
-    
-    //connection
-    NSString *_urlInfo;
-    NSMutableString *_paraInfo;
-    NSMutableData *_listData;
-    NSOperationQueue *_queue;
-    NSURLConnection *_connection;
-    BOOL parsingError;
-    
-    //pickerview
-    NSMutableArray *_pickviewYearArray;
-    NSMutableArray *_pickviewMonthArray;
+
     //pickerview的第一单元focus
     NSInteger pick0compentfocusIndex;
     NSInteger pick1compentfocusIndex;
     NSInteger pick2compentfocusIndex;
     NSInteger pick3compentfocusIndex;
-    
-    NSString *_NewbaseUrl;
-    
+
 
     
 }
@@ -126,8 +112,13 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 /** 曲线图webview */
 @property (nonatomic, strong) UIWebView *webView;
 
-
 @property (nonatomic, strong) NSMutableArray *selectLineArray;
+//获取默认的时间（当前时间）
+@property (nonatomic, copy) NSString *defaultTimeStr;
+
+//    时间button显示的title
+@property (nonatomic, copy) NSString *timeTitleStr;
+
 
 @end
 
@@ -139,8 +130,9 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     
     self.firststartsign = 0;
     
+    
     //温升历史曲线
-    [self setupTemHostoryView];
+    [self setupTopSelectButton];
     
     //状态监测图(button)
     [self setupTempView];
@@ -194,7 +186,6 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     //用户昵称
     if (self.avgeStr) {
         
-//        [self getHistorycharData];
         [self loadWebViewData];
     }
 //    [self.chartView refreshData];
@@ -210,7 +201,6 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     self.weekStr  = weekStr;
     //用户昵称
     if (self.weekStr) {
-//        [self getHistorycharData];
         [self loadWebViewData];
     }
     [self.chartView refreshData];
@@ -226,7 +216,6 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     self.yearStr  = yearStr;
     //用户昵称
     if (self.yearStr) {
-//        [self getHistorycharData];
         [self loadWebViewData];
 
     }
@@ -359,201 +348,37 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 }
 
 
-//发送请求获取曲线数据
-- (void)getHistorycharData
-{
-    //组装参数
-    NSMutableDictionary *params = [NSMutableDictionary  dictionary];
-    NSString *urlStr = @"assets_history.php";
-    NSString *url = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
-//    http://app.connel.cn/api/assets_history.php
-
-    params[@"a_id"] = self.a_id;
-    //说明是哪条曲线
-    params[@"num"] = @"1,2,3,4,5,6";
-    params[@"time"] = self.yearStr;
-    /**h小时 d天 w周 m月  hy半年 y年*/
-    //params[@"time"] = @"20171113";
-    
-    YWLog(@"选中的时间getHistorycharData -- %@",self.yearStr);
-    
-    /**avg平均 max最大 min最小*/
-    if ([self.avgeStr isEqualToString:@"平均"]) {
-        params[@"model"] = @"avg";
-    } else if ([self.avgeStr isEqualToString:@"最大"]){
-        params[@"model"] = @"max";
-    } else if ([self.avgeStr isEqualToString:@"最小"]){
-        params[@"model"] = @"min";
-    }
-    
-    /**h小时 d天 w周 m月  hy半年 y年*/
-    if ([self.weekStr isEqualToString:@"1小时"]){
-        params[@"type"] = @"h";
-    } else if ([self.weekStr isEqualToString:@"1天"]){
-        params[@"type"] = @"d";
-    } else  if ([self.weekStr isEqualToString:@"1周"]) {
-        params[@"type"] = @"w";
-    } else if ([self.weekStr isEqualToString:@"1个月"]){
-        params[@"type"] = @"m";
-    }else  if ([self.weekStr isEqualToString:@"3个月"]){
-        params[@"type"] = @"q";
-    }else  if ([self.weekStr isEqualToString:@"6个月"]){
-        params[@"type"] = @"hy";
-    }else  if ([self.weekStr isEqualToString:@"1年"]){
-        params[@"type"] = @"y";
-    }
-    
-    YWLog(@"曲线参数--%@",params);
-    //请求数据
-    [HMHttpTool post:url params:params success:^(id responseObj) {
-        
-        NSMutableDictionary *chartDict = responseObj[@"data"];
-        NSString *status = responseObj[@"code"];
-        NSString *msg = responseObj[@"tip"];
-        [SVProgressHUD showWithStatus:@"正在加载"];
-        
-        if ([status isEqual:@1]) { // 数据
-            //历史曲线数据
-            [self.charts removeAllObjects];
-            self.chartData = [YWChartGroup mj_objectWithKeyValues:chartDict];
-            
-            NSMutableArray *chatArr = [[NSMutableArray alloc] init];
-            NSMutableArray *chatXArr = [[NSMutableArray alloc] init];
-            
-            //数组数据
-            NSMutableArray  *chartArr1 = [[NSMutableArray  alloc] init];
-            NSMutableArray  *chartXArr1 = [[NSMutableArray  alloc] init];
-            
-            for (YWChartLine *chart1 in self.chartData.chart1) {
-                [chartArr1 addObject:chart1.y];
-                [chartXArr1 addObject:chart1.x];
-                
-            }
-            
-            NSMutableArray  *chartArr2 = [[NSMutableArray  alloc] init];
-            NSMutableArray  *chartXArr2 = [[NSMutableArray  alloc] init];
-            
-            for (YWChartLine *chart2 in self.chartData.chart2) {
-                [chartArr2 addObject:chart2.y];
-                [chartXArr2 addObject:chart2.x];
-                
-            }
-            
-            NSMutableArray  *chartArr3 = [[NSMutableArray  alloc] init];
-            NSMutableArray  *chartXArr3 = [[NSMutableArray  alloc] init];
-            
-            for (YWChartLine *chart3 in self.chartData.chart3) {
-                [chartArr3 addObject:chart3.y];
-                [chartXArr3 addObject:chart3.x];
-                
-            }
-            
-            NSMutableArray  *chartArr4 = [[NSMutableArray  alloc] init];
-            NSMutableArray  *chartXArr4 = [[NSMutableArray  alloc] init];
-            for (YWChartLine *chart4 in self.chartData.chart4) {
-                [chartArr4 addObject:chart4.y];
-                [chartXArr4 addObject:chart4.x];
-                
-            }
-            
-            NSMutableArray  *chartArr5 = [[NSMutableArray  alloc] init];
-            NSMutableArray  *chartXArr5 = [[NSMutableArray  alloc] init];
-            for (YWChartLine *chart5 in self.chartData.chart5) {
-                [chartArr5 addObject:chart5.y];
-                [chartXArr5 addObject:chart5.x];
-                
-                
-            }
-            NSMutableArray  *chartArr6 = [[NSMutableArray  alloc] init];
-            NSMutableArray  *chartXArr6 = [[NSMutableArray  alloc] init];
-            
-            for (YWChartLine *chart6 in self.chartData.chart6) {
-                [chartArr6 addObject:chart6.y];
-                [chartXArr6 addObject:chart6.x];
-                
-                
-            }
-            
-            //从后台取数据
-            
-            
-            
-            [chatArr addObject:chartArr1];
-            [chatArr addObject:chartArr2];
-            [chatArr addObject:chartArr3];
-            [chatArr addObject:chartArr4];
-            [chatArr addObject:chartArr5];
-            [chatArr addObject:chartArr6];
-            
-            
-            
-            [chatXArr addObject:chartXArr1];
-            [chatXArr addObject:chartXArr2];
-            [chatXArr addObject:chartXArr3];
-            [chatXArr addObject:chartXArr4];
-            [chatXArr addObject:chartXArr5];
-            [chatXArr addObject:chartXArr6];
-            
-            //六组线的数组
-            
-            self.charts = chatArr;
-            self.dataX = chatXArr;
-            
-            self.chartView.chartYArr = self.charts;
-            self.chartView.chartXArr = self.dataX;
-            
-            [self.chartView reloadData];
-            [self.chartView refreshData];
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                [SVProgressHUD dismiss];
-                
-            });
-            
-            YWLog(@"曲线数据--%@",self.chartData);
-            YWLog(@"chartDict--%@",chartDict);
-        }else{
-            
-            [SVProgressHUD showInfoWithStatus:msg];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                [SVProgressHUD dismiss];
-                
-            });
-            
-        }
-        
-    } failure:^(NSError *error) {
-        
-        YWLog(@"历史曲线--%@",error);
-        
-    }];
-    
-}
 //温升历史曲线
-- (void)setupTemHostoryView
+- (void)setupTopSelectButton
 {
     //曲线图
-    UIView *temHistoryView = [[UIView alloc] initWithFrame:CGRectMake(10,0, SCREEN_WIDTH-20, SCREEN_HEIGHT*0.48)];
-    temHistoryView.userInteractionEnabled = YES;
-    UIButton *temHistoryBtn = [[UIButton alloc] init];
-    temHistoryBtn.userInteractionEnabled = NO;
-    temHistoryBtn.titleLabel.font = FONT_14;
-    temHistoryBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 15);
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(10,0, SCREEN_WIDTH-20, SCREEN_HEIGHT*0.48)];
+    bgView.userInteractionEnabled = YES;
+    [self.view addSubview:bgView];
+    self.temHistoryView = bgView;
+
+    //温升曲线
+    UIButton *titleButton = [[UIButton alloc] init];
+    titleButton.userInteractionEnabled = NO;
+    titleButton.titleLabel.font = FONT_14;
+    titleButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 15);
     //temHistoryBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, 0);
-    [temHistoryBtn setTitle:@"温升曲线" forState:UIControlStateNormal];
-    [temHistoryBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [temHistoryBtn setImage:[UIImage imageNamed:@"icondyq1"] forState:UIControlStateNormal];
-    temHistoryBtn.frame = CGRectMake(10,10, 100, 18);
-    [temHistoryView addSubview:temHistoryBtn];
+    [titleButton setTitle:@"温升曲线" forState:UIControlStateNormal];
+    [titleButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [titleButton setImage:[UIImage imageNamed:@"icondyq1"] forState:UIControlStateNormal];
+    titleButton.frame = CGRectMake(10,10, 100, 18);
+    [bgView addSubview:titleButton];
     
-    //日期栏
+    
+    
+    //选择栏
     UIView *dateBar = [[UIView alloc] init];
-    //dateBar.backgroundColor = [UIColor lightGrayColor];
-    CGFloat dateBarY = CGRectGetMaxY(temHistoryBtn.frame)+5;
-    dateBar.frame = CGRectMake(0,dateBarY, temHistoryView.width, 30);
-    //平均
+    CGFloat dateBarY = CGRectGetMaxY(titleButton.frame)+5;
+    dateBar.frame = CGRectMake(0,dateBarY, bgView.width, 35);
+    [bgView addSubview:dateBar];
+
+    
+    //平均 最大 最小
     UIButton *average = [UIButton buttonWithType:UIButtonTypeCustom];
     self.avgeBtn = average;
     average.titleLabel.font = FONT_12;
@@ -561,66 +386,61 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     average.layer.borderColor = [UIColor lightGrayColor].CGColor;
     [average setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [average addTarget:self action:@selector(averageBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    
     CGFloat averageW = SCREEN_WIDTH*0.20;
-    average.frame = CGRectMake(YWMargin, 5, averageW, dateBar.height);
+    average.frame = CGRectMake(YWMargin, 5, averageW, dateBar.height - 5);
     [average setTitle:@"平均" forState:UIControlStateNormal];
     [average setTitle:@"确定" forState:UIControlStateSelected];
     UIView *line1 = [[UIView alloc] init];
     self.avgeLine = line1;
     line1.backgroundColor = [UIColor lightGrayColor];
-    line1.frame = CGRectMake(0, 0, averageW, 3);
+    line1.frame = CGRectMake(0, 0, averageW, 5);
     [average addSubview:line1];
     [dateBar addSubview:average];
-    //每周
+    
+    
+    
+    //1小时 1天 1周 1一个月 3个月 6个月  1年
     UIButton *weekBtn = [[UIButton alloc] init];
     self.weekBtn = weekBtn;
-    weekBtn.backgroundColor = [UIColor redColor];
     weekBtn.titleLabel.font = FONT_12;
     [weekBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    
     [weekBtn addTarget:self action:@selector(weekBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     weekBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
     weekBtn.layer.borderWidth = 0.8;
-    weekBtn.frame = CGRectMake(YWMargin+5+averageW, 5, averageW, dateBar.height);
+    weekBtn.frame = CGRectMake(YWMargin+5+averageW, 5, averageW, dateBar.height - 5);
     [weekBtn setTitle:@"1小时" forState:UIControlStateNormal];
     [weekBtn setTitle:@"确定" forState:UIControlStateSelected];
     UIView *line2 = [[UIView alloc] init];
     self.weekLine = line2;
     line2.backgroundColor = [UIColor lightGrayColor];
-    line2.frame = CGRectMake(0, 0,averageW, 3);
+    line2.frame = CGRectMake(0, 0,averageW, 5);
     [weekBtn addSubview:line2];
     [dateBar addSubview:weekBtn];
     
     //39周
-    UIButton *allBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    allBtn.titleLabel.font = FONT_10;
-    self.yearBtn = allBtn;
-    [allBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    allBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    allBtn.layer.borderWidth = 0.8;
+    UIButton *yearBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    yearBtn.titleLabel.font = FONT_10;
+    self.yearBtn = yearBtn;
+    [yearBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    yearBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    yearBtn.layer.borderWidth = 0.8;
     CGFloat allBtnW = dateBar.width-averageW*2-YWMargin*2-10;
-    allBtn.frame = CGRectMake(YWMargin+10+averageW*2, 5, allBtnW, dateBar.height);
-    [allBtn addTarget:self action:@selector(allYearClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [allBtn setTitle:@"(UTC+8) 2017010100" forState:UIControlStateNormal];
-    [allBtn setTitle:@"确定" forState:UIControlStateSelected];
+    yearBtn.frame = CGRectMake(YWMargin+10+averageW*2, 5, allBtnW, dateBar.height - 5);
+    [yearBtn addTarget:self action:@selector(allYearClick:) forControlEvents:UIControlEventTouchUpInside];
+    [yearBtn setTitle:[NSString stringWithFormat:@"(UTC+8) %@",self.defaultTimeStr] forState:UIControlStateNormal];
+    [yearBtn setTitle:@"确定" forState:UIControlStateSelected];
     UIView *line3 = [[UIView alloc] init];
     line3.backgroundColor = [UIColor lightGrayColor];
-    line3.frame = CGRectMake(0, 0, allBtnW, 3);
+    line3.frame = CGRectMake(0, 0, allBtnW, 5);
     self.dataLine = line3;
-    [allBtn addSubview:line3];
-    [dateBar addSubview:allBtn];
-    [temHistoryView addSubview:dateBar];
+    [yearBtn addSubview:line3];
+    [dateBar addSubview:yearBtn];
     
     
-    
+    //曲线图 webview
     CGFloat lineChartY = CGRectGetMaxY(dateBar.frame)+15;
-    
-    CGRect rect = CGRectMake(0,lineChartY,SCREEN_WIDTH, temHistoryView.height-lineChartY);
-    
+    CGRect rect = CGRectMake(0,lineChartY,SCREEN_WIDTH, bgView.height-lineChartY);
     UIWebView *webview = [[UIWebView alloc] init];
-    webview.backgroundColor = [UIColor redColor];
     webview.frame = rect;
     webview.scalesPageToFit = YES;
     webview.scrollView.scrollEnabled = YES;
@@ -628,20 +448,13 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     [self.view addSubview:webview];
     self.webView = webview;
     
+
     
     NSString *urlStr = @"assets_history_html.php";
     NSString *baseurl = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
-    
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&model=%@&num=%@&time=%@&a_id=%@",baseurl, @"h", @"avg", @"1,2,3,4,5,6", @"2017010100", self.a_id]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&model=%@&num=%@&time=%@&a_id=%@",baseurl, @"h", @"avg", @"1,2,3,4,5,6", self.defaultTimeStr, self.a_id]];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
-    
-
-    
-    
-    self.temHistoryView = temHistoryView;
-    [self.view addSubview:temHistoryView];
     
 }
 #pragma mark - UIWebViewDelegate
@@ -1033,16 +846,18 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 -  (void)createPickerView
 {
     CGFloat pickerY = CGRectGetMaxY(self.yearBtn.frame)+35;
-    self.datePickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0,pickerY, 0,0)];
+//    self.datePickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0,pickerY, SCREEN_WIDTH,CGRectGetMaxY(self.temHistoryView.frame) - CGRectGetMaxY(self.yearBtn.frame) - 50)];
+    self.datePickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0,pickerY, SCREEN_WIDTH,230)];
     self.datePickerView.backgroundColor = BGCLOLOR;
-    self.datePickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//    self.datePickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.datePickerView.dataSource = self;
     self.datePickerView.delegate = self;
     self.datePickerView.showsSelectionIndicator = YES;
     self.datePickerMode = YXDatePickerModeHour;
     self.datePickerView.hidden = YES;
+
     [self.view addSubview:self.datePickerView];
-    
+    NSLog(@"self.datePickerView.frame.size.width ---%f,  self.view.frame.size.width --- %f",self.datePickerView.frame.size.width, self.view.frame.size.width);
 }
 
 #pragma mark- pickerview
@@ -2165,5 +1980,34 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     }
     return _selectLineArray;
 }
+
+- (NSString *)defaultTimeStr{
+    if (_defaultTimeStr == nil) {
+        
+        NSCalendar *gregorian = [[NSCalendar alloc]
+                                 initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+        // 获取当前日期
+        NSDate* dt = [NSDate date];
+        // 指定获取指定年、月、日、时、分、秒的信息
+        unsigned unitFlags = NSCalendarUnitYear |
+        NSCalendarUnitMonth |  NSCalendarUnitDay |
+        NSCalendarUnitHour |  NSCalendarUnitMinute |
+        NSCalendarUnitSecond | NSCalendarUnitWeekday;
+      
+        // 获取不同时间字段的信息
+        NSDateComponents* comp = [gregorian components: unitFlags fromDate:dt];
+        NSInteger year =comp.year;
+        NSInteger month =comp.month;
+        NSInteger day =comp.day;
+        NSInteger hour =comp.hour;
+
+        NSString *defaultTimeStr = [NSString stringWithFormat:@"%.2ld%.2ld%.2ld%.2ld",year, month, day, hour];
+ 
+        
+        _defaultTimeStr = defaultTimeStr;
+    }
+    return _defaultTimeStr;
+}
+
 
 @end

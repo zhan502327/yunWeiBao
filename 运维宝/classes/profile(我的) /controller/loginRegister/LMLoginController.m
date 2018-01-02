@@ -226,7 +226,7 @@ singleton_implementation(LMLoginController)
         //密码
         param[@"password"] = self.password.text;
         
-//        param[@"client_id"] = kGetData(@"token");
+        param[@"client_id"] = kGetData(@"token");
         NSString *shortStr = @"/user_login.php";
         NSString *url = [YWBaseURL stringByAppendingFormat:@"%@",shortStr];
         
@@ -284,26 +284,7 @@ singleton_implementation(LMLoginController)
                 kDataPersistence(user.app_title,@"app_title");
                 
                 [[NSUserDefaults standardUserDefaults] synchronize];
-                
-                
-                
-//                ===========================
-                
-                
-                
-                //                NSString *fileName = [NSString stringWithFormat:@"?token=%@&account_id=%@&file_id=%@&file_path=%@",kGetData(@"token"), kGetData(@"account_id"), deviceModel.file_id, deviceModel.file_path];
-                //                urlString = [urlString stringByAppendingString:fileName];
-                
-                
-                //                http://app.connel.cn/api/assets_doucment_down.php
-                //                "photo_id" = 10173;  http://app.connel.cn/api
-                
-                
-                NSString *urlStr = @"/assets_doucment_down.php";
-                NSString *urlString = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
-
-                
-//                =============================
+            
                 
                 [self leftBtnAction];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
