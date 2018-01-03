@@ -117,7 +117,7 @@
 -(NSDictionary *)textStyleDict
 {
     if (!_textStyleDict) {
-        UIFont *font = [UIFont systemFontOfSize:14];
+        UIFont *font = [UIFont systemFontOfSize:15];
         NSMutableParagraphStyle *style=[[NSMutableParagraphStyle alloc]init]; // 段落样式
         style.alignment = NSTextAlignmentCenter;
         _textStyleDict = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:style};

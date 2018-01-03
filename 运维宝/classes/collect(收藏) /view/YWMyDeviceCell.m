@@ -51,7 +51,7 @@
     nameLab.numberOfLines = 0;
     nameLab.text = @"庆102柜";
     nameLab.textColor = [UIColor darkGrayColor];
-    nameLab.font = [UIFont systemFontOfSize:14];
+    nameLab.font = [UIFont systemFontOfSize:15];
     [self.contentView addSubview:nameLab];
     
     
@@ -61,7 +61,7 @@
     detilLab.numberOfLines = 0;
     detilLab.text = @"220KV人民变电站";
     detilLab.textColor = [UIColor darkGrayColor];
-    detilLab.font = [UIFont systemFontOfSize:14];
+    detilLab.font = [UIFont systemFontOfSize:15];
     [self.contentView addSubview:detilLab];
     
     //设置frame

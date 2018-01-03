@@ -51,7 +51,7 @@
     titleLab.numberOfLines = 0;
     titleLab.text = @"220KV农业路变电站";
     titleLab.textColor = [UIColor darkGrayColor];
-    titleLab.font = [UIFont systemFontOfSize:13];
+    titleLab.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:self.titleLab];
     
     
@@ -61,7 +61,7 @@
     detilLab.numberOfLines = 0;
     detilLab.text = @"断路器不能和闸刀，不能启动机器。可以免维护处理";
     detilLab.textColor = [UIColor darkGrayColor];
-    detilLab.font = [UIFont systemFontOfSize:13];
+    detilLab.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:self.detilLab];
     
     UILabel *dateLab = [[UILabel alloc] init];
@@ -70,7 +70,7 @@
     dateLab.numberOfLines = 0;
     dateLab.text = @"2017-10-20 10:30";
     dateLab.textColor = [UIColor darkGrayColor];
-    dateLab.font = [UIFont systemFontOfSize:13];
+    dateLab.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:self.dateLab];
     
     //分割线

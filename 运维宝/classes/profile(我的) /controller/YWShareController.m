@@ -37,7 +37,7 @@
     titleLabel.numberOfLines = 0;
     titleLabel.text = @"       \"运维宝\"是电力设备在线状态监测预警与电力设备运维管理移动应用平台。应用\"运维宝\"您能在任何时候，任何地方，在线监测分析您的电力设备状态;查看设备档案，技术图纸，试验报告;共享设备制造商的售后服务，专家团队，备品备件资源。";
     titleLabel.textColor = [UIColor darkGrayColor];
-    titleLabel.font = [UIFont systemFontOfSize:14];
+    titleLabel.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:titleLabel];
     
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -67,7 +67,7 @@
     tipLabel.numberOfLines = 0;
     tipLabel.text = @"扫一扫二维码下载\"运维宝\"客户端";
     tipLabel.textColor = [UIColor darkGrayColor];
-    tipLabel.font = [UIFont systemFontOfSize:13];
+    tipLabel.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:tipLabel];
     
     [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -79,7 +79,7 @@
     //分享按钮
     
     UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    shareBtn.titleLabel.font = FONT_BOLD_16;
+    shareBtn.titleLabel.font = FONT_BOLD_17;
     shareBtn.layer.cornerRadius = 5;
     shareBtn.clipsToBounds = YES;
     shareBtn.backgroundColor = LOGINCLOLOR;

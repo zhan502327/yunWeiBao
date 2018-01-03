@@ -22,7 +22,7 @@
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.backgroundColor = [UIColor clearColor];
-        _titleLabel.font = FONT_15;
+        _titleLabel.font = FONT_16;
         _titleLabel.layer.masksToBounds = YES;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.frame = self.bounds;

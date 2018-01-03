@@ -46,7 +46,7 @@
     titleLabel.numberOfLines = 0;
     titleLabel.text = @"       \"运维宝\"是电力设备在线状态监测预警与电力设备运维管理移动应用平台。应用\"运维宝\"您能在任何时候，任何地方，在线监测分析您的电力设备状态;查看设备档案，技术图纸，试验报告;共享设备制造商的售后服务，专家团队，备品备件资源。欢迎您提出宝贵的建议和反馈，我们将及时处理与回复。谢谢您的支持！";
     titleLabel.textColor = [UIColor darkGrayColor];
-    titleLabel.font = [UIFont systemFontOfSize:14];
+    titleLabel.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:titleLabel];
     
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -62,7 +62,7 @@
     adviceLabel.numberOfLines = 0;
     adviceLabel.text = @"反馈意见";
     adviceLabel.textColor = [UIColor darkGrayColor];
-    adviceLabel.font = [UIFont systemFontOfSize:13];
+    adviceLabel.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:adviceLabel];
     
     [adviceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -78,7 +78,7 @@
     adviceTv.placeholderColor = [UIColor lightGrayColor];
     adviceTv.layer.borderColor = LOGINCLOLOR.CGColor;
     self.adviceTv = adviceTv;
-    adviceTv.font = FONT_14;
+    adviceTv.font = FONT_15;
     // 2.监听textView文字改变的通知
     [YWNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:adviceTv];
     
@@ -97,7 +97,7 @@
    
     emailLabel.text = @"请输入您的常用邮箱地址，方便我们联系您";
     emailLabel.textColor = [UIColor darkGrayColor];
-    emailLabel.font = [UIFont systemFontOfSize:13];
+    emailLabel.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:emailLabel];
     [emailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view).offset(20);
@@ -110,7 +110,7 @@
     emailTf.clearButtonMode = UITextFieldViewModeWhileEditing;
     emailTf.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 30)];
     emailTf.leftViewMode = UITextFieldViewModeAlways;
-    emailTf.font = FONT_14;
+    emailTf.font = FONT_15;
     self.emailTf = emailTf;
     emailTf.layer.borderWidth = 0.5;
     emailTf.layer.borderColor = LOGINCLOLOR.CGColor;
@@ -130,7 +130,7 @@
     UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 
     self.submitBtn = submitBtn;
-    submitBtn.titleLabel.font = FONT_BOLD_16;
+    submitBtn.titleLabel.font = FONT_BOLD_17;
     submitBtn.layer.cornerRadius = 5;
     submitBtn.clipsToBounds = YES;
     submitBtn.backgroundColor = [UIColor lightGrayColor];

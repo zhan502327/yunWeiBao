@@ -42,7 +42,7 @@
     //设备名称
     UILabel *titleLab = [[UILabel alloc] init];
     self.titleLab = titleLab;
-    titleLab.font = FONT_14;
+    titleLab.font = FONT_15;
     titleLab.text = @"制造商";
     titleLab.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:titleLab];
@@ -50,7 +50,7 @@
     UILabel *detilLab = [[UILabel alloc] init];
     detilLab.userInteractionEnabled = YES;
     self.detilLab = detilLab;
-    detilLab.font = FONT_14;
+    detilLab.font = FONT_15;
     detilLab.text = @"江苏东源电器集团有限公司";
     detilLab.textAlignment = NSTextAlignmentRight;
     UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(detilLabClick)];

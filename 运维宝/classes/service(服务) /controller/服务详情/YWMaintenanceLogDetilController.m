@@ -64,7 +64,7 @@
     self.sureBtn = logout;
     logout.layer.cornerRadius = 5;
     logout.clipsToBounds = YES;
-    logout.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    logout.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     [logout setTitle:@"确认" forState:UIControlStateNormal];
     [logout setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [logout addTarget:self action:@selector(sureBtnClick) forControlEvents:UIControlEventTouchUpInside];
@@ -196,7 +196,7 @@
     }else if (indexPath.row == 0 || indexPath.row == 1) {
         
         YWLogDetilCell *cell = [YWLogDetilCell cellWithTableView:tableView];
-        cell.textLabel.font = FONT_14;
+        cell.textLabel.font = FONT_15;
         //传递模型
         if (indexPath.row == 0) {
             
@@ -231,7 +231,7 @@
     }
     
     YXTextfiledCell *cell = [YXTextfiledCell cellWithTableView:tableView];
-    cell.textLabel.font = FONT_14;
+    cell.textLabel.font = FONT_15;
     cell.textLabel.textColor = [UIColor darkGrayColor];
     if ([self.is_dispose isEqualToString:@"已完成"]) {
         

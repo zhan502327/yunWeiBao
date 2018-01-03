@@ -44,7 +44,7 @@
     typeLab.numberOfLines = 0;
     typeLab.text = @"服务类型:机械故障";
     typeLab.textColor = [UIColor darkGrayColor];
-    typeLab.font = [UIFont systemFontOfSize:14];
+    typeLab.font = [UIFont systemFontOfSize:15];
     [self.contentView addSubview:self.typeLab];
     
     //时间
@@ -54,7 +54,7 @@
     dateLab.numberOfLines = 0;
     dateLab.text = @"2017-10-20 10:30";
     dateLab.textColor = [UIColor darkGrayColor];
-    dateLab.font = [UIFont systemFontOfSize:14];
+    dateLab.font = [UIFont systemFontOfSize:15];
     [self.contentView addSubview:self.dateLab];
 
     UIView *bgView = [[UIView alloc]init];
@@ -70,7 +70,7 @@
     desLab.numberOfLines = 0;
     desLab.text = @"断路器不能和闸刀，不能启动机器。可以免维护处理断路器不能和";
     desLab.textColor = [UIColor darkGrayColor];
-    desLab.font = [UIFont systemFontOfSize:13];
+    desLab.font = [UIFont systemFontOfSize:14];
     [bgView addSubview:self.desLab];
     
     YXTextView *logDetilTv = [[YXTextView alloc] init];
@@ -80,7 +80,7 @@
     logDetilTv.placeholderColor = [UIColor lightGrayColor];
     logDetilTv.layer.borderWidth = 0.5;
     logDetilTv.layer.borderColor = LOGINCLOLOR.CGColor;
-    logDetilTv.font = FONT_13;
+    logDetilTv.font = FONT_14;
    // [YWNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:supportTv];
     [self.contentView addSubview:logDetilTv];
     
@@ -91,7 +91,7 @@
     nameLab.numberOfLines = 0;
     nameLab.text = @"报告人:王东";
     nameLab.textColor = [UIColor darkGrayColor];
-    nameLab.font = [UIFont systemFontOfSize:14];
+    nameLab.font = [UIFont systemFontOfSize:15];
     [self.contentView addSubview:self.nameLab];
     
     //类型
@@ -101,7 +101,7 @@
     phoneLab.numberOfLines = 0;
     phoneLab.text = @"电话:18888888888";
     phoneLab.textColor = [UIColor darkGrayColor];
-    phoneLab.font = [UIFont systemFontOfSize:14];
+    phoneLab.font = [UIFont systemFontOfSize:15];
     [self.contentView addSubview:self.phoneLab];
     
     

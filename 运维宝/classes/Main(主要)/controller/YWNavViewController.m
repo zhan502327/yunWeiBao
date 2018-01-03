@@ -37,14 +37,14 @@
     //设置导航条背景用图片来填充
     [appearance setBackgroundImage:[UIImage imageNamed:@"navbg"] forBarMetrics:UIBarMetricsDefault];
     appearance.shadowImage = [UIImage new];
-    UIFont* font = [UIFont systemFontOfSize:17.0];
+    UIFont* font = [UIFont systemFontOfSize:18.0];
     NSDictionary* textAttributes = @{NSFontAttributeName:font,NSForegroundColorAttributeName:[UIColor whiteColor]};
     [[UINavigationBar appearance]setTitleTextAttributes:textAttributes];
     
     // 设置文字属性
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
     textAttrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
-    textAttrs[NSFontAttributeName] = FONT_BOLD_16;
+    textAttrs[NSFontAttributeName] = FONT_BOLD_20;
     // UIOffsetZero是结构体, 只要包装成NSValue对象, 才能放进字典\数组中
     //textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero];
     [appearance setTitleTextAttributes:textAttrs];
@@ -60,7 +60,7 @@
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
     //item字体颜色设置
     textAttrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
-    textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:16];
+    textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:17];
     //textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero];
     [appearance setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     // 设置高亮状态的文字属性

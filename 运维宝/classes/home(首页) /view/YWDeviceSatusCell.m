@@ -45,7 +45,7 @@
     statusBtn.userInteractionEnabled = NO;
     //statusBtn.backgroundColor = REDCLOLOR;
     statusBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
-    statusBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    statusBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     
     [statusBtn setTitle:@"合闸" forState:UIControlStateNormal];
     [statusBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
@@ -54,21 +54,21 @@
     //设备名称
     UILabel *statusLab1 = [[UILabel alloc] init];
     self.statusLab1 = statusLab1;
-    statusLab1.font = FONT_14;
+    statusLab1.font = FONT_15;
     statusLab1.text = @"电压(V)";
     statusLab1.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:statusLab1];
     
     UILabel *statusLab2 = [[UILabel alloc] init];
     self.statusLab2 = statusLab2;
-    statusLab2.font = FONT_14;
+    statusLab2.font = FONT_15;
     statusLab2.text = @"电流(A)";
     statusLab2.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:statusLab2];
     
     UILabel *statusLab3 = [[UILabel alloc] init];
     self.statusLab3 = statusLab3;
-    statusLab3.font = FONT_14;
+    statusLab3.font = FONT_15;
     statusLab3.text = @"时间";
     statusLab3.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:statusLab3];

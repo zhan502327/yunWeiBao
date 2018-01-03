@@ -40,7 +40,7 @@
     //设备名称
     UILabel *categoryLab = [[UILabel alloc] init];
     self.categoryLab = categoryLab;
-    categoryLab.font = FONT_14;
+    categoryLab.font = FONT_15;
     categoryLab.text = @"高压柜";
     categoryLab.textColor = [UIColor darkGrayColor];
     categoryLab.textAlignment = NSTextAlignmentCenter;
@@ -51,7 +51,7 @@
     self.statusBtn1 = statusBtn1;
     statusBtn1.tag = 3;
     statusBtn1.layer.cornerRadius = 8;
-    statusBtn1.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    statusBtn1.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [statusBtn1 setTitle:@"1" forState:UIControlStateNormal];
     [statusBtn1 setBackgroundImage:[UIImage imageNamed:@"fragment_main_gray_uncheck"] forState:UIControlStateNormal];
     //按钮点击
@@ -64,7 +64,7 @@
     self.statusBtn2 = statusBtn2;
     statusBtn2.tag = 0;
     statusBtn2.layer.cornerRadius = 8;
-    statusBtn2.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    statusBtn2.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [statusBtn2 setTitle:@"2" forState:UIControlStateNormal];
     [statusBtn2 setBackgroundImage:[UIImage imageNamed:@"fragment_main_green_uncheck"] forState:UIControlStateNormal];
     //按钮点击
@@ -77,7 +77,7 @@
     self.statusBtn3 = statusBtn3;
     statusBtn3.tag = 1;
     statusBtn3.layer.cornerRadius = 8;
-    statusBtn3.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    statusBtn3.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [statusBtn3 setTitle:@"3" forState:UIControlStateNormal];
     [statusBtn3 setBackgroundImage:[UIImage imageNamed:@"fragment_main_orange_uncheck"] forState:UIControlStateNormal];
     //按钮点击
@@ -90,7 +90,7 @@
     statusBtn4.tag = 2;
     self.statusBtn4 = statusBtn4;
     statusBtn4.layer.cornerRadius = 8;
-    statusBtn4.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    statusBtn4.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [statusBtn4 setTitle:@"4" forState:UIControlStateNormal];
     [statusBtn4 setBackgroundImage:[UIImage imageNamed:@"fragment_main_red_uncheck"] forState:UIControlStateNormal];
     //按钮点击

@@ -127,7 +127,7 @@
     }
     //取出模型赋值
     YWMyStations *station = self.myStations[indexPath.row];
-    cell.textLabel.font = FONT_15;
+    cell.textLabel.font = FONT_16;
     cell.textLabel.text = station.station_name;
     return cell;
 }

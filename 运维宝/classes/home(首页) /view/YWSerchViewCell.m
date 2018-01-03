@@ -61,7 +61,7 @@
     serchLab.numberOfLines = 0;
     serchLab.text = @"搜索";
     serchLab.textColor = [UIColor darkGrayColor];
-    serchLab.font = [UIFont systemFontOfSize:14];
+    serchLab.font = [UIFont systemFontOfSize:16];
     [self.contentView addSubview:serchLab];
     
     
@@ -71,7 +71,7 @@
     detilLab.numberOfLines = 0;
     detilLab.text = @"当前电站: ";
     detilLab.textColor = [UIColor darkGrayColor];
-    detilLab.font = [UIFont systemFontOfSize:15];
+    detilLab.font = [UIFont systemFontOfSize:16];
     [self.contentView addSubview:detilLab];
     
     //分割线

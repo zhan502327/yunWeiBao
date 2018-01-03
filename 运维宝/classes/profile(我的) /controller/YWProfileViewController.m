@@ -43,9 +43,6 @@
     NSString *str1 = @"(";
     NSString *str2 = @")";
     
-    
-    
-    
     self.userNick.text = [NSString stringWithFormat:@"姓名:%@%@%@%@",kGetData(@"nick"),str1,kGetData(@"account"),str2];
     
 }
@@ -101,15 +98,15 @@
 // 1.用户头部view
 - (void)setUpHeaderView
 {
-    __weak typeof(self) weakSelf = self;
+//    __weak typeof(self) weakSelf = self;
     
     MineHeadView *headView =  [[MineHeadView alloc] initWithFrame:CGRectZero loginButtonClick:^{
         
-        //点击头部事件
-        LMLoginController *login = [[LMLoginController alloc] init];
-        
-        YWNavViewController *nav = [[YWNavViewController alloc] initWithRootViewController:login];
-        [self.navigationController presentViewController:nav animated:YES completion:nil];
+//        //点击头部事件
+//        LMLoginController *login = [[LMLoginController alloc] init];
+//
+//        YWNavViewController *nav = [[YWNavViewController alloc] initWithRootViewController:login];
+//        [self.navigationController presentViewController:nav animated:YES completion:nil];
         
     }];
     
@@ -142,7 +139,7 @@
     titleLabel.numberOfLines = 0;
     titleLabel.text = @"姓名:";
     titleLabel.textColor = [UIColor darkGrayColor];
-    titleLabel.font = [UIFont systemFontOfSize:15];
+    titleLabel.font = [UIFont systemFontOfSize:16];
     CGFloat margin = 20;
     CGFloat labW = (SCREEN_WIDTH - margin*3);
     titleLabel.frame = CGRectMake(margin, 5,SCREEN_WIDTH - margin*3, 25);
@@ -178,7 +175,7 @@
     // 2.设置属性
     logout.layer.cornerRadius = 5;
     logout.clipsToBounds = YES;
-    logout.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    logout.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     [logout setTitle:@"退出登录" forState:UIControlStateNormal];
     [logout setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [logout addTarget:self action:@selector(logoutBtnClick) forControlEvents:UIControlEventTouchUpInside];

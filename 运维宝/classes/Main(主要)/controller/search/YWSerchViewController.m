@@ -254,7 +254,7 @@
     bgview.backgroundColor = BGCLOLOR;
     UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 200, 30)];
     titleLab.textColor = [UIColor darkGrayColor];
-    titleLab.font = FONT_14;
+    titleLab.font = FONT_16;
     titleLab.text = [NSString stringWithFormat:@"共有%lu个搜索结果", (unsigned long)self.resultDatas.count];
     [bgview addSubview:titleLab];
     return bgview;

@@ -44,14 +44,14 @@
     //设备名称
     UILabel *titleLab = [[UILabel alloc] init];
     self.titleLab = titleLab;
-    titleLab.font = FONT_13;
+    titleLab.font = FONT_14;
     titleLab.text = @"说明书";
     titleLab.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:titleLab];
     
     UILabel *detilLab = [[UILabel alloc] init];
     self.detilLab = detilLab;
-    detilLab.font = FONT_13;
+    detilLab.font = FONT_14;
     detilLab.text = @"2017-11-11";
     detilLab.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:detilLab];

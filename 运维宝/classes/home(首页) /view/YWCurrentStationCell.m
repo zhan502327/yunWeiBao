@@ -41,7 +41,7 @@
     self.nameLabel = nameLabel;
     self.nameLabel.textColor = YWColor(70, 171, 211);
     self.nameLabel.text = @"当前电站:";
-    nameLabel.font = FONT_14;
+    nameLabel.font = FONT_15;
     nameLabel.numberOfLines = 0;
     nameLabel.textAlignment = NSTextAlignmentLeft;
     [nameLabel sizeToFit];
@@ -50,7 +50,7 @@
     UIButton *stationBtn = [[UIButton alloc] init];
     self.stationBtn = stationBtn;
     stationBtn.titleLabel.textColor = LOGINCLOLOR;
-    stationBtn.titleLabel.font = FONT_14;
+    stationBtn.titleLabel.font = FONT_15;
     stationBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
     stationBtn.titleLabel.text = @"已完成";
     //选中状态

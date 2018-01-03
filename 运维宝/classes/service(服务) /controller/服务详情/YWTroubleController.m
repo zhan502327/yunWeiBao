@@ -98,7 +98,7 @@
     supportLab.numberOfLines = 0;
     supportLab.text = @"支持类型:";
     supportLab.textColor = [UIColor darkGrayColor];
-    supportLab.font = [UIFont systemFontOfSize:14];
+    supportLab.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:supportLab];
     
     [supportLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -111,12 +111,12 @@
      
     UIButton *supportBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.supportTypeBtn = supportBtn;
-    supportBtn.titleLabel.font = FONT_BOLD_15;
+    supportBtn.titleLabel.font = FONT_BOLD_16;
     supportBtn.layer.cornerRadius = 5;
     supportBtn.clipsToBounds = YES;
     supportBtn.layer.borderColor = LOGINCLOLOR.CGColor;
     supportBtn.layer.borderWidth = 0.5;
-    supportBtn.titleLabel.font = FONT_14;
+    supportBtn.titleLabel.font = FONT_15;
     [supportBtn setTitle:@"机械故障" forState:UIControlStateNormal];
     [supportBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     [supportBtn addTarget:self action:@selector(supportBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -139,7 +139,7 @@
     supportTv.placeholderColor = [UIColor lightGrayColor];
     supportTv.layer.borderWidth = 0.5;
     supportTv.layer.borderColor = LOGINCLOLOR.CGColor;
-    supportTv.font = FONT_14;
+    supportTv.font = FONT_15;
     [YWNotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:supportTv];
     
     [self.view addSubview:supportTv];
@@ -155,7 +155,7 @@
     nameLabel.numberOfLines = 0;
     nameLabel.text = @"报修人:郑州运维。    电话:1888888888";
     nameLabel.textColor = [UIColor darkGrayColor];
-    nameLabel.font = [UIFont systemFontOfSize:14];
+    nameLabel.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:nameLabel];
     
     [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -189,7 +189,7 @@
     
     tipLabel.text = @"出现在服务事件列表";
     tipLabel.textColor = [UIColor lightGrayColor];
-    tipLabel.font = [UIFont systemFontOfSize:14];
+    tipLabel.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:tipLabel];
     [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(checkBtn.mas_right).offset(10);
@@ -202,7 +202,7 @@
     //提交按钮
     UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.submitBtn = submitBtn;
-    submitBtn.titleLabel.font = FONT_BOLD_16;
+    submitBtn.titleLabel.font = FONT_BOLD_17;
     submitBtn.layer.cornerRadius = 5;
     submitBtn.clipsToBounds = YES;
     submitBtn.backgroundColor = [UIColor lightGrayColor];
@@ -415,7 +415,7 @@
     
     YWTrobleType *type = self.typeNums[indexPath.row];
 
-    cell.textLabel.font = FONT_14;
+    cell.textLabel.font = FONT_15;
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.text = type.type_name;
     return cell;

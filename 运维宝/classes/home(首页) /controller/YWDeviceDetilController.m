@@ -168,7 +168,7 @@
     titleLab.x = labX;
     titleLab.size = CGSizeMake(200, 20);
     titleLab.textColor = [UIColor orangeColor];
-    titleLab.font = [UIFont systemFontOfSize:15];
+    titleLab.font = [UIFont systemFontOfSize:16];
     [header addSubview:titleLab];
     
     

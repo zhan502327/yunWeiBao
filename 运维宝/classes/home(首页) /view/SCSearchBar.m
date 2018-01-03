@@ -17,7 +17,7 @@
     if (self) {
         
         // 设置字体
-        self.font = [UIFont systemFontOfSize:13];
+        self.font = [UIFont systemFontOfSize:16];
         
         // 设置背景
         self.background = [UIImage resizedImage:@"searchbar_textfield_background"];

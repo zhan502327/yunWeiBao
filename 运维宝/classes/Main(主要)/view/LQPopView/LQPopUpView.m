@@ -142,7 +142,7 @@
 - (void)_valueInitialize {
     _canHideByClickBgView = @(0);
     _contentWidth = 265;
-    _textFieldFontSize = 15.0;
+    _textFieldFontSize = 16.0;
     _btnStyleDefaultTextColor = kBtnStyleDefaultTextColor;
     _btnStyleCancelTextColor = kBtnStyleCancelTextColor;
     _btnStyleDestructiveTextColor = kBtnStyleDestructiveTextColor;
@@ -153,12 +153,12 @@
     _buttonModels = [NSMutableArray array];
     
     _title_Configuration = [TitleConfiguration new];
-    _title_Configuration.fontSize = 18.0;
+    _title_Configuration.fontSize = 19.0;
     _title_Configuration.textColor = kColorHex(0x000000, 1.0);
     _title_Configuration.top = 15;
     
     _msg_configuration = [MessageConfiguration new];
-    _msg_configuration.fontSize = 16.0;
+    _msg_configuration.fontSize = 17.0;
     _msg_configuration.textColor = kColorHex(0x333333, 1.0);
     _msg_configuration.top = 10;
     _msg_configuration.bottom = 15;
@@ -195,7 +195,7 @@
     button.tag = 1000+_buttonModels.count;
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:[self colorWithBtnStyle:style] forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize:17];
+    button.titleLabel.font = [UIFont systemFontOfSize:18];
     [button addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     button.backgroundColor = [UIColor clearColor];
     [button addTarget:self action:@selector(setBackgroundColorForButton:) forControlEvents:UIControlEventTouchDown];

@@ -123,7 +123,7 @@
         _tip.numberOfLines = 0;
         _tip.textColor = [UIColor whiteColor];
         _tip.textAlignment = NSTextAlignmentCenter;
-        _tip.font = [UIFont FontWithSize:14];
+        _tip.font = [UIFont FontWithSize:15];
     }
     return _tip;
 }

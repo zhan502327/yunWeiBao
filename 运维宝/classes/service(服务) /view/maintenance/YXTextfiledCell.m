@@ -38,7 +38,7 @@
     
     UILabel *goods = [[UILabel alloc] init];
     self.goodsLabel = goods;
-    goods.font = FONT_14;
+    goods.font = FONT_15;
     goods.numberOfLines = 0;
     goods.textAlignment = NSTextAlignmentLeft;
     [goods sizeToFit];
@@ -54,7 +54,7 @@
     textfield.clearButtonMode = UITextFieldViewModeWhileEditing;
     textfield.keyboardType = UIKeyboardTypeNumberPad;
     self.textfield.placeholder = @"hhh";
-    self.textfield.font = FONT_13;
+    self.textfield.font = FONT_14;
     self.textfield = textfield;
     [self.contentView addSubview:textfield];
     

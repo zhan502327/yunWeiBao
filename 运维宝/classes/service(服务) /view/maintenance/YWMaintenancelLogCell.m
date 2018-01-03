@@ -41,7 +41,7 @@
     UIButton *statusBtn = [[UIButton alloc] init];
     self.statusBtn = statusBtn;
     statusBtn.userInteractionEnabled = NO;
-    statusBtn.titleLabel.font = FONT_14;
+    statusBtn.titleLabel.font = FONT_15;
     [statusBtn setTitleColor:LOGINCLOLOR forState:UIControlStateNormal];
     [statusBtn setTitle:@"已完成" forState:UIControlStateNormal];
     [self.contentView addSubview:statusBtn];
@@ -53,7 +53,7 @@
     detilLab.numberOfLines = 0;
     detilLab.text = @"断路器不能和闸刀，不能启动机器。可以免维护处理断路器不能和闸刀，不能启动机器。可以免维护处理断路器不能和闸刀";
     detilLab.textColor = [UIColor darkGrayColor];
-    detilLab.font = [UIFont systemFontOfSize:13];
+    detilLab.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:self.detilLab];
     
     UILabel *titleLab = [[UILabel alloc] init];
@@ -62,7 +62,7 @@
     titleLab.numberOfLines = 0;
     titleLab.text = @"机械故障 状态:一般";
     titleLab.textColor = [UIColor darkGrayColor];
-    titleLab.font = [UIFont systemFontOfSize:14];
+    titleLab.font = [UIFont systemFontOfSize:15];
     [self.contentView addSubview:self.titleLab];
     
     UILabel *nameLab = [[UILabel alloc] init];
@@ -71,7 +71,7 @@
     nameLab.numberOfLines = 0;
     nameLab.text = @"报告人:王东";
     nameLab.textColor = [UIColor darkGrayColor];
-    nameLab.font = [UIFont systemFontOfSize:14];
+    nameLab.font = [UIFont systemFontOfSize:15];
     [self.contentView addSubview:self.nameLab];
     
     UILabel *dateLab = [[UILabel alloc] init];
@@ -80,7 +80,7 @@
     dateLab.numberOfLines = 0;
     dateLab.text = @"2017-10-20 10:30";
     dateLab.textColor = [UIColor darkGrayColor];
-    dateLab.font = [UIFont systemFontOfSize:14];
+    dateLab.font = [UIFont systemFontOfSize:15];
     [self.contentView addSubview:self.dateLab];
     
     //分割线

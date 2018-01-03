@@ -85,7 +85,7 @@
     phoneText.frame = CGRectMake(viewX,2, viewW, viewH);
     self.phoneTextField = phoneText;
     phoneText.delegate = self;
-    phoneText.font = FONT_14;
+    phoneText.font = FONT_15;
     //phoneText.leftIconNameStr = @"handShake";
     phoneText.placeholder = @"请输入11位手机号";
     phoneText.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -105,7 +105,7 @@
     UITextField *proText = [[UITextField alloc] init];
     CGFloat proTextY = CGRectGetMaxY(phoneText.frame);
     proText.frame = CGRectMake(viewX, proTextY, viewW, viewH);
-    proText.font = FONT_14;
+    proText.font = FONT_15;
     //proText.leftIconNameStr = @"MoreAbout";
     self.codeTextField = proText;
     proText.layer.cornerRadius = 5;
@@ -137,7 +137,7 @@
     [probutton addTarget:self action:@selector(proCodeClick) forControlEvents:UIControlEventTouchUpInside];
     
     YWLog(@"probtn%@",probutton.titleLabel);
-    probutton.titleLabel.font = FONT_13;
+    probutton.titleLabel.font = FONT_14;
     [proText addSubview:probutton];
     
     //密码输入框
@@ -145,7 +145,7 @@
     CGFloat pwdY = CGRectGetMaxY(proText.frame);
     userPwdText.frame = CGRectMake(viewX, pwdY, viewW, viewH);
     self.userPwdText = userPwdText;
-    userPwdText.font = FONT_14;
+    userPwdText.font = FONT_15;
     userPwdText.delegate = self;
     userPwdText.secureTextEntry = YES;
     //reSetpwdText.leftIconNameStr = @"IDInfo";
@@ -168,7 +168,7 @@
     CGFloat repwdY = CGRectGetMaxY(userPwdText.frame);
     reSetpwdText.frame = CGRectMake(viewX, repwdY, viewW, viewH);
     self.reSetpwdText = reSetpwdText;
-    reSetpwdText.font = FONT_14;
+    reSetpwdText.font = FONT_15;
     reSetpwdText.delegate = self;
     reSetpwdText.secureTextEntry = YES;
     //reSetpwdText.leftIconNameStr = @"IDInfo";
@@ -200,7 +200,7 @@
     [resetPwdBtn setTitle:@"重设密码" forState:UIControlStateNormal];
         
     [resetPwdBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    resetPwdBtn.titleLabel.font = FONT_BOLD_16;
+    resetPwdBtn.titleLabel.font = FONT_BOLD_17;
     [self.view addSubview:resetPwdBtn];
     
     

@@ -52,7 +52,7 @@
     titleLab.numberOfLines = 0;
     titleLab.text = @"220KV人民变电站";
     titleLab.textColor = [UIColor darkGrayColor];
-    titleLab.font = [UIFont systemFontOfSize:15];
+    titleLab.font = [UIFont systemFontOfSize:16];
     [self.contentView addSubview:titleLab];
     
     
@@ -73,7 +73,7 @@
     tempBtn.userInteractionEnabled = NO;
     //tempBtn.backgroundColor = REDCLOLOR;
     //tempBtn.layer.cornerRadius = 10;
-    tempBtn.titleLabel.font = FONT_14;
+    tempBtn.titleLabel.font = FONT_15;
     [tempBtn setImage:[UIImage imageNamed:@"activity_wodedianzhan_wendu"] forState:UIControlStateNormal];
     
     [tempBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
@@ -86,7 +86,7 @@
     [waterBtn setImage:[UIImage imageNamed:@"activity_wodedianzhan_shidu"] forState:UIControlStateNormal];
     //waterBtn.backgroundColor = REDCLOLOR;
     //waterBtn.layer.cornerRadius = 10;
-    waterBtn.titleLabel.font = FONT_14;
+    waterBtn.titleLabel.font = FONT_15;
     
     [waterBtn setTitle:@"0" forState:UIControlStateNormal];
    

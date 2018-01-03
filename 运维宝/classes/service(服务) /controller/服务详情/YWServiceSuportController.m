@@ -272,7 +272,7 @@
     bgview.backgroundColor = BGCLOLOR;
     UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 100, 20)];
     titleLab.textColor = [UIColor darkGrayColor];
-    titleLab.font = FONT_15;
+    titleLab.font = FONT_16;
     if(section == 0) {
         titleLab.text = @"内部技术支持";
     }else if (section == 1){

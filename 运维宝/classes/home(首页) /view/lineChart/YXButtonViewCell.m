@@ -40,7 +40,7 @@
     UIButton *titleBtn = [[UIButton alloc] init];
     self.titleBtn = titleBtn;
     titleBtn.userInteractionEnabled = NO;
-    titleBtn.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+    titleBtn.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     [titleBtn setTitle:@"1周" forState:UIControlStateNormal];
     [titleBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     //[titleBtn setBackgroundImage:[UIImage imageNamed:@"fragment_main_gray_uncheck"] forState:UIControlStateNormal];厦门

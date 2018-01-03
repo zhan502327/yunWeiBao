@@ -43,7 +43,7 @@
     titleLabel.numberOfLines = 0;
     titleLabel.text = @"到账银行卡";
     titleLabel.textColor = [UIColor darkGrayColor];
-    titleLabel.font = [UIFont systemFontOfSize:14];
+    titleLabel.font = [UIFont systemFontOfSize:15];
     //countLab.backgroundColor = [UIColor redColor];
     self.titleLabel = titleLabel;
     [self.contentView addSubview:self.titleLabel];
@@ -55,7 +55,7 @@
     detilLabel.numberOfLines = 0;
     detilLabel.text = @"备注信息";
     detilLabel.textColor = [UIColor darkGrayColor];
-    detilLabel.font = [UIFont systemFontOfSize:12];
+    detilLabel.font = [UIFont systemFontOfSize:13];
     //numLab.backgroundColor = [UIColor redColor];
     self.detilLabel = detilLabel;
     [self.contentView addSubview:detilLabel];

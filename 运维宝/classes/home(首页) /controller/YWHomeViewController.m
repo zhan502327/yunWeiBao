@@ -265,10 +265,11 @@ static NSString *const GridCellID = @"GridCellID";
 - (void)setUpHeaderView
 {
     //头部view
-    UIView *headView = [[UIView alloc] init];    
+    UIView *headView = [[UIView alloc] init];
+    headView.backgroundColor = [UIColor redColor];
     UIImageView *headerPicView = [[UIImageView alloc] init];
     headerPicView.image = [UIImage imageNamed:@"banner"];
-    headerPicView.contentMode = UIViewContentModeScaleAspectFit;
+//    headerPicView.contentMode = UIViewContentModeScaleAspectFit;
     _headView = headView;
     headView.frame = CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT*0.37);
     [headView addSubview:headerPicView];
@@ -288,7 +289,6 @@ static NSString *const GridCellID = @"GridCellID";
     _collectionView.backgroundColor = MAINBGCLOLOR;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-//    _collectionView.frame = CGRectMake(0,headView.height-86, SCREEN_WIDTH,70);
     _collectionView.frame = CGRectMake(0,CGRectGetMaxY(headerPicView.frame), SCREEN_WIDTH,CGRectGetMaxY(headView.frame) - CGRectGetMaxY(headerPicView.frame));
 
     _collectionView.showsVerticalScrollIndicator = NO;
@@ -342,7 +342,7 @@ static NSString *const GridCellID = @"GridCellID";
              cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
          }
          cell.textLabel.x = 10;
-         cell.textLabel.font = FONT_15;
+         cell.textLabel.font = FONT_16;
          cell.textLabel.textColor = YWColor(70, 171, 211);
          
          cell.textLabel.text = [NSString stringWithFormat:@"【%@】",kGetData(@"app_title")];
@@ -357,7 +357,7 @@ static NSString *const GridCellID = @"GridCellID";
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
     
-    cell.textLabel.font = FONT_14;
+    cell.textLabel.font = FONT_16;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (self.currentStations) {
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@" 当前电站: %@",self.currentStations.station_name]];
@@ -380,7 +380,7 @@ static NSString *const GridCellID = @"GridCellID";
 {
     
     if (indexPath.row == 0) {
-        return 40;
+        return 50;
 
     }else if (indexPath.row == 1){
         return 50;

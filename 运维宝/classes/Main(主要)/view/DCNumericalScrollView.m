@@ -47,12 +47,12 @@
                 [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
                 btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-                btn.titleLabel.font = PFR13Font;
+                btn.titleLabel.font = PFR14Font;
                 //图片Button
                 UIButton *imagesBtn = [UIButton buttonWithType:UIButtonTypeCustom];
                 [imagesBtn setTitle:imagesTitlesArray[i] forState:UIControlStateNormal];
                 imagesBtn.backgroundColor = [UIColor redColor];
-                imagesBtn.titleLabel.font = PFR10Font;
+                imagesBtn.titleLabel.font = PFR11Font;
                 [btn addSubview:imagesBtn];
                 
                 if (i != 0) {

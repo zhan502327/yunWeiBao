@@ -40,7 +40,7 @@
     //设备名称
     UILabel *supportLab = [[UILabel alloc] init];
     self.supportLab = supportLab;
-    supportLab.font = FONT_14;
+    supportLab.font = FONT_15;
     supportLab.text = @"技术咨询";
     supportLab.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:supportLab];

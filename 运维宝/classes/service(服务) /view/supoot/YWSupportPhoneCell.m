@@ -39,7 +39,7 @@
     //设备名称
     UILabel *supportLab = [[UILabel alloc] init];
     self.supportLab = supportLab;
-    supportLab.font = FONT_14;
+    supportLab.font = FONT_15;
     supportLab.text = @"柳林工区-柳林维修班  陈松";
     supportLab.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:supportLab];
@@ -48,7 +48,7 @@
     UILabel *namePhone = [[UILabel alloc] init];
     self.namePhone = namePhone;
     namePhone.textColor = LOGINCLOLOR;
-    namePhone.font = FONT_14;
+    namePhone.font = FONT_15;
     namePhone.text = @"18888888888";
     namePhone.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(namePhoneClick)];

@@ -33,7 +33,7 @@
     statusBtn.userInteractionEnabled = NO;
     statusBtn.backgroundColor = [UIColor clearColor];
     statusBtn.layer.cornerRadius = 10;
-    statusBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    statusBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     [statusBtn setTitle:@"68" forState:UIControlStateNormal];
     statusBtn.clipsToBounds = YES;
     [self addSubview:self.statusBtn];
@@ -42,7 +42,7 @@
     
     UILabel *statusLabel = [[UILabel alloc] init];
     self.statusLabel = statusLabel;
-    statusLabel.font = FONT_13;
+    statusLabel.font = FONT_16;
     statusLabel.text = @"设备";
     statusLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:statusLabel];

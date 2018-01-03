@@ -46,7 +46,7 @@
     statusBtn.userInteractionEnabled = NO;
     
     statusBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
-    statusBtn.titleLabel.font = [UIFont boldSystemFontOfSize:13];
+    statusBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     //[statusBtn setTitle:@"A相" forState:UIControlStateNormal];
     [statusBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [statusBtn setImage:[UIImage imageNamed:@"shippingAddressEdit"] forState:UIControlStateNormal];
@@ -58,7 +58,7 @@
     tempBtn1.layer.cornerRadius = 3;
     tempBtn1.clipsToBounds = YES;
     //tempBtn1.layer.borderWidth = 1.5;
-    tempBtn1.titleLabel.font = [UIFont boldSystemFontOfSize:13];
+    tempBtn1.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [tempBtn1 setTitle:@"C相" forState:UIControlStateNormal];
     [tempBtn1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     tempBtn1.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -73,7 +73,7 @@
     tempBtn2.layer.cornerRadius = 3;
     tempBtn2.clipsToBounds = YES;
     //tempBtn2.layer.borderWidth = 1.5;
-    tempBtn2.titleLabel.font = [UIFont boldSystemFontOfSize:13];
+    tempBtn2.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [tempBtn2 setTitle:@"B相" forState:UIControlStateNormal];
     tempBtn2.tintColor = [UIColor greenColor];
     tempBtn2.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -88,7 +88,7 @@
     tempBtn3.clipsToBounds = YES;
     //tempBtn3.layer.borderWidth = 1.5;
     tempBtn3.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    tempBtn3.titleLabel.font = [UIFont boldSystemFontOfSize:13];
+    tempBtn3.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [tempBtn3 setTitle:@"A相" forState:UIControlStateNormal];
     
     tempBtn3.tintColor = [UIColor redColor];

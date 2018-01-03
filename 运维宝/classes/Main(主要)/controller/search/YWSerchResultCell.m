@@ -52,7 +52,7 @@
     nameLab.numberOfLines = 0;
     nameLab.text = @"220KV人民变电站";
     nameLab.textColor = [UIColor darkGrayColor];
-    nameLab.font = [UIFont systemFontOfSize:15];
+    nameLab.font = [UIFont systemFontOfSize:17];
     [self.contentView addSubview:nameLab];
     
     //设置frame

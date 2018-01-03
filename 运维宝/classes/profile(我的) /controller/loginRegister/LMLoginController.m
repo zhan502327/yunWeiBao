@@ -117,7 +117,7 @@ singleton_implementation(LMLoginController)
     userName.placeholder = @"请输入11位手机号";
     userName.clearButtonMode = UITextFieldViewModeWhileEditing;
     userName.keyboardType = UIKeyboardTypeNumberPad;
-    userName.font = FONT_14;
+    userName.font = FONT_15;
     userName.frame = CGRectMake(viewX, viewY, viewW, viewH);
     
     //分割线up
@@ -142,7 +142,7 @@ singleton_implementation(LMLoginController)
     //    password.keyboardType = UIKeyboardTypeNumberPad;
     //password.text = @"123456";
     password.placeholder = @"请输入密码";
-    password.font = FONT_14;
+    password.font = FONT_15;
     [password setSecureTextEntry:YES];
     CGFloat pwdY = CGRectGetMaxY(userName.frame);
     password.frame = CGRectMake(viewX, pwdY, viewW, viewH);
@@ -160,7 +160,7 @@ singleton_implementation(LMLoginController)
     
     //    6、登录按钮
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    loginBtn.titleLabel.font = FONT_BOLD_16;
+    loginBtn.titleLabel.font = FONT_BOLD_17;
     loginBtn.layer.cornerRadius = 5;
     loginBtn.clipsToBounds = YES;
 #warning mark-TODO
@@ -184,7 +184,7 @@ singleton_implementation(LMLoginController)
     
     
     UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    registerBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    registerBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [registerBtn setTitle:@"新用户注册" forState:UIControlStateNormal];
     [registerBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     [registerBtn addTarget:self action:@selector(registerBtnDidPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -199,7 +199,7 @@ singleton_implementation(LMLoginController)
     [setPwd setTitle:@"忘记密码？" forState:UIControlStateNormal];
     [setPwd addTarget:self action:@selector(setPwdDidPressed) forControlEvents:UIControlEventTouchUpInside];
     [setPwd setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-    setPwd.titleLabel.font = [UIFont systemFontOfSize:13];
+    setPwd.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:setPwd];
     CGFloat setPwdX = registerW*2+margin*3;
     setPwd.frame = CGRectMake(setPwdX, registerY, registerW, 25);

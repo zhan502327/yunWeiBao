@@ -41,7 +41,7 @@
     //设备名称
     UILabel *spareLab1 = [[UILabel alloc] init];
     self.spareLab1 = spareLab1;
-    spareLab1.font = FONT_13;
+    spareLab1.font = FONT_14;
     spareLab1.text = @"郑州供电公司检修基地";
     spareLab1.textAlignment = NSTextAlignmentCenter;
     //spareLab1.backgroundColor = YWRandomColor;
@@ -49,7 +49,7 @@
     
     UILabel *spareLab2 = [[UILabel alloc] init];
     self.spareLab2 = spareLab2;
-    spareLab2.font = FONT_14;
+    spareLab2.font = FONT_15;
     spareLab2.text = @"9";
     spareLab2.textAlignment = NSTextAlignmentCenter;
     //spareLab2.backgroundColor = YWRandomColor;
@@ -57,7 +57,7 @@
     
     UILabel *spareLab3 = [[UILabel alloc] init];
     self.spareLab3 = spareLab3;
-    spareLab3.font = FONT_14;
+    spareLab3.font = FONT_15;
     spareLab3.text = @"RCS-1000";
     spareLab3.textAlignment = NSTextAlignmentCenter;
     //spareLab3.backgroundColor = YWRandomColor;
@@ -65,7 +65,7 @@
     
     UILabel *spareLab4 = [[UILabel alloc] init];
     self.spareLab4 = spareLab4;
-    spareLab4.font = FONT_14;
+    spareLab4.font = FONT_15;
     spareLab4.text = @"RCS保护卡";
     spareLab4.textColor = LOGINCLOLOR;
     spareLab4.textAlignment = NSTextAlignmentLeft;

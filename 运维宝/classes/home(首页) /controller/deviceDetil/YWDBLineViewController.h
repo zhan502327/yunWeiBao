@@ -43,8 +43,6 @@
 //@property (nonatomic,retain) NSArray *dateFormaterArray;
 
 @property (nonatomic, retain) NSString *pId;
-@property (nonatomic, retain) NSString *dateParams;
-@property (nonatomic, retain) NSString *preDateParams;
 @property (nonatomic, retain) UIActivityIndicatorView    *loading;
 @property (nonatomic, retain) UIView *bg;
 

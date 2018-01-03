@@ -50,7 +50,7 @@
     
     UILabel *goods = [[UILabel alloc] init];
     self.goodsLabel = goods;
-    goods.font = FONT_14;
+    goods.font = FONT_15;
     goods.numberOfLines = 0;
     goods.textAlignment = NSTextAlignmentLeft;
     [goods sizeToFit];

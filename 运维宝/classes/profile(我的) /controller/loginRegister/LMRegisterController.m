@@ -177,7 +177,7 @@
     CGFloat rePutPwdY = CGRectGetMaxY(icon.frame)+30;
     officeTextField.frame = CGRectMake(viewX, rePutPwdY, viewW, viewH);
     [officeTextField addTarget:self action:@selector(officeTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
-    officeTextField.font = FONT_14;
+    officeTextField.font = FONT_15;
     //分割线up
     UIView *lineViewUp = [[UIView alloc]init];
     lineViewUp.backgroundColor = COLOR_Line;
@@ -202,7 +202,7 @@
     UITextField *nameTextField = [[UITextField alloc] init];
     CGFloat nameTextY = CGRectGetMaxY(officeTextField.frame);
     nameTextField.frame = CGRectMake(viewX, nameTextY, viewW, viewH);
-    nameTextField.font = FONT_14;
+    nameTextField.font = FONT_15;
     self.nameTextField = nameTextField;
     nameTextField.delegate = self;
     nameTextField.placeholder = @"请输入您的姓名";
@@ -223,7 +223,7 @@
     phoneText.frame = CGRectMake(viewX, phoneY, viewW, viewH);
     self.phoneTextField = phoneText;
     phoneText.delegate = self;
-    phoneText.font = FONT_14; 
+    phoneText.font = FONT_15;
     //phoneText.leftIconNameStr = @"handShake";
     phoneText.placeholder = @"请输入11位手机号";
     phoneText.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -244,7 +244,7 @@
     UITextField *proText = [[UITextField alloc] init];
     CGFloat proTextY = CGRectGetMaxY(phoneText.frame);
     proText.frame = CGRectMake(viewX, proTextY, viewW, viewH);
-    proText.font = FONT_14;
+    proText.font = FONT_15;
     
     self.codeTextField = proText;
     proText.layer.cornerRadius = 5;
@@ -274,7 +274,7 @@
     [probutton setTitle:@"发送验证码" forState:UIControlStateNormal];
     [probutton addTarget:self action:@selector(proRegesterCodeClick) forControlEvents:UIControlEventTouchUpInside];
     YWLog(@"probtn%@",probutton.titleLabel);
-    probutton.titleLabel.font = FONT_13;
+    probutton.titleLabel.font = FONT_14;
     [proText addSubview:probutton];
 
   //密码输入框
@@ -315,7 +315,7 @@
     button.layer.masksToBounds = YES;
     [button setTitle:@"注册" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    button.titleLabel.font = FONT_BOLD_16;
+    button.titleLabel.font = FONT_BOLD_17;
     [self.view addSubview:button];
     
     UILabel *tipLabel = [[UILabel alloc] init];
@@ -326,7 +326,7 @@
     tipLabel.textColor = [UIColor lightGrayColor];
     tipLabel.textAlignment = NSTextAlignmentCenter;
     tipLabel.text = @"点击注册即表示您同意并愿意遵守";
-    tipLabel.font = [UIFont systemFontOfSize:12];
+    tipLabel.font = [UIFont systemFontOfSize:13];
     [self.view addSubview:tipLabel];
 
     //同意协议按钮
@@ -338,7 +338,7 @@
     greebutton.frame = CGRectMake(btnX, btnY, btnW , 20);
     greebutton.userInteractionEnabled = NO;;
     [greebutton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-    greebutton.titleLabel.font = FONT_12;
+    greebutton.titleLabel.font = FONT_13;
     [greebutton setTitle:@"用户协议和隐私政策" forState:UIControlStateNormal];
     [self.view addSubview:greebutton];
 
@@ -585,7 +585,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
     
-    cell.textLabel.font = FONT_13;
+    cell.textLabel.font = FONT_14;
     cell.textLabel.textAlignment = NSTextAlignmentLeft;
     cell.textLabel.text = self.companys[indexPath.row];
     return cell;

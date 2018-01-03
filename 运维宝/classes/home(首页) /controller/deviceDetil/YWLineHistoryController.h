@@ -59,10 +59,10 @@
 @property (nonatomic, retain) NSMutableArray *pickviewYearArray;
 @property (nonatomic, retain) NSMutableArray *pickviewMonthArray;
 
-@property (nonatomic) NSInteger pick0compentfocusIndex;
-@property (nonatomic) NSInteger pick1compentfocusIndex;
-@property (nonatomic) NSInteger pick2compentfocusIndex;
-@property (nonatomic) NSInteger pick3compentfocusIndex;
+//@property (nonatomic) NSInteger pick0compentfocusIndex;
+//@property (nonatomic) NSInteger pick1compentfocusIndex;
+//@property (nonatomic) NSInteger pick2compentfocusIndex;
+//@property (nonatomic) NSInteger pick3compentfocusIndex;
 
 @property (nonatomic,retain) NSString *NewbaseUrl;
 

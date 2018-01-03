@@ -54,7 +54,7 @@
     //设备名称
     UILabel *spareLab1 = [[UILabel alloc] init];
     self.spareLab1 = spareLab1;
-    spareLab1.font = FONT_14;
+    spareLab1.font = FONT_15;
     spareLab1.text = @"库存地址";
     spareLab1.textColor = [UIColor darkGrayColor];
     spareLab1.textAlignment = NSTextAlignmentCenter;
@@ -62,7 +62,7 @@
     
     UILabel *spareLab2 = [[UILabel alloc] init];
     self.spareLab2 = spareLab2;
-    spareLab2.font = FONT_14;
+    spareLab2.font = FONT_15;
     spareLab2.text = @"数量";
     spareLab2.textColor = [UIColor darkGrayColor];
     spareLab2.textAlignment = NSTextAlignmentCenter;
@@ -70,7 +70,7 @@
 
     UILabel *spareLab3 = [[UILabel alloc] init];
     self.spareLab3 = spareLab3;
-    spareLab3.font = FONT_14;
+    spareLab3.font = FONT_15;
     spareLab3.text = @"备件型号";
     spareLab3.textColor = [UIColor darkGrayColor];
     spareLab3.textAlignment = NSTextAlignmentCenter;
@@ -78,7 +78,7 @@
 
     UILabel *spareLab4 = [[UILabel alloc] init];
     self.spareLab4 = spareLab4;
-    spareLab4.font = FONT_14;
+    spareLab4.font = FONT_15;
     spareLab4.text = @"备件名称";
     
     spareLab4.textColor = [UIColor darkGrayColor];

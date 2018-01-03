@@ -206,7 +206,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         }
         
-        cell.textLabel.font = FONT_14;
+        cell.textLabel.font = FONT_15;
         cell.textLabel.textColor = [UIColor orangeColor];
         if (self.myStations) {
             
@@ -288,7 +288,7 @@
     self.stationLab = headerLab;
     headerView.backgroundColor = BGCLOLOR;
     headerLab.textColor = [UIColor orangeColor];
-    headerLab.font = FONT_15;
+    headerLab.font = FONT_16;
     headerLab.textAlignment = NSTextAlignmentLeft;
     headerLab.text = [NSString stringWithFormat:@"当前电站是:%@",kGetData(@"station_name")];
     [headerView addSubview:headerLab];

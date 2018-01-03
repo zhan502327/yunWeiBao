@@ -36,24 +36,24 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 {
     
     
-    //connection
-    NSString *_urlInfo;
-    NSMutableString *_paraInfo;
-    NSMutableData *_listData;
-    NSOperationQueue *_queue;
-    NSURLConnection *_connection;
-    BOOL parsingError;
-    
-    //pickerview
-    NSMutableArray *_pickviewYearArray;
-    NSMutableArray *_pickviewMonthArray;
-    //pickerview的第一单元focus
-    NSInteger pick0compentfocusIndex;
-    NSInteger pick1compentfocusIndex;
-    NSInteger pick2compentfocusIndex;
-    NSInteger pick3compentfocusIndex;
-    
-    NSString *_NewbaseUrl;
+//    //connection
+//    NSString *_urlInfo;
+//    NSMutableString *_paraInfo;
+//    NSMutableData *_listData;
+//    NSOperationQueue *_queue;
+//    NSURLConnection *_connection;
+//    BOOL parsingError;
+//    
+//    //pickerview
+//    NSMutableArray *_pickviewYearArray;
+//    NSMutableArray *_pickviewMonthArray;
+//    //pickerview的第一单元focus
+//    NSInteger pick0compentfocusIndex;
+//    NSInteger pick1compentfocusIndex;
+//    NSInteger pick2compentfocusIndex;
+//    NSInteger pick3compentfocusIndex;
+//    
+//    NSString *_NewbaseUrl;
     
     
 }
