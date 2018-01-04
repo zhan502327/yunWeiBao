@@ -779,7 +779,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
             count = [self.pickviewYearArray count];
         }
         else if(component==1){//月
-            count = 12;
+            count = self.pickviewMonthArray.count;
         }
         else if(component ==2){//日，初始月分在1月份
             if (self.pick1compentfocusIndex +1==1
@@ -817,7 +817,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
             count = [self.pickviewYearArray count];
         }
         else if(component==1){//月
-            count = 12;
+            count = self.pickviewMonthArray.count;
         }
         else{//日，初始月分在1月份
             if (self.pick1compentfocusIndex +1==1
@@ -857,7 +857,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
             count = [self.pickviewYearArray count];
         }
         else if(component==1){//月
-            count = 12;
+            count = self.pickviewMonthArray.count;
         }
     }
     else if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m3"]){
@@ -1067,7 +1067,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
             self.pick1compentfocusIndex  = 0;
             [self.datePickerView  reloadComponent:1];//重新load日
             [self.datePickerView selectRow:self.pick1compentfocusIndex inComponent:1 animated:YES];
-            
+
         }
         else if(component ==1)
         {
@@ -1082,7 +1082,6 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
         else if(component ==3){//小时
             self.pick3compentfocusIndex = row;
         }
-        //[self.table reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
         
     }
     else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"y"])
