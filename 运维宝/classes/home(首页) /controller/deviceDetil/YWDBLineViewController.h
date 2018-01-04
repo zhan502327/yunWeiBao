@@ -74,7 +74,6 @@
 -(void)setTimeButtonInfo:(UIButton *)cell;
 //+(void)stopLoading;
 -(NSString*)getTimeButtonBG:(NSString *)title;
--(NSInteger)getWeek;
 
 
 //选择日期

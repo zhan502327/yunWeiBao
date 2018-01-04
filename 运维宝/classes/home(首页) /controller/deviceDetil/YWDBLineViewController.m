@@ -7,15 +7,12 @@
 //
 
 #import "YWDBLineViewController.h"
-#import "CBChartView.h"
 #import "YWHistoryTempCell.h"
 #import "YWMyDevice.h"
 #import "YWDeviceTemp.h"
 #import "JHChartHeader.h"
 #import "SYLJDatePickerView.h"
-#import "WSLineChartView.h"
 #import "YWChartGroup.h"
-#import "YXLineChartView.h"
 #import "YXCustomDateView.h"
 #import "YWChartLine.h"
 #import "YXButtonViewCell.h"
@@ -62,8 +59,6 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 @property(nonatomic, strong) YWDeviceTemp *deviceTemp;
 /**温升历史*/
 @property (nonatomic,strong) UITableView *tempTableView;
-/**温升历史曲线*/
-@property (strong, nonatomic) CBChartView *temChartView;
 /**遮盖*/
 @property (weak, nonatomic) UIView *cover;
 /**遮盖*/
@@ -106,8 +101,6 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 //Y轴数组
 @property (nonatomic,retain) NSArray *chartArr;
 
-/**每年*/
-@property (nonatomic,copy) NSString *strX;
 
 /** 曲线图webview */
 @property (nonatomic, strong) UIWebView *webView;
@@ -139,7 +132,6 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     //获取设备温度信息
     [self getDeviceDetil];
     
-    [self.chartView refreshData];
     
     [self initSectionOneDate];
     [self initSectionThirdDate];
@@ -170,7 +162,6 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     
     [YWNotificationCenter addObserver:self selector:@selector(weekChange:) name:YWWeekValueDidChangeNotification object:nil];
     
-    [YWNotificationCenter addObserver:self selector:@selector(yearChange:) name:YWYearValueDidChangeNotification object:nil];
     
 }
 
@@ -185,11 +176,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
         
         [self loadWebViewData];
     }
-    //    [self.chartView refreshData];
     
-    //[self.chartView reloadData];
-    //用户ID
-    YWLog(@"用户曲线数据-logUser%@",avgeStr);
 }
 - (void)weekChange:(NSNotification *)notifacation
 {
@@ -200,27 +187,8 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     if (self.weekStr) {
         [self loadWebViewData];
     }
-    [self.chartView refreshData];
-    //[self.chartView reloadData];
     //用户ID
     YWLog(@"用户曲线数据-logUser%@",weekStr);
-}
-
-- (void)yearChange:(NSNotification *)notifacation
-{
-    //取出用户模型
-    NSString *yearStr = notifacation.userInfo[YWYearValueDidChange];
-    self.yearStr  = yearStr;
-    //用户昵称
-    if (self.yearStr) {
-        [self loadWebViewData];
-        
-    }
-    [self.chartView refreshData];
-    
-    //[self.chartView reloadData];
-    //用户ID
-    YWLog(@"用户曲线数据-logUser%@",yearStr);
 }
 
 //发送请求获取网络数据
@@ -261,31 +229,22 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 #pragma mark -- 发送请求获取webview曲线图数据
 - (void)loadWebViewData{
     
-    NSMutableDictionary *params = [NSMutableDictionary  dictionary];
-    params[@"a_id"] = self.a_id;
     
     /**h小时 d天 w周 m月  hy半年 y年*/
     NSString *type;
     if ([self.weekStr isEqualToString:@"1小时"]){
-        params[@"type"] = @"h";
         type = @"h";
     } else if ([self.weekStr isEqualToString:@"1天"]){
-        params[@"type"] = @"d";
         type = @"d";
     } else  if ([self.weekStr isEqualToString:@"1周"]) {
-        params[@"type"] = @"w";
         type = @"w";
     } else if ([self.weekStr isEqualToString:@"1个月"]){
-        params[@"type"] = @"m";
         type = @"m";
     }else  if ([self.weekStr isEqualToString:@"3个月"]){
-        params[@"type"] = @"q";
         type = @"q";
     }else  if ([self.weekStr isEqualToString:@"6个月"]){
-        params[@"type"] = @"hy";
         type = @"hy";
     }else  if ([self.weekStr isEqualToString:@"1年"]){
-        params[@"type"] = @"y";
         type = @"y";
     }
     
@@ -296,13 +255,10 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     /**avg平均 max最大 min最小*/
     NSString *model;
     if ([self.avgeStr isEqualToString:@"平均"]) {
-        params[@"model"] = @"avg";
         model = @"avg";
     } else if ([self.avgeStr isEqualToString:@"最大"]){
-        params[@"model"] = @"max";
         model = @"max";
     } else if ([self.avgeStr isEqualToString:@"最小"]){
-        params[@"model"] = @"min";
         model = @"min";
     }
     if (model.length == 0) {
@@ -313,30 +269,16 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     
     //说明是哪条曲线
     NSString *num = [self.selectLineArray componentsJoinedByString:@","];
-    params[@"num"] = num;
     
-    YWLog(@"选中的按钮 -- %@",num);
     
-    params[@"time"] = self.yearStr;
     /**h小时 d天 w周 m月  hy半年 y年*/
     //params[@"time"] = @"20171113";
     
-    if (self.yearStr.length == 0) {
-        self.yearStr = @"2017010100";
-    }
-    YWLog(@"选中的时间getHistorycharData -- %@",self.yearStr);
     
-    
-    YWLog(@"曲线参数--%@",params);
-    
-    //    http://app.connel.cn/api/assets_history_html.php
     NSString *urlStr = @"assets_history_html.php";
     NSString *baseurl = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
-    
-    
+
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&model=%@&num=%@&time=%@&a_id=%@",baseurl, type, model, num, self.yearStr, self.a_id]];
-    
-    YWLog(@"加载url -- %@",url);
     
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
@@ -417,7 +359,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     
     //39周
     UIButton *yearBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    yearBtn.titleLabel.font = FONT_11;
+    yearBtn.titleLabel.font = FONT_13;
     self.yearBtn = yearBtn;
     [yearBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     yearBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -466,21 +408,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     
 }
 
-//取得x方向的描述数据
-- (NSString *)chartViewGetXinfo:(YXLineChartView *)chartView
-{
-    //return [[self.dataserver objectForKey:@"6"] objectAtIndex:0];
-    
-    return self.strX;
-    
-}
 
-- (NSArray *)getReturnDate
-{
-    NSString *ReturnDate = [[self.dataserver objectForKey:@"6"] objectAtIndex:3];
-    NSArray *ReturnDateList = [ReturnDate componentsSeparatedByString:@"-"];
-    return ReturnDateList;
-}
 
 //状态监测图
 - (void)setupTempView
@@ -494,13 +422,9 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     self.tempTableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 10,tempTabViewW, tempTabViewH) style:UITableViewStylePlain];
     self.tempTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    //self.tempTableView.backgroundColor = TABLEVIEWBGCLOLOR;
     self.tempTableView.dataSource = self;
     self.tempTableView.delegate = self;
     self.tempTableView.scrollEnabled = NO;
-    //self.tempTableView.layer.borderWidth = 4;
-    //self.tempTableView.layer.borderColor = [UIColor cyanColor].CGColor;
-    //tempView.backgroundColor = REDCLOLOR;
     [tempView addSubview:self.tempTableView];
     
     [self.view addSubview:tempView];
@@ -656,61 +580,30 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     }
     
     UIButton *button = (UIButton *)btn;
-    
     [self setTimeButtonInfo: button];
     NSString *str = [button.currentTitle stringByReplacingOccurrencesOfString:@"-"withString:@""];
-    NSString *s = [str stringByReplacingOccurrencesOfString:@" " withString:@""];
-    self.yearStr = [s substringFromIndex:7];
-    
+    self.yearStr = [str stringByReplacingOccurrencesOfString:@" " withString:@""];
     //获取选中的时间
-    if ([self.weekStr isEqualToString:@"1小时"]){
+    if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"h"]){//小时
         self.yearStr = [self.yearStr substringToIndex:10];;
-    } else if ([self.weekStr isEqualToString:@"1天"]){
+    } else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"d"]){//天
         self.yearStr = [self.yearStr substringToIndex:8];
-    } else  if ([self.weekStr isEqualToString:@"1周"]) {
+    } else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"]) {//周
         self.yearStr = [self.yearStr substringToIndex:6];
-        
-    } else if ([self.weekStr isEqualToString:@"1个月"]){
+    } else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"]){//月
         self.yearStr = [self.yearStr substringToIndex:6];
-        
-    }else  if ([self.weekStr isEqualToString:@"3个月"]){
+    }else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m3"]){//季度
         self.yearStr = [self.yearStr substringToIndex:6];
-        
-    }else  if ([self.weekStr isEqualToString:@"6个月"]){
+    }else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m6"]){//半年
         self.yearStr = [self.yearStr substringToIndex:6];
-    }else  if ([self.weekStr isEqualToString:@"1年"]){
+    }else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"y"]){//年
         self.yearStr = [self.yearStr substringToIndex:4];
-        
     }else{
         
     }
-    [self.yearBtn setTitle:self.yearStr forState:UIControlStateNormal];
     
-    YWLog(@"选中的时间allYearClick -- %@",self.yearStr);
-    //选择年月发生变化发出通知
-    [YWNotificationCenter postNotificationName:YWYearValueDidChangeNotification object:self userInfo:@{YWYearValueDidChange:self.yearStr}];
+    [self loadWebViewData];
     
-    //    if (self.datePickerView.hidden) {
-    //        self.dataLine.backgroundColor = YWColor(28, 144, 231);
-    //        [button setTitle:@"(UTC+8)2017 39周" forState:UIControlStateNormal];
-    //        self.datePickerView.hidden = NO;
-    //    } else {
-    //        [button setTitle:@"确定" forState:UIControlStateSelected];
-    //        self.dataLine.backgroundColor = [UIColor lightGrayColor];
-    //        self.datePickerView.hidden = YES;
-    //    }
-    //    YWLog(@"dayBtnClick");
-    //    [self.chartView refreshData];
-    //
-    //    button.selected = !button.selected;
-    //    //刷新数据
-    //    [self.chartView reloadData];
-    
-    
-    
-    if (self.yearStr.length == 0) {
-        //        self.yearStr = ;
-    }
     button.selected = !button.selected;
     if (button.isSelected == YES) {//选中
         self.dataLine.backgroundColor = YWColor(28, 144, 231);
@@ -774,10 +667,10 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 //初始化日期选择器数据
 - (void)initpickerViewCompontSelectIndex
 {
+    self.pick0compentfocusIndex = 0;
     self.pick1compentfocusIndex = 0;
     self.pick2compentfocusIndex = 0;
     self.pick3compentfocusIndex = 0;
-    self.pick0compentfocusIndex = 0;
 }
 
 - (void)initPickerViewDate
@@ -807,7 +700,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 -  (void)createPickerView
 {
     CGFloat pickerY = CGRectGetMaxY(self.yearBtn.frame)+35;
-    self.datePickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0,pickerY, SCREEN_WIDTH,230)];
+    self.datePickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0,pickerY, SCREEN_WIDTH,300)];
     self.datePickerView.backgroundColor = BGCLOLOR;
     self.datePickerView.dataSource = self;
     self.datePickerView.delegate = self;
@@ -817,207 +710,63 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     [self.view addSubview:self.datePickerView];
 }
 
-#pragma mark- pickerview
-//选择年
-- (NSString *)getselectyear
-{
-    return [self.pickviewYearArray objectAtIndex:self.pick0compentfocusIndex];
-}
-//选择月
-- (NSString *)getselectMonth
-{
-    return [self.pickviewMonthArray objectAtIndex:self.pick0compentfocusIndex];
-}
-//选择天
-- (NSString *)getselectDay
-{
-    return [NSString stringWithFormat:@"%d",self.pick2compentfocusIndex+1];
-}
-//获取周
-- (NSInteger)getWeek
-{
-    //return [[[self.dataserver objectForKey:@"6"] objectAtIndex:2] intValue];
-    return 2;
-    
-}
-
 - (void)setTimeButtonInfo: (UIButton *)button
 {
-    if ([self.pickviewYearArray count]>0)
-    {
+    if ([self.pickviewYearArray count]>0){
         NSString *year = [[self.pickviewYearArray objectAtIndex:self.pick0compentfocusIndex] substringToIndex:4];
-        if (self.datePickerMode == YXDatePickerModeHour) {
+        
+        NSString *timeStr;
+        if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"h"]) {//一小时
+            timeStr = [NSString stringWithFormat:@"%@-%.2ld-%.2ld %.2ld",year,self.pick1compentfocusIndex+1,self.pick2compentfocusIndex+1, self.pick3compentfocusIndex];
             
-            NSString *str = [NSString stringWithFormat:@"%@-%.2ld-%.2ld %.2ld",year,self.pick1compentfocusIndex+1,self.pick2compentfocusIndex+1,
-                             (long)self.pick3compentfocusIndex];
-            [button setTitle:str forState:UIControlStateNormal];//小时的时标显示
-            
-        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqualToString:@"y"]) {
-            button.titleLabel.text = [NSString stringWithFormat:@"%@",year];  //年的时标显示
-            
-        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqualToString:@"d"]) {
-            button.titleLabel.text = [NSString stringWithFormat:@"%@-%ld-%ld",year,
+        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"y"]) {//一年
+            timeStr = [NSString stringWithFormat:@"%@",year];  //年的时标显示
+        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"d"]) {//一天
+            timeStr = [NSString stringWithFormat:@"%@-%.2ld-%.2ld",year,
                                       self.pick1compentfocusIndex+1,
                                       self.pick2compentfocusIndex+1];  //天的时标显示
-            
-        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqualToString:@"w"]) {
-            button.titleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@ week %d", "") ,year,
+
+        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"]) {//一周
+            timeStr = [NSString stringWithFormat:@"%@ %.2ld" ,year,
                                       self.pick1compentfocusIndex+1];  //周的时标显示
-            
-        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqualToString:@"m"]) {
-            button.titleLabel.text = [NSString stringWithFormat:@"%@-%ld",year,
+
+        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"]) {//一月
+            timeStr = [NSString stringWithFormat:@"%@-%.2ld",year,
                                       self.pick1compentfocusIndex+1];  //月的时标显示
             
-        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqualToString:@"m3"]) {
+        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m3"]) {//一季度
             NSString *str;
             switch (self.pick1compentfocusIndex) {
                 case 0:
-                    str = NSLocalizedString(@"1st quarter", "");
+                    str = @"01";
                     break;
                 case 1:
-                    str = NSLocalizedString(@"2nd quarter", "");
+                    str = @"02";
                     break;
                 case 2:
-                    str = NSLocalizedString(@"3rd quarter", "");
+                    str = @"03";
                     break;
                 default:
-                    str = NSLocalizedString(@"4th quarter", "");
+                    str = @"04";
                     break;
             }
-            if ([NSLocalizedString(@"Language", "") isEqualToString: @"Chinese"]) {
-                button.titleLabel.text = [NSString stringWithFormat:@"(UTC+8) %@ %@",year,
-                                          str]; //3个月的时标显示
-            }else{
-                button.titleLabel.text = [NSString stringWithFormat:@"(UTC+8) %@ of %@",str,
-                                          year]; //3个月的时标显示
-            }
+            timeStr = [NSString stringWithFormat:@"%@ %@",year, str];
             
-        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqualToString:@"m6"]) {
-            NSString *str = nil;
-            NSString *annual = nil;
+        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m6"]) {//六个月
             if (self.pick1compentfocusIndex ==0) {
-                str =NSLocalizedString(@"1st half year", "");
-                annual = @"1";
+                timeStr = [NSString stringWithFormat:@"%@ 01",year];
             }
             else {
-                str =NSLocalizedString(@"2nd half year", "");
-                annual = @"2";
+                timeStr = [NSString stringWithFormat:@"%@ 02",year];
             }
-            if ([NSLocalizedString(@"Language", "") isEqualToString: @"Chinese"]) {
-                button.titleLabel.text = [NSString stringWithFormat:@"(UTC+8) %@ %@",year,
-                                          str]; //6个月的时标显示
-            }else{
-                button.titleLabel.text = [NSString stringWithFormat:@"(UTC+8) %@ of %@",str,
-                                          year]; //6个月的时标显示
-            }
+          
         }
         button.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [button setTitle:timeStr forState:UIControlStateNormal];
     }
 }
 
-- (void)resetWhenLoadPickview
-{
-    if (self.firststartsign == 2) {
-        return;
-    }
-    NSArray *RetunDateList = [self getReturnDate];
-    NSDate *today = nil;
-    NSTimeZone* GMT8zone = nil;
-    NSDateFormatter *dateFormater = nil;
-    int year,currentyear,month = 0,day = 0,week = 0,hour = 0,annual = 0,quarter = 0;
-    today = [NSDate date]; //默认获得GMT0的时间
-    GMT8zone = [NSTimeZone timeZoneForSecondsFromGMT:28800]; //获取GMT8中国时差
-    dateFormater = [[NSDateFormatter alloc]init];
-    dateFormater.timeZone = GMT8zone;
-    [dateFormater setDateFormat:@"YYYY"];
-    currentyear = [[dateFormater stringFromDate:today] intValue];
-    
-    
-    if ([[RetunDateList objectAtIndex:(0)] isEqualToString:@"0000"]) {
-        year=currentyear-currentyear;
-        [dateFormater setDateFormat:@"MM"];
-        month = [[dateFormater stringFromDate:today] intValue];
-        [dateFormater setDateFormat:@"dd"];
-        day = [[dateFormater stringFromDate:today] intValue];
-        [dateFormater setDateFormat:@"HH"];
-        hour = [[dateFormater stringFromDate:today] intValue];
-        annual = month>6?2:1;
-        quarter = (month + 2)/3;
-        week = [self getWeek];
-    }else {
-        year = currentyear - [[RetunDateList objectAtIndex:(0)] intValue];
-        if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"h"]){
-            month=[[RetunDateList objectAtIndex:(1)] intValue];
-            day=[[RetunDateList objectAtIndex:(2)] intValue];
-            hour=[[RetunDateList objectAtIndex:(3)] intValue];
-            annual = month>6?2:1;
-            quarter = (month + 2)/3;
-            
-        }else if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"d"]){
-            month=[[RetunDateList objectAtIndex:(1)] intValue];
-            day=[[RetunDateList objectAtIndex:(2)] intValue];
-            annual = month>6?2:1;
-            quarter = (month + 2)/3;
-        }else if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"]){
-            week=[[RetunDateList objectAtIndex:(1)] intValue];
-        }else if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"]){
-            month=[[RetunDateList objectAtIndex:(1)] intValue];
-        }else if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m3"]){
-            month=[[RetunDateList objectAtIndex:(1)] intValue];
-        }else if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m6"]){
-            month=[[RetunDateList objectAtIndex:(1)] intValue];
-        }
-    }
-    
-    
-    
-    [self initpickerViewCompontSelectIndex];
-    [self.datePickerView reloadAllComponents];
-    
-    pick0compentfocusIndex = year;
-    [self.datePickerView selectRow:pick0compentfocusIndex inComponent:0 animated:YES];
-    
-    if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m6"])
-    {
-        pick1compentfocusIndex = annual-1;
-        [self.datePickerView selectRow:pick1compentfocusIndex inComponent:1 animated:YES];
-    }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m3"])
-    {
-        pick1compentfocusIndex = quarter-1;
-        [self.datePickerView selectRow:pick1compentfocusIndex inComponent:1 animated:YES];
-    }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"])
-    {
-        pick1compentfocusIndex = month-1;
-        [self.datePickerView selectRow:pick1compentfocusIndex inComponent:1 animated:YES];
-    }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"d"])
-    {
-        pick1compentfocusIndex = month-1;
-        pick2compentfocusIndex = day-1;
-        [self.datePickerView selectRow:pick1compentfocusIndex inComponent:1 animated:YES];
-        [self.datePickerView selectRow:pick2compentfocusIndex inComponent:2 animated:YES];
-    }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"h"])
-    {
-        pick1compentfocusIndex = month-1;
-        pick2compentfocusIndex = day-1;
-        pick3compentfocusIndex = hour;
-        [self.datePickerView selectRow:pick1compentfocusIndex inComponent:1 animated:YES];
-        [self.datePickerView selectRow:pick2compentfocusIndex inComponent:2 animated:YES];
-        [self.datePickerView selectRow:pick3compentfocusIndex inComponent:3 animated:YES];
-    }
-    else if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"])
-    {
-        pick1compentfocusIndex = week-1;
-        [self.datePickerView selectRow:pick1compentfocusIndex inComponent:1 animated:YES];
-    }
-    else {
-        pick1compentfocusIndex = 0;
-    }
-    //[self.table reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
-}
+
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
 {
@@ -1493,8 +1242,6 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
             self.bg.hidden = NO;
             [self.loading startAnimating];
         }
-        //这里重新初始pickerview的index
-        //        [self resetWhenLoadPickview];  //去掉，改为begeinNetConnection间接调用，放在didFinishParsing里面
     }
     self.firststartsign =0;
     self.getolddatasign = @"1"; //第一次进入设为1，读取最近有数据的日期的温度曲线
@@ -1518,8 +1265,6 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     }
     self.bg.hidden = NO;
     [self.loading startAnimating];
-    //重新绘制
-    [self.chartView refreshData];
 }
 
 #pragma mark - Table view data source
@@ -1762,7 +1507,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.avgeTableView) {
+    if (tableView == self.avgeTableView) {//平均值
         self.avgeBtn.selected = !self.avgeBtn.selected;
         if (self.avgeBtn.isSelected == YES) {//选中
             self.avgeLine.backgroundColor = YWColor(28, 144, 231);
@@ -1782,7 +1527,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
         [YWNotificationCenter postNotificationName:YWAvegeValueDidChangeNotification object:self userInfo:@{YWAvegeValueDidChange:avgeStr}];
         
         
-    } else if (tableView == self.timeTableView)  {
+    } else if (tableView == self.timeTableView)  {//日期
         self.weekBtn.selected = !self.weekBtn.selected;
         if (self.weekBtn.isSelected == YES) {//选中
             self.weekLine.backgroundColor = YWColor(28, 144, 231);
@@ -1799,52 +1544,27 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
         [self weekViewViewPop];
         
         
-        
-        
-        
-        
-        
-        //[self resetWhenLoadPickview];
-        //[self weekViewViewPop];
         //日期选择器模式
-        if (indexPath.row == 0) {
-            self.datePickerMode = YXDatePickerModeHour;
-            self.strX = @"0,5,10,15,20,25,30,35,40,45,50,55,60";
-            self.selectIndex = 0;
-            [self createPickerView];
-        } else  if (indexPath.row == 1){
-            self.datePickerMode = YXDatePickerModeDay;
-            self.strX = @"0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24";
-            self.selectIndex = 1;
-            [self createPickerView];
-        }else  if (indexPath.row == 2){
-            self.datePickerMode = YXDatePickerModeWeek;
-            self.strX = @"0,1,2,3,4,5,6,7";
-            self.selectIndex = 2;
-            [self createPickerView];
-        }else  if (indexPath.row == 3){
-            self.datePickerMode = YXDatePickerModeMonth;
-            self.strX = @"0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30";
-            self.selectIndex = 3;
-            [self createPickerView];
-        }else  if (indexPath.row == 4){
-            self.datePickerMode = YXDatePickerModeQuarter;
-            self.strX = @"0,1,2,3";
-            self.selectIndex = 4;
-            [self createPickerView];
-        }else  if (indexPath.row == 5){
-            self.datePickerMode = YXDatePickerModeHalfYear;
-            self.strX = @"0,1,2,3,4,5,6";
-            self.selectIndex = 5;
-            [self createPickerView];
-        }else if (indexPath.row == 6){
-            self.datePickerMode = YXDatePickerModeYear;
-            self.strX = @"0,1,2,3,4,5,6,7,8,9,10,11,12";
-            self.selectIndex = 6;
-            [self createPickerView];
-        }
-        
-        YWLog(@"allweekStr--%@",self.weekStr);
+//        if (indexPath.row == 0) {
+//            self.datePickerMode = YXDatePickerModeHour;
+//        } else  if (indexPath.row == 1){
+//            self.datePickerMode = YXDatePickerModeDay;
+//        }else  if (indexPath.row == 2){
+//            self.datePickerMode = YXDatePickerModeWeek;
+//        }else  if (indexPath.row == 3){
+//            self.datePickerMode = YXDatePickerModeMonth;
+//        }else  if (indexPath.row == 4){
+//            self.datePickerMode = YXDatePickerModeQuarter;
+//        }else  if (indexPath.row == 5){
+//            self.datePickerMode = YXDatePickerModeHalfYear;
+//        }else if (indexPath.row == 6){
+//            self.datePickerMode = YXDatePickerModeYear;
+//        }
+        //根据 selectIndex 判断选择第二个条件
+        self.selectIndex = indexPath.row;
+        //创建pickView
+        [self createPickerView];
+
         //日期改变
         [YWNotificationCenter postNotificationName:YWWeekValueDidChangeNotification object:self userInfo:@{YWWeekValueDidChange:weakStr}];
     }
@@ -1865,7 +1585,6 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
         _avgeTableView.backgroundColor = BGCLOLOR;
         _avgeTableView.showsVerticalScrollIndicator = NO;
         [self.view addSubview:_avgeTableView];
-        //        _avgeTableView.frame = CGRectMake(20,68,65,90);
         _avgeTableView.frame = CGRectMake(20,68,averageW,90);
         
     }
