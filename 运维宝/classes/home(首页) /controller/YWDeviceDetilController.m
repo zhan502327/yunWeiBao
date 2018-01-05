@@ -47,6 +47,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     self.view.backgroundColor = [UIColor whiteColor];
+    
     self.navigationItem.rightBarButtonItem  = [UIBarButtonItem itemWithImageName:@"fuwu_right" highImageName:nil target:self action:@selector(serviceDetil)];
     //获取设备详情
     [self getDeviceInfo];
@@ -99,18 +100,12 @@
             self.titleLab.text = self.station.assets_name;
             //属性赋值
             self.is_collection = self.station.is_collection;
-            if (self.is_collection) {
-                
+            if (self.is_collection == YES) {
                 self.collectView.selected = YES;
-                [self.collectView setImage:[UIImage imageNamed:@"activity_wodedianzhan_yishouchang"] forState:UIControlStateSelected];
             } else {
                 self.collectView.selected = NO;
-                [self.collectView setImage:[UIImage imageNamed:@"activity_wodedianzhan_shouchang"] forState:UIControlStateNormal];
             }
-
-            }
-        
-         //[SVProgressHUD showSuccessWithStatus:msg];
+        }
         
     } failure:^(NSError *error) {
         /**停止刷新*/
@@ -181,7 +176,7 @@
 
     [collectView addTarget:self action:@selector(collectViewBtnClick:) forControlEvents:UIControlEventTouchDown];
     collectView.y  = 10;
-    collectView.x = SCREEN_WIDTH - 50;
+    collectView.x = SCREEN_WIDTH - 35;
     collectView.size = CGSizeMake(20, 20);
     [header addSubview:collectView];
 
@@ -246,30 +241,28 @@
 //设置按钮点击状态
 - (void)collectViewBtnClick:(UIButton *)button
 {
-    //button.selected = !button.selected;
-   //组装参数
+    
+//    assets_assets_collect.php
+//    token
+//    account_id
+//    a_id
+//    act  "del"删除   "add"收藏
+    
+    button.selected = !button.selected;
+    //组装参数
     NSMutableDictionary *params = [NSMutableDictionary  dictionary];
-    NSString *urlStr = @"/assets_station_collect.php";
+    NSString *urlStr = @"/assets_assets_collect.php";
     NSString *url = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
     params[@"token"] = kGetData(@"token");
     params[@"account_id"] = kGetData(@"account_id");
-//    if (self.a_id) {
-//        params[@"a_id"] = self.a_id;
-//    } else {
-//        params[@"a_id"] = self.station.a_id;
-//    }
-//    params[@"a_id"] = self.a_id;
-    params[@"s_id"] = self.station.station_id;
-
+    params[@"a_id"] = self.a_id;
+    
     //判断当前电站是否收藏
-    if (self.is_collection) {
+    if (self.is_collection == YES) {
         params[@"act"] = @"del";
-        //[self.collectView setImage:[UIImage imageNamed:@"activity_wodedianzhan_yishouchang"] forState:UIControlStateSelected];
     }else{
         params[@"act"] = @"add";
-        //[self.collectView setImage:[UIImage imageNamed:@"activity_wodedianzhan_shouchang"] forState:UIControlStateNormal];
     }
-    button.selected = !button.selected;
     //请求数据
     [HMHttpTool post:url params:params success:^(id responseObj) {
         NSDictionary *dict = responseObj[@"data"];
@@ -278,18 +271,12 @@
         YWLog(@"collectViewBtnClick--%@",responseObj);
         if ([status isEqual:@1]) { // 数据
             //请求成功要做的事
-            
             //属性赋值
             self.is_collection = self.station.is_collection;
             if (self.is_collection) {
-                
                 self.collectView.selected = NO;
-                [self.collectView setImage:[UIImage imageNamed:@"activity_wodedianzhan_shouchang"] forState:UIControlStateNormal];
             } else {
-            
-        
                 self.collectView.selected = YES;
-                [self.collectView setImage:[UIImage imageNamed:@"activity_wodedianzhan_yishouchang"] forState:UIControlStateSelected];
             }
             
         }else{
@@ -305,9 +292,5 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

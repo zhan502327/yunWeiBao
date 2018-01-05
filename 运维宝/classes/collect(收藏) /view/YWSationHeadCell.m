@@ -164,7 +164,7 @@
         self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
     }
     
-    if (detilInfo.is_collection) {
+    if ([detilInfo.is_collection isEqualToString:@"1"]) {
         [self.collectView setBackgroundImage:[UIImage imageNamed:@"activity_wodedianzhan_yishouchang"] forState:UIControlStateNormal];
     } else {
         [self.collectView setBackgroundImage:[UIImage imageNamed:@"activity_wodedianzhan_shouchang"] forState:UIControlStateNormal];

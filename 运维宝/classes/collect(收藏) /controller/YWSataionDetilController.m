@@ -29,7 +29,7 @@
 /** 我的设备 */
 @property(nonatomic, strong) NSMutableArray *deviceDetils;
 
- 
+
 
 @end
 
@@ -44,10 +44,10 @@
     
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
-
+    
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+    
 }
 //创建刷新头部和尾部控件
 - (void)setupFrenshHeaderandFooter
@@ -107,7 +107,7 @@
             self.deviceDetils = deviceArr;
             //获得模型数据
             [self.tableView reloadData];
-
+            
             
         }
         
@@ -121,7 +121,7 @@
         [self.tableView.mj_footer endRefreshing];
     }];
     
-   
+    
 }
 
 
@@ -149,7 +149,7 @@
         YWSationHeadCell *cell = [YWSationHeadCell cellWithTableView:tableView];
         cell.collectBtnDidClick = ^{
             //发送请求
-           
+            
             YWLog(@"收藏按钮----");
         };
         cell.delegate = self;
@@ -180,8 +180,15 @@
 #pragma mark-stationHeaderCelldelegate
 - (void)collectionBtnClick:(YWSationHeadCell *)sationHeadCell
 {
+    
+    //    assets_station_collect.php
+    //    token        安全码（登录返回的token）
+    //    account_id    用户id
+    //    s_id        电站id
+    //    act        收藏操作（del：取消收藏，add：收藏）
+    
     sationHeadCell.collectView.selected = !sationHeadCell.collectView.selected;
-
+    sationHeadCell.collectView.enabled = NO;
     //组装参数
     NSMutableDictionary *params = [NSMutableDictionary  dictionary];
     NSString *urlStr = @"/assets_station_collect.php";
@@ -193,15 +200,17 @@
     }else{
         params[@"s_id"] = self.station.station_id;
     }
-  
+    
     //判断当前电站是否收藏
-    if ([self.deviceDetilnfo.is_collection isEqual:@1]) {
+    if ([self.deviceDetilnfo.is_collection isEqualToString:@"1"]) {
         params[@"act"] = @"del";
     }else{
         params[@"act"] = @"add";
     }
     //请求数据
     [HMHttpTool post:url params:params success:^(id responseObj) {
+        sationHeadCell.collectView.enabled = YES;
+        
         NSDictionary *dict = responseObj[@"data"];
         NSString *status = responseObj[@"code"];
         NSString *msg = responseObj[@"tip"];
@@ -211,17 +220,13 @@
         if ([status isEqual:@1]) { // 数据
             //请求成功要做的事
             
-            if (sationHeadCell.collectView.selected) {
-                        [sationHeadCell.collectView setBackgroundImage:[UIImage imageNamed:@"activity_wodedianzhan_yishouchang"] forState:UIControlStateSelected];
-                    } else {
-                        [sationHeadCell.collectView setBackgroundImage:[UIImage imageNamed:@"activity_wodedianzhan_shouchang"] forState:UIControlStateNormal];
-                    }
-            
-            
-            //[SVProgressHUD showInfoWithStatus:msg];
             //发出通知
             [YWNotificationCenter postNotificationName:YWCollectStateChangeNotification object:nil];
-            
+            if ([self.deviceDetilnfo.is_collection isEqualToString:@"1"]) {
+                self.deviceDetilnfo.is_collection = @"0";
+            }else{
+                self.deviceDetilnfo.is_collection = @"1";
+            }
             [self.tableView reloadData];
             /**停止刷新*/
             [self.tableView.mj_header endRefreshing];

@@ -254,8 +254,6 @@
     
 }
 
-
-
 /**个推 为处理 APNs 通知点击，统计有效用户点击数 */
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 //  iOS 10: App在前台获取到通知

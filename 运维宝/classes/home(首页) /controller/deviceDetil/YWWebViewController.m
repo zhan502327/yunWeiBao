@@ -27,7 +27,7 @@
     webView.scalesPageToFit = YES;
     [self.view addSubview:webView];
     
-    [MBProgressHUD showMessage:@"正在下载文件" toView:self.view];
+    [MBProgressHUD showMessage:@"正在打开文件" toView:self.view];
 
     
     NSURL *url = [NSURL URLWithString:self.filePath];

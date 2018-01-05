@@ -35,9 +35,11 @@
 
 - (void)addChildrenVc
 {
-    
+//    预警事件
     YWWarningEventController *warningEvent = [[YWWarningEventController alloc] init];
+//    操作事件
     YWOperationEventController *operationEvent = [[YWOperationEventController alloc] init];
+//    服务事件
     YWServiceEventController *serviceEvent = [[YWServiceEventController alloc] init];
     NSArray *childArr = @[warningEvent,operationEvent,serviceEvent];
     /// pageContentView

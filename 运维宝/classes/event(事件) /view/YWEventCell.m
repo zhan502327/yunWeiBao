@@ -66,7 +66,7 @@
     
     UILabel *dateLab = [[UILabel alloc] init];
     self.dateLab = dateLab;
-    dateLab.textAlignment = NSTextAlignmentCenter;
+    dateLab.textAlignment = NSTextAlignmentLeft;
     dateLab.numberOfLines = 0;
     dateLab.text = @"2017-10-20 10:30";
     dateLab.textColor = [UIColor darkGrayColor];
@@ -89,22 +89,32 @@
     }];
     
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self).offset(5);
+        make.top.mas_equalTo(self).offset(10);
         make.left.mas_equalTo(self.iconView.mas_right).offset(5);
-        make.height.mas_equalTo(18);
+        make.height.mas_equalTo(20);
     }];
     
     
     [self.detilLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.titleLab.mas_bottom);
+        make.top.mas_equalTo(self.titleLab.mas_bottom).offset(5);
         make.left.mas_equalTo(self.titleLab.mas_left);
         make.right.mas_equalTo(self).offset(-15);
        
     }];
 
+//    [self.dateLab mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self).offset(5);
+//        make.right.mas_equalTo(self).offset(-10);
+//        //make.bottom.mas_equalTo(self).offset(-10);
+//
+//    }];
+    
     [self.dateLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self).offset(5);
-        make.right.mas_equalTo(self).offset(-10);
+        make.top.mas_equalTo(self.detilLab.mas_bottom).offset(5);
+        make.left.mas_equalTo(self.detilLab);
+        make.right.mas_equalTo(self.detilLab);
+        make.height.mas_equalTo(20);
+
         //make.bottom.mas_equalTo(self).offset(-10);
         
     }];
@@ -125,10 +135,16 @@
     
     _eventModel = eventModel;
     
-    self.titleLab.text = eventModel.station;
+    self.titleLab.text = [NSString stringWithFormat:@"%@    %@",eventModel.station, eventModel.asset];
     self.detilLab.text = eventModel.explain;
-    self.dateLab.text = eventModel.happen_time;
     
+//    2018-01-03 23:59:00.720
+    NSArray *strarray = [eventModel.happen_time componentsSeparatedByString:@"."];
+    if (strarray.count > 0) {
+        self.dateLab.text = strarray[0];
+    }else{
+        self.dateLab.text = @"";
+    }
 }
 
 
