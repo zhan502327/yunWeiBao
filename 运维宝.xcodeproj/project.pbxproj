@@ -4239,8 +4239,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ylsoft.zdl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "647f7c3b-7cd2-42f8-9826-6690a4b4ebcc";
-				PROVISIONING_PROFILE_SPECIFIER = "zhongdianlian-appstore";
+				PROVISIONING_PROFILE = "2c958b29-d516-44a6-9f9f-84df6e7afd54";
+				PROVISIONING_PROFILE_SPECIFIER = "zhongdianlian-adHoc";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4285,8 +4285,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ylsoft.zdl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "647f7c3b-7cd2-42f8-9826-6690a4b4ebcc";
-				PROVISIONING_PROFILE_SPECIFIER = "zhongdianlian-appstore";
+				PROVISIONING_PROFILE = "2c958b29-d516-44a6-9f9f-84df6e7afd54";
+				PROVISIONING_PROFILE_SPECIFIER = "zhongdianlian-adHoc";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
