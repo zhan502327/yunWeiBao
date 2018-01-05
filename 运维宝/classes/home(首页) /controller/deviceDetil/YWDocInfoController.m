@@ -71,7 +71,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+//    文档信息
     // 首先自动刷新一次
     [self autoRefresh];
     //创建头部尾部

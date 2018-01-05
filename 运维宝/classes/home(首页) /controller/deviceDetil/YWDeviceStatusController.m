@@ -62,7 +62,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+//    状态监测
     //获取设备详情
     [self getDeviceDetil];
     

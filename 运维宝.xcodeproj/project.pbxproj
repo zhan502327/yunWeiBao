@@ -454,6 +454,7 @@
 		5B19ADF21FE665310068CB80 /* TTOpenInAppActivity8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADEA1FE6652F0068CB80 /* TTOpenInAppActivity8@2x.png */; };
 		5B19ADF31FE665310068CB80 /* TTOpenInAppActivity8@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADEB1FE6652F0068CB80 /* TTOpenInAppActivity8@3x.png */; };
 		5B19ADF41FE665310068CB80 /* TTOpenInAppActivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B19ADEC1FE6652F0068CB80 /* TTOpenInAppActivity@2x.png */; };
+		5B5B48B41FFF475600F0898A /* DBCodeWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B48B31FFF475600F0898A /* DBCodeWebViewViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1310,6 +1311,8 @@
 		5B19ADEA1FE6652F0068CB80 /* TTOpenInAppActivity8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity8@2x.png"; sourceTree = "<group>"; };
 		5B19ADEB1FE6652F0068CB80 /* TTOpenInAppActivity8@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity8@3x.png"; sourceTree = "<group>"; };
 		5B19ADEC1FE6652F0068CB80 /* TTOpenInAppActivity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTOpenInAppActivity@2x.png"; sourceTree = "<group>"; };
+		5B5B48B21FFF475600F0898A /* DBCodeWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBCodeWebViewViewController.h; sourceTree = "<group>"; };
+		5B5B48B31FFF475600F0898A /* DBCodeWebViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBCodeWebViewViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1582,6 +1585,8 @@
 				1218E9A51FA9A17500C48B91 /* HCHeader.h */,
 				1218E9A61FA9A17500C48B91 /* HCScanQRViewController.h */,
 				1218E9A71FA9A17500C48B91 /* HCScanQRViewController.m */,
+				5B5B48B21FFF475600F0898A /* DBCodeWebViewViewController.h */,
+				5B5B48B31FFF475600F0898A /* DBCodeWebViewViewController.m */,
 				1218E9A81FA9A17500C48B91 /* image.bundle */,
 				1218E9A91FA9A17500C48B91 /* model */,
 				1218E9AC1FA9A17500C48B91 /* Utils */,
@@ -3559,7 +3564,7 @@
 					12287EAD1F9838B8007D67D5 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = QK3H5LN4MT;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3820,6 +3825,7 @@
 				129FFE8B1FAF19530021CC4D /* YWCheckBtnCell.m in Sources */,
 				122423701F9C743A007DE5DE /* YWDocInfoController.m in Sources */,
 				122882751F985024007D67D5 /* SGPageContentView.m in Sources */,
+				5B5B48B41FFF475600F0898A /* DBCodeWebViewViewController.m in Sources */,
 				122881661F984E7F007D67D5 /* UIImage+Extension.m in Sources */,
 				1228826E1F985024007D67D5 /* TAAbstractDotView.m in Sources */,
 				122881D61F984E7F007D67D5 /* MJRefreshConst.m in Sources */,
@@ -4200,8 +4206,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "运维宝/运维宝.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = QK3H5LN4MT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4233,8 +4239,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ylsoft.zdl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "647f7c3b-7cd2-42f8-9826-6690a4b4ebcc";
+				PROVISIONING_PROFILE_SPECIFIER = "zhongdianlian-appstore";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4246,8 +4252,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "运维宝/运维宝.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = QK3H5LN4MT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4279,8 +4285,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ylsoft.zdl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "647f7c3b-7cd2-42f8-9826-6690a4b4ebcc";
+				PROVISIONING_PROFILE_SPECIFIER = "zhongdianlian-appstore";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

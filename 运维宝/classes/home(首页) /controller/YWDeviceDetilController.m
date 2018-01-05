@@ -238,7 +238,7 @@
     [self.pageTitleView setPageTitleViewWithProgress:progress originalIndex:originalIndex targetIndex:targetIndex];
     
 }
-//设置按钮点击状态
+//收藏按钮点击状态
 - (void)collectViewBtnClick:(UIButton *)button
 {
     

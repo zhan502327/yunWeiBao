@@ -10,6 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "HCHeader.h"
 #import "YWDeviceDetilController.h"
+#import "YWServiceDetilController.h"
+#import "DBCodeWebViewViewController.h"
 @interface HCScanQRViewController ()<AVCaptureMetadataOutputObjectsDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate> {
     NSString *QRCode;
 }
@@ -314,22 +316,86 @@
         // 3.取出扫描到得数据
         AVMetadataMachineReadableCodeObject *obj = [metadataObjects lastObject];
         if ([obj.stringValue integerValue]) {
-            NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:obj.stringValue options:0];
-            NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
-            
+            [self getDeviceInfoWithCode:obj.stringValue type:@"1"];
+
         } else {
-            NSLog(@"%@", [obj.stringValue substringFromIndex:12]);
             
-            NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:[obj.stringValue substringFromIndex:12] options:0];
-            NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
-            //跳转到设备详情控制器
-            YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
-            deviceDetil.a_id = decodedString;
-            [self.navigationController pushViewController:deviceDetil animated:YES];
-            
+            if ([obj.stringValue containsString:@"device/"]) {
+                NSArray *strArray = [obj.stringValue componentsSeparatedByString:@"device/"];
+                if (strArray.count > 1) {
+                    NSString *resultStr = strArray[1];
+                    [self getDeviceInfoWithCode:resultStr type:@"2"];
+                }
+            }else{
+                DBCodeWebViewViewController *vc = [[DBCodeWebViewViewController alloc] init];
+                vc.filePath = obj.stringValue;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
     }
 }
+
+#pragma mark -- 用扫码获取的值获取a_id
+- (void)getDeviceInfoWithCode:(NSString *)code type:(NSString *)type
+{
+    //                然后用获取到的值调用获取设备详情的接口
+    //                "service_qr_code.php"
+    //                参数：
+    //                token
+    //                account_id
+    //                type  值固定为“2”
+    //                code 获取到的值
+    
+    //组装参数
+    NSMutableDictionary *params = [NSMutableDictionary  dictionary];
+    NSString *urlStr = @"/service_qr_code.php";
+    NSString *url = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
+    //安全码（登录返回的token
+    params[@"token"] = kGetData(@"token");
+    //用户id
+    params[@"account_id"] = kGetData(@"account_id");
+    params[@"type"] = type;
+    params[@"code"] = code;
+
+    //请求数据
+    [HMHttpTool post:url params:params success:^(id responseObj) {
+        NSDictionary *dict = responseObj[@"data"];
+        NSString *status = responseObj[@"code"];
+        NSString *msg = responseObj[@"tip"];
+        YWLog(@"getServiceSupport--%@",responseObj);
+        if ([status isEqual:@1]) { // 数据
+     
+            if ([self.fromeWhereStr isEqualToString:@"1"]) {//从首页跳转 -- 详情
+                //跳转到设备详情控制器
+                YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
+                deviceDetil.a_id = dict[@"assets_id"];
+                [self.navigationController pushViewController:deviceDetil animated:YES];
+            }else if ([self.fromeWhereStr isEqualToString:@"2"]) {//从服务也跳转 -- 服务
+                //跳转到服务详情页面
+                YWServiceDetilController *service = [[YWServiceDetilController alloc] init];
+                service.a_id = dict[@"assets_id"];
+                [self.navigationController pushViewController:service animated:YES];
+            }else{
+                [SVProgressHUD showErrorWithStatus:msg];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            
+        }else{
+
+            [SVProgressHUD showErrorWithStatus:msg];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [SVProgressHUD showErrorWithStatus:@"网络错误"];
+        [self.navigationController popViewControllerAnimated:YES];
+
+    }];
+    
+    
+}
+
 
 #pragma mark - 提示框
 - (void)showAlertWithTitle:(NSString *)title Message:(NSString *)message OptionalAction:(NSArray *)actions {

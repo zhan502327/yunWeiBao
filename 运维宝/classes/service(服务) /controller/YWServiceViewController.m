@@ -65,6 +65,7 @@
     
     //扫一扫
     HCScanQRViewController *scan = [[HCScanQRViewController alloc] init];
+    scan.fromeWhereStr = @"2";
     [self.navigationController pushViewController:scan animated:YES];
 }
 
@@ -181,6 +182,7 @@
         cell.didTapScanView = ^{
             //扫一扫
             HCScanQRViewController *scan = [[HCScanQRViewController alloc] init];
+            scan.fromeWhereStr = @"2";
             [self.navigationController pushViewController:scan animated:YES];
         };
         

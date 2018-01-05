@@ -231,7 +231,7 @@ singleton_implementation(LMLoginController)
         NSString *url = [YWBaseURL stringByAppendingFormat:@"%@",shortStr];
         
         [HMHttpTool get:url params:param success:^(id responseObj) {
-            
+            [SVProgressHUD dismiss];
             NSDictionary *dict = responseObj[@"data"];
             NSString *status = responseObj[@"code"];
             NSString *msg = responseObj[@"tip"];
@@ -283,6 +283,10 @@ singleton_implementation(LMLoginController)
                 //存储用户ID
                 kDataPersistence(user.app_title,@"app_title");
                 
+                kDataPersistence(self.userName.text,@"db_login_mobile");
+                kDataPersistence(self.password.text,@"db_login_password");
+
+                
                 [[NSUserDefaults standardUserDefaults] synchronize];
             
                 
@@ -300,7 +304,7 @@ singleton_implementation(LMLoginController)
             }
             
         } failure:^(NSError *error) {
-            
+            [SVProgressHUD dismiss];
             YWLog(@"请求失败--%@", error);
             
         }];

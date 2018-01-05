@@ -121,7 +121,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initData];//此方法必须写在开始
-    
+//    趋势分析
     //温升历史曲线
     [self setupTopSelectButton];
     
@@ -359,7 +359,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     [self.temHistoryView addSubview:webview];
     self.webView = webview;
     NSString *timeStr = [self.defaultTimeStr stringByReplacingOccurrencesOfString:@"-" withString:@""];
-    timeStr = [self.defaultTimeStr stringByReplacingOccurrencesOfString:@" " withString:@""];
+    timeStr = [timeStr stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     NSString *urlStr = @"assets_history_html.php";
     NSString *baseurl = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
@@ -976,7 +976,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
                 break;
             case 1://week
                 dateView.frame = CGRectMake(0, 0, 150,40);
-                dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"第　 %d周", ""),row+1];
+                dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"第%d周", ""),row+1];
                 break;
             default:
                 break;

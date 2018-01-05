@@ -15,6 +15,10 @@ typedef void(^successBlock)(NSString *QRCodeInfo);
 
 @property (strong, nonatomic) successBlock block;
 
+
+// 判断从哪里跳转  1 - 首页     2 - 服务
+@property (nonatomic, copy) NSString *fromeWhereStr;
+
 /**
  *是否需要将扫码得到的信息进行回传并展示
  *@param   默认值   Default is NO

@@ -88,6 +88,9 @@ static NSString *const GridCellID = @"GridCellID";
     
     self.myStations = [NSMutableArray array];
     
+    //进入首页调登录接口，传token给服务器，防止同一个账号，登录多台设备接收不到推送
+    [self postTokenToService];
+    
     //头部view
     
     // 首先自动刷新一次
@@ -109,6 +112,34 @@ static NSString *const GridCellID = @"GridCellID";
     //登陆成功通知保存用户模型
     [YWNotificationCenter addObserver:self selector:@selector(logUser:) name:YWLogUserNotification object:nil];
 
+}
+
+- (void)postTokenToService{
+
+    //发送登录请求
+    NSMutableDictionary *param = [NSMutableDictionary  dictionary];
+    //手机号
+    param[@"mobile"] = kGetData(@"db_login_mobile");
+    //密码
+    param[@"password"] = kGetData(@"db_login_password");
+    param[@"client_id"] = kGetData(@"token");
+    
+    NSString *shortStr = @"/user_login.php";
+    NSString *url = [YWBaseURL stringByAppendingFormat:@"%@",shortStr];
+    
+    [HMHttpTool get:url params:param success:^(id responseObj) {
+//        NSDictionary *dict = responseObj[@"data"];
+        NSString *status = responseObj[@"code"];
+        NSString *msg = responseObj[@"tip"];
+        if ([status  isEqual:@1] && msg){
+            
+        }else{
+            
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -322,6 +353,7 @@ static NSString *const GridCellID = @"GridCellID";
          cell.didTapScanView = ^{
              //扫一扫
              HCScanQRViewController *scan = [[HCScanQRViewController alloc] init];
+             scan.fromeWhereStr = @"1";
              [self.navigationController pushViewController:scan animated:YES];
          };
          
