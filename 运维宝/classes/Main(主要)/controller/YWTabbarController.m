@@ -40,6 +40,7 @@
     YWHomeViewController *home = [[YWHomeViewController alloc] init];//发现
     [self addOneChlildVc:home title:@"首页" imageName:@"icon_menu_home_normal" selectedImageName:@"icon_menu_home_press"];
     home.tabBarItem.title = @"首页";
+    
     YWCollectViewController *shop = [[YWCollectViewController alloc] init];//发现
     [self addOneChlildVc:shop title:@"收藏" imageName:@"icon_menu_dynamic_normal" selectedImageName:@"icon_menu_dynamic_press"];
     YWServiceViewController *cooperate = [[YWServiceViewController alloc] init];//发现

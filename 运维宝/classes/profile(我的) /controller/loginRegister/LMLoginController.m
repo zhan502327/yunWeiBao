@@ -101,7 +101,7 @@ singleton_implementation(LMLoginController)
     self.iconImageView = icon;
     icon.layer.cornerRadius = 12;
     icon.clipsToBounds = YES;
-    CGFloat iconViewWH = 60;
+    CGFloat iconViewWH = 80;
     CGFloat iconX = (SCREEN_WIDTH-iconViewWH)*0.5;
     icon.frame = CGRectMake(iconX,50, iconViewWH, iconViewWH);
     [self.view addSubview:_iconImageView];
@@ -110,7 +110,7 @@ singleton_implementation(LMLoginController)
     CGFloat viewX = 30;
     CGFloat viewY = CGRectGetMaxY(icon.frame)+50;
     CGFloat viewW = SCREEN_WIDTH - viewX*2;
-    CGFloat viewH = 40;
+    CGFloat viewH = 50;
     
     UITextField *userName = [[UITextField alloc] init];
     //userName.text = @"13600976198";

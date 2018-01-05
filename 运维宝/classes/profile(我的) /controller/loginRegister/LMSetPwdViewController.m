@@ -78,11 +78,11 @@
     CGFloat viewX = 30;
     CGFloat viewY = HEADER_HEIGHT+30;
     CGFloat viewW = SCREEN_WIDTH - viewX*2;
-    CGFloat viewH = 35;
+    CGFloat viewH = 50;
     
     //输入手机号
     UITextField *phoneText = [[UITextField alloc] init];
-    phoneText.frame = CGRectMake(viewX,2, viewW, viewH);
+    phoneText.frame = CGRectMake(viewX,20, viewW, viewH);
     self.phoneTextField = phoneText;
     phoneText.delegate = self;
     phoneText.font = FONT_15;
@@ -130,7 +130,7 @@
     self.proCodeBtn = probutton;
     probutton.layer.cornerRadius = 5;
     probutton.clipsToBounds = YES;
-    probutton.frame = CGRectMake(proText.width*0.7,5,proText.width*0.3, viewH-10);
+    probutton.frame = CGRectMake(proText.width*0.7,10,proText.width*0.3, viewH-20);
     probutton.backgroundColor = [UIColor lightGrayColor];
     [probutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [probutton setTitle:@"获取验证码" forState:UIControlStateNormal];
@@ -191,7 +191,7 @@
     self.resetPwdBtn = resetPwdBtn;
     [resetPwdBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     CGFloat risterBtnY = CGRectGetMaxY(reSetpwdText.frame)+20;
-    resetPwdBtn.frame = CGRectMake(viewX,risterBtnY,viewW,viewH);
+    resetPwdBtn.frame = CGRectMake(viewX,risterBtnY,viewW,viewH-5);
     
     [resetPwdBtn addTarget:self action:@selector(reSetPwdBtn) forControlEvents:UIControlEventTouchUpInside];
     resetPwdBtn.backgroundColor = [UIColor lightGrayColor];
@@ -202,7 +202,6 @@
     [resetPwdBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     resetPwdBtn.titleLabel.font = FONT_BOLD_17;
     [self.view addSubview:resetPwdBtn];
-    
     
 }
 

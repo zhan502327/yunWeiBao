@@ -103,12 +103,16 @@
         
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.layer.masksToBounds = YES;
+        _tableView.layer.cornerRadius = 3;
+        _tableView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _tableView.layer.borderWidth = 0.5;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.showsVerticalScrollIndicator = NO;
         [self.view addSubview:_tableView];
         CGFloat viewY = CGRectGetMaxY(self.officeTextField.frame);
-        _tableView.frame = CGRectMake((SCREEN_WIDTH-280)*0.5,viewY,280,120);
+        _tableView.frame = CGRectMake(20,viewY,SCREEN_WIDTH - 40,200);
     }
     return _tableView;
 }
@@ -160,21 +164,21 @@
     self.iconImageView = icon;
     icon.layer.cornerRadius = 12;
     icon.clipsToBounds = YES;
-    CGFloat iconViewWH = 60;
+    CGFloat iconViewWH = 80;
     CGFloat iconX = (SCREEN_WIDTH-iconViewWH)*0.5;
-    icon.frame = CGRectMake(iconX,30, iconViewWH, iconViewWH);
+    icon.frame = CGRectMake(iconX,50, iconViewWH, iconViewWH);
     [self.view addSubview:_iconImageView];
       //电话输入框
     CGFloat viewX = 30;
     CGFloat viewW = SCREEN_WIDTH - viewX*2;
-    CGFloat viewH = 35;
+    CGFloat viewH = 50;
     
     //单位
     UITextField *officeTextField = [[UITextField alloc] init];
     self.officeTextField = officeTextField;
     officeTextField.keyboardType = UIKeyboardTypeWebSearch;
     officeTextField.delegate = self;
-    CGFloat rePutPwdY = CGRectGetMaxY(icon.frame)+30;
+    CGFloat rePutPwdY = CGRectGetMaxY(icon.frame)+50;
     officeTextField.frame = CGRectMake(viewX, rePutPwdY, viewW, viewH);
     [officeTextField addTarget:self action:@selector(officeTextFieldDidChange) forControlEvents:UIControlEventEditingChanged];
     officeTextField.font = FONT_15;
@@ -268,7 +272,7 @@
     probutton.layer.cornerRadius = 5;
     probutton.clipsToBounds = YES;
     probutton.enabled = NO;
-    probutton.frame = CGRectMake(proText.width*0.7, 5,proText.width*0.3, viewH-10);
+    probutton.frame = CGRectMake(proText.width*0.7, 10,proText.width*0.3, viewH-20);
     probutton.backgroundColor = [UIColor lightGrayColor];
     [probutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [probutton setTitle:@"发送验证码" forState:UIControlStateNormal];
@@ -306,8 +310,8 @@
     self.registerBtn = button;
     button.enabled = NO;
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    CGFloat risterBtnY = CGRectGetMaxY(pwdText.frame)+20;
-    button.frame = CGRectMake(viewX,risterBtnY, viewW, viewH);
+    CGFloat risterBtnY = CGRectGetMaxY(pwdText.frame)+50;
+    button.frame = CGRectMake(viewX,risterBtnY, viewW, viewH - 5);
     
     [button addTarget:self action:@selector(doRegister) forControlEvents:UIControlEventTouchUpInside];
     button.backgroundColor = [UIColor lightGrayColor];
@@ -683,10 +687,6 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

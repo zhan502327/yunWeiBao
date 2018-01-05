@@ -200,7 +200,8 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     LMLoginController *login = [[LMLoginController alloc] init];
-    [UIApplication sharedApplication].keyWindow.rootViewController = login;
+    YWNavViewController *nav = [[YWNavViewController alloc] initWithRootViewController:login];
+    [UIApplication sharedApplication].keyWindow.rootViewController = nav;
     
 }
 #pragma mark - Table view data source
@@ -291,8 +292,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    return 40;
+    return 50;
 }
 //移除通知
 - (void)dealloc
@@ -300,10 +300,5 @@
     [YWNotificationCenter removeObserver:self];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

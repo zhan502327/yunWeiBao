@@ -4202,7 +4202,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QK3H5LN4MT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/vendor/AMap",
@@ -4248,7 +4248,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QK3H5LN4MT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/vendor/AMap",
