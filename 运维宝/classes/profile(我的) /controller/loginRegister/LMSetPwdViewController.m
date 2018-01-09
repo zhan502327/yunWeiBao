@@ -331,9 +331,7 @@
                 
                 [SVProgressHUD dismiss];
                 
-#warning mark-TODO
                 [self reSetUserPwd];
-                //self.codeTextField.text =
             });
             
         }else{
@@ -375,11 +373,10 @@
     NSString *url = [YWBaseURL stringByAppendingFormat:@"%@",shortStr];
     
     [HMHttpTool get:url params:param success:^(id responseObj) {
-        NSArray *dict = responseObj[@"data"];
+//        NSArray *dict = responseObj[@"data"];
         NSString *status = responseObj[@"code"];
         NSString *msg = responseObj[@"tip"];
-        //YWLog(@"getWarningEvent--%@",responseObj);
-        if ([status isEqual:@1] && msg) { // 数据
+        if ([status isEqual:@1]) { // 数据
             //返回发送成功提示信息
             [SVProgressHUD showSuccessWithStatus:msg];
             //修改成功后退出页面
@@ -388,9 +385,7 @@
                 
                 [SVProgressHUD dismiss];
                 
-#warning mark-TODO
                 
-                //self.codeTextField.text =
             });
             
         }else{

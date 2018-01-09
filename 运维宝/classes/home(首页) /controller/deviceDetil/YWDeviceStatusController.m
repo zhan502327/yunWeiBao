@@ -50,32 +50,19 @@
 @end
 
 @implementation YWDeviceStatusController
-//状态
-//- (NSMutableArray*)devices
-//{
-//    if (!_devices) {
-//        _devices = [[NSMutableArray  alloc] init];
-//    }
-//    return _devices;
-//}
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    状态监测
+    
+    self.title = @"状态监测";
     //获取设备详情
     [self getDeviceDetil];
     
     //状态监测图
     [self setupStatusView];
-    //温升历史曲线
-//    [self setupTemHostoryView];
     
     
 }
-
-
-
 //发送请求获取网络数据
 - (void)getDeviceDetil
 {
@@ -107,16 +94,12 @@
             //获得模型数据
             [self.statusTableView reloadData];
             [self.tempTableView reloadData];
-            /**停止刷新*/
-            //[self.tableView.mj_header endRefreshing];
-            //[self.tableView.mj_footer endRefreshing];
+
             
         }
         
     } failure:^(NSError *error) {
-        /**停止刷新*/
-        //[self.tableView.mj_header endRefreshing];
-        //[self.tableView.mj_footer endRefreshing];
+
     }];
     
 }

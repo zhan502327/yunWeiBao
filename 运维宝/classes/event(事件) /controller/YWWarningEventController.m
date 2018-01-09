@@ -32,12 +32,16 @@
     }
     return _warningEvents;
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    // 首先自动刷新一次
+    [self autoRefresh];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 首先自动刷新一次
-    [self autoRefresh];
+
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
     //删除系统分割线

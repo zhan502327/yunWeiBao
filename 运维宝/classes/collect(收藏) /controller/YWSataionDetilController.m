@@ -211,27 +211,33 @@
     [HMHttpTool post:url params:params success:^(id responseObj) {
         sationHeadCell.collectView.enabled = YES;
         
-        NSDictionary *dict = responseObj[@"data"];
+//        NSDictionary *dict = responseObj[@"data"];
         NSString *status = responseObj[@"code"];
         NSString *msg = responseObj[@"tip"];
         
         
         YWLog(@"getMyStations--%@",responseObj);
         if ([status isEqual:@1]) { // 数据
-            //请求成功要做的事
-            
             //发出通知
             [YWNotificationCenter postNotificationName:YWCollectStateChangeNotification object:nil];
+            
             if ([self.deviceDetilnfo.is_collection isEqualToString:@"1"]) {
                 self.deviceDetilnfo.is_collection = @"0";
+                [SVProgressHUD showSuccessWithStatus:@"取消收藏成功"];
             }else{
                 self.deviceDetilnfo.is_collection = @"1";
+                [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
             }
+            
+            [self.navigationController popViewControllerAnimated: YES];
+            
             [self.tableView reloadData];
             /**停止刷新*/
             [self.tableView.mj_header endRefreshing];
             [self.tableView.mj_footer endRefreshing];
             
+        }else{
+            [SVProgressHUD showErrorWithStatus:msg];
         }
         
     } failure:^(NSError *error) {

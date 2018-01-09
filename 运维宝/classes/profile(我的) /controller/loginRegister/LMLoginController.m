@@ -231,7 +231,6 @@ singleton_implementation(LMLoginController)
         NSString *url = [YWBaseURL stringByAppendingFormat:@"%@",shortStr];
         
         [HMHttpTool get:url params:param success:^(id responseObj) {
-            [SVProgressHUD dismiss];
             NSDictionary *dict = responseObj[@"data"];
             NSString *status = responseObj[@"code"];
             NSString *msg = responseObj[@"tip"];
@@ -242,7 +241,6 @@ singleton_implementation(LMLoginController)
                 YWTabbarController *tabbar = [[YWTabbarController alloc] init];
                 [UIApplication sharedApplication].keyWindow.rootViewController = tabbar;
                 
-                //[SVProgressHUD dismiss];
                 //账号模型
                 YXAcount *acount = [[YXAcount alloc] init];
                 self.acount = acount;
@@ -293,19 +291,17 @@ singleton_implementation(LMLoginController)
                 [self leftBtnAction];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     
-                    [SVProgressHUD dismiss];
                     
                 });
                 
             }else{
                 [SVProgressHUD showErrorWithStatus:@"请输入正确账号或密码"];
-//                [SVProgressHUD dismiss];
+                [SVProgressHUD showErrorWithStatus:msg];
 
             }
             
         } failure:^(NSError *error) {
-            [SVProgressHUD dismiss];
-            YWLog(@"请求失败--%@", error);
+            [SVProgressHUD showErrorWithStatus:@"网络错误"];
             
         }];
         

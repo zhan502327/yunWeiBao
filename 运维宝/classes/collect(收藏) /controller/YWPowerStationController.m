@@ -33,13 +33,17 @@
     }
     return _myStations;
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    // 首先自动刷新一次
+    [self autoRefresh];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // 首先自动刷新一次
-    [self autoRefresh];
+    self.title = @"我的电站";
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
     // 监听收藏状态改变的通知

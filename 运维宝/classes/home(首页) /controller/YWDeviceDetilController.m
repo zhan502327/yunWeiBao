@@ -275,13 +275,19 @@
             self.is_collection = self.station.is_collection;
             if (self.is_collection) {
                 self.collectView.selected = NO;
+                [SVProgressHUD showSuccessWithStatus:@"取消收藏成功"];
             } else {
                 self.collectView.selected = YES;
+                [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
             }
             
+            [self.navigationController popViewControllerAnimated:YES];
+
         }else{
-            NSLog(@"%@",msg);
+            [SVProgressHUD showErrorWithStatus:msg];
         }
+        
+
         
     } failure:^(NSError *error) {
         

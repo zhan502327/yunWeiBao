@@ -32,11 +32,16 @@
     return _operationEvents;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     
     // 首先自动刷新一次
     [self autoRefresh];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
     
