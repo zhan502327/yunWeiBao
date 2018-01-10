@@ -47,7 +47,7 @@
     
     UILabel *titleLab = [[UILabel alloc] init];
     self.titleLab = titleLab;
-    titleLab.textAlignment = NSTextAlignmentCenter;
+    titleLab.textAlignment = NSTextAlignmentLeft;
     titleLab.numberOfLines = 0;
     titleLab.text = @"220KV农业路变电站";
     titleLab.textColor = [UIColor darkGrayColor];
@@ -82,23 +82,24 @@
     
     //设置frame
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        //make.top.mas_equalTo(self).offset(10);
         make.centerY.mas_equalTo(self);
         make.left.mas_equalTo(self).offset(10);
         make.size.mas_equalTo(CGSizeMake(20, 20));
     }];
     
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self).offset(10);
+        make.top.mas_equalTo(self).offset(5);
         make.left.mas_equalTo(self.iconView.mas_right).offset(5);
-        make.height.mas_equalTo(20);
+        make.right.mas_equalTo(self).offset(-10);
+
+//        make.height.mas_equalTo(20);
     }];
     
     
     [self.detilLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.titleLab.mas_bottom).offset(5);
+        make.top.mas_equalTo(self.titleLab.mas_bottom).offset(0);
         make.left.mas_equalTo(self.titleLab.mas_left);
-        make.right.mas_equalTo(self).offset(-15);
+        make.right.mas_equalTo(self).offset(-10);
        
     }];
 
@@ -110,7 +111,7 @@
 //    }];
     
     [self.dateLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.detilLab.mas_bottom).offset(5);
+        make.top.mas_equalTo(self.detilLab.mas_bottom).offset(2);
         make.left.mas_equalTo(self.detilLab);
         make.right.mas_equalTo(self.detilLab);
         make.height.mas_equalTo(20);
@@ -132,12 +133,23 @@
 //设置数据
 - (void)setEventModel:(YWEventModel *)eventModel
 {
-    
     _eventModel = eventModel;
+ 
     
-    self.titleLab.text = [NSString stringWithFormat:@"%@    %@",eventModel.station, eventModel.asset];
-    self.detilLab.text = eventModel.explain;
+    NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle  setLineSpacing:5];
     
+    NSString *resultStr = [NSString stringWithFormat:@"%@    %@    %@",eventModel.station, eventModel.asset, eventModel.explain];
+    NSMutableAttributedString  *setString = [[NSMutableAttributedString alloc] initWithString:resultStr];
+    [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [resultStr length])];
+    
+    // 设置Label要显示的text
+    self.titleLab.attributedText = setString;
+    
+    
+//    self.detilLab.text = eventModel.explain;
+    self.detilLab.text = @"";
+
 //    2018-01-03 23:59:00.720
     NSArray *strarray = [eventModel.happen_time componentsSeparatedByString:@"."];
     if (strarray.count > 0) {

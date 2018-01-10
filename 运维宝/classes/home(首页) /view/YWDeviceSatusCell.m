@@ -83,7 +83,7 @@
     
     [self.statusLab1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self);
-        make.right.mas_equalTo(self);
+        make.right.mas_equalTo(self).offset(-30);
         make.size.mas_equalTo(CGSizeMake(65, 30));
     }];
     

@@ -92,37 +92,22 @@
 // 1.用户头部view
 - (void)setUpHeaderView
 {
-//    __weak typeof(self) weakSelf = self;
     
+    //头像
     MineHeadView *headView =  [[MineHeadView alloc] initWithFrame:CGRectZero loginButtonClick:^{
         
-//        //点击头部事件
-//        LMLoginController *login = [[LMLoginController alloc] init];
-//
-//        YWNavViewController *nav = [[YWNavViewController alloc] initWithRootViewController:login];
-//        [self.navigationController presentViewController:nav animated:YES completion:nil];
-        
     }];
-    
-    headView.backgroundColor = [UIColor clearColor];
     _headView = headView;
-    
-    
+    headView.frame = CGRectMake(0, 0, SCREEN_WIDTH,200);
     NSString *urlStr = @"/assets_doucment_down.php";
     NSString *urlString = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
-    
-    
     NSString *fileName = [NSString stringWithFormat:@"?token=%@&account_id=%@&file_id=%@",kGetData(@"token"), kGetData(@"account_id"), kGetData(@"photo_id")];
     urlString = [urlString stringByAppendingString:fileName];
-    
     [headView.iconView.iconImageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"userIcon"]];
     
     
-    
-    headView.frame = CGRectMake(0, 0, SCREEN_WIDTH,250);
     //账户金额明细工具条
     UIView *bgview = [[UIView alloc] init];
-    //bgview.backgroundColor = [UIColor darkGrayColor];
     CGFloat bgviewY = CGRectGetMaxY(headView.frame);
     bgview.frame = CGRectMake(0, bgviewY-40, SCREEN_WIDTH,40);
     
@@ -133,7 +118,7 @@
     titleLabel.numberOfLines = 0;
     titleLabel.text = @"姓名:";
     titleLabel.textColor = [UIColor darkGrayColor];
-    titleLabel.font = [UIFont systemFontOfSize:16];
+    titleLabel.font = FONT_16;
     CGFloat margin = 20;
     CGFloat labW = (SCREEN_WIDTH - margin*3);
     titleLabel.frame = CGRectMake(margin, 5,SCREEN_WIDTH - margin*3, 25);
@@ -176,7 +161,7 @@
     //设置背景颜色的话占满屏幕
     logout.backgroundColor = LOGINCLOLOR;
     // 设置背景
-    logout.frame = CGRectMake(20, 15, SCREEN_WIDTH-40, 35);
+    logout.frame = CGRectMake(20, 15, SCREEN_WIDTH-40, 40);
     [footView addSubview:logout];
     // 1.创建按钮
     self.tableView.tableFooterView = footView;
@@ -286,7 +271,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 40;
 }
 //移除通知
 - (void)dealloc

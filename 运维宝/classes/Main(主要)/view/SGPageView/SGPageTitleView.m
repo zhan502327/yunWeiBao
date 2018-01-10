@@ -55,7 +55,7 @@ static CGFloat const SGPageTitleViewBtnMargin = 20;
 /// 指示器样式为 SGIndicatorTypeSpecial 时, 指示器长度多于按钮文字宽度的值
 static CGFloat const SGIndicatorTypeSpecialMultipleLength = 20;
 /// 标题文字大小
-static CGFloat const SGPageTitleViewTextFont = 14;
+static CGFloat const SGPageTitleViewTextFont = 15;
 
 - (instancetype)initWithFrame:(CGRect)frame delegate:(id<SGPageTitleViewDelegate>)delegate titleNames:(NSArray *)titleNames {
     if (self = [super initWithFrame:frame]) {

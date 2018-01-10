@@ -33,6 +33,8 @@
 {
     
     UINavigationBar *appearance = [UINavigationBar appearance];
+
+    [appearance setTintColor:[UIColor whiteColor]];
     
     //设置导航条背景用图片来填充
     [appearance setBackgroundImage:[UIImage imageNamed:@"navbg"] forBarMetrics:UIBarMetricsDefault];
@@ -54,6 +56,7 @@
 {
     // 通过appearance对象能修改整个项目中所有UIBarButtonItem的样式
     UIBarButtonItem *appearance = [UIBarButtonItem appearance];
+    [appearance setTintColor:[UIColor whiteColor]];
     
     /**设置文字属性**/
     // 设置普通状态的文字属性
@@ -83,18 +86,18 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if (self.viewControllers.count > 0) { // 如果现在push的不是栈底控制器(最先push进来的那个控制器)
+//        viewController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar_back"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+//        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"icon_btn_po" highImageName:@"icon_btn_po" target:self action:@selector(more)];
         viewController.hidesBottomBarWhenPushed = YES;
-        
-        // 设置导航栏按钮
-        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"navigationbar_back" highImageName:@"" target:self action:@selector(back)];
-        //viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"icon_btn_po" highImageName:@"icon_btn_po" target:self action:@selector(more)];
     }
+    
+    UIBarButtonItem *item  = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    viewController.navigationItem.backBarButtonItem = item;
     [super pushViewController:viewController animated:animated];
 }
 
 - (void)back
 {
-#warning 这里用的是self, 因为self就是当前正在使用的导航控制器
     [self popViewControllerAnimated:YES];
 }
 
@@ -107,11 +110,4 @@
     YWLog(@"更多");
     
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 @end
