@@ -16,6 +16,7 @@
 #import "YWLineHistoryController.h"//
 #import "YWDBLineViewController.h"//
 #import "YWDeviceInfo.h"
+#import "YWSataionDetilController.h"
 
 @interface YWDeviceDetilController ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>
 
@@ -97,7 +98,15 @@
         if ([status isEqual:@1]) { // 数据
             //获取是否收藏
             self.station = [YWMyStations mj_objectWithKeyValues:dict];
-            self.titleLab.text = self.station.assets_name;
+            
+            
+            NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@  %@",self.station.assets_name, self.station.station_name]];
+            self.titleLab.textColor = [UIColor orangeColor];
+//            YWColor(70, 171, 211)
+            [str addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, self.station.assets_name.length)];
+            self.titleLab.attributedText = str;
+
+            
             //属性赋值
             self.is_collection = self.station.is_collection;
             if (self.is_collection == YES) {
@@ -113,6 +122,18 @@
         //[self.tableView.mj_footer endRefreshing];
     }];
 
+    
+}
+
+#pragma mark -- 电站点击事件
+- (void)titleButtonClicked{
+
+    
+    //电站详情
+    YWSataionDetilController *stationDetil = [[YWSataionDetilController alloc] init];
+    stationDetil.s_id = self.station.s_id;
+    stationDetil.station = self.station;
+    [self.navigationController pushViewController:stationDetil animated:YES];
     
 }
 
@@ -147,7 +168,22 @@
     colorView.size = CGSizeMake(16, 16);
     [header addSubview:colorView];
     
+    // 设置右边收藏按钮和名称
+    UIButton *collectView = [[UIButton alloc] init];
+    self.collectView = collectView;
+    
+    [collectView setImage:[UIImage imageNamed:@"activity_wodedianzhan_yishouchang"] forState:UIControlStateSelected];
+    [collectView setImage:[UIImage imageNamed:@"activity_wodedianzhan_shouchang"] forState:UIControlStateNormal];
+    
+    [collectView addTarget:self action:@selector(collectViewBtnClick:) forControlEvents:UIControlEventTouchDown];
+    collectView.y  = 10;
+    collectView.x = SCREEN_WIDTH - 35;
+    collectView.size = CGSizeMake(20, 20);
+    [header addSubview:collectView];
+    
+    // 设置名称
     UILabel *titleLab = [[UILabel alloc] init];
+    titleLab.userInteractionEnabled = YES;
     self.titleLab = titleLab;
     titleLab.textAlignment = NSTextAlignmentLeft;
     titleLab.numberOfLines = 0;
@@ -159,26 +195,16 @@
     
     
     CGFloat labX = CGRectGetMaxX(colorView.frame)+15;
-    titleLab.y  = 10;
+    titleLab.y  = 0;
     titleLab.x = labX;
-    titleLab.size = CGSizeMake(200, 20);
+    titleLab.size = CGSizeMake(CGRectGetMinX(self.collectView.frame) - 15 - labX, 40);
     titleLab.textColor = [UIColor orangeColor];
     titleLab.font = [UIFont systemFontOfSize:16];
     [header addSubview:titleLab];
     
-    
-    // 设置右边收藏按钮和名称
-    UIButton *collectView = [[UIButton alloc] init];
-    self.collectView = collectView;
-  
-    [collectView setImage:[UIImage imageNamed:@"activity_wodedianzhan_yishouchang"] forState:UIControlStateSelected];
-    [collectView setImage:[UIImage imageNamed:@"activity_wodedianzhan_shouchang"] forState:UIControlStateNormal];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(titleButtonClicked)];
+    [self.titleLab addGestureRecognizer:tap];
 
-    [collectView addTarget:self action:@selector(collectViewBtnClick:) forControlEvents:UIControlEventTouchDown];
-    collectView.y  = 10;
-    collectView.x = SCREEN_WIDTH - 35;
-    collectView.size = CGSizeMake(20, 20);
-    [header addSubview:collectView];
 
     [self.view addSubview:header];
     

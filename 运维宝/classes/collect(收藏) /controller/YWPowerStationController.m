@@ -101,19 +101,16 @@
         NSArray *dict = responseObj[@"data"];
         NSString *status = responseObj[@"code"];
         //NSString *msg = responseObj[@"tip"];
-        YWLog(@"收藏getMyStations--%@",responseObj);
         if ([status isEqual:@1]) { // 数据
-            
             self.myStations = [YWMyStations mj_objectArrayWithKeyValuesArray:dict];
-            
-            //YWLog(@"getDeviceList-%@",self.myStations);
             //获得模型数据
             [self.tableView reloadData];
-            /**停止刷新*/
-            [self.tableView.mj_header endRefreshing];
-            [self.tableView.mj_footer endRefreshing];
+
             
         }
+        /**停止刷新*/
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         
     } failure:^(NSError *error) {
         /**停止刷新*/

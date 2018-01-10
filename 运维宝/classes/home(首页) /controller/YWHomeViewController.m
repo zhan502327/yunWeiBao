@@ -394,12 +394,12 @@ static NSString *const GridCellID = @"GridCellID";
         if (self.currentStations) {
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@" 当前电站: %@",self.currentStations.station_name]];
         cell.textLabel.textColor = [UIColor orangeColor];
-        [str addAttribute:NSForegroundColorAttributeName value:YWColor(70, 171, 211) range:NSMakeRange(0, 5)];
+        [str addAttribute:NSForegroundColorAttributeName value:YWColor(70, 171, 211) range:NSMakeRange(0, 6)];
         cell.textLabel.attributedText = str;
     }else{
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@" 当前电站: %@",self.stations.station_name]];
         cell.textLabel.textColor = [UIColor orangeColor];
-        [str addAttribute:NSForegroundColorAttributeName value:YWColor(70, 171, 211) range:NSMakeRange(0, 5)];
+        [str addAttribute:NSForegroundColorAttributeName value:YWColor(70, 171, 211) range:NSMakeRange(0, 6)];
         cell.textLabel.attributedText = str;
 
     }

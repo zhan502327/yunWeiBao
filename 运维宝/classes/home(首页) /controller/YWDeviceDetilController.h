@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YWMyDevice.h"
 
-@class YWMyDevice;
+
 @interface YWDeviceDetilController : UIViewController
 /** 我的电站*/
 @property (nonatomic, copy) NSString *a_id;
