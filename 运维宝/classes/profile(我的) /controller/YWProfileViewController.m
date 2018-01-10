@@ -39,11 +39,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    NSString *str1 = @"(";
-    NSString *str2 = @")";
-    
-    self.userNick.text = [NSString stringWithFormat:@"姓名:%@%@%@%@",kGetData(@"nick"),str1,kGetData(@"account"),str2];
+    self.userNick.text = [NSString stringWithFormat:@"姓名: %@ ( %@ )",kGetData(@"nick"),kGetData(@"account")];
     
 }
 
@@ -56,11 +52,9 @@
     [self setUpHeaderView];
     //退出登陆注册
     [self setupFooter];
-    NSString *str1 = @"(";
-    NSString *str2 = @")";
     
     
-    self.userNick.text = [NSString stringWithFormat:@"姓名:%@%@%@%@",[GolbalManager sharedManager].logUser.nick,str1,[GolbalManager sharedManager].logUser.account,str2];
+    self.userNick.text = [NSString stringWithFormat:@"姓名: %@ ( %@ )",[GolbalManager sharedManager].logUser.nick,[GolbalManager sharedManager].logUser.account];
     //用户ID
     self.userAcount.hidden = YES;
     //self.userAcount.text = [NSString stringWithFormat:@"ID:%@",kGetData(@"tel1")];

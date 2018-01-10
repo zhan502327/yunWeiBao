@@ -374,7 +374,7 @@ static NSString *const GridCellID = @"GridCellID";
              cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
          }
          cell.textLabel.x = 10;
-         cell.textLabel.font = FONT_16;
+         cell.textLabel.font = FONT_17;
          cell.textLabel.textColor = YWColor(70, 171, 211);
          
          cell.textLabel.text = [NSString stringWithFormat:@"【%@】",kGetData(@"app_title")];
@@ -389,17 +389,17 @@ static NSString *const GridCellID = @"GridCellID";
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
     
-    cell.textLabel.font = FONT_16;
+    cell.textLabel.font = FONT_17;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (self.currentStations) {
-        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@" 当前电站: %@",self.currentStations.station_name]];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"  当前电站: %@",self.currentStations.station_name]];
         cell.textLabel.textColor = [UIColor orangeColor];
-        [str addAttribute:NSForegroundColorAttributeName value:YWColor(70, 171, 211) range:NSMakeRange(0, 6)];
+        [str addAttribute:NSForegroundColorAttributeName value:YWColor(70, 171, 211) range:NSMakeRange(0, 7)];
         cell.textLabel.attributedText = str;
     }else{
-        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@" 当前电站: %@",self.stations.station_name]];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"  当前电站: %@",self.stations.station_name]];
         cell.textLabel.textColor = [UIColor orangeColor];
-        [str addAttribute:NSForegroundColorAttributeName value:YWColor(70, 171, 211) range:NSMakeRange(0, 6)];
+        [str addAttribute:NSForegroundColorAttributeName value:YWColor(70, 171, 211) range:NSMakeRange(0, 7)];
         cell.textLabel.attributedText = str;
 
     }
