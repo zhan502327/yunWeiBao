@@ -72,7 +72,6 @@
         self.currentPage++;
         [self getServiceSupport];
     }];
-    [self.tableView.mj_header beginRefreshing];
     
 }
 

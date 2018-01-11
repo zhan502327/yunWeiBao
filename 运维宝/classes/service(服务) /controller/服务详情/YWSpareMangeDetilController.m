@@ -65,7 +65,6 @@
         self.currentPage++;
         [self getDeviceMangeDetil];
     }];
-    [self.tableView.mj_header beginRefreshing];
     
 }
 

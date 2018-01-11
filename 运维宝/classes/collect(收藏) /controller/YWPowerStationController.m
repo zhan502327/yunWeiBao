@@ -36,7 +36,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     // 首先自动刷新一次
-    [self autoRefresh];
+    [self getMyStations];
 }
 
 - (void)viewDidLoad
@@ -73,11 +73,7 @@
         self.myStations = [NSMutableArray array];
         [self getMyStations];
     }];
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        self.currentPage++;
-        [self getMyStations];
-    }];
-    [self.tableView.mj_header beginRefreshing];
+
     
 }
 

@@ -72,10 +72,12 @@
 {
     [super viewDidLoad];
 //    文档信息
-    // 首先自动刷新一次
-    [self autoRefresh];
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
+    
+    // 首先自动刷新一次
+    [self autoRefresh];
+
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -95,7 +97,6 @@
         self.currentPage++;
         [self getDeviceInfo];
     }];
-    [self.tableView.mj_header beginRefreshing];
     
 }
 

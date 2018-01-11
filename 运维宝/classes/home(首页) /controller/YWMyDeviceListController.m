@@ -51,7 +51,6 @@
         self.currentPage++;
         [self getDeviceList];
     }];
-    [self.tableView.mj_header beginRefreshing];
     
 }
 

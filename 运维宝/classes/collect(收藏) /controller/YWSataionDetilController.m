@@ -64,7 +64,6 @@
         self.currentPage++;
         [self getMyStation];
     }];
-    [self.tableView.mj_header beginRefreshing];
     
 }
 

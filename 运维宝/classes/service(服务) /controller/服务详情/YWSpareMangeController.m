@@ -61,7 +61,6 @@
         self.currentPage++;
         [self getServiceSpareMange];
     }];
-    [self.tableView.mj_header beginRefreshing];
     
 }
 

@@ -64,7 +64,6 @@
         self.currentPage++;
         [self getWarningEvent];
     }];
-    [self.tableView.mj_header beginRefreshing];
     
 }
 

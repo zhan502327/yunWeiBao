@@ -93,8 +93,7 @@ static NSString *const GridCellID = @"GridCellID";
     
     //头部view
     
-    // 首先自动刷新一次
-//    [self autoRefresh];
+
     self.currentPage = 1;
     
     [self getDeviceList];
@@ -193,7 +192,6 @@ static NSString *const GridCellID = @"GridCellID";
 //        [self getDeviceList];
 //        [self getMyStations];
 //    }];
-    [self.tableView.mj_header beginRefreshing];
     
 }
 /**自动刷新一次*/

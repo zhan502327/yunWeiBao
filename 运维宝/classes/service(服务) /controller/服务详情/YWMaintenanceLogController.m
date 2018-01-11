@@ -59,7 +59,6 @@
         self.currentPage++;
         [self getServiceMaintenanceLog];
     }];
-    [self.tableView.mj_header beginRefreshing];
     
 }
 

@@ -8,7 +8,7 @@
 
 #import "YWNavViewController.h"
 
-@interface YWNavViewController ()
+@interface YWNavViewController ()<UIGestureRecognizerDelegate>
 
 @end
 
@@ -89,10 +89,19 @@
 //        viewController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar_back"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 //        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"icon_btn_po" highImageName:@"icon_btn_po" target:self action:@selector(more)];
         viewController.hidesBottomBarWhenPushed = YES;
+        
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar_back"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+        viewController.navigationItem.leftBarButtonItem = item;
+
+        
     }
+//    self.interactivePopGestureRecognizer.delegate = self;
     
-    UIBarButtonItem *item  = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-    viewController.navigationItem.backBarButtonItem = item;
+
+    
+    
+//    UIBarButtonItem *item  = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+//    viewController.navigationItem.backBarButtonItem = item;
     [super pushViewController:viewController animated:animated];
 }
 

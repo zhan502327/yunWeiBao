@@ -52,11 +52,11 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     //进页面发送请求
     [self getServices];
-
+    
     //self.navigationItem.rightBarButtonItem  = [UIBarButtonItem itemWithImageName:@"scan_icon" highImageName:nil target:self action:@selector(scanIconClick)];
     //登陆成功通知
     [YWNotificationCenter addObserver:self selector:@selector(myStation:) name:YWMystationChangeNotification object:nil];
-
+    
 }
 
 //个人资料页面
@@ -102,7 +102,6 @@
         self.currentPage++;
         [self getServices];
     }];
-    [self.tableView.mj_header beginRefreshing];
     
 }
 
@@ -123,9 +122,9 @@
     params[@"token"] = kGetData(@"token");
     //电站
     if (self.myStations) {
-         params[@"s_id"] = self.myStations.station_id;
+        params[@"s_id"] = self.myStations.station_id;
     }else{
-         params[@"s_id"] = kGetData(@"station_id");
+        params[@"s_id"] = kGetData(@"station_id");
     }
     //用户id
     params[@"account_id"] = kGetData(@"account_id");
@@ -167,7 +166,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-     
+    
     return self.services.count+2;
 }
 
@@ -193,7 +192,7 @@
             serch.searchText = textStr;
             [self.navigationController pushViewController:serch animated:YES];
         };
-
+        
         
         return cell;
         
@@ -255,10 +254,10 @@
         stationDetil.station = self.myStations;
         [self.navigationController pushViewController:stationDetil animated:YES];
     }else{
-    YWServiceDetilController *serviceDetil = [[YWServiceDetilController alloc] init];
-    //传递模型数据
-    serviceDetil.deviceSercice = self.services[indexPath.row-2];
-    [self.navigationController pushViewController:serviceDetil animated:YES];
+        YWServiceDetilController *serviceDetil = [[YWServiceDetilController alloc] init];
+        //传递模型数据
+        serviceDetil.deviceSercice = self.services[indexPath.row-2];
+        [self.navigationController pushViewController:serviceDetil animated:YES];
     }
 }
 
@@ -266,7 +265,7 @@
 {
     if (indexPath.row == 0) {
         return 44;
-
+        
     }
     return 35;
 }

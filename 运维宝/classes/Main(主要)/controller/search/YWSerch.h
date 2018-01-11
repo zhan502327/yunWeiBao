@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface YWSerch : NSObject
-
+//"assets_id" = 113;
+//"assets_name" = "\U4eba103\U67dc";
+//status = 0;
 
 /**状态*/
 @property (nonatomic,assign)     int   status;

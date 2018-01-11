@@ -62,7 +62,6 @@
         self.currentPage++;
         [self getServices];
     }];
-    [self.tableView.mj_header beginRefreshing];
     
 }
 /**自动刷新一次*/

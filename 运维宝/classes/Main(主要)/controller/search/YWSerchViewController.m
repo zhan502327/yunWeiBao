@@ -14,6 +14,8 @@
 //模型
 #import "YWSerch.h"
 
+#import "YWServiceDetilController.h"
+
 @interface YWSerchViewController ()<UISearchBarDelegate>
 
 @property (nonatomic, strong) NSMutableArray *resultDatas;
@@ -51,7 +53,7 @@
     UISearchBar *searchBar = [[UISearchBar alloc] init];
     self.searchBar = searchBar;
     self.searchBar.text = self.searchText;
-    searchBar.height = 30;
+    searchBar.height = 0;
     searchBar.delegate = self;
     searchBar.placeholder = @"请输入关键字";
     self.navigationItem.titleView = searchBar;
@@ -99,7 +101,6 @@
         self.currentPage++;
         [self getDeviceInfo];
     }];
-    [self.tableView.mj_header beginRefreshing];
     
 }
 
@@ -252,7 +253,7 @@
 {
     UIView *bgview = [[UIView alloc] init];
     bgview.backgroundColor = BGCLOLOR;
-    UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 200, 30)];
+    UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 200, 30)];
     titleLab.textColor = [UIColor darkGrayColor];
     titleLab.font = FONT_16;
     titleLab.text = [NSString stringWithFormat:@"共有%lu个搜索结果", (unsigned long)self.resultDatas.count];
@@ -264,7 +265,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     
-    return 30;
+    return 40;
 }
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -282,11 +283,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
  
-    //电站详情
-    YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
-    YWSerch *resultSerch = self.resultDatas[indexPath.row];
-    deviceDetil.a_id = resultSerch.assets_id;
-    [self.navigationController pushViewController:deviceDetil animated:YES];
+//    //电站详情
+//    YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
+//    YWSerch *resultSerch = self.resultDatas[indexPath.row];
+//    deviceDetil.a_id = resultSerch.assets_id;
+//    [self.navigationController pushViewController:deviceDetil animated:YES];
+    
+    YWServiceDetilController *serviceDetil = [[YWServiceDetilController alloc] init];
+    //传递模型数据
+    YWSerch *search = self.resultDatas[indexPath.row];
+//    serviceDetil.deviceSercice = self.services[indexPath.row-2];
+    serviceDetil.a_id = search.assets_id;
+    [self.navigationController pushViewController:serviceDetil animated:YES];
     
 }
 
