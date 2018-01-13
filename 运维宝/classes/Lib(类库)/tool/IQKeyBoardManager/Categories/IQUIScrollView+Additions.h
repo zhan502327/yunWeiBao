@@ -1,5 +1,5 @@
 //
-// IQKeyboardManagerConstantsInternal.h
+// IQUIScrollView+Additions.h
 // https://github.com/hackiftekhar/IQKeyboardManager
 // Copyright (c) 2013-16 Iftekhar Qurashi.
 //
@@ -21,30 +21,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#ifndef IQKeyboardManagerConstantsInternal_h
-#define IQKeyboardManagerConstantsInternal_h
+#import <UIKit/UIScrollView.h>
 
 
-///-----------------------------------
-/// @name IQLayoutGuidePosition
-///-----------------------------------
+@interface UIScrollView (Additions)
 
 /**
- `IQLayoutGuidePositionNone`
- If there are no IQLayoutGuideConstraint associated with viewController
- 
- `IQLayoutGuidePositionTop`
- If provided IQLayoutGuideConstraint is associated with with viewController topLayoutGuide
- 
- `IQLayoutGuidePositionBottom`
- If provided IQLayoutGuideConstraint is associated with with viewController bottomLayoutGuide
+ If YES, then scrollview will ignore scrolling (simply not scroll it) for adjusting textfield position. Default is NO.
  */
-typedef NS_ENUM(NSInteger, IQLayoutGuidePosition) {
-    IQLayoutGuidePositionNone,
-    IQLayoutGuidePositionTop,
-    IQLayoutGuidePositionBottom,
-};
+@property(nonatomic, assign) BOOL shouldIgnoreScrollingAdjustment;
 
-#define IQ_IS_IOS10_OR_GREATER ([[NSProcessInfo processInfo] operatingSystemVersion].majorVersion >= 10)
+/**
+ Restore scrollViewContentOffset when resigning from scrollView. Default is NO.
+ */
+@property(nonatomic, assign) BOOL shouldRestoreScrollViewContentOffset;
 
-#endif
+
+@end

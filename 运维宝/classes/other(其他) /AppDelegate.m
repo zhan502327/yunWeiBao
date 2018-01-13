@@ -81,10 +81,11 @@
     IQKeyboardManager *mgr = [IQKeyboardManager sharedManager];
     mgr.enable = YES;
     mgr.shouldResignOnTouchOutside = YES;
-    //mgr.enableAutoToolbar = NO;
-    
+//    mgr.enableAutoToolbar = NO;
+    mgr.toolbarDoneBarButtonItemText = @"确定";
+    mgr.shouldToolbarUsesTextFieldTintColor = NO;
+    mgr.toolbarTintColor = [UIColor blackColor];
     mgr.keyboardDistanceFromTextField = 0;
-    [mgr shouldFixTextViewClip];
     
     // 4.监控网络
     //    AFNetworkReachabilityManager *mgr = [AFNetworkReachabilityManager sharedManager];

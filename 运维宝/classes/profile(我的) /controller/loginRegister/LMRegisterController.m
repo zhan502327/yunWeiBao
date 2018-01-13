@@ -7,7 +7,7 @@
 //
 
 #import "LMRegisterController.h"
-
+#import "YWAgreeViewController.h"
 #import "LMLoginController.h"
 
 #define LMAccountKey @"account"
@@ -340,13 +340,19 @@
     CGFloat btnX = (SCREEN_WIDTH - btnW)*0.5;
     CGFloat btnY = CGRectGetMaxY(tipLabel.frame);
     greebutton.frame = CGRectMake(btnX, btnY, btnW , 20);
-    greebutton.userInteractionEnabled = NO;;
     [greebutton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     greebutton.titleLabel.font = FONT_13;
     [greebutton setTitle:@"用户协议和隐私政策" forState:UIControlStateNormal];
+    [greebutton addTarget:self action:@selector(agreeButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:greebutton];
 
 
+}
+
+- (void)agreeButtonClicked{
+    
+    YWAgreeViewController *vc = [[YWAgreeViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 /**
  *  单位名称文本框的文字发生改变的时候调用

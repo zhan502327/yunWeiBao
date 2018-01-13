@@ -253,6 +253,7 @@
         
         stationDetil.station = self.myStations;
         [self.navigationController pushViewController:stationDetil animated:YES];
+        
     }else{
         YWServiceDetilController *serviceDetil = [[YWServiceDetilController alloc] init];
         //传递模型数据
