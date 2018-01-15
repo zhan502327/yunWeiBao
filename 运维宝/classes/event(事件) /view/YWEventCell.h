@@ -22,6 +22,8 @@
 @property (nonatomic,weak) UILabel *dateLab;
 /** 分隔线 */
 @property (nonatomic,weak) UIView *lineView;
+//小红点
+@property (nonatomic, weak) UIView *redView;
 
 
 /**订单列表模型*/

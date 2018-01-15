@@ -11,6 +11,10 @@
 #import "YWDeviceDetilController.h"
 #import "YWEventCell.h"
 #import "YWEventModel.h"
+#import "DBDataBaseManager.h"
+#import "DBNotificationModel.h"
+#import "UITabBar+Badge.h"
+
 @interface YWWarningEventController ()
 
 /** 最新主播列表 */
@@ -40,8 +44,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-
+    //删除 表
+//    [[DBDataBaseManager shareDataBaseManager] deleteTableWithtableName:kNotificationOne];
+    //            [[DBDataBaseManager shareDataBaseManager] deleteTableWithtableName:kNotificationTwo];
+    //            [[DBDataBaseManager shareDataBaseManager] deleteTableWithtableName:kNotificationThree];
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
     //删除系统分割线
@@ -89,15 +95,33 @@
         //NSString *msg = responseObj[@"tip"];
         //YWLog(@"getWarningEvent--%@",responseObj);
         if ([status isEqual:@1]) { // 数据
+             NSArray *dataArray = [YWEventModel mj_objectArrayWithKeyValuesArray:dict];
+        
+            //写入数据库
+            if (dataArray.count > 0) {
+                for (YWEventModel *model in dataArray) {
+                    [[DBDataBaseManager shareDataBaseManager] insertNotificationModel:model tableName:kNotificationOne];
+                }
+            }
+
+            //查询数据库 获取所有数据
+            NSArray *dbArray = [[DBDataBaseManager shareDataBaseManager] queryAllNotificationModelWithtableName:kNotificationOne];
+
             
-            self.warningEvents = [YWEventModel mj_objectArrayWithKeyValuesArray:dict];
-             
+            //查询 isLooked 数据
+            NSArray *isLookedArray = [[DBDataBaseManager shareDataBaseManager] queryIsLookedCountWithTableName:kNotificationOne];
+            [[NSUserDefaults standardUserDefaults] setInteger:isLookedArray.count forKey:@"kNotificationOneIsLookedCount"];
+        
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            //数据源
+            [self.warningEvents addObjectsFromArray:dbArray];
+            
             //获得模型数据
             [self.tableView reloadData];
             /**停止刷新*/
             [self.tableView.mj_header endRefreshing];
             [self.tableView.mj_footer endRefreshing];
-            
+  
         }
         
     } failure:^(NSError *error) {
@@ -105,6 +129,10 @@
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
     }];
+    
+
+    
+
     
 }
 
@@ -147,18 +175,31 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.warningEvents.count > 0) {
+        //执行跳转设备详情
+        YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
+        YWEventModel *event = self.warningEvents[indexPath.row];
+        deviceDetil.a_id = event.a_id;
+        [self.navigationController pushViewController:deviceDetil animated:YES];
+        
+        
+        [[DBDataBaseManager shareDataBaseManager] updateNotificationModel:event tableName:kNotificationOne WithIsLooked:@"1"];
+        
+        //查询 isLooked 数据
+        NSArray *isLookedArray = [[DBDataBaseManager shareDataBaseManager] queryIsLookedCountWithTableName:kNotificationOne];
+        [[NSUserDefaults standardUserDefaults] setInteger:isLookedArray.count forKey:@"kNotificationOneIsLookedCount"];
+        
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        //添加事件页的角标
+        if (kGetData(@"kNotificationOneIsLookedCount") > 0) {
+            NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationOneIsLookedCount")];
+            [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
+        }else{
+            [self.tabBarController.tabBar hideBadgeOnItemIndex:3];
+        }
+    }
     
-    //执行跳转设备详情
-    YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
-    YWEventModel *event = self.warningEvents[indexPath.row];
-    deviceDetil.a_id = event.a_id;
-    [self.navigationController pushViewController:deviceDetil animated:YES];
-    
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

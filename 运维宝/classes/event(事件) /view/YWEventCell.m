@@ -45,6 +45,15 @@
     iconView.clipsToBounds = YES;
     [self.contentView addSubview:self.iconView];
     
+    //小红点
+    CGFloat redViewWH = 10;
+    UIView *redView = [[UIView alloc] init];
+    self.redView = redView;
+    redView.backgroundColor = [UIColor redColor];
+    redView.layer.masksToBounds = YES;
+    redView.layer.cornerRadius = redViewWH / 2;
+    [self.contentView addSubview:redView];
+    
     UILabel *titleLab = [[UILabel alloc] init];
     self.titleLab = titleLab;
     titleLab.textAlignment = NSTextAlignmentLeft;
@@ -87,9 +96,15 @@
         make.size.mas_equalTo(CGSizeMake(20, 20));
     }];
     
+    [self.redView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.iconView.mas_top);
+        make.right.mas_equalTo(self.iconView.mas_right).offset(2);
+        make.size.mas_equalTo(CGSizeMake(redViewWH, redViewWH));
+    }];
+    
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self).offset(5);
-        make.left.mas_equalTo(self.iconView.mas_right).offset(5);
+        make.left.mas_equalTo(self.iconView.mas_right).offset(10);
         make.right.mas_equalTo(self).offset(-10);
 
 //        make.height.mas_equalTo(20);
@@ -135,6 +150,11 @@
 {
     _eventModel = eventModel;
  
+    if ([eventModel.isLooked isEqualToString:@"0"]) {
+        self.redView.hidden = NO;
+    }else{
+        self.redView.hidden = YES;
+    }
     
     NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle  setLineSpacing:5];

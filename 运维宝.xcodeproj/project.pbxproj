@@ -195,11 +195,6 @@
 		122881A61F984E7F007D67D5 /* AMapLocationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 122880681F984E7F007D67D5 /* AMapLocationKit.framework */; };
 		122881A71F984E7F007D67D5 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 122880691F984E7F007D67D5 /* AMapSearchKit.framework */; };
 		122881A81F984E7F007D67D5 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1228806A1F984E7F007D67D5 /* MAMapKit.framework */; };
-		122881A91F984E7F007D67D5 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1228806D1F984E7F007D67D5 /* FMDatabase.m */; };
-		122881AA1F984E7F007D67D5 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1228806F1F984E7F007D67D5 /* FMDatabaseAdditions.m */; };
-		122881AB1F984E7F007D67D5 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 122880711F984E7F007D67D5 /* FMDatabasePool.m */; };
-		122881AC1F984E7F007D67D5 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 122880731F984E7F007D67D5 /* FMDatabaseQueue.m */; };
-		122881AD1F984E7F007D67D5 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 122880761F984E7F007D67D5 /* FMResultSet.m */; };
 		122881AF1F984E7F007D67D5 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1228807B1F984E7F007D67D5 /* LICENSE */; };
 		122881B01F984E7F007D67D5 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 1228807E1F984E7F007D67D5 /* MASCompositeConstraint.m */; };
 		122881B11F984E7F007D67D5 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 122880811F984E7F007D67D5 /* MASConstraint.m */; };
@@ -457,6 +452,14 @@
 		5B5B494A2009EAFA00F0898A /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B49392009EAFA00F0898A /* IQToolbar.m */; };
 		5B5B494B2009EAFA00F0898A /* IQUIView+IQKeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B493B2009EAFA00F0898A /* IQUIView+IQKeyboardToolbar.m */; };
 		5B5B494C2009EAFA00F0898A /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B5B493D2009EAFA00F0898A /* IQKeyboardManager.bundle */; };
+		5B5B4995200C298B00F0898A /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B498B200C298B00F0898A /* FMDatabase.m */; };
+		5B5B4996200C298B00F0898A /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B498D200C298B00F0898A /* FMDatabaseAdditions.m */; };
+		5B5B4997200C298B00F0898A /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B498F200C298B00F0898A /* FMDatabasePool.m */; };
+		5B5B4998200C298B00F0898A /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B4991200C298B00F0898A /* FMDatabaseQueue.m */; };
+		5B5B4999200C298B00F0898A /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B4994200C298B00F0898A /* FMResultSet.m */; };
+		5B5B499F200C29EE00F0898A /* DBDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B499C200C29EE00F0898A /* DBDataBaseManager.m */; };
+		5B5B49A0200C29EE00F0898A /* DBNotificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B499E200C29EE00F0898A /* DBNotificationModel.m */; };
+		5B5B49A9200C2EDC00F0898A /* UITabBar+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B49A8200C2EDC00F0898A /* UITabBar+Badge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -817,17 +820,6 @@
 		122880681F984E7F007D67D5 /* AMapLocationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapLocationKit.framework; sourceTree = "<group>"; };
 		122880691F984E7F007D67D5 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
 		1228806A1F984E7F007D67D5 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
-		1228806C1F984E7F007D67D5 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
-		1228806D1F984E7F007D67D5 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
-		1228806E1F984E7F007D67D5 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
-		1228806F1F984E7F007D67D5 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
-		122880701F984E7F007D67D5 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
-		122880711F984E7F007D67D5 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
-		122880721F984E7F007D67D5 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
-		122880731F984E7F007D67D5 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
-		122880741F984E7F007D67D5 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
-		122880751F984E7F007D67D5 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
-		122880761F984E7F007D67D5 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		1228807B1F984E7F007D67D5 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1228807D1F984E7F007D67D5 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		1228807E1F984E7F007D67D5 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
@@ -1318,6 +1310,23 @@
 		5B5B493A2009EAFA00F0898A /* IQUIView+IQKeyboardToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIView+IQKeyboardToolbar.h"; sourceTree = "<group>"; };
 		5B5B493B2009EAFA00F0898A /* IQUIView+IQKeyboardToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQUIView+IQKeyboardToolbar.m"; sourceTree = "<group>"; };
 		5B5B493D2009EAFA00F0898A /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
+		5B5B498A200C298B00F0898A /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		5B5B498B200C298B00F0898A /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		5B5B498C200C298B00F0898A /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		5B5B498D200C298B00F0898A /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		5B5B498E200C298B00F0898A /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		5B5B498F200C298B00F0898A /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		5B5B4990200C298B00F0898A /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		5B5B4991200C298B00F0898A /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		5B5B4992200C298B00F0898A /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		5B5B4993200C298B00F0898A /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		5B5B4994200C298B00F0898A /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		5B5B499B200C29EE00F0898A /* DBDataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBDataBaseManager.h; sourceTree = "<group>"; };
+		5B5B499C200C29EE00F0898A /* DBDataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBDataBaseManager.m; sourceTree = "<group>"; };
+		5B5B499D200C29EE00F0898A /* DBNotificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBNotificationModel.h; sourceTree = "<group>"; };
+		5B5B499E200C29EE00F0898A /* DBNotificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBNotificationModel.m; sourceTree = "<group>"; };
+		5B5B49A7200C2EDC00F0898A /* UITabBar+Badge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+Badge.h"; sourceTree = "<group>"; };
+		5B5B49A8200C2EDC00F0898A /* UITabBar+Badge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+Badge.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1389,6 +1398,7 @@
 		120B42481FB34E34000640E4 /* 3rdparty */ = {
 			isa = PBXGroup;
 			children = (
+				5B5B4989200C298B00F0898A /* fmdb */,
 				4DB860281FF90FEE0051374A /* GtSdkLib */,
 				5B19ADE31FE6652F0068CB80 /* TTOpenInAppActivity */,
 				12E175341FBC0F210041CB10 /* NullSafe */,
@@ -2286,6 +2296,8 @@
 				12287FDD1F984E7F007D67D5 /* UIViewController+DismissKeyboard.m */,
 				12287FDE1F984E7F007D67D5 /* UIViewController+HUD.h */,
 				12287FDF1F984E7F007D67D5 /* UIViewController+HUD.m */,
+				5B5B49A7200C2EDC00F0898A /* UITabBar+Badge.h */,
+				5B5B49A8200C2EDC00F0898A /* UITabBar+Badge.m */,
 			);
 			path = category;
 			sourceTree = "<group>";
@@ -2524,6 +2536,7 @@
 		12287FE01F984E7F007D67D5 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				5B5B499A200C29EE00F0898A /* DBDataBaseManager */,
 				5B5B49192009EAF900F0898A /* IQKeyboardManager */,
 				122880061F984E7F007D67D5 /* XWTransition */,
 			);
@@ -2679,7 +2692,6 @@
 				1218E9671FA99AED00C48B91 /* ShareSDK */,
 				122880511F984E7F007D67D5 /* AFNetworking */,
 				122880651F984E7F007D67D5 /* AMap */,
-				1228806B1F984E7F007D67D5 /* fmdb */,
 				1228807A1F984E7F007D67D5 /* Masonry */,
 				122880951F984E7F007D67D5 /* MBProgressHUD */,
 				1228809B1F984E7F007D67D5 /* MJExtension */,
@@ -2729,24 +2741,6 @@
 				1228806A1F984E7F007D67D5 /* MAMapKit.framework */,
 			);
 			path = AMap;
-			sourceTree = "<group>";
-		};
-		1228806B1F984E7F007D67D5 /* fmdb */ = {
-			isa = PBXGroup;
-			children = (
-				1228806C1F984E7F007D67D5 /* FMDatabase.h */,
-				1228806D1F984E7F007D67D5 /* FMDatabase.m */,
-				1228806E1F984E7F007D67D5 /* FMDatabaseAdditions.h */,
-				1228806F1F984E7F007D67D5 /* FMDatabaseAdditions.m */,
-				122880701F984E7F007D67D5 /* FMDatabasePool.h */,
-				122880711F984E7F007D67D5 /* FMDatabasePool.m */,
-				122880721F984E7F007D67D5 /* FMDatabaseQueue.h */,
-				122880731F984E7F007D67D5 /* FMDatabaseQueue.m */,
-				122880741F984E7F007D67D5 /* FMDB.h */,
-				122880751F984E7F007D67D5 /* FMResultSet.h */,
-				122880761F984E7F007D67D5 /* FMResultSet.m */,
-			);
-			path = fmdb;
 			sourceTree = "<group>";
 		};
 		1228807A1F984E7F007D67D5 /* Masonry */ = {
@@ -3495,6 +3489,35 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		5B5B4989200C298B00F0898A /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				5B5B498A200C298B00F0898A /* FMDatabase.h */,
+				5B5B498B200C298B00F0898A /* FMDatabase.m */,
+				5B5B498C200C298B00F0898A /* FMDatabaseAdditions.h */,
+				5B5B498D200C298B00F0898A /* FMDatabaseAdditions.m */,
+				5B5B498E200C298B00F0898A /* FMDatabasePool.h */,
+				5B5B498F200C298B00F0898A /* FMDatabasePool.m */,
+				5B5B4990200C298B00F0898A /* FMDatabaseQueue.h */,
+				5B5B4991200C298B00F0898A /* FMDatabaseQueue.m */,
+				5B5B4992200C298B00F0898A /* FMDB.h */,
+				5B5B4993200C298B00F0898A /* FMResultSet.h */,
+				5B5B4994200C298B00F0898A /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+		5B5B499A200C29EE00F0898A /* DBDataBaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				5B5B499B200C29EE00F0898A /* DBDataBaseManager.h */,
+				5B5B499C200C29EE00F0898A /* DBDataBaseManager.m */,
+				5B5B499D200C29EE00F0898A /* DBNotificationModel.h */,
+				5B5B499E200C29EE00F0898A /* DBNotificationModel.m */,
+			);
+			path = DBDataBaseManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3712,7 +3735,6 @@
 				1228816B1F984E7F007D67D5 /* UIViewController+HUD.m in Sources */,
 				1228826B1F985024007D67D5 /* MSSAutoresizeLabelFlowLayout.m in Sources */,
 				122881D71F984E7F007D67D5 /* NSBundle+MJRefresh.m in Sources */,
-				122881AC1F984E7F007D67D5 /* FMDatabaseQueue.m in Sources */,
 				1228826F1F985024007D67D5 /* TAAnimatedDotView.m in Sources */,
 				1228815A1F984E7F007D67D5 /* SMPageControl.m in Sources */,
 				5B5B49432009EAFA00F0898A /* IQUIWindow+Hierarchy.m in Sources */,
@@ -3774,7 +3796,7 @@
 				1228818C1F984E7F007D67D5 /* XWCoolAnimator+XWScanning.m in Sources */,
 				12287F451F984088007D67D5 /* YWNavViewController.m in Sources */,
 				120B42B21FB36944000640E4 /* YXControllerTool.m in Sources */,
-				122881A91F984E7F007D67D5 /* FMDatabase.m in Sources */,
+				5B5B4997200C298B00F0898A /* FMDatabasePool.m in Sources */,
 				122881CC1F984E7F007D67D5 /* MJRefreshAutoGifFooter.m in Sources */,
 				1218E9B51FA9A17500C48B91 /* UIFont+MyFont.m in Sources */,
 				122881631F984E7F007D67D5 /* UIBarButtonItem+Extension.m in Sources */,
@@ -3784,6 +3806,7 @@
 				122AF4381F998A7400225F9E /* YWWarningEventController.m in Sources */,
 				1228825F1F985024007D67D5 /* LMStarView.m in Sources */,
 				122881B21F984E7F007D67D5 /* MASConstraintMaker.m in Sources */,
+				5B5B4999200C298B00F0898A /* FMResultSet.m in Sources */,
 				122881DE1F984E7F007D67D5 /* SDWebImageCompat.m in Sources */,
 				122AF46F1F9A1DB500225F9E /* YWMyDeviceListController.m in Sources */,
 				122881621F984E7F007D67D5 /* NSString+MD5.m in Sources */,
@@ -3808,6 +3831,7 @@
 				123731111FB5952900C724A8 /* JHRadarChart.m in Sources */,
 				122881901F984E7F007D67D5 /* XWFilterAnimator+XWBoxBlur.m in Sources */,
 				122881DD1F984E7F007D67D5 /* SDImageCache.m in Sources */,
+				5B5B49A9200C2EDC00F0898A /* UITabBar+Badge.m in Sources */,
 				129FFE791FADD2F20021CC4D /* YWSpareMangeDetilController.m in Sources */,
 				122881F71F984E7F007D67D5 /* UIImageExt.m in Sources */,
 				122881831F984E7F007D67D5 /* SDPhotoBrowser.m in Sources */,
@@ -3845,9 +3869,9 @@
 				122C550F1FAC92CB006D212F /* YWDeviceTemp.m in Sources */,
 				122423731F9C7452007DE5DE /* YWLineHistoryController.m in Sources */,
 				122882781F985024007D67D5 /* SYLJDatePickerView.m in Sources */,
-				122881AD1F984E7F007D67D5 /* FMResultSet.m in Sources */,
 				1218E9B21FA9A17500C48B91 /* HCScanQRViewController.m in Sources */,
 				129FFE7F1FADDB650021CC4D /* YWMaintenanceLog.m in Sources */,
+				5B5B499F200C29EE00F0898A /* DBDataBaseManager.m in Sources */,
 				122881D41F984E7F007D67D5 /* MJRefreshStateHeader.m in Sources */,
 				122882571F985024007D67D5 /* SFTag.m in Sources */,
 				122881F61F984E7F007D67D5 /* UIImage+corp.m in Sources */,
@@ -3872,6 +3896,7 @@
 				127D66951FB948D900FDB24B /* XAxisView.m in Sources */,
 				12287F551F984B74007D67D5 /* YWProfileViewController.m in Sources */,
 				12287F3D1F983CDC007D67D5 /* AppDelegate.m in Sources */,
+				5B5B49A0200C29EE00F0898A /* DBNotificationModel.m in Sources */,
 				123731151FB5952900C724A8 /* JHTableChart.m in Sources */,
 				122882791F985024007D67D5 /* SYStickHeaderWaterFallLayout.m in Sources */,
 				122AF44A1F99B19200225F9E /* HomeHedaerView.m in Sources */,
@@ -3889,7 +3914,6 @@
 				129708881F988F4B00DF9B21 /* YWMyDeviceController.m in Sources */,
 				126D56A21FAB64A100C1B723 /* YWSercice.m in Sources */,
 				122881291F984E7F007D67D5 /* NSDate+Extend.m in Sources */,
-				122881AB1F984E7F007D67D5 /* FMDatabasePool.m in Sources */,
 				1237310B1FB5952900C724A8 /* JHColumnItem.m in Sources */,
 				129FFE821FAEC4010021CC4D /* YWSpareMangeDetil.m in Sources */,
 				12E175331FBBE2780041CB10 /* YXAcount.m in Sources */,
@@ -3923,6 +3947,8 @@
 				1224236A1F9C740C007DE5DE /* YWDeviceStatusController.m in Sources */,
 				122882671F985024007D67D5 /* MMSelectorView.m in Sources */,
 				122881DA1F984E7F007D67D5 /* UIView+MJExtension.m in Sources */,
+				5B5B4995200C298B00F0898A /* FMDatabase.m in Sources */,
+				5B5B4998200C298B00F0898A /* FMDatabaseQueue.m in Sources */,
 				122881EA1F984E7F007D67D5 /* UIImageView+WebCache.m in Sources */,
 				1228825A1F985024007D67D5 /* DCNumericalScrollView.m in Sources */,
 				4D088DA41FEFB59B00ABE8DC /* YWDBLineViewController.m in Sources */,
@@ -3936,6 +3962,7 @@
 				122881F21F984E7F007D67D5 /* NSMutableAttributedString+Height.m in Sources */,
 				122881F01F984E7F007D67D5 /* SVProgressHUD.m in Sources */,
 				122881D31F984E7F007D67D5 /* MJRefreshNormalHeader.m in Sources */,
+				5B5B4996200C298B00F0898A /* FMDatabaseAdditions.m in Sources */,
 				122881851F984E7F007D67D5 /* XWCircleSpreadAnimator.m in Sources */,
 				1228818A1F984E7F007D67D5 /* XWCoolAnimator+XWPageFlip.m in Sources */,
 				1228812A1F984E7F007D67D5 /* NSObject+Extend.m in Sources */,
@@ -4012,7 +4039,6 @@
 				122881881F984E7F007D67D5 /* XWCoolAnimator+XWLines.m in Sources */,
 				122881931F984E7F007D67D5 /* XWFilterAnimator+XWMask.m in Sources */,
 				5B5B49422009EAFA00F0898A /* IQUIViewController+Additions.m in Sources */,
-				122881AA1F984E7F007D67D5 /* FMDatabaseAdditions.m in Sources */,
 				1228817E1F984E7F007D67D5 /* XWTransitionAnimator.m in Sources */,
 				122881361F984E7F007D67D5 /* UIImage+RTTint.m in Sources */,
 				5B5B494B2009EAFA00F0898A /* IQUIView+IQKeyboardToolbar.m in Sources */,

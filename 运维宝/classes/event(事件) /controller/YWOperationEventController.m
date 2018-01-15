@@ -146,12 +146,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //执行跳转设备详情
-    YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
-    YWEventModel *event = self.operationEvents[indexPath.row];
-    deviceDetil.a_id = event.a_id;
-    [self.navigationController pushViewController:deviceDetil animated:YES];
-    
+    //防止未请求数据崩溃
+    if (self.operationEvents.count > 0) {
+        //执行跳转设备详情
+        YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
+        YWEventModel *event = self.operationEvents[indexPath.row];
+        deviceDetil.a_id = event.a_id;
+        [self.navigationController pushViewController:deviceDetil animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

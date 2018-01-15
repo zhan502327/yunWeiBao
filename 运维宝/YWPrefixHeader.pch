@@ -67,6 +67,13 @@
 
 #define YWMargin 10
 
+
+//数据库 表名
+#define kNotificationOne     @"t_notification_one"
+#define kNotificationTwo     @"t_notification_two"
+#define kNotificationThree   @"t_notification_three"
+
+
 //三方框架
 #pragma warning-TODO
 #define kStoreAppId     @"1060049944" // （appid数字串）

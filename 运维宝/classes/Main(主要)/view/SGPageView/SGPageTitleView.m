@@ -22,8 +22,7 @@
 @property (nonatomic, weak) id<SGPageTitleViewDelegate> delegatePageTitleView;
 /// 保存外界传递过来的标题数组
 @property (nonatomic, strong) NSArray *titleArr;
-/// scrollView
-@property (nonatomic, strong) UIScrollView *scrollView;
+
 /// 指示器
 @property (nonatomic, strong) UIView *indicatorView;
 /// 底部分割线

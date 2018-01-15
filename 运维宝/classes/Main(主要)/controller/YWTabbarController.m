@@ -13,6 +13,7 @@
 #import "YWServiceViewController.h"
 #import "YWEventViewController.h"
 #import "YWProfileViewController.h"
+#import "UITabBar+Badge.h"
 
 @interface YWTabbarController ()
 
@@ -24,10 +25,18 @@
     [super viewDidLoad];
     
     self.tabBar.backgroundColor = [UIColor clearColor];
+    
     //添加所有子控制器
     [self addAllChildVcs];
-
-    // Do any additional setup after loading the view.
+    
+    //添加事件页的角标
+    
+    if (kGetData(@"kNotificationOneIsLookedCount") > 0) {
+        NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationOneIsLookedCount")];
+        [self.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
+    }else{
+        [self.tabBar hideBadgeOnItemIndex:3];
+    }
 }
 
 

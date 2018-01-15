@@ -118,6 +118,15 @@
      *  在此事件中写入连接代码。第四个参数则为配置本地社交平台时触发，根据返回的平台类型来配置平台信息。
      *  如果您使用的时服务端托管平台信息时，第二、四项参数可以传入nil，第三项参数则根据服务端托管平台来决定要连接的社交SDK。
      */
+    
+//    微信：
+//    AppId="wx1208fa4a65833613"
+//    AppSecret="84fbec2afb4eec8731bd8d30e5f164b3"
+//    QQ：
+//    AppId="1105898272"
+//    AppKey="DLJaavo50QFpJllN"
+    
+    
     [ShareSDK registerApp:@"1a144dff47204"
           activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),
                             @(SSDKPlatformSubTypeWechatSession),

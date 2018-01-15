@@ -10,7 +10,7 @@
 #import "YWWarningEventController.h"
 #import "YWOperationEventController.h"
 #import "YWServiceEventController.h"
-
+#import "UITabBar+Badge.h"
 
 
 
@@ -25,7 +25,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     self.view.backgroundColor = [UIColor whiteColor];
     //添加子控制器
@@ -42,6 +41,8 @@
 //    服务事件
     YWServiceEventController *serviceEvent = [[YWServiceEventController alloc] init];
     NSArray *childArr = @[warningEvent,operationEvent,serviceEvent];
+    
+    
     /// pageContentView
     CGFloat contentViewHeight = SCREEN_HEIGHT - HEADER_HEIGHT-FOOTER_HEIGHT-44;
     self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, contentViewHeight) parentVC:self childVCs:childArr];
@@ -60,6 +61,18 @@
     _pageTitleView.titleColorStateSelected = LOGINCLOLOR;
     _pageTitleView.backgroundColor = [UIColor whiteColor];
     _pageTitleView.isNeedBounces = NO;
+    
+    for (UIButton *button in self.pageTitleView.scrollView.subviews) {
+        
+        CGFloat labelWH = 12;
+        UILabel *label = [[UILabel alloc] init];
+        label.frame = CGRectMake(CGRectGetWidth(button.frame) - 30, 10, labelWH, labelWH);
+        label.backgroundColor = [UIColor redColor];
+        label.layer.masksToBounds = YES;
+        label.layer.cornerRadius = labelWH / 2;
+        [button addSubview:label];
+    }
+    
 }
 
 - (void)SGPageTitleView:(SGPageTitleView *)SGPageTitleView selectedIndex:(NSInteger)selectedIndex

@@ -44,6 +44,9 @@ typedef enum : NSUInteger {
  */
 + (instancetype)pageTitleViewWithFrame:(CGRect)frame delegate:(id<SGPageTitleViewDelegate>)delegate titleNames:(NSArray *)titleNames;
 
+/// scrollView
+@property (nonatomic, strong) UIScrollView *scrollView;
+
 /** SGPageTitleView 是否需要弹性效果，默认为 YES */
 @property (nonatomic, assign) BOOL isNeedBounces;
 /** 普通状态下标题按钮文字的颜色，默认为黑色 */
