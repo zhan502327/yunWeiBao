@@ -194,6 +194,21 @@ static CGFloat const SGPageTitleViewTextFont = 16;
             [btn addTarget:self action:@selector(btnAction:) forControlEvents:(UIControlEventTouchUpInside)];
             [self.btnMArr addObject:btn];
             [self.scrollView addSubview:btn];
+            
+            CGFloat labelWH = 15;
+            UILabel *label = [[UILabel alloc] init];
+            label.frame = CGRectMake(CGRectGetWidth(btn.frame) - 30, 10, 20, labelWH);
+            label.backgroundColor = [UIColor redColor];
+            label.textColor = [UIColor whiteColor];
+            label.tag = 100 + index;
+            label.hidden = YES;
+            label.layer.masksToBounds = YES;
+            label.font = [UIFont systemFontOfSize:10];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.layer.cornerRadius = labelWH / 2;
+            [btn addSubview:label];
+            
+            [self.badgeLabelArray addObject:label];
         }
         self.scrollView.contentSize = CGSizeMake(SGPageTitleViewWidth, SGPageTitleViewHeight);
         
@@ -695,6 +710,14 @@ static CGFloat const SGPageTitleViewTextFont = 16;
     }
 }
 
+
+- (NSMutableArray *)badgeLabelArray{
+    if (_badgeLabelArray == nil) {
+        NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
+        _badgeLabelArray = array;
+    }
+    return _badgeLabelArray;
+}
 
 @end
 

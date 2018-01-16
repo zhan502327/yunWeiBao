@@ -12,7 +12,6 @@
 #import "YWEventCell.h"
 #import "YWEventModel.h"
 #import "DBDataBaseManager.h"
-#import "DBNotificationModel.h"
 #import "UITabBar+Badge.h"
 
 @interface YWWarningEventController ()
@@ -46,8 +45,7 @@
     [super viewDidLoad];
     //删除 表
 //    [[DBDataBaseManager shareDataBaseManager] deleteTableWithtableName:kNotificationOne];
-    //            [[DBDataBaseManager shareDataBaseManager] deleteTableWithtableName:kNotificationTwo];
-    //            [[DBDataBaseManager shareDataBaseManager] deleteTableWithtableName:kNotificationThree];
+
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
     //删除系统分割线
@@ -64,10 +62,6 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.currentPage = 1;
         self.warningEvents = [NSMutableArray array];
-        [self getWarningEvent];
-    }];
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        self.currentPage++;
         [self getWarningEvent];
     }];
     
@@ -95,6 +89,7 @@
         //NSString *msg = responseObj[@"tip"];
         //YWLog(@"getWarningEvent--%@",responseObj);
         if ([status isEqual:@1]) { // 数据
+            //请求到的数据
              NSArray *dataArray = [YWEventModel mj_objectArrayWithKeyValuesArray:dict];
         
             //写入数据库
@@ -107,33 +102,31 @@
             //查询数据库 获取所有数据
             NSArray *dbArray = [[DBDataBaseManager shareDataBaseManager] queryAllNotificationModelWithtableName:kNotificationOne];
 
+
+            //数据源
+            [self.warningEvents addObjectsFromArray:dbArray];
             
             //查询 isLooked 数据
             NSArray *isLookedArray = [[DBDataBaseManager shareDataBaseManager] queryIsLookedCountWithTableName:kNotificationOne];
+            
             [[NSUserDefaults standardUserDefaults] setInteger:isLookedArray.count forKey:@"kNotificationOneIsLookedCount"];
         
             [[NSUserDefaults standardUserDefaults] synchronize];
-            //数据源
-            [self.warningEvents addObjectsFromArray:dbArray];
+
+            
+        
             
             //获得模型数据
             [self.tableView reloadData];
             /**停止刷新*/
             [self.tableView.mj_header endRefreshing];
-            [self.tableView.mj_footer endRefreshing];
   
         }
         
     } failure:^(NSError *error) {
         /**停止刷新*/
         [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
     }];
-    
-
-    
-
-    
 }
 
 #pragma mark - Table view data source
@@ -182,21 +175,24 @@
         deviceDetil.a_id = event.a_id;
         [self.navigationController pushViewController:deviceDetil animated:YES];
         
-        
+        //点击cell 更新数据库 isLooked 为已读
         [[DBDataBaseManager shareDataBaseManager] updateNotificationModel:event tableName:kNotificationOne WithIsLooked:@"1"];
         
-        //查询 isLooked 数据
+        //查询 isLooked 数据 未读
         NSArray *isLookedArray = [[DBDataBaseManager shareDataBaseManager] queryIsLookedCountWithTableName:kNotificationOne];
         [[NSUserDefaults standardUserDefaults] setInteger:isLookedArray.count forKey:@"kNotificationOneIsLookedCount"];
-        
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         //添加事件页的角标
-        if (kGetData(@"kNotificationOneIsLookedCount") > 0) {
-            NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationOneIsLookedCount")];
+        if (isLookedArray.count > 0) {
+            NSString *str = [NSString stringWithFormat:@"%ld",isLookedArray.count];
             [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
         }else{
             [self.tabBarController.tabBar hideBadgeOnItemIndex:3];
+        }
+        
+        if (_kNotificationOneCountBlock) {
+            _kNotificationOneCountBlock(isLookedArray.count);
         }
     }
     

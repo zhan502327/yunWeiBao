@@ -31,7 +31,7 @@
     
     //添加事件页的角标
     
-    if (kGetData(@"kNotificationOneIsLookedCount") > 0) {
+    if ([kGetData(@"kNotificationOneIsLookedCount") integerValue]  > 0) {
         NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationOneIsLookedCount")];
         [self.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
     }else{

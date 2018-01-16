@@ -10,4 +10,6 @@
 
 @interface YWWarningEventController : UITableViewController
 
+@property (nonatomic, copy) void(^kNotificationOneCountBlock)(NSInteger count);
+
 @end

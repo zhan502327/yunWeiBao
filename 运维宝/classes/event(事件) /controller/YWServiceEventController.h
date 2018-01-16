@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface YWServiceEventController : UITableViewController
+@property (nonatomic, copy) void(^kNotificationThreeCountBlock)(NSInteger count);
+
 
 @end

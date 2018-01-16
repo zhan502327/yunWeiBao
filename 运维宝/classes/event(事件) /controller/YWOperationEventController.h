@@ -10,4 +10,7 @@
 
 @interface YWOperationEventController : UITableViewController
 
+@property (nonatomic, copy) void(^kNotificationTwoCountBlock)(NSInteger count);
+
+
 @end

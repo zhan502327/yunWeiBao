@@ -19,6 +19,10 @@
 @property (nonatomic, strong) SGPageTitleView *pageTitleView;
 @property (nonatomic, strong) SGPageContentView *pageContentView;
 
+@property (nonatomic, strong) UILabel *firstLabel;
+@property (nonatomic, strong) UILabel *secondLabel;
+@property (nonatomic, strong) UILabel *thirdLabel;
+
 @end
 
 @implementation YWEventViewController
@@ -34,21 +38,6 @@
 
 - (void)addChildrenVc
 {
-//    预警事件
-    YWWarningEventController *warningEvent = [[YWWarningEventController alloc] init];
-//    操作事件
-    YWOperationEventController *operationEvent = [[YWOperationEventController alloc] init];
-//    服务事件
-    YWServiceEventController *serviceEvent = [[YWServiceEventController alloc] init];
-    NSArray *childArr = @[warningEvent,operationEvent,serviceEvent];
-    
-    
-    /// pageContentView
-    CGFloat contentViewHeight = SCREEN_HEIGHT - HEADER_HEIGHT-FOOTER_HEIGHT-44;
-    self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, contentViewHeight) parentVC:self childVCs:childArr];
-    _pageContentView.delegatePageContentView = self;
-    [self.view addSubview:_pageContentView];
-    
     NSArray *titleArr = @[@"预警事件",@"操作事件",@"服务事件"];
     /// pageTitleView
     self.pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44) delegate:self titleNames:titleArr];
@@ -62,21 +51,91 @@
     _pageTitleView.backgroundColor = [UIColor whiteColor];
     _pageTitleView.isNeedBounces = NO;
     
-    for (UIButton *button in self.pageTitleView.scrollView.subviews) {
+
+    
+    for (UILabel *label in _pageTitleView.badgeLabelArray) {
+        if (label.tag == 100) {
+            self.firstLabel = label;
+            if ([kGetData(@"kNotificationOneIsLookedCount") integerValue] > 0) {
+                NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationOneIsLookedCount")];
+                self.firstLabel.hidden = NO;
+                self.firstLabel.text = str;
+            }else{
+                self.firstLabel.hidden = YES;
+            }
+        }
         
-        CGFloat labelWH = 12;
-        UILabel *label = [[UILabel alloc] init];
-        label.frame = CGRectMake(CGRectGetWidth(button.frame) - 30, 10, labelWH, labelWH);
-        label.backgroundColor = [UIColor redColor];
-        label.layer.masksToBounds = YES;
-        label.layer.cornerRadius = labelWH / 2;
-        [button addSubview:label];
+        if (label.tag == 101) {
+            self.secondLabel = label;
+            
+            if ([kGetData(@"kNotificationTwoIsLookedCount") integerValue] > 0) {
+                NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationTwoIsLookedCount")];
+                self.secondLabel.hidden = NO;
+                self.secondLabel.text = str;
+            }else{
+                self.secondLabel.hidden = YES;
+            }
+        }
+        
+        if (label.tag == 102) {
+            self.thirdLabel = label;
+            
+            if ([kGetData(@"kNotificationThreeIsLookedCount") integerValue] > 0) {
+                NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationThreeIsLookedCount")];
+                self.thirdLabel.hidden = NO;
+                self.thirdLabel.text = str;
+            }else{
+                self.thirdLabel.hidden = YES;
+            }
+        }
+        
+        
     }
+
+    
+    
+//    预警事件
+    YWWarningEventController *warningEvent = [[YWWarningEventController alloc] init];
+    [warningEvent setKNotificationOneCountBlock:^(NSInteger count) {
+        if (count == 0) {
+            self.firstLabel.hidden = YES;
+        }else{
+            self.firstLabel.text = [NSString stringWithFormat:@"%ld",count];
+        }
+
+    }];
+//    操作事件
+    YWOperationEventController *operationEvent = [[YWOperationEventController alloc] init];
+    [operationEvent setKNotificationTwoCountBlock:^(NSInteger count) {
+        if (count == 0) {
+            self.secondLabel.hidden = YES;
+        }else{
+            self.secondLabel.text = [NSString stringWithFormat:@"%ld",count];
+        }
+    }];
+//    服务事件
+    YWServiceEventController *serviceEvent = [[YWServiceEventController alloc] init];
+    [serviceEvent setKNotificationThreeCountBlock:^(NSInteger count) {
+        if (count == 0) {
+            self.thirdLabel.hidden = YES;
+        }else{
+            self.thirdLabel.text = [NSString stringWithFormat:@"%ld",count];
+        }
+    }];
+    NSArray *childArr = @[warningEvent,operationEvent,serviceEvent];
+    
+    
+    /// pageContentView
+    CGFloat contentViewHeight = SCREEN_HEIGHT - HEADER_HEIGHT-FOOTER_HEIGHT-44;
+    self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, contentViewHeight) parentVC:self childVCs:childArr];
+    _pageContentView.delegatePageContentView = self;
+    [self.view addSubview:_pageContentView];
+    
+
     
 }
 
-- (void)SGPageTitleView:(SGPageTitleView *)SGPageTitleView selectedIndex:(NSInteger)selectedIndex
-{
+- (void)SGPageTitleView:(SGPageTitleView *)SGPageTitleView selectedIndex:(NSInteger)selectedIndex{
     
     [self.pageContentView setPageCententViewCurrentIndex:selectedIndex];
     
@@ -84,15 +143,7 @@
 
 - (void)SGPageContentView:(SGPageContentView *)SGPageContentView progress:(CGFloat)progress originalIndex:(NSInteger)originalIndex targetIndex:(NSInteger)targetIndex
 {
-    
     [self.pageTitleView setPageTitleViewWithProgress:progress originalIndex:originalIndex targetIndex:targetIndex];
-    
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
  @end
