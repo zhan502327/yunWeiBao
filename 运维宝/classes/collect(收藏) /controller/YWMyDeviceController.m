@@ -12,8 +12,6 @@
 #import "YWMyDevice.h"
 @interface YWMyDeviceController ()
 
-/** 当前页 */
-@property(nonatomic, assign) NSUInteger currentPage;
 /** NSTimer */
 @property (nonatomic, strong) NSTimer *timer;
 /** 我的设备 */
@@ -55,18 +53,12 @@
 //创建刷新头部和尾部控件
 - (void)setupFrenshHeaderandFooter
 {
-    // 默认当前页从1开始的
-    self.currentPage = 1;
     // 设置header和footer
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        self.currentPage = 1;
         self.myDevices = [NSMutableArray array];
         [self getMyDevices];
     }];
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        self.currentPage++;
-        [self getMyDevices];
-    }];
+
     
 }
 /**自动刷新一次*/
@@ -102,11 +94,9 @@
         }
         /**停止刷新*/
         [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
     } failure:^(NSError *error) {
         /**停止刷新*/
         [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
     }];
     
 }

@@ -108,9 +108,9 @@
     
     _tempInfo = tempInfo;
     
-    self.statusLab3.text = [NSString stringWithFormat:@"%@℃",tempInfo.c];
+    self.statusLab1.text = [NSString stringWithFormat:@"%@℃",tempInfo.c];
     self.statusLab2.text = [NSString stringWithFormat:@"%@℃",tempInfo.b];
-    self.statusLab1.text = [NSString stringWithFormat:@"%@℃",tempInfo.a];
+    self.statusLab3.text = [NSString stringWithFormat:@"%@℃",tempInfo.a];
 }
 
 @end

@@ -26,13 +26,13 @@
     [super viewDidLoad];
     
     self.title = @"我的设备";
-    
-    // 首先自动刷新一次
-    [self autoRefresh];
+
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
     
     
+    // 首先自动刷新一次
+    [self autoRefresh];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
 }

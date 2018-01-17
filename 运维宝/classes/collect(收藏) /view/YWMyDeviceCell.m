@@ -106,6 +106,9 @@
     }else if (myDevice.status == 3){
         
         self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
+    }else{
+        self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
+
     }
     
     

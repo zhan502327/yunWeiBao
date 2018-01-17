@@ -37,10 +37,11 @@
     
     self.title = @"电站列表";
     
-    // 首先自动刷新一次
-    [self autoRefresh];
+
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
+    // 首先自动刷新一次
+    [self autoRefresh];
 
 }
 //创建刷新头部和尾部控件

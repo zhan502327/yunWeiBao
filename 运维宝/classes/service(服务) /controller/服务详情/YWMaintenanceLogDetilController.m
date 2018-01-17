@@ -44,12 +44,13 @@
     [super viewDidLoad];
     
     self.title = @"日志详情";
-    // 首先自动刷新一次
-    [self autoRefresh];
+
     //创建头部尾部
     
     [self setupFooter];
     [self setupFrenshHeaderandFooter];
+    // 首先自动刷新一次
+    [self autoRefresh];
     //删除系统分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     

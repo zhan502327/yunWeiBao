@@ -54,7 +54,7 @@
     //删除系统分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-    
+
 }
 //创建刷新头部和尾部控件
 - (void)setupFrenshHeaderandFooter
@@ -67,6 +67,8 @@
         self.operationEvents = [NSMutableArray array];
         [self getOperationEvent];
     }];
+    [self.tableView.mj_header beginRefreshing];
+
     
 }
 
@@ -186,8 +188,13 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         //添加事件页的角标
-        if (isLookedArray.count > 0) {
-            NSString *str = [NSString stringWithFormat:@"%ld",isLookedArray.count];
+        NSInteger firstEventCount = [kGetData(@"kNotificationOneIsLookedCount") integerValue];
+        NSInteger thirdEventCount = [kGetData(@"kNotificationThreeIsLookedCount") integerValue];
+        
+        NSInteger allCount = firstEventCount + isLookedArray.count + thirdEventCount;
+        
+        if (allCount > 0) {
+            NSString *str = [NSString stringWithFormat:@"%ld",allCount];
             [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
         }else{
             [self.tabBarController.tabBar hideBadgeOnItemIndex:3];

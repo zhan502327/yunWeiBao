@@ -67,6 +67,8 @@
         self.serviceEvents = [NSMutableArray array];
         [self getServiceEvents];
     }];
+    
+    [self.tableView.mj_header beginRefreshing];
 
 }
 
@@ -187,8 +189,13 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         //添加事件页的角标
-        if (isLookedArray.count > 0) {
-            NSString *str = [NSString stringWithFormat:@"%ld",isLookedArray.count];
+        NSInteger firstEventCount = [kGetData(@"kNotificationOneIsLookedCount") integerValue];
+        NSInteger secondEventCount = [kGetData(@"kNotificationTwoIsLookedCount") integerValue];
+        
+        NSInteger allCount = firstEventCount + secondEventCount + isLookedArray.count;
+        
+        if (allCount > 0) {
+            NSString *str = [NSString stringWithFormat:@"%ld",allCount];
             [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
         }else{
             [self.tabBarController.tabBar hideBadgeOnItemIndex:3];

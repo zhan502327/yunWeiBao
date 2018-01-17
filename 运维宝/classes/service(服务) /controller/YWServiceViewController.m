@@ -44,11 +44,11 @@
 {
     [super viewDidLoad];
     
-    // 首先自动刷新一次
-    [self autoRefresh];
+
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
-    
+    // 首先自动刷新一次
+    [self autoRefresh];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     //进页面发送请求
     [self getServices];
@@ -251,7 +251,13 @@
         YWSataionDetilController *stationDetil = [[YWSataionDetilController alloc] init];
         //传递模型数据
         
-        stationDetil.station = self.myStations;
+        if (self.myStations) {
+            stationDetil.station = self.myStations;
+
+        }else{
+            stationDetil.s_id = kGetData(@"station_id");
+        }
+        
         [self.navigationController pushViewController:stationDetil animated:YES];
         
     }else{

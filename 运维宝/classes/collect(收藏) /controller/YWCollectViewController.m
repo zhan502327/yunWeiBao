@@ -37,6 +37,7 @@
 {
     
     YWMyDeviceController *myDevice = [[YWMyDeviceController alloc] init];
+    
     YWPowerStationController *powerStation = [[YWPowerStationController alloc] init];
     
     NSArray *childArr = @[myDevice,powerStation];

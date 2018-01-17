@@ -41,10 +41,11 @@
 {
     [super viewDidLoad];
     self.title = @"备件详情";
-    // 首先自动刷新一次
-    [self autoRefresh];
+
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
+    // 首先自动刷新一次
+    [self autoRefresh];
     
     self.webView = [[UIWebView alloc] init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

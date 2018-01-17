@@ -38,11 +38,11 @@
 {
     [super viewDidLoad];
     self.title = @"设备列表";
-    // 首先自动刷新一次
-    [self autoRefresh];
+
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
-    
+    // 首先自动刷新一次
+    [self autoRefresh];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     //进页面发送请求
 }

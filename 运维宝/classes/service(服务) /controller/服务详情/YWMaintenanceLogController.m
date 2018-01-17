@@ -36,10 +36,11 @@
 {
     [super viewDidLoad];
     
-    // 首先自动刷新一次
-    [self autoRefresh];
+
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
+    // 首先自动刷新一次
+    [self autoRefresh];
     //删除系统分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     

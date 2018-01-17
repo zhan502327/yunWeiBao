@@ -27,14 +27,7 @@
 @end
 
 @implementation YWWarningEventController
-/**懒加载*/
-- (NSMutableArray *)warningEvents
-{
-    if (!_warningEvents) {
-        _warningEvents = [NSMutableArray array];
-    }
-    return _warningEvents;
-}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     // 首先自动刷新一次
@@ -64,7 +57,8 @@
         self.warningEvents = [NSMutableArray array];
         [self getWarningEvent];
     }];
-    
+    [self.tableView.mj_header beginRefreshing];
+
 }
 
 /**自动刷新一次*/
@@ -184,12 +178,18 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         //添加事件页的角标
-        if (isLookedArray.count > 0) {
-            NSString *str = [NSString stringWithFormat:@"%ld",isLookedArray.count];
+        NSInteger secondEventCount = [kGetData(@"kNotificationTwoIsLookedCount") integerValue];
+        NSInteger thirdEventCount = [kGetData(@"kNotificationThreeIsLookedCount") integerValue];
+        
+        NSInteger allCount = isLookedArray.count + secondEventCount + thirdEventCount;
+        
+        if (allCount > 0) {
+            NSString *str = [NSString stringWithFormat:@"%ld",allCount];
             [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
         }else{
             [self.tabBarController.tabBar hideBadgeOnItemIndex:3];
         }
+        
         
         if (_kNotificationOneCountBlock) {
             _kNotificationOneCountBlock(isLookedArray.count);
@@ -197,6 +197,13 @@
     }
     
 }
-
+/**懒加载*/
+- (NSMutableArray *)warningEvents
+{
+    if (!_warningEvents) {
+        _warningEvents = [NSMutableArray array];
+    }
+    return _warningEvents;
+}
 
 @end

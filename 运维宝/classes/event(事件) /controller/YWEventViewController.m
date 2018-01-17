@@ -26,13 +26,13 @@
 @end
 
 @implementation YWEventViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
     //添加子控制器
     [self addChildrenVc];
+    
 
 }
 

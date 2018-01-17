@@ -16,12 +16,8 @@
 
 @interface YWSataionDetilController ()<YWSationHeadCellDelegate>
 
-/** 当前页 */
-@property(nonatomic, assign) NSUInteger currentPage;
-/** NSTimer */
-@property (nonatomic, strong) NSTimer *timer;
 /** 我的设备 */
-@property(nonatomic, strong) NSMutableArray *myStations;
+@property(nonatomic, strong) NSMutableArray *myStationsArray;
 
 /** 我的设备 */
 @property(nonatomic, strong) YWDeviceDetilInfo *deviceDetilnfo;
@@ -38,13 +34,9 @@
     [super viewDidLoad];
     
     self.title = @"我的电站";
-    // 首先自动刷新一次
-    [self autoRefresh];
-    
     
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
-    
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -52,27 +44,19 @@
 //创建刷新头部和尾部控件
 - (void)setupFrenshHeaderandFooter
 {
-    // 默认当前页从1开始的
-    self.currentPage = 1;
     // 设置header和footer
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        self.currentPage = 1;
-        self.myStations = [NSMutableArray array];
+        self.myStationsArray = [NSMutableArray array];
         [self getMyStation];
     }];
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        self.currentPage++;
-        [self getMyStation];
-    }];
+    
+    [self.tableView.mj_header beginRefreshing];
+
+ 
     
 }
 
-/**自动刷新一次*/
-- (void)autoRefresh
-{
-    [self.tableView.mj_header beginRefreshing];
-    
-}
+
 //发送请求获取网络数据
 - (void)getMyStation
 {
@@ -112,12 +96,10 @@
         
         /**停止刷新*/
         [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
         
     } failure:^(NSError *error) {
         /**停止刷新*/
         [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
     }];
     
     
@@ -152,7 +134,13 @@
             YWLog(@"收藏按钮----");
         };
         cell.delegate = self;
-        cell.titleLab.text = self.station.station_name;
+        if (self.station) {
+            cell.titleLab.text = self.station.station_name;
+
+        }else{
+            cell.titleLab.text = kGetData(@"station_name");
+
+        }
         cell.detilInfo = self.deviceDetilnfo;
         return cell;
     }

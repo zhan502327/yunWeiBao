@@ -261,7 +261,15 @@
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:_badge]; //APP 显示角标需开发者调用系统方法进行设置
     
     
+    //点击推送跳转到 事件页
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isLogin"] == YES) {
+        YWTabbarController *tabbar = (YWTabbarController *)self.window.rootViewController;
+        tabbar.selectedIndex = 3;
+    }
     
+
+
+
 }
 
 /**个推 为处理 APNs 通知点击，统计有效用户点击数 */
@@ -276,6 +284,12 @@
 }
 //  iOS 10: 点击通知进入App时触发，在该方法内统计有效用户点击数
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    
+    //点击推送跳转到 事件页
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isLogin"] == YES) {
+        YWTabbarController *tabbar = (YWTabbarController *)self.window.rootViewController;
+        tabbar.selectedIndex = 3;
+    }
     
     NSLog(@"didReceiveNotification：%@", response.notification.request.content.userInfo);
     

@@ -30,9 +30,14 @@
     [self addAllChildVcs];
     
     //添加事件页的角标
+    NSInteger firstEventCount = [kGetData(@"kNotificationOneIsLookedCount") integerValue];
+    NSInteger secondEventCount = [kGetData(@"kNotificationTwoIsLookedCount") integerValue];
+    NSInteger thirdEventCount = [kGetData(@"kNotificationThreeIsLookedCount") integerValue];
+
+    NSInteger allCount = firstEventCount + secondEventCount + thirdEventCount;
     
-    if ([kGetData(@"kNotificationOneIsLookedCount") integerValue]  > 0) {
-        NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationOneIsLookedCount")];
+    if (allCount > 0) {
+        NSString *str = [NSString stringWithFormat:@"%ld",allCount];
         [self.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
     }else{
         [self.tabBar hideBadgeOnItemIndex:3];
