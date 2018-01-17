@@ -119,13 +119,7 @@
      *  如果您使用的时服务端托管平台信息时，第二、四项参数可以传入nil，第三项参数则根据服务端托管平台来决定要连接的社交SDK。
      */
     
-//    微信：
-//    AppId="wx1208fa4a65833613"
-//    AppSecret="84fbec2afb4eec8731bd8d30e5f164b3"
-//    QQ：
-//    AppId="1105898272"
-//    AppKey="DLJaavo50QFpJllN"
-    
+
     
     [ShareSDK registerApp:@"1a144dff47204"
           activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),
@@ -163,12 +157,12 @@
                                             authType:SSDKAuthTypeBoth];
                  break;
              case SSDKPlatformTypeWechat:
-                 [appInfo SSDKSetupWeChatByAppId:@"wxca6775437b6f2415"
-                                       appSecret:@"12775ca9a72bfea74a7413dac139cd9a"];
+                 [appInfo SSDKSetupWeChatByAppId:@"wx1208fa4a65833613"
+                                       appSecret:@"84fbec2afb4eec8731bd8d30e5f164b3"];
                  break;
              case SSDKPlatformTypeQQ:
-                 [appInfo SSDKSetupQQByAppId:@"1105504204"
-                                      appKey:@"o6QpqWXwi80GFaUk"
+                 [appInfo SSDKSetupQQByAppId:@"1105898272"
+                                      appKey:@"DLJaavo50QFpJllN"
                                     authType:SSDKAuthTypeBoth];
                  break;
              default:
@@ -179,6 +173,24 @@
     // Override point for customization after application launch.
     return YES;
 }
+
+//case SSDKPlatformTypeWechat:
+//[appInfo SSDKSetupWeChatByAppId:@"wxca6775437b6f2415"
+//                      appSecret:@"12775ca9a72bfea74a7413dac139cd9a"];
+//break;
+//case SSDKPlatformTypeQQ:
+//[appInfo SSDKSetupQQByAppId:@"1105504204"
+//                     appKey:@"o6QpqWXwi80GFaUk"
+//                   authType:SSDKAuthTypeBoth];
+//break;
+
+//    微信：
+//    AppId="wx1208fa4a65833613"
+//    AppSecret="84fbec2afb4eec8731bd8d30e5f164b3"
+//    QQ：
+//    AppId="1105898272"
+//    AppKey="DLJaavo50QFpJllN"
+
 
 - (void)initGeTuiSDK{
     _badge = 0;
