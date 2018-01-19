@@ -48,16 +48,6 @@
     badgeLabel.frame = CGRectMake(x, y, width, 15);
     
     
-
- 
-    
-
-
-    
-    
-    
-    
-    
 }
 
 - (void)hideBadgeOnItemIndex:(int)index{

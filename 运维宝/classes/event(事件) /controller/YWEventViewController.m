@@ -59,7 +59,9 @@
             if ([kGetData(@"kNotificationOneIsLookedCount") integerValue] > 0) {
                 NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationOneIsLookedCount")];
                 self.firstLabel.hidden = NO;
-                self.firstLabel.text = str;
+//                self.firstLabel.text = str;
+                self.firstLabel.text = nil;
+
             }else{
                 self.firstLabel.hidden = YES;
             }
@@ -71,7 +73,9 @@
             if ([kGetData(@"kNotificationTwoIsLookedCount") integerValue] > 0) {
                 NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationTwoIsLookedCount")];
                 self.secondLabel.hidden = NO;
-                self.secondLabel.text = str;
+//                self.secondLabel.text = str;
+                self.secondLabel.text = nil;
+
             }else{
                 self.secondLabel.hidden = YES;
             }
@@ -83,7 +87,9 @@
             if ([kGetData(@"kNotificationThreeIsLookedCount") integerValue] > 0) {
                 NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationThreeIsLookedCount")];
                 self.thirdLabel.hidden = NO;
-                self.thirdLabel.text = str;
+//                self.thirdLabel.text = str;
+                self.thirdLabel.text = nil;
+
             }else{
                 self.thirdLabel.hidden = YES;
             }
@@ -100,7 +106,8 @@
         if (count == 0) {
             self.firstLabel.hidden = YES;
         }else{
-            self.firstLabel.text = [NSString stringWithFormat:@"%ld",count];
+//            self.firstLabel.text = [NSString stringWithFormat:@"%ld",count];
+            self.firstLabel.text = nil;
         }
 
     }];
@@ -110,7 +117,8 @@
         if (count == 0) {
             self.secondLabel.hidden = YES;
         }else{
-            self.secondLabel.text = [NSString stringWithFormat:@"%ld",count];
+//            self.secondLabel.text = [NSString stringWithFormat:@"%ld",count];
+            self.secondLabel.text = nil;
         }
     }];
 //    服务事件
@@ -119,7 +127,8 @@
         if (count == 0) {
             self.thirdLabel.hidden = YES;
         }else{
-            self.thirdLabel.text = [NSString stringWithFormat:@"%ld",count];
+//            self.thirdLabel.text = [NSString stringWithFormat:@"%ld",count];
+            self.thirdLabel.text = nil;
         }
     }];
     NSArray *childArr = @[warningEvent,operationEvent,serviceEvent];

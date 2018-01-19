@@ -48,10 +48,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>QQ</string>
+			<string>LSApplicationQueriesSchemes</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>QQ41E4A7CC</string>
+				<string>QQ41F57DD6</string>
 			</array>
 		</dict>
 		<dict>
@@ -67,19 +67,36 @@
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>timapi</string>
+		<string>mqzoneopensdk</string>
+		<string>mqzoneopensdkapi</string>
+		<string>mqzoneopensdkapi19</string>
+		<string>mqzoneopensdkapiV2</string>
+		<string>mqqOpensdkSSoLogin</string>
+		<string>mqqopensdkapiV2</string>
+		<string>mqqopensdkapiV3</string>
+		<string>wtloginmqq2</string>
+		<string>mqqapi</string>
 		<string>mqqwpa</string>
+		<string>mqzone</string>
+		<string>mqqopensdkapiV4</string>
+		<string>wtloginmqq2</string>
 		<string>weixin</string>
 		<string>mqq</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MOBAppKey</key>
+	<string>1a144dff47204</string>
+	<key>MOBAppSecret</key>
+	<string></string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>App需要您的同意才能使用相机功能</string>
+	<string>需要通过扫描二维码实现扫一扫查看详情,您是否允许打开相机?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>App需要您的同意才能使用相册</string>
 	<key>UIBackgroundModes</key>

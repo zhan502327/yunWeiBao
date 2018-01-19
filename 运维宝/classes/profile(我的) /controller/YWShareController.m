@@ -107,10 +107,10 @@
     if (imageArray1) {
         
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-        [shareParams SSDKSetupShareParamsByText:@"分享内容"
+        [shareParams SSDKSetupShareParamsByText:@"“运维宝”是电力设备在线状态监测预警与电力设备运维管理移动应用平台。"
                                          images:imageArray1
-                                            url:[NSURL URLWithString:@"http://mob.com"]
-                                          title:@"分享标题"
+                                            url:[NSURL URLWithString:@"https://itunes.apple.com/us/app/ep%E8%BF%90%E7%BB%B4%E5%AE%9D/id1331837742?l=zh&ls=1&mt=8"]
+                                          title:@"“运维宝”"
                                            type:SSDKContentTypeAuto];
     
     //2、分享（可以弹出我们的分享菜单和编辑界面）

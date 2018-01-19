@@ -1800,9 +1800,7 @@
 			children = (
 				12287F131F983CDC007D67D5 /* controller */,
 				12287F141F983CDC007D67D5 /* Model */,
-				12287F151F983CDC007D67D5 /* tool */,
 				12287F161F983CDC007D67D5 /* view */,
-				12287F171F983CDC007D67D5 /* viewModel */,
 			);
 			path = "collect(收藏) ";
 			sourceTree = "<group>";
@@ -1837,13 +1835,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		12287F151F983CDC007D67D5 /* tool */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = tool;
-			sourceTree = "<group>";
-		};
 		12287F161F983CDC007D67D5 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1857,13 +1848,6 @@
 				123C43F41F9B098A007F8AD4 /* YWStationDetilCell.m */,
 			);
 			path = view;
-			sourceTree = "<group>";
-		};
-		12287F171F983CDC007D67D5 /* viewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = viewModel;
 			sourceTree = "<group>";
 		};
 		12287F181F983CDC007D67D5 /* event(事件)  */ = {
@@ -1932,9 +1916,7 @@
 			children = (
 				12287F1F1F983CDC007D67D5 /* controller */,
 				12287F201F983CDC007D67D5 /* Model */,
-				12287F211F983CDC007D67D5 /* tool */,
 				12287F221F983CDC007D67D5 /* view */,
-				12287F231F983CDC007D67D5 /* viewModel */,
 			);
 			path = "home(首页) ";
 			sourceTree = "<group>";
@@ -1972,13 +1954,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		12287F211F983CDC007D67D5 /* tool */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = tool;
-			sourceTree = "<group>";
-		};
 		12287F221F983CDC007D67D5 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -2007,13 +1982,6 @@
 				129FFE5B1FADA5710021CC4D /* YWDeviceDocCell.m */,
 			);
 			path = view;
-			sourceTree = "<group>";
-		};
-		12287F231F983CDC007D67D5 /* viewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = viewModel;
 			sourceTree = "<group>";
 		};
 		12287F241F983CDC007D67D5 /* Lib(类库) */ = {
