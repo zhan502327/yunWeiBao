@@ -43,7 +43,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"我的电站";
+    self.title = @"我的电站l";
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
     // 监听收藏状态改变的通知

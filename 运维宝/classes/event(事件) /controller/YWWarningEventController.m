@@ -96,10 +96,10 @@
             //查询数据库 获取所有数据
             NSArray *dbArray = [[DBDataBaseManager shareDataBaseManager] queryAllNotificationModelWithtableName:kNotificationOne];
 
-
             //数据源
             [self.warningEvents addObjectsFromArray:dbArray];
-            
+//            [self.warningEvents addObjectsFromArray:dataArray];
+
             //查询 isLooked 数据
             NSArray *isLookedArray = [[DBDataBaseManager shareDataBaseManager] queryIsLookedCountWithTableName:kNotificationOne];
             
@@ -107,9 +107,7 @@
         
             [[NSUserDefaults standardUserDefaults] synchronize];
 
-            
-        
-            
+
             //获得模型数据
             [self.tableView reloadData];
             /**停止刷新*/

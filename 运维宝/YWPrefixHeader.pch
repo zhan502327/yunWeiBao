@@ -121,6 +121,8 @@
 #define FONT_BOLD_17 [UIFont boldSystemFontOfSize: 17.0]
 #define FONT_18 [UIFont systemFontOfSize: 18.0]
 #define FONT_17 [UIFont systemFontOfSize: 17.0]
+#define FONT_19 [UIFont systemFontOfSize: 19.0]
+
 #define FONT_BOLD_18 [UIFont boldSystemFontOfSize: 18.0]
 #define FONT_20 [UIFont systemFontOfSize: 20.0]
 #define FONT_BOLD_20 [UIFont boldSystemFontOfSize:20.0]

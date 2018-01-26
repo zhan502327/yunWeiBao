@@ -12,8 +12,8 @@
 
 /**状态*/
 
-//@property (nonatomic, copy) NSNumber *status;
-@property (nonatomic, assign)  NSInteger  status;
+@property (nonatomic, copy) NSString *status;
+//@property (nonatomic, assign)  NSInteger  status;
 /** 名称 */
 @property (nonatomic, copy) NSString   *name;
 /**电站ID*/

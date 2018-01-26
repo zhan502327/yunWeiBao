@@ -115,19 +115,19 @@
     
     [self.statusBtn2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self);
-        make.right.mas_equalTo(self.statusBtn1.mas_left).offset(-10);
+        make.right.mas_equalTo(self.statusBtn1.mas_left).offset(-20);
         make.size.mas_equalTo(CGSizeMake(50, 50));
         
     }];
     [self.statusBtn3 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self);
-        make.right.mas_equalTo(self.statusBtn2.mas_left).offset(-10);
+        make.right.mas_equalTo(self.statusBtn2.mas_left).offset(-20);
         make.size.mas_equalTo(CGSizeMake(50, 50));
         
     }];
     [self.statusBtn4 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self);
-        make.right.mas_equalTo(self.statusBtn3.mas_left).offset(-10);
+        make.right.mas_equalTo(self.statusBtn3.mas_left).offset(-20);
         make.size.mas_equalTo(CGSizeMake(50, 50));
     }];
 }

@@ -108,7 +108,8 @@
 
             //核心组件1
             [detilArr addObject:ADDOBJECT(deviceInfo.core_name_1)];
-            [detilArr addObject:@"不详"];
+            
+            [detilArr addObject:ADDOBJECT(deviceInfo.core_model_1)];
             [detilArr addObject:ADDOBJECT(deviceInfo.core_specifications_1)];
             [detilArr addObject:ADDOBJECT(deviceInfo.core_id_1)];
             [detilArr addObject:ADDOBJECT(deviceInfo.com_1)];
@@ -121,8 +122,9 @@
             if (deviceInfo.core_specifications_2) {
                 [detilArr addObject:deviceInfo.core_specifications_2];
             }else{
-                [detilArr addObject:@"不详"];
+                [detilArr addObject:@"null"];
             }
+
             [detilArr addObject:ADDOBJECT(deviceInfo.core_id_2)];
             [detilArr addObject:ADDOBJECT(deviceInfo.com_2)];
  

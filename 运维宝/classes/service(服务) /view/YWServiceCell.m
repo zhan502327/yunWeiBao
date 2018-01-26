@@ -100,17 +100,23 @@
     
     _services = services;
     
-    if (services.status == 0) {
+
+    
+    if ([services.status isEqualToString:@"0"]) {
+        
         self.colorView.image = [UIImage imageNamed:@"fragment_main_green_uncheck"];
-    } else if (services.status == 1){
+    } else if ([services.status isEqualToString:@"1"]){
         
         self.colorView.image = [UIImage imageNamed:@"fragment_main_orange_uncheck"];
-    }else if (services.status == 2){
+    }else if ([services.status isEqualToString:@"2"]){
         
         self.colorView.image = [UIImage imageNamed:@"fragment_main_red_uncheck"];
-    }else if (services.status == 3){
+    }else if ([services.status isEqualToString:@"3"]){
         
         self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
+    }else{
+        self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
+        
     }
 
     

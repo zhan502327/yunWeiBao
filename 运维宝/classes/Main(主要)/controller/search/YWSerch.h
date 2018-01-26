@@ -14,7 +14,7 @@
 //status = 0;
 
 /**状态*/
-@property (nonatomic,assign)     int   status;
+@property (nonatomic,assign)     NSString *   status;
 /** 名称 */
 @property (nonatomic, copy) NSString   *assets_name;
 /**电站ID*/

@@ -52,7 +52,7 @@
     titleLab.numberOfLines = 0;
     titleLab.text = @"220KV人民变电站";
     titleLab.textColor = [UIColor darkGrayColor];
-    titleLab.font = [UIFont systemFontOfSize:16];
+    titleLab.font = [UIFont systemFontOfSize:18];
     [self.contentView addSubview:titleLab];
     
     

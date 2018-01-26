@@ -11,7 +11,7 @@
 @interface YWSercice : NSObject
 
 /**状态*/
-@property (nonatomic, assign)    int   status;
+@property (nonatomic, copy)    NSString   *status;
 /** 名称 */
 @property (nonatomic, copy) NSString   *name;
 /**电站ID*/

@@ -11,6 +11,6 @@
 @interface YWMyDeviceListController : UITableViewController
 
 /**状态*/
-@property (nonatomic,assign) NSString *status;
+@property (nonatomic, copy) NSString *status;
 
 @end

@@ -360,6 +360,7 @@ static NSString *const GridCellID = @"GridCellID";
              //搜索框
              YWSerchViewController *serch = [[YWSerchViewController alloc] init];
              serch.searchText = textStr;
+             serch.type = @"1";
              [self.navigationController pushViewController:serch animated:YES];
          };
          
@@ -372,7 +373,7 @@ static NSString *const GridCellID = @"GridCellID";
              cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
          }
          cell.textLabel.x = 10;
-         cell.textLabel.font = FONT_17;
+         cell.textLabel.font = FONT_19;
          cell.textLabel.textColor = YWColor(70, 171, 211);
          
          cell.textLabel.text = [NSString stringWithFormat:@"【%@】",kGetData(@"app_title")];

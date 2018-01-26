@@ -141,7 +141,7 @@
     
     // Configure the cell...
     YWSercice *service = self.services[indexPath.row];
-    service.status = self.status;
+//    service.status = self.status;
     cell.services = service;
     
     return cell;

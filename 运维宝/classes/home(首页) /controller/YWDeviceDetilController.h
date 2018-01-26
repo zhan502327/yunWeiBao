@@ -13,8 +13,8 @@
 @interface YWDeviceDetilController : UIViewController
 /** 我的电站*/
 @property (nonatomic, copy) NSString *a_id;
-/** 我的电站*/
-@property (nonatomic, assign) NSInteger colorStatus;
+/** 我的电站*/   //在搜索页面时 赋值传过来   傻逼
+@property (nonatomic, copy) NSString *colorStatus;
 /** 我的电站*/
 @property (nonatomic, copy) NSString *stationName;
 /** 我的电站*/

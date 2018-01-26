@@ -142,8 +142,8 @@
     //传递当前行的模型数据
     YWMyDevice *device  = self.myDevices[indexPath.row];
     deviceDetil.a_id = device.a_id;
-
-    deviceDetil.colorStatus = device.status;
+    deviceDetil.deviceInfo = device;
+//    deviceDetil.colorStatus = device.status;
     
     //deviceDetil.is_collection = device.
     deviceDetil.stationName = device.name;

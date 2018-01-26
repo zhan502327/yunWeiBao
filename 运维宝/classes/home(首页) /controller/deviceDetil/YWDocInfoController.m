@@ -153,12 +153,12 @@
             self.drawInfos = drawArr;
             self.assetInfos = assetArr;
             [self.tableView reloadData];
-            /**停止刷新*/
-            [self.tableView.mj_header endRefreshing];
-            [self.tableView.mj_footer endRefreshing];
+
             
         }
-        
+        /**停止刷新*/
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         
     } failure:^(NSError *error) {
         /**停止刷新*/

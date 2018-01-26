@@ -1855,9 +1855,7 @@
 			children = (
 				12287F191F983CDC007D67D5 /* controller */,
 				12287F1A1F983CDC007D67D5 /* Model */,
-				12287F1B1F983CDC007D67D5 /* tool */,
 				12287F1C1F983CDC007D67D5 /* view */,
-				12287F1D1F983CDC007D67D5 /* viewModel */,
 			);
 			path = "event(事件) ";
 			sourceTree = "<group>";
@@ -1888,13 +1886,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		12287F1B1F983CDC007D67D5 /* tool */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = tool;
-			sourceTree = "<group>";
-		};
 		12287F1C1F983CDC007D67D5 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1902,13 +1893,6 @@
 				122AF4461F99954300225F9E /* YWEventCell.m */,
 			);
 			path = view;
-			sourceTree = "<group>";
-		};
-		12287F1D1F983CDC007D67D5 /* viewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = viewModel;
 			sourceTree = "<group>";
 		};
 		12287F1E1F983CDC007D67D5 /* home(首页)  */ = {

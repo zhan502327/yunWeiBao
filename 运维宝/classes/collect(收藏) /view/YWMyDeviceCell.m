@@ -94,16 +94,16 @@
     
     _myDevice = myDevice;
     
-    if (myDevice.status == 0) {
+    if ([myDevice.status isEqualToString:@"0"]) {
         
         self.colorView.image = [UIImage imageNamed:@"fragment_main_green_uncheck"];
-    } else if (myDevice.status == 1){
+    } else if ([myDevice.status isEqualToString:@"1"]){
         
         self.colorView.image = [UIImage imageNamed:@"fragment_main_orange_uncheck"];
-    }else if (myDevice.status == 2){
+    }else if ([myDevice.status isEqualToString:@"2"]){
         
         self.colorView.image = [UIImage imageNamed:@"fragment_main_red_uncheck"];
-    }else if (myDevice.status == 3){
+    }else if ([myDevice.status isEqualToString:@"3"]){
         
         self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
     }else{

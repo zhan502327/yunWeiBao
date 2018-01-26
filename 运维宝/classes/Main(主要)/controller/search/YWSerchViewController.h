@@ -12,4 +12,10 @@
 
 @property (nonatomic, copy) NSString *searchText;
 
+
+/**
+ 判断是从哪个界面跳转进来的  首页 - 1     服务业 = 2
+ */
+@property (nonatomic, copy) NSString *type;
+
 @end

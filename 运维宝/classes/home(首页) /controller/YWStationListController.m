@@ -129,12 +129,13 @@
     YWMyStations *station = self.myStations[indexPath.row];
     cell.textLabel.font = FONT_16;
     cell.textLabel.text = station.station_name;
+    cell.textLabel.textColor = [UIColor orangeColor];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 36;
+    return 40;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

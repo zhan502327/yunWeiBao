@@ -282,19 +282,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
- 
-//    //电站详情
-//    YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
-//    YWSerch *resultSerch = self.resultDatas[indexPath.row];
-//    deviceDetil.a_id = resultSerch.assets_id;
-//    [self.navigationController pushViewController:deviceDetil animated:YES];
+    if ([self.type isEqualToString:@"1"]) {//首页
+        //    //电站详情
+            YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
+            YWSerch *resultSerch = self.resultDatas[indexPath.row];
+            deviceDetil.a_id = resultSerch.assets_id;
+        deviceDetil.colorStatus = resultSerch.status;
+            [self.navigationController pushViewController:deviceDetil animated:YES];
+    }
+    if ([self.type isEqualToString:@"2"]) {//服务页
+        YWServiceDetilController *serviceDetil = [[YWServiceDetilController alloc] init];
+        //传递模型数据
+        YWSerch *search = self.resultDatas[indexPath.row];
+        //    serviceDetil.deviceSercice = self.services[indexPath.row-2];
+        serviceDetil.a_id = search.assets_id;
+        [self.navigationController pushViewController:serviceDetil animated:YES];
+    }
     
-    YWServiceDetilController *serviceDetil = [[YWServiceDetilController alloc] init];
-    //传递模型数据
-    YWSerch *search = self.resultDatas[indexPath.row];
-//    serviceDetil.deviceSercice = self.services[indexPath.row-2];
-    serviceDetil.a_id = search.assets_id;
-    [self.navigationController pushViewController:serviceDetil animated:YES];
+
+    
+
     
 }
 

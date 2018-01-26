@@ -76,7 +76,7 @@
         NSArray *dict = responseObj[@"data"];
         NSString *status = responseObj[@"code"];
         //NSString *msg = responseObj[@"tip"];
-        //YWLog(@"设备列表--%@",responseObj);
+        YWLog(@"设备列表--%@",responseObj);
         if ([status isEqual:@1]) { // 数据
             self.devices = [YWMyDevice mj_objectArrayWithKeyValuesArray:dict];
          
@@ -117,7 +117,7 @@
     YWMyDeviceCell *cell = [YWMyDeviceCell cellWithTableView:tableView];
     //传递模型数据
     YWMyDevice *device  = self.devices[indexPath.row];
-    device.status = [self.status integerValue];
+//    device.status = self.status;
     cell.myDevice = device;
     return cell;
 }

@@ -43,7 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"设备详情";
+    self.title = @"我的设备";
     
     self.automaticallyAdjustsScrollViewInsets = NO;
 
@@ -93,7 +93,7 @@
     [HMHttpTool post:url params:params success:^(id responseObj) {
         NSDictionary *dict = responseObj[@"data"];
         NSString *status = responseObj[@"code"];
-        NSString *msg = responseObj[@"tip"];
+//        NSString *msg = responseObj[@"tip"];
         YWLog(@"getServiceSupport--%@",responseObj);
         if ([status isEqual:@1]) { // 数据
             //获取是否收藏
@@ -148,18 +148,45 @@
     // 设置左边色标和名称
     UIImageView *colorView = [[UIImageView alloc] init];
     self.colorView = colorView;
-    if (self.colorStatus == 0) {
-        self.colorView.image = [UIImage imageNamed:@"fragment_main_green_uncheck"];
-    } else if (self.colorStatus == 1){
-        
-        self.colorView.image = [UIImage imageNamed:@"fragment_main_orange_uncheck"];
-    }else if (self.colorStatus == 2){
-        
-        self.colorView.image = [UIImage imageNamed:@"fragment_main_red_uncheck"];
-    }else if (self.colorStatus == 3){
-        
-        self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
+
+    if (self.colorStatus.length > 0) {
+        if ([self.colorStatus isEqualToString:@"0"]) {
+            
+            self.colorView.image = [UIImage imageNamed:@"fragment_main_green_uncheck"];
+        } else if ([self.colorStatus isEqualToString:@"1"]){
+            
+            self.colorView.image = [UIImage imageNamed:@"fragment_main_orange_uncheck"];
+        }else if ([self.colorStatus isEqualToString:@"2"]){
+            
+            self.colorView.image = [UIImage imageNamed:@"fragment_main_red_uncheck"];
+        }else if ([self.colorStatus isEqualToString:@"3"]){
+            
+            self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
+        }else{
+            self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
+            
+        }
+    }else{
+        if ([self.deviceInfo.status isEqualToString:@"0"]) {
+            
+            self.colorView.image = [UIImage imageNamed:@"fragment_main_green_uncheck"];
+        } else if ([self.deviceInfo.status isEqualToString:@"1"]){
+            
+            self.colorView.image = [UIImage imageNamed:@"fragment_main_orange_uncheck"];
+        }else if ([self.deviceInfo.status isEqualToString:@"2"]){
+            
+            self.colorView.image = [UIImage imageNamed:@"fragment_main_red_uncheck"];
+        }else if ([self.deviceInfo.status isEqualToString:@"3"]){
+            
+            self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
+        }else{
+            self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
+            
+        }
     }
+    
+    
+
     
     colorView.layer.cornerRadius = 5;
     colorView.clipsToBounds = YES;

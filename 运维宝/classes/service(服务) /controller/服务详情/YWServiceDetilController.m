@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"服务详情";
+    self.title = @"我的服务";
     
     self.navigationItem.rightBarButtonItem  = [UIBarButtonItem itemWithImageName:@"service" highImageName:nil target:self action:@selector(serviceDetil)];
 

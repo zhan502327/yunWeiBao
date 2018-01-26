@@ -85,18 +85,26 @@
     
     self.nameLab.text = serch.assets_name;
     
-    if (serch.status == 0) {
+
+    
+    
+    if ([serch.status isEqualToString:@"0"]) {
+        
         self.colorView.image = [UIImage imageNamed:@"fragment_main_green_uncheck"];
-    } else if (serch.status == 1){
+    } else if ([serch.status isEqualToString:@"1"]){
         
         self.colorView.image = [UIImage imageNamed:@"fragment_main_orange_uncheck"];
-    }else if (serch.status == 2){
+    }else if ([serch.status isEqualToString:@"2"]){
         
         self.colorView.image = [UIImage imageNamed:@"fragment_main_red_uncheck"];
-    }else if (serch.status == 3){
+    }else if ([serch.status isEqualToString:@"3"]){
         
         self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
+    }else{
+        self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
+        
     }
+    
     
 }
 

@@ -190,6 +190,7 @@
             //搜索框
             YWSerchViewController *serch = [[YWSerchViewController alloc] init];
             serch.searchText = textStr;
+            serch.type = @"2";
             [self.navigationController pushViewController:serch animated:YES];
         };
         
@@ -207,7 +208,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         }
         
-        cell.textLabel.font = FONT_15;
+        cell.textLabel.font = FONT_18;
         cell.textLabel.textColor = [UIColor orangeColor];
         if (self.myStations) {
             
