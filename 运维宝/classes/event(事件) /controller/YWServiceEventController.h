@@ -7,9 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YWEventModel.h"
 
 @interface YWServiceEventController : UITableViewController
 @property (nonatomic, copy) void(^kNotificationThreeCountBlock)(NSInteger count);
 
+/** 最新主播列表 */
+@property(nonatomic, strong) NSMutableArray *serviceEvents;
+/** 当前页 */
+@property(nonatomic, assign) NSUInteger currentPage;
+
+
+/**自动刷新一次*/
+- (void)autoRefresh;
 
 @end

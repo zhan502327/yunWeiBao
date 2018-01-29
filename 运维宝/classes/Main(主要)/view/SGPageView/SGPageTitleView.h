@@ -77,6 +77,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) BOOL isShowBottomSeparator;
 /** 存放右上角小红点label 数组 */
 @property (nonatomic, strong) NSMutableArray *badgeLabelArray;
+/** 存放button 数组 */
+@property (nonatomic, strong) NSMutableArray *pageButtonArray;
 
 /** 给外界提供的方法，获取 SGPageContentView 的 progress／originalIndex／targetIndex, 必须实现 */
 - (void)setPageTitleViewWithProgress:(CGFloat)progress originalIndex:(NSInteger)originalIndex targetIndex:(NSInteger)targetIndex;

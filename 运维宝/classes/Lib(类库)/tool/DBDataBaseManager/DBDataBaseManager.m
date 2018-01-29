@@ -51,7 +51,8 @@ static DBDataBaseManager *manager = nil;
 #pragma mark -- 创建表
 - (void)createTableWithTableName:(NSString *)tableName{
     if ([self.db open]) {
-        NSString *sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (notificationID varchar(256) PRIMARY KEY NOT NULL, isLooked varchar(256) NOT NULL, alert_id varchar(256), explain varchar(256), device_id varchar(256), station varchar(256), alert_type_name varchar(256), happen_time varchar(256), a_id varchar(256), asset varchar(256))",tableName];
+//        NSString *sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (notificationID varchar(256) PRIMARY KEY NOT NULL, isLooked varchar(256) NOT NULL, alert_id varchar(256), explain varchar(256), device_id varchar(256), station varchar(256), alert_type_name varchar(256), happen_time varchar(256), a_id varchar(256), asset varchar(256))",tableName];
+        NSString *sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (notificationID varchar(256) PRIMARY KEY NOT NULL, isLooked varchar(256) NOT NULL)",tableName];
 
         BOOL result = [self.db executeUpdate:sql];
         if (result) {
@@ -68,14 +69,16 @@ static DBDataBaseManager *manager = nil;
 #pragma mark -- 增
 - (void)insertNotificationModel:(YWEventModel *)model tableName:(NSString *)tableName{
     if ([self.db open]) {
-        NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ (notificationID, isLooked, alert_id, explain, device_id, station, alert_type_name, happen_time, a_id, asset) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@')",tableName ,model.notificationID, model.isLooked, model.alert_id, model.explain, model.device_id, model.station, model.alert_type_name, model.happen_time, model.a_id, model.asset];
+//        NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ (notificationID, isLooked, alert_id, explain, device_id, station, alert_type_name, happen_time, a_id, asset) VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@')",tableName ,model.notificationID, model.isLooked, model.alert_id, model.explain, model.device_id, model.station, model.alert_type_name, model.happen_time, model.a_id, model.asset];
+
+        NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ (notificationID, isLooked) VALUES ('%@', '%@')",tableName ,model.notificationID, @"0"];
 
         BOOL result = [self.db executeUpdate:sql];
         if (result) {
             NSLog(@"插入数据成功");
         }else{
             NSLog(@"插入数据失败");
-            [self updateNotificationModel:model tableName:tableName];
+//            [self updateNotificationModel:model tableName:tableName];
         }
         [self.db class];
     }else{
@@ -100,22 +103,24 @@ static DBDataBaseManager *manager = nil;
 
 
 #pragma mark -- 改
-- (void)updateNotificationModel:(YWEventModel *)model tableName:(NSString *)tableName{
-    if ([self.db open]) {
-        NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET alert_id = '%@', explain = '%@', device_id = '%@', station = '%@', alert_type_name = '%@', happen_time = '%@', a_id = '%@', asset = '%@' WHERE notificationID = '%@'",tableName , model.alert_id, model.explain, model.device_id, model.station, model.alert_type_name, model.happen_time, model.a_id, model.asset, model.notificationID];
-        
-        BOOL result = [self.db executeUpdate:sql];
-        
-        if (result) {
-            NSLog(@"修改数据成功");
-        }else{
-            NSLog(@"修改数据失败");
-        }
-        
-    }else{
-        NSLog(@"修改数据 - 数据库打开失败");
-    }
-}
+//- (void)updateNotificationModel:(YWEventModel *)model tableName:(NSString *)tableName{
+//    if ([self.db open]) {
+//
+//        NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET alert_id = '%@', explain = '%@', device_id = '%@', station = '%@', alert_type_name = '%@', happen_time = '%@', a_id = '%@', asset = '%@' WHERE notificationID = '%@'",tableName , model.alert_id, model.explain, model.device_id, model.station, model.alert_type_name, model.happen_time, model.a_id, model.asset, model.notificationID];
+//
+//
+//        BOOL result = [self.db executeUpdate:sql];
+//
+//        if (result) {
+//            NSLog(@"修改数据成功");
+//        }else{
+//            NSLog(@"修改数据失败");
+//        }
+//
+//    }else{
+//        NSLog(@"修改数据 - 数据库打开失败");
+//    }
+//}
 
 #pragma mark -- 点击cell 修改为已读
 - (void)updateNotificationModel:(YWEventModel *)model tableName:(NSString *)tableName WithIsLooked:(NSString *)isLooked{
@@ -142,26 +147,26 @@ static DBDataBaseManager *manager = nil;
         while ([set next]) {
             NSString *notificationID = [set stringForColumn:@"notificationID"];
             NSString *isLooked = [set stringForColumn:@"isLooked"];
-            NSString *alert_id = [set stringForColumn:@"alert_id"];
-            NSString *explain = [set stringForColumn:@"explain"];
-            NSString *device_id = [set stringForColumn:@"device_id"];
-            NSString *station = [set stringForColumn:@"station"];
-            NSString *alert_type_name = [set stringForColumn:@"alert_type_name"];
-            NSString *happen_time = [set stringForColumn:@"happen_time"];
-            NSString *a_id = [set stringForColumn:@"a_id"];
-            NSString *asset = [set stringForColumn:@"asset"];
-     
+//            NSString *alert_id = [set stringForColumn:@"alert_id"];
+//            NSString *explain = [set stringForColumn:@"explain"];
+//            NSString *device_id = [set stringForColumn:@"device_id"];
+//            NSString *station = [set stringForColumn:@"station"];
+//            NSString *alert_type_name = [set stringForColumn:@"alert_type_name"];
+//            NSString *happen_time = [set stringForColumn:@"happen_time"];
+//            NSString *a_id = [set stringForColumn:@"a_id"];
+//            NSString *asset = [set stringForColumn:@"asset"];
+
             YWEventModel *model = [[YWEventModel alloc] init];
             model.notificationID = notificationID;
             model.isLooked = isLooked;
-            model.alert_id = alert_id;
-            model.explain = explain;
-            model.device_id = device_id;
-            model.station = station;
-            model.alert_type_name = alert_type_name;
-            model.happen_time = happen_time;
-            model.a_id = a_id;
-            model.asset = asset;
+//            model.alert_id = alert_id;
+//            model.explain = explain;
+//            model.device_id = device_id;
+//            model.station = station;
+//            model.alert_type_name = alert_type_name;
+//            model.happen_time = happen_time;
+//            model.a_id = a_id;
+//            model.asset = asset;
             [resultArray addObject:model];
         }
     }else{
@@ -179,26 +184,26 @@ static DBDataBaseManager *manager = nil;
         while ([set next]) {
             NSString *notificationID = [set stringForColumn:@"notificationID"];
             NSString *isLooked = [set stringForColumn:@"isLooked"];
-            NSString *alert_id = [set stringForColumn:@"alert_id"];
-            NSString *explain = [set stringForColumn:@"explain"];
-            NSString *device_id = [set stringForColumn:@"device_id"];
-            NSString *station = [set stringForColumn:@"station"];
-            NSString *alert_type_name = [set stringForColumn:@"alert_type_name"];
-            NSString *happen_time = [set stringForColumn:@"happen_time"];
-            NSString *a_id = [set stringForColumn:@"a_id"];
-            NSString *asset = [set stringForColumn:@"asset"];
+//            NSString *alert_id = [set stringForColumn:@"alert_id"];
+//            NSString *explain = [set stringForColumn:@"explain"];
+//            NSString *device_id = [set stringForColumn:@"device_id"];
+//            NSString *station = [set stringForColumn:@"station"];
+//            NSString *alert_type_name = [set stringForColumn:@"alert_type_name"];
+//            NSString *happen_time = [set stringForColumn:@"happen_time"];
+//            NSString *a_id = [set stringForColumn:@"a_id"];
+//            NSString *asset = [set stringForColumn:@"asset"];
             
             YWEventModel *model = [[YWEventModel alloc] init];
             model.notificationID = notificationID;
             model.isLooked = isLooked;
-            model.alert_id = alert_id;
-            model.explain = explain;
-            model.device_id = device_id;
-            model.station = station;
-            model.alert_type_name = alert_type_name;
-            model.happen_time = happen_time;
-            model.a_id = a_id;
-            model.asset = asset;
+//            model.alert_id = alert_id;
+//            model.explain = explain;
+//            model.device_id = device_id;
+//            model.station = station;
+//            model.alert_type_name = alert_type_name;
+//            model.happen_time = happen_time;
+//            model.a_id = a_id;
+//            model.asset = asset;
             
             
             if (model.notificationID.length > 0) {
@@ -211,6 +216,34 @@ static DBDataBaseManager *manager = nil;
     }
     return array;
 }
+#pragma mark -- 根据id 查询是否已读
+- (YWEventModel *)queryIsLookedOrNotWithTableName:(NSString *)tableName model:(YWEventModel *)model{
+    YWEventModel *resultModel = [[YWEventModel alloc] init];
+
+    if ([self.db open]) {
+        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE notificationID = '%@'",tableName , model.notificationID];
+        FMResultSet *set = [self.db executeQuery:sql];
+        if ([set next]) {
+            NSString *notificationID = [set stringForColumn:@"notificationID"];
+            NSString *isLooked = [set stringForColumn:@"isLooked"];
+     
+            
+            resultModel.notificationID = notificationID;
+            resultModel.isLooked = isLooked;
+        
+            
+        }else{
+            resultModel = nil;
+        }
+    }else{
+        NSLog(@"查询指定数据 - 数据库打开失败");
+        resultModel = nil;
+    }
+    return resultModel;
+    
+}
+
+
 #pragma mark -- 删除数据表
 - (void)deleteTableWithtableName:(NSString *)tableName{
     if ([self.db open]) {

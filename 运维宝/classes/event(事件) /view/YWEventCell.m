@@ -150,11 +150,12 @@
 {
     _eventModel = eventModel;
  
-    if ([eventModel.isLooked isEqualToString:@"0"]) {
-        self.redView.hidden = NO;
-    }else{
-        self.redView.hidden = YES;
-    }
+    
+//    if ([eventModel.isLooked isEqualToString:@"0"]) {
+//        self.redView.hidden = NO;
+//    }else{
+//        self.redView.hidden = YES;
+//    }
     
     NSMutableParagraphStyle  *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle  setLineSpacing:5];

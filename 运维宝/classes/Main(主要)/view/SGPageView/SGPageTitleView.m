@@ -192,6 +192,8 @@ static CGFloat const SGPageTitleViewTextFont = 16;
             [btn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
             [btn setTitleColor:[UIColor redColor] forState:(UIControlStateSelected)];
             [btn addTarget:self action:@selector(btnAction:) forControlEvents:(UIControlEventTouchUpInside)];
+
+            
             [self.btnMArr addObject:btn];
             [self.scrollView addSubview:btn];
             
@@ -209,6 +211,7 @@ static CGFloat const SGPageTitleViewTextFont = 16;
             [btn addSubview:label];
             
             [self.badgeLabelArray addObject:label];
+            [self.pageButtonArray addObject:btn];
         }
         self.scrollView.contentSize = CGSizeMake(SGPageTitleViewWidth, SGPageTitleViewHeight);
         
@@ -228,8 +231,26 @@ static CGFloat const SGPageTitleViewTextFont = 16;
             [btn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
             [btn setTitleColor:[UIColor redColor] forState:(UIControlStateSelected)];
             [btn addTarget:self action:@selector(btnAction:) forControlEvents:(UIControlEventTouchUpInside)];
+
             [self.btnMArr addObject:btn];
             [self.scrollView addSubview:btn];
+            
+            
+            CGFloat labelWH = 15;
+            UILabel *label = [[UILabel alloc] init];
+            label.frame = CGRectMake(CGRectGetWidth(btn.frame) - 30, 10, 15, labelWH);
+            label.backgroundColor = [UIColor redColor];
+            label.textColor = [UIColor whiteColor];
+            label.tag = 100 + index;
+            label.hidden = YES;
+            label.layer.masksToBounds = YES;
+            label.font = [UIFont systemFontOfSize:10];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.layer.cornerRadius = labelWH / 2;
+            [btn addSubview:label];
+            
+            [self.badgeLabelArray addObject:label];
+            [self.pageButtonArray addObject:btn];
         }
         
         CGFloat scrollViewWidth = CGRectGetMaxX(self.scrollView.subviews.lastObject.frame);
@@ -717,6 +738,14 @@ static CGFloat const SGPageTitleViewTextFont = 16;
         _badgeLabelArray = array;
     }
     return _badgeLabelArray;
+}
+
+- (NSMutableArray *)pageButtonArray{
+    if (_pageButtonArray == nil) {
+        NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
+        _pageButtonArray = array;
+    }
+    return _pageButtonArray;
 }
 
 @end

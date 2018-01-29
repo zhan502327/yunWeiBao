@@ -360,7 +360,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     self.webView = webview;
     NSString *timeStr = [self.defaultTimeStr stringByReplacingOccurrencesOfString:@"-" withString:@""];
     timeStr = [timeStr stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
+    self.yearStr = timeStr;
     NSString *urlStr = @"assets_history_html.php";
     NSString *baseurl = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&model=%@&num=%@&time=%@&a_id=%@",baseurl, @"h", @"avg", @"1,2,3,4,5,6", timeStr, self.a_id]];

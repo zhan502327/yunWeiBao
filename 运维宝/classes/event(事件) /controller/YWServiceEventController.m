@@ -12,15 +12,14 @@
 #import "YWEventModel.h"
 #import "DBDataBaseManager.h"
 #import "UITabBar+Badge.h"
+#import "YWServiceDetilController.h"
 
-@interface YWServiceEventController ()
+@interface YWServiceEventController ()<UIAlertViewDelegate>
+{
+    NSIndexPath *_indexPath;
+}
 
-/** 最新主播列表 */
-@property(nonatomic, strong) NSMutableArray *serviceEvents;
-/** 当前页 */
-@property(nonatomic, assign) NSUInteger currentPage;
-/** NSTimer */
-@property (nonatomic, strong) NSTimer *timer;
+
 
 @end
 
@@ -95,9 +94,17 @@
         //YWLog(@"getWarningEvent--%@",responseObj);
         if ([status isEqual:@1]) { // 数据
             
-            
             //请求到的数据
             NSArray *dataArray = [YWEventModel mj_objectArrayWithKeyValuesArray:dict];
+            
+            //数据源
+            [self.serviceEvents addObjectsFromArray:dataArray];
+            NSLog(@"self.serviceEvents.count -- %ld", self.serviceEvents.count);
+            
+            //获得模型数据
+            [self.tableView reloadData];
+            
+            
             
             //写入数据库
             if (dataArray.count > 0) {
@@ -105,26 +112,31 @@
                     [[DBDataBaseManager shareDataBaseManager] insertNotificationModel:model tableName:kNotificationThree];
                 }
             }
+            //获取未读数据 数组
+            NSMutableArray *notLookedArray = [NSMutableArray arrayWithCapacity:0];
             
-            //查询数据库 获取所有数据
-            NSArray *dbArray = [[DBDataBaseManager shareDataBaseManager] queryAllNotificationModelWithtableName:kNotificationThree];
+            for (int i = 0; i<dataArray.count; i++) {
+                
+                YWEventModel *model = dataArray[i];
+                
+                YWEventModel *resultModel = [[DBDataBaseManager shareDataBaseManager] queryIsLookedOrNotWithTableName:kNotificationThree model:model];
+                if ([resultModel.isLooked isEqualToString:@"0"]) {
+                    [notLookedArray addObject:model];
+                }
+            }
             
             
-            //数据源
-            [self.serviceEvents addObjectsFromArray:dbArray];
-            
-            //查询 isLooked 数据
-            NSArray *isLookedArray = [[DBDataBaseManager shareDataBaseManager] queryIsLookedCountWithTableName:kNotificationThree];
-            
-            [[NSUserDefaults standardUserDefaults] setInteger:isLookedArray.count forKey:@"kNotificationThreeIsLookedCount"];
+            [[NSUserDefaults standardUserDefaults] setInteger:notLookedArray.count forKey:@"kNotificationThreeIsLookedCount"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+  
+            if (_kNotificationThreeCountBlock) {
+                _kNotificationThreeCountBlock(notLookedArray.count);
+            }
             
-            //获得模型数据
-            [self.tableView reloadData];
-            /**停止刷新*/
-            [self.tableView.mj_header endRefreshing];
             
         }
+        /**停止刷新*/
+        [self.tableView.mj_header endRefreshing];
         
     } failure:^(NSError *error) {
         /**停止刷新*/
@@ -158,7 +170,62 @@
     cell.eventModel = self.serviceEvents[indexPath.row];
     
     cell.iconView.image = [UIImage imageNamed:@"fragment_four_fuwu"];
+    
+    
+    YWEventModel *resultModel = [[DBDataBaseManager shareDataBaseManager] queryIsLookedOrNotWithTableName:kNotificationThree model:self.serviceEvents[indexPath.row]];
+    if ([resultModel.isLooked isEqualToString:@"1"]) {
+        cell.redView.hidden = YES;
+    }else{
+        cell.redView.hidden = NO;
+    }
+    
+    if ([resultModel.isLooked isEqualToString:@"0"]) {
+        //添加长按手势
+        UILongPressGestureRecognizer * longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(cellLongPress:)];
+        longPressGesture.minimumPressDuration=1.5f;//设置长按 时间
+        [cell addGestureRecognizer:longPressGesture];
+    }
+    
     return cell;
+}
+
+-(void)cellLongPress:(UILongPressGestureRecognizer *)longRecognizer{
+    
+    if (longRecognizer.state == UIGestureRecognizerStateBegan) {//手势开始
+        
+        CGPoint location = [longRecognizer locationInView:self.tableView];
+        NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint:location];
+        
+        _indexPath = indexPath;
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"是否标记为已读？" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+        [alert show];
+        
+    }
+    
+    if (longRecognizer.state == UIGestureRecognizerStateEnded)//手势结束
+        
+    {
+        
+        
+    }
+    
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        //确认
+        YWEventModel *event = self.serviceEvents[_indexPath.row];
+        
+        //设为已读
+        [self setEventIsLookedWithModel:event];
+        
+        [self.tableView reloadRowsAtIndexPaths:@[_indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        
+    }else{
+        //取消
+    }
 }
 
 
@@ -173,46 +240,66 @@
 
     //防止未请求数据崩溃
     if (self.serviceEvents.count > 0) {
-        //执行跳转设备详情
-        YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];        
         YWEventModel *event = self.serviceEvents[indexPath.row];
-        deviceDetil.a_id = event.a_id;
-        [self.navigationController pushViewController:deviceDetil animated:YES];
+
+        
+//        //执行跳转设备详情
+//        YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
+//        deviceDetil.a_id = event.a_id;
+//        [self.navigationController pushViewController:deviceDetil animated:YES];
+        
+        //跳转到服务详情页面
+        YWServiceDetilController *service = [[YWServiceDetilController alloc] init];
+        service.a_id = event.a_id;
+        [self.navigationController pushViewController:service animated:YES];
         
         
-        //点击cell 更新数据库 isLooked 为已读
-        [[DBDataBaseManager shareDataBaseManager] updateNotificationModel:event tableName:kNotificationThree WithIsLooked:@"1"];
-        
-        //查询 isLooked 数据 未读
-        NSArray *isLookedArray = [[DBDataBaseManager shareDataBaseManager] queryIsLookedCountWithTableName:kNotificationThree];
-        [[NSUserDefaults standardUserDefaults] setInteger:isLookedArray.count forKey:@"kNotificationThreeIsLookedCount"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        //添加事件页的角标
-        NSInteger firstEventCount = [kGetData(@"kNotificationOneIsLookedCount") integerValue];
-        NSInteger secondEventCount = [kGetData(@"kNotificationTwoIsLookedCount") integerValue];
-        
-        NSInteger allCount = firstEventCount + secondEventCount + isLookedArray.count;
-        
-        if (allCount > 0) {
-            NSString *str = [NSString stringWithFormat:@"%ld",allCount];
-//            [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
-            [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:nil];
-        }else{
-            [self.tabBarController.tabBar hideBadgeOnItemIndex:3];
-        }
-        
-        if (_kNotificationThreeCountBlock) {
-            _kNotificationThreeCountBlock(isLookedArray.count);
-        }
+        [self setEventIsLookedWithModel:event];
     }
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setEventIsLookedWithModel:(YWEventModel *)event{
+    //点击cell 更新数据库 isLooked 为已读
+    [[DBDataBaseManager shareDataBaseManager] updateNotificationModel:event tableName:kNotificationThree WithIsLooked:@"1"];
+    
+    //查询 isLooked 数据 未读
+    //获取未读数据 数组
+    NSMutableArray *notLookedArray = [NSMutableArray arrayWithCapacity:0];
+    
+    for (int i = 0; i<self.serviceEvents.count; i++) {
+        
+        YWEventModel *model = self.serviceEvents[i];
+        
+        YWEventModel *resultModel = [[DBDataBaseManager shareDataBaseManager] queryIsLookedOrNotWithTableName:kNotificationThree model:model];
+        if ([resultModel.isLooked isEqualToString:@"0"]) {
+            [notLookedArray addObject:model];
+        }
+    }
+    //
+    
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:notLookedArray.count forKey:@"kNotificationThreeIsLookedCount"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    //添加事件页的角标
+    NSInteger firstEventCount = [kGetData(@"kNotificationOneIsLookedCount") integerValue];
+    NSInteger secondEventCount = [kGetData(@"kNotificationTwoIsLookedCount") integerValue];
+    
+    NSInteger allCount = firstEventCount + secondEventCount + notLookedArray.count;
+    
+    if (allCount > 0) {
+        //            NSString *str = [NSString stringWithFormat:@"%ld",allCount];
+        //            [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
+        [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:nil];
+        
+    }else{
+        [self.tabBarController.tabBar hideBadgeOnItemIndex:3];
+    }
+    
+    if (_kNotificationThreeCountBlock) {
+        _kNotificationThreeCountBlock(notLookedArray.count);
+    }
 }
-
+\
 
 @end
