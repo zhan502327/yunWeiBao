@@ -37,9 +37,8 @@
     NSInteger allCount = firstEventCount + secondEventCount + thirdEventCount;
     
     if (allCount > 0) {
-//        NSString *str = [NSString stringWithFormat:@"%ld",allCount];
-//        [self.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
-        [self.tabBar showBadgeOnItemIndex:3 withTitleNum:nil];
+        NSString *str = [NSString stringWithFormat:@"%ld",allCount];
+        [self.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
 
     }else{
         [self.tabBar hideBadgeOnItemIndex:3];

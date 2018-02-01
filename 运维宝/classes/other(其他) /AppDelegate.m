@@ -119,7 +119,8 @@
      *  如果您使用的时服务端托管平台信息时，第二、四项参数可以传入nil，第三项参数则根据服务端托管平台来决定要连接的社交SDK。
      */
     
-
+ 
+    NSLog(@"%@",[WXApi getApiVersion]);
     
     [ShareSDK registerApp:@"1a144dff47204"
           activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),

@@ -51,7 +51,7 @@
     //中间二维码图片
     UIImageView *share = [[UIImageView alloc] init];
     share.contentMode = UIViewContentModeScaleAspectFill;
-    share.image = [UIImage imageNamed:@"downLoadErWeiMa"];
+    share.image = [UIImage imageNamed:@"erweima"];
     [self.view addSubview:share];
     
     [share mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -101,8 +101,10 @@
 //分享按钮点击事件
 - (void)shareBtnDidClick
 {
-    //1、创建分享参数  erweima
-    NSArray* imageArray1 = @[[UIImage imageNamed:@"downLoadErWeiMa"]];
+        
+    
+    //1、创建分享参数  erweima downLoadErWeiMa
+    NSArray* imageArray1 = @[[UIImage imageNamed:@"erweima"]];
     //（注意：图片必须要在Xcode左边目录里面，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
     if (imageArray1) {
         

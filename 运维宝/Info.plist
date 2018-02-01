@@ -64,9 +64,10 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>wechat</string>
 		<string>timapi</string>
 		<string>mqzoneopensdk</string>
 		<string>mqzoneopensdkapi</string>

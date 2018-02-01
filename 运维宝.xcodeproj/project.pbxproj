@@ -1983,7 +1983,6 @@
 			isa = PBXGroup;
 			children = (
 				12287F291F983CDC007D67D5 /* controller */,
-				12287F2A1F983CDC007D67D5 /* Model */,
 				12287F2B1F983CDC007D67D5 /* tool */,
 				12287F2C1F983CDC007D67D5 /* view */,
 				12287F2D1F983CDC007D67D5 /* viewModel */,
@@ -2003,13 +2002,6 @@
 				120B42B41FB369A5000640E4 /* HMNewfeatureViewController.m */,
 			);
 			path = controller;
-			sourceTree = "<group>";
-		};
-		12287F2A1F983CDC007D67D5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		12287F2B1F983CDC007D67D5 /* tool */ = {
@@ -2081,9 +2073,7 @@
 			children = (
 				12287F321F983CDC007D67D5 /* controller */,
 				12287F331F983CDC007D67D5 /* Model */,
-				12287F341F983CDC007D67D5 /* tool */,
 				12287F351F983CDC007D67D5 /* view */,
-				12287F361F983CDC007D67D5 /* viewModel */,
 			);
 			path = "profile(我的) ";
 			sourceTree = "<group>";
@@ -2115,13 +2105,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		12287F341F983CDC007D67D5 /* tool */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = tool;
-			sourceTree = "<group>";
-		};
 		12287F351F983CDC007D67D5 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -2131,13 +2114,6 @@
 				129708961F98A57C00DF9B21 /* MineHeadView.m */,
 			);
 			path = view;
-			sourceTree = "<group>";
-		};
-		12287F361F983CDC007D67D5 /* viewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = viewModel;
 			sourceTree = "<group>";
 		};
 		12287F371F983CDC007D67D5 /* service(服务)  */ = {
@@ -4188,7 +4164,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QK3H5LN4MT;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/vendor/AMap",
@@ -4234,7 +4210,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jinbao Li (QK3H5LN4MT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QK3H5LN4MT;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/运维宝/classes/Lib(类库)/vendor/AMap",

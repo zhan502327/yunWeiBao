@@ -94,10 +94,9 @@
         if (label.tag == 100) {
             self.firstLabel = label;
             if ([kGetData(@"kNotificationOneIsLookedCount") integerValue] > 0) {
-//                NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationOneIsLookedCount")];
+                NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationOneIsLookedCount")];
                 self.firstLabel.hidden = NO;
-//                self.firstLabel.text = str;
-                self.firstLabel.text = nil;
+                self.firstLabel.text = str;
 
             }else{
                 self.firstLabel.hidden = YES;
@@ -108,10 +107,9 @@
             self.secondLabel = label;
             
             if ([kGetData(@"kNotificationTwoIsLookedCount") integerValue] > 0) {
-//                NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationTwoIsLookedCount")];
+                NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationTwoIsLookedCount")];
                 self.secondLabel.hidden = NO;
-//                self.secondLabel.text = str;
-                self.secondLabel.text = nil;
+                self.secondLabel.text = str;
 
             }else{
                 self.secondLabel.hidden = YES;
@@ -122,10 +120,9 @@
             self.thirdLabel = label;
             
             if ([kGetData(@"kNotificationThreeIsLookedCount") integerValue] > 0) {
-//                NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationThreeIsLookedCount")];
+                NSString *str = [NSString stringWithFormat:@"%@",kGetData(@"kNotificationThreeIsLookedCount")];
                 self.thirdLabel.hidden = NO;
-//                self.thirdLabel.text = str;
-                self.thirdLabel.text = nil;
+                self.thirdLabel.text = str;
 
             }else{
                 self.thirdLabel.hidden = YES;
@@ -143,8 +140,7 @@
         if (count == 0) {
             weakSelf.firstLabel.hidden = YES;
         }else{
-//            self.firstLabel.text = [NSString stringWithFormat:@"%ld",count];
-            weakSelf.firstLabel.text = nil;
+            weakSelf.firstLabel.text = [NSString stringWithFormat:@"%ld",count];
         }
 
     }];
@@ -154,8 +150,7 @@
         if (count == 0) {
             weakSelf.secondLabel.hidden = YES;
         }else{
-//            self.secondLabel.text = [NSString stringWithFormat:@"%ld",count];
-            weakSelf.secondLabel.text = nil;
+            weakSelf.secondLabel.text = [NSString stringWithFormat:@"%ld",count];
         }
     }];
 //    服务事件
@@ -164,8 +159,7 @@
         if (count == 0) {
             weakSelf.thirdLabel.hidden = YES;
         }else{
-//            self.thirdLabel.text = [NSString stringWithFormat:@"%ld",count];
-            weakSelf.thirdLabel.text = nil;
+            weakSelf.thirdLabel.text = [NSString stringWithFormat:@"%ld",count];
         }
     }];
     NSArray *childArr = @[_warningEvent,_operationEvent,_serviceEvent];
@@ -301,18 +295,13 @@
     NSInteger allCount = 0 + secondEventCount + thirdEventCount;
     
     if (allCount > 0) {
-        //            NSString *str = [NSString stringWithFormat:@"%ld",allCount];
-        //            [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
-        [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:nil];
+                    NSString *str = [NSString stringWithFormat:@"%ld",allCount];
+                    [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
         
     }else{
         [self.tabBarController.tabBar hideBadgeOnItemIndex:3];
     }
-//
-//
-//    if (_kNotificationOneCountBlock) {
-//        _kNotificationOneCountBlock(notLookedArray.count);
-//    }
+
 }
 
 

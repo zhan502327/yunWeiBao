@@ -288,8 +288,8 @@
     NSInteger allCount = firstEventCount + secondEventCount + notLookedArray.count;
     
     if (allCount > 0) {
-        //            NSString *str = [NSString stringWithFormat:@"%ld",allCount];
-        //            [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
+                    NSString *str = [NSString stringWithFormat:@"%ld",allCount];
+                    [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
         [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:nil];
         
     }else{
@@ -300,6 +300,5 @@
         _kNotificationThreeCountBlock(notLookedArray.count);
     }
 }
-\
 
 @end

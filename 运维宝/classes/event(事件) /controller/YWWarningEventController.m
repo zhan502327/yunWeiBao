@@ -270,9 +270,8 @@
     NSInteger allCount = notLookedArray.count + secondEventCount + thirdEventCount;
     
     if (allCount > 0) {
-        //            NSString *str = [NSString stringWithFormat:@"%ld",allCount];
-        //            [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
-        [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:nil];
+                    NSString *str = [NSString stringWithFormat:@"%ld",allCount];
+                    [self.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
         
     }else{
         [self.tabBarController.tabBar hideBadgeOnItemIndex:3];

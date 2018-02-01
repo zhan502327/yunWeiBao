@@ -199,7 +199,7 @@ static CGFloat const SGPageTitleViewTextFont = 16;
             
             CGFloat labelWH = 15;
             UILabel *label = [[UILabel alloc] init];
-            label.frame = CGRectMake(CGRectGetWidth(btn.frame) - 30, 10, 15, labelWH);
+            label.frame = CGRectMake(CGRectGetWidth(btn.frame) - 30, 10, 20, labelWH);
             label.backgroundColor = [UIColor redColor];
             label.textColor = [UIColor whiteColor];
             label.tag = 100 + index;
@@ -238,7 +238,7 @@ static CGFloat const SGPageTitleViewTextFont = 16;
             
             CGFloat labelWH = 15;
             UILabel *label = [[UILabel alloc] init];
-            label.frame = CGRectMake(CGRectGetWidth(btn.frame) - 30, 10, 15, labelWH);
+            label.frame = CGRectMake(CGRectGetWidth(btn.frame) - 30, 10, 20, labelWH);
             label.backgroundColor = [UIColor redColor];
             label.textColor = [UIColor whiteColor];
             label.tag = 100 + index;
