@@ -118,13 +118,15 @@
             [detilArr addObject:ADDOBJECT(deviceInfo.core_name_2)];
             [detilArr addObject:ADDOBJECT(deviceInfo.core_model_2)];
             
-#warning mark-TODO返回空数据
-            if (deviceInfo.core_specifications_2) {
-                [detilArr addObject:deviceInfo.core_specifications_2];
-            }else{
-                [detilArr addObject:@"null"];
-            }
+//            if (deviceInfo.core_specifications_2) {
+//                [detilArr addObject:deviceInfo.core_specifications_2];
+//            }else{
+//                [detilArr addObject:@"null"];
+//            }
 
+            [detilArr addObject:ADDOBJECT(deviceInfo.core_specifications_2)];
+
+            
             [detilArr addObject:ADDOBJECT(deviceInfo.core_id_2)];
             [detilArr addObject:ADDOBJECT(deviceInfo.com_2)];
  

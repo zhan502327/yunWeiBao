@@ -24,7 +24,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     //添加子控件
     [self creatAllView];
-    // Do any additional setup after loading the view.
 }
 
 - (void)creatAllView
@@ -51,7 +50,7 @@
     //中间二维码图片
     UIImageView *share = [[UIImageView alloc] init];
     share.contentMode = UIViewContentModeScaleAspectFill;
-    share.image = [UIImage imageNamed:@"erweima"];
+    share.image = [UIImage imageNamed:@"WechatIMG112"];
     [self.view addSubview:share];
     
     [share mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -103,8 +102,8 @@
 {
         
     
-    //1、创建分享参数  erweima downLoadErWeiMa
-    NSArray* imageArray1 = @[[UIImage imageNamed:@"erweima"]];
+    //1、创建分享参数  erweima downLoadErWeiMa   app_share_down_erweima share_1
+    NSArray* imageArray1 = @[[UIImage imageNamed:@"WechatIMG112"]];
     //（注意：图片必须要在Xcode左边目录里面，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
     if (imageArray1) {
         

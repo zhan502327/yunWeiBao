@@ -157,9 +157,8 @@
     YWSercice *sevice  = self.services[indexPath.row];
     deviceDetil.a_id = sevice.a_id;
     deviceDetil.stationName = sevice.name;
-    
-#warning mark_TODO
-    //deviceDetil.deviceInfo = sevice;
+    deviceDetil.colorStatus = sevice.status;
+//    deviceDetil.deviceInfo = sevice;
  
     
     //deviceDetil.stationName = device.name;

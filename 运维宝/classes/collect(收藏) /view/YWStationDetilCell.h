@@ -13,17 +13,17 @@
 @interface YWStationDetilCell : UITableViewCell
 
 /**1类别按钮*/
-@property (nonatomic, weak) UIButton *statusBtn1;
+@property (nonatomic, strong) UIButton *statusBtn1;
 /**2类别按钮*/
-@property (nonatomic, weak) UIButton *statusBtn2;
+@property (nonatomic, strong) UIButton *statusBtn2;
 /**3类别按钮*/
-@property (nonatomic, weak) UIButton *statusBtn3;
+@property (nonatomic, strong) UIButton *statusBtn3;
 /**4类别按钮*/
-@property (nonatomic, weak) UIButton *statusBtn4;
+@property (nonatomic, strong) UIButton *statusBtn4;
 /**类别名*/
-@property (nonatomic, weak) UILabel *categoryLab;
+@property (nonatomic, strong) UILabel *categoryLab;
 /**设备按钮点击*/
-@property (copy, nonatomic) void (^deviceBtnDidClick)(NSInteger *status);
+@property (copy, nonatomic) void (^deviceBtnDidClick)(int status);
 
 /**订单列表模型*/
 @property (nonatomic, strong) YWDeviceDetil *deviceDetil;

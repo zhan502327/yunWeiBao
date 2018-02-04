@@ -48,56 +48,56 @@
     
     //状态按钮1
     UIButton *statusBtn1 = [[UIButton alloc] init];
-    self.statusBtn1 = statusBtn1;
     statusBtn1.tag = 3;
     statusBtn1.layer.cornerRadius = 8;
     statusBtn1.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [statusBtn1 setTitle:@"1" forState:UIControlStateNormal];
     [statusBtn1 setBackgroundImage:[UIImage imageNamed:@"fragment_main_gray_uncheck"] forState:UIControlStateNormal];
     //按钮点击
-    [statusBtn1 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchDown];
+    [statusBtn1 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     statusBtn1.clipsToBounds = YES;
-    [self.contentView addSubview:self.statusBtn1];
-    
+    [self.contentView addSubview:statusBtn1];
+    self.statusBtn1 = statusBtn1;
+
     //状态按钮2
     UIButton *statusBtn2 = [[UIButton alloc] init];
-    self.statusBtn2 = statusBtn2;
     statusBtn2.tag = 0;
     statusBtn2.layer.cornerRadius = 8;
     statusBtn2.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [statusBtn2 setTitle:@"2" forState:UIControlStateNormal];
     [statusBtn2 setBackgroundImage:[UIImage imageNamed:@"fragment_main_green_uncheck"] forState:UIControlStateNormal];
     //按钮点击
-    [statusBtn2 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchDown];
+    [statusBtn2 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     statusBtn2.clipsToBounds = YES;
-    [self.contentView addSubview:self.statusBtn2];
-    
+    [self.contentView addSubview:statusBtn2];
+    self.statusBtn2 = statusBtn2;
+
     //状态按钮3
     UIButton *statusBtn3 = [[UIButton alloc] init];
-    self.statusBtn3 = statusBtn3;
     statusBtn3.tag = 1;
     statusBtn3.layer.cornerRadius = 8;
     statusBtn3.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [statusBtn3 setTitle:@"3" forState:UIControlStateNormal];
     [statusBtn3 setBackgroundImage:[UIImage imageNamed:@"fragment_main_orange_uncheck"] forState:UIControlStateNormal];
     //按钮点击
-    [statusBtn3 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchDown];
+    [statusBtn3 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     statusBtn3.clipsToBounds = YES;
-    [self.contentView addSubview:self.statusBtn3];
-    
+    [self.contentView addSubview:statusBtn3];
+    self.statusBtn3 = statusBtn3;
+
     //状态按钮4
     UIButton *statusBtn4 = [[UIButton alloc] init];
     statusBtn4.tag = 2;
-    self.statusBtn4 = statusBtn4;
     statusBtn4.layer.cornerRadius = 8;
     statusBtn4.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [statusBtn4 setTitle:@"4" forState:UIControlStateNormal];
     [statusBtn4 setBackgroundImage:[UIImage imageNamed:@"fragment_main_red_uncheck"] forState:UIControlStateNormal];
     //按钮点击
-    [statusBtn4 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchDown];
+    [statusBtn4 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     statusBtn4.clipsToBounds = YES;
-    [self.contentView addSubview:self.statusBtn4];
-    
+    [self.contentView addSubview:statusBtn4];
+    self.statusBtn4 = statusBtn4;
+
     //设置frame
     
     [self.categoryLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -134,6 +134,8 @@
 
 - (void)btnClick:(UIButton *)button
 {
+    UIButton *btn = button;
+    NSLog(@"%ld",btn.tag);
     //判断按钮是否可以点击啊交互
     //button.selected = !button.selected;
     if (button.currentTitle == 0) {
@@ -142,10 +144,11 @@
         button.userInteractionEnabled = YES;
     }
     
-    __weak typeof(self) weakSelf = self;
-    if (weakSelf.deviceBtnDidClick) {
-        weakSelf.deviceBtnDidClick(button.tag);
+    if (_deviceBtnDidClick) {
+        _deviceBtnDidClick(btn.tag);
     }
+    
+
 }
 
 - (void)setDeviceDetil:(YWDeviceDetil *)deviceDetil

@@ -49,7 +49,21 @@
 
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.navigationItem.rightBarButtonItem  = [UIBarButtonItem itemWithImageName:@"fuwu_right" highImageName:nil target:self action:@selector(serviceDetil)];
+    BOOL contain = NO;
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:[YWServiceDetilController class]]) {
+            contain = YES;
+        }
+    }
+    
+    if (contain == NO) {
+        self.navigationItem.rightBarButtonItem  = [UIBarButtonItem itemWithImageName:@"fuwu_right" highImageName:nil target:self action:@selector(serviceDetil)];
+
+    }
+    
+    
+    
+    
     //获取设备详情
     [self getDeviceInfo];
     

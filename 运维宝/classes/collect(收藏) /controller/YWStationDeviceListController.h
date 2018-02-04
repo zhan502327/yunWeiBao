@@ -14,7 +14,7 @@
 /** 我的电站*/
 @property (nonatomic, strong) YWMyStations *station;
 /**状态*/
-@property (nonatomic, assign) NSInteger  *status;
+@property (nonatomic, assign) int status;
 /**状态*/
 @property (nonatomic, copy) NSString   *deviceCode;
 /**状态*/

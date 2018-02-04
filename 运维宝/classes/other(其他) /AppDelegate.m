@@ -119,12 +119,9 @@
      *  如果您使用的时服务端托管平台信息时，第二、四项参数可以传入nil，第三项参数则根据服务端托管平台来决定要连接的社交SDK。
      */
     
- 
-    NSLog(@"%@",[WXApi getApiVersion]);
     
     [ShareSDK registerApp:@"1a144dff47204"
-          activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),
-                            @(SSDKPlatformSubTypeWechatSession),
+          activePlatforms:@[@(SSDKPlatformSubTypeWechatSession),
                             @(SSDKPlatformSubTypeWechatTimeline),
                             @(SSDKPlatformTypeQQ)]
                  onImport:^(SSDKPlatformType platformType)
@@ -137,9 +134,7 @@
              case SSDKPlatformTypeQQ:
                  [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
                  break;
-             case SSDKPlatformTypeSinaWeibo:
-                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
-                 break;
+      
                  
              default:
                  break;
@@ -150,13 +145,6 @@
          
          switch (platformType)
          {
-             case SSDKPlatformTypeSinaWeibo:
-                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                 [appInfo SSDKSetupSinaWeiboByAppKey:@"469854242"
-                                           appSecret:@"ce5d447006b85c9182ebc40a1a6f88d4"
-                                         redirectUri:@"http://www.app2013.com"
-                                            authType:SSDKAuthTypeBoth];
-                 break;
              case SSDKPlatformTypeWechat:
                  [appInfo SSDKSetupWeChatByAppId:@"wx1208fa4a65833613"
                                        appSecret:@"84fbec2afb4eec8731bd8d30e5f164b3"];
@@ -171,9 +159,17 @@
          }
      }];
     
-    // Override point for customization after application launch.
+    
     return YES;
 }
+//@(SSDKPlatformTypeSinaWeibo),
+//             case SSDKPlatformTypeSinaWeibo:
+//                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+//                 [appInfo SSDKSetupSinaWeiboByAppKey:@"469854242"
+//                                           appSecret:@"ce5d447006b85c9182ebc40a1a6f88d4"
+//                                         redirectUri:@"http://www.app2013.com"
+//                                            authType:SSDKAuthTypeBoth];
+//                 break;
 
 //case SSDKPlatformTypeWechat:
 //[appInfo SSDKSetupWeChatByAppId:@"wxca6775437b6f2415"

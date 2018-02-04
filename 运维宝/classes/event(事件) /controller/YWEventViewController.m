@@ -140,9 +140,26 @@
         if (count == 0) {
             weakSelf.firstLabel.hidden = YES;
         }else{
+            weakSelf.firstLabel.hidden = NO;
             weakSelf.firstLabel.text = [NSString stringWithFormat:@"%ld",count];
         }
 
+        //添加事件页的角标
+        NSInteger firstEventCount = [kGetData(@"kNotificationOneIsLookedCount") integerValue];
+        NSInteger secondEventCount = [kGetData(@"kNotificationTwoIsLookedCount") integerValue];
+        NSInteger thirdEventCount = [kGetData(@"kNotificationThreeIsLookedCount") integerValue];
+        
+        NSInteger allCount = firstEventCount + secondEventCount + thirdEventCount;
+        
+        if (allCount > 0) {
+            NSString *str = [NSString stringWithFormat:@"%ld",allCount];
+            [weakSelf.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
+        }else{
+            [weakSelf.tabBarController.tabBar hideBadgeOnItemIndex:3];
+        }
+        
+        
+        
     }];
 //    操作事件
     _operationEvent = [[YWOperationEventController alloc] init];
@@ -150,8 +167,24 @@
         if (count == 0) {
             weakSelf.secondLabel.hidden = YES;
         }else{
+            weakSelf.secondLabel.hidden = NO;
             weakSelf.secondLabel.text = [NSString stringWithFormat:@"%ld",count];
         }
+        
+        //添加事件页的角标
+        NSInteger firstEventCount = [kGetData(@"kNotificationOneIsLookedCount") integerValue];
+        NSInteger secondEventCount = [kGetData(@"kNotificationTwoIsLookedCount") integerValue];
+        NSInteger thirdEventCount = [kGetData(@"kNotificationThreeIsLookedCount") integerValue];
+        
+        NSInteger allCount = firstEventCount + secondEventCount + thirdEventCount;
+        
+        if (allCount > 0) {
+            NSString *str = [NSString stringWithFormat:@"%ld",allCount];
+            [weakSelf.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
+        }else{
+            [weakSelf.tabBarController.tabBar hideBadgeOnItemIndex:3];
+        }
+        
     }];
 //    服务事件
     _serviceEvent = [[YWServiceEventController alloc] init];
@@ -159,8 +192,24 @@
         if (count == 0) {
             weakSelf.thirdLabel.hidden = YES;
         }else{
+            weakSelf.thirdLabel.hidden = NO;
             weakSelf.thirdLabel.text = [NSString stringWithFormat:@"%ld",count];
         }
+        
+        //添加事件页的角标
+        NSInteger firstEventCount = [kGetData(@"kNotificationOneIsLookedCount") integerValue];
+        NSInteger secondEventCount = [kGetData(@"kNotificationTwoIsLookedCount") integerValue];
+        NSInteger thirdEventCount = [kGetData(@"kNotificationThreeIsLookedCount") integerValue];
+        
+        NSInteger allCount = firstEventCount + secondEventCount + thirdEventCount;
+        
+        if (allCount > 0) {
+            NSString *str = [NSString stringWithFormat:@"%ld",allCount];
+            [weakSelf.tabBarController.tabBar showBadgeOnItemIndex:3 withTitleNum:str];
+        }else{
+            [weakSelf.tabBarController.tabBar hideBadgeOnItemIndex:3];
+        }
+        
     }];
     NSArray *childArr = @[_warningEvent,_operationEvent,_serviceEvent];
     

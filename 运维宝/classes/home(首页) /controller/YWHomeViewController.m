@@ -493,8 +493,7 @@ static NSString *const GridCellID = @"GridCellID";
 #pragma mark - Y间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    
-        return  2 ;
+    return  2 ;
 }
 
 

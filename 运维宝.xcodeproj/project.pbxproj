@@ -2121,9 +2121,7 @@
 			children = (
 				12287F381F983CDC007D67D5 /* controller */,
 				12287F391F983CDC007D67D5 /* Model */,
-				12287F3A1F983CDC007D67D5 /* tool */,
 				12287F3B1F983CDC007D67D5 /* view */,
-				12287F3C1F983CDC007D67D5 /* viewModel */,
 			);
 			path = "service(服务) ";
 			sourceTree = "<group>";
@@ -2159,13 +2157,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		12287F3A1F983CDC007D67D5 /* tool */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = tool;
-			sourceTree = "<group>";
-		};
 		12287F3B1F983CDC007D67D5 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -2177,13 +2168,6 @@
 				129708991F98C2F000DF9B21 /* YWServiceCell.m */,
 			);
 			path = view;
-			sourceTree = "<group>";
-		};
-		12287F3C1F983CDC007D67D5 /* viewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = viewModel;
 			sourceTree = "<group>";
 		};
 		12287F5A1F984E7F007D67D5 /* category */ = {

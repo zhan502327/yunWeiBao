@@ -146,7 +146,7 @@
     }
     //电站详情cell
     YWStationDetilCell *cell = [YWStationDetilCell cellWithTableView:tableView];
-    cell.deviceBtnDidClick = ^(NSInteger *status) {
+    cell.deviceBtnDidClick = ^(int status) {
         YWStationDeviceListController *stationDevice = [[YWStationDeviceListController alloc] init];
         if (self.s_id) {
             stationDevice.s_id = self.s_id;
