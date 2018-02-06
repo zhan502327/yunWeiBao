@@ -243,18 +243,23 @@
         YWEventModel *event = self.serviceEvents[indexPath.row];
 
         
-//        //执行跳转设备详情
-//        YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
-//        deviceDetil.a_id = event.a_id;
-//        [self.navigationController pushViewController:deviceDetil animated:YES];
-        
         //跳转到服务详情页面
         YWServiceDetilController *service = [[YWServiceDetilController alloc] init];
         service.a_id = event.a_id;
         [self.navigationController pushViewController:service animated:YES];
         
+//        YWServiceDetilController *service = [[YWServiceDetilController alloc] init];
+//        service.deviceSercice = event;
+//        [self.navigationController pushViewController:service animated:YES];
+        
+        
         
         [self setEventIsLookedWithModel:event];
+        
+        
+
+        
+        
     }
 }
 

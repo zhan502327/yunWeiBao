@@ -65,7 +65,11 @@
     
     
     YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
-    deviceDetil.a_id = self.deviceSercice.a_id;
+    if (self.a_id.length > 0) {
+        deviceDetil.a_id = self.a_id;
+    }else{
+        deviceDetil.a_id = self.deviceSercice.a_id;
+    }
     deviceDetil.stationName = self.deviceSercice.name;
     [self.navigationController pushViewController:deviceDetil animated:YES];
     
