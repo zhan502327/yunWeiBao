@@ -113,6 +113,22 @@
             //获取是否收藏
             self.station = [YWMyStations mj_objectWithKeyValues:dict];
             
+            if ([self.station.status isEqualToString:@"0" ]) {
+                
+                self.colorView.image = [UIImage imageNamed:@"fragment_main_green_uncheck"];
+            } else if ([self.station.status isEqualToString:@"1" ]){
+                
+                self.colorView.image = [UIImage imageNamed:@"fragment_main_orange_uncheck"];
+            }else if ([self.station.status isEqualToString:@"2" ]){
+                
+                self.colorView.image = [UIImage imageNamed:@"fragment_main_red_uncheck"];
+            }else if ([self.station.status isEqualToString:@"3"] ){
+                
+                self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
+            }else{
+                self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
+                
+            }
             
             NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@  %@",self.station.assets_name, self.station.station_name]];
             self.titleLab.textColor = [UIColor orangeColor];

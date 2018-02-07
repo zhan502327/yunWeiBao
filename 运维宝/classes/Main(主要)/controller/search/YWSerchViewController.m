@@ -35,7 +35,7 @@
     [self setUpSerchbar];
     
     if (self.searchText.length>0) {
-
+        
         //创建头部尾部
         [self setupFrenshHeaderandFooter];
         // 首先自动刷新一次
@@ -43,7 +43,7 @@
     }
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+    
 }
 
 - (void)setUpSerchbar
@@ -57,7 +57,7 @@
     searchBar.delegate = self;
     searchBar.placeholder = @"请输入关键字";
     self.navigationItem.titleView = searchBar;
-
+    
 }
 
 
@@ -134,10 +134,10 @@
         YWLog(@"getDeviceDoc--%@",responseObj);
         NSString *status = responseObj[@"code"];
         NSString *msg = responseObj[@"tip"];
-
+        
         if ([status intValue] == 0) {
             [SVProgressHUD showErrorWithStatus:msg];
-
+            
         }else{
             NSArray *deviceDict = responseObj[@"data"][@"asstes"];
             
@@ -155,7 +155,7 @@
             }
             
         }
-
+        
         
     } failure:^(NSError *error) {
         
@@ -176,9 +176,9 @@
     [searchBar setShowsCancelButton:YES animated:YES];
     
     // 4.显示遮盖
-//    [UIView animateWithDuration:0.5 animations:^{
-//        self.cover.alpha = 0.5;
-//    }];
+    //    [UIView animateWithDuration:0.5 animations:^{
+    //        self.cover.alpha = 0.5;
+    //    }];
 }
 
 /**
@@ -197,9 +197,9 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     
-     [self.resultDatas removeAllObjects];
-     [self.tableView reloadData];
-     [searchBar resignFirstResponder];
+    [self.resultDatas removeAllObjects];
+    [self.tableView reloadData];
+    [searchBar resignFirstResponder];
     
 }
 
@@ -229,10 +229,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    NSInteger *integer;
-//    if (self.resultDatas.count >0) {
-//         integer = self.resultDatas.count;
-//    };
+    //    NSInteger *integer;
+    //    if (self.resultDatas.count >0) {
+    //         integer = self.resultDatas.count;
+    //    };
     return self.resultDatas.count;
 }
 
@@ -277,18 +277,18 @@
 {
     
     return 35;
-        
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.type isEqualToString:@"1"]) {//首页
         //    //电站详情
-            YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
-            YWSerch *resultSerch = self.resultDatas[indexPath.row];
-            deviceDetil.a_id = resultSerch.assets_id;
+        YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
+        YWSerch *resultSerch = self.resultDatas[indexPath.row];
+        deviceDetil.a_id = resultSerch.assets_id;
         deviceDetil.colorStatus = resultSerch.status;
-            [self.navigationController pushViewController:deviceDetil animated:YES];
+        [self.navigationController pushViewController:deviceDetil animated:YES];
     }
     if ([self.type isEqualToString:@"2"]) {//服务页
         YWServiceDetilController *serviceDetil = [[YWServiceDetilController alloc] init];
@@ -299,9 +299,9 @@
         [self.navigationController pushViewController:serviceDetil animated:YES];
     }
     
-
     
-
+    
+    
     
 }
 

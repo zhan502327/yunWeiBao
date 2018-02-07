@@ -70,6 +70,7 @@
     }else{
         deviceDetil.a_id = self.deviceSercice.a_id;
     }
+    deviceDetil.colorStatus = self.deviceSercice.status;
     deviceDetil.stationName = self.deviceSercice.name;
     [self.navigationController pushViewController:deviceDetil animated:YES];
     

@@ -50,7 +50,7 @@
     [self addSubview:self.lineView];
     
     IconView *iconView = [[IconView alloc] init];
-    iconView.iconImageView.image = [UIImage imageNamed:@"userIcon"];
+    iconView.iconImageView.image = [UIImage imageNamed:@"push"];
     //iconView.backgroundColor = [UIColor redColor];
     [self addSubview:iconView];
     self.iconView = iconView;

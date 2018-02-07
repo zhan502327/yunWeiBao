@@ -95,15 +95,15 @@
     
     self.nameLab.text = stations.station_name;
     
-    if (stations.status == 0) {
+    if ([stations.status isEqualToString:@"0"]) {
         self.colorView.image = [UIImage imageNamed:@"fragment_main_green_uncheck"];
-    } else if (stations.status == 1){
+    } else if ([stations.status isEqualToString:@"1"]){
         
         self.colorView.image = [UIImage imageNamed:@"fragment_main_orange_uncheck"];
-    }else if (stations.status == 2){
+    }else if ([stations.status isEqualToString:@"2" ]){
         
         self.colorView.image = [UIImage imageNamed:@"fragment_main_red_uncheck"];
-    }else if (stations.status == 3){
+    }else if ([stations.status isEqualToString:@"3"] ){
         self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];
     }else{
         self.colorView.image = [UIImage imageNamed:@"fragment_main_gray_uncheck"];

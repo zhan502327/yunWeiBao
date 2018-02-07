@@ -46,6 +46,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    push
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     //头部view
@@ -103,7 +105,7 @@
     NSString *urlString = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
     NSString *fileName = [NSString stringWithFormat:@"?token=%@&account_id=%@&file_id=%@",kGetData(@"token"), kGetData(@"account_id"), kGetData(@"photo_id")];
     urlString = [urlString stringByAppendingString:fileName];
-    [headView.iconView.iconImageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"userIcon"]];
+    [headView.iconView.iconImageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"push"]];
     
     
     //账户金额明细工具条
