@@ -77,12 +77,12 @@
 - (void)serviceDetil
 {
     
-    for (UIViewController *vc in self.navigationController.viewControllers) {
-        if ([vc isKindOfClass:[YWServiceDetilController class]]) {
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }
-    }
+//    for (UIViewController *vc in self.navigationController.viewControllers) {
+//        if ([vc isKindOfClass:[YWServiceDetilController class]]) {
+//            [self.navigationController popViewControllerAnimated:YES];
+//            return;
+//        }
+//    }
     
     //跳转到服务详情页面
     YWServiceDetilController *service = [[YWServiceDetilController alloc] init];

@@ -76,7 +76,7 @@
 
 //三方框架
 #pragma warning-TODO
-#define kStoreAppId     @"1060049944" // （appid数字串）
+#define kStoreAppId     @"1331837742" // （appid数字串）
 
 #define ADDOBJECT(value) value.length > 0 ? value : @""
 

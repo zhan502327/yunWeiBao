@@ -208,7 +208,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         }
         
-        cell.textLabel.font = FONT_18;
+        cell.textLabel.font = FONT_17;
         cell.textLabel.textColor = [UIColor orangeColor];
         if (self.myStations) {
             

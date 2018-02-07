@@ -158,13 +158,9 @@
     
     if (indexPath.section == 2) {
         YWOnlineInfo *onlineModel = self.onlines[indexPath.row];
-        
-        
         //技术支持类型
         YWSupportLineCell *cell = [YWSupportLineCell cellWithTableView:tableView];
-        
-        cell.didTapQQBtn = ^{            
-            
+        cell.didTapQQBtn = ^{
             //是否安装QQ mqqwpa  mqq
             if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"mqqwpa://"]])
             {
@@ -233,7 +229,10 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             //第一区第一行
-            cell.supportLab.text = [NSString stringWithFormat:@"%@  %@",self.supportGroup.employee.department,self.supportGroup.employee.contact];
+            
+            NSString *strone = self.supportGroup.employee.department.length > 0 ? self.supportGroup.employee.department : @"";
+            NSString *strTwo = self.supportGroup.employee.contact.length > 0 ? self.supportGroup.employee.contact : @"";
+            cell.supportLab.text = [NSString stringWithFormat:@"%@  %@",strone, strTwo];
             cell.namePhone.text = self.supportGroup.employee.mobile;
         } else if (indexPath.row == 1){
             //第一区第二行
@@ -245,15 +244,15 @@
             //第二区
         if (indexPath.row == 0) {
             //第一区第一行
-            cell.supportLab.text = [NSString stringWithFormat:@"%@",self.supportGroup.brand.brand.company];
+            cell.supportLab.text = self.supportGroup.brand.brand.company;
             cell.namePhone.text = self.supportGroup.brand.brand.mobile;
         } else if (indexPath.row == 1){
             //第一区第二行
-            cell.supportLab.text = [NSString stringWithFormat:@"%@",self.supportGroup.brand.core1.company];
+            cell.supportLab.text = self.supportGroup.brand.core1.company;
             cell.namePhone.text = self.supportGroup.brand.core1.mobile;
         }else if (indexPath.row == 2){
             //第一区第三行
-            cell.supportLab.text = [NSString stringWithFormat:@"%@",self.supportGroup.brand.core2.company];
+            cell.supportLab.text = self.supportGroup.brand.core2.company;
             cell.namePhone.text = self.supportGroup.brand.core2.mobile;
         }else if (indexPath.row == 3){
             //第一区第四行

@@ -55,14 +55,14 @@
 - (void)serviceDetil
 {
    
-    for (UIViewController *vc in self.navigationController.viewControllers) {
-       
-        if ([vc isKindOfClass:[YWDeviceDetilController class]]) {
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }
-    }
-    
+//    for (UIViewController *vc in self.navigationController.viewControllers) {
+//       
+//        if ([vc isKindOfClass:[YWDeviceDetilController class]]) {
+//            [self.navigationController popViewControllerAnimated:YES];
+//            return;
+//        }
+//    }
+//    
     
     YWDeviceDetilController *deviceDetil = [[YWDeviceDetilController alloc] init];
     if (self.a_id.length > 0) {
