@@ -23,9 +23,11 @@
 @implementation YWMyDeviceListController
 
 - (void)viewDidLoad {
+    
+    
     [super viewDidLoad];
     
-    self.title = @"我的设备";
+    self.title = @" ";
 
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
