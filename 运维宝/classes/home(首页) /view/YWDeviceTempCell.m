@@ -105,9 +105,7 @@
 
 - (void)setTempInfo:(YWDeviceTempInfo *)tempInfo
 {
-    
     _tempInfo = tempInfo;
-    
     self.statusLab1.text = [NSString stringWithFormat:@"%@℃",tempInfo.c];
     self.statusLab2.text = [NSString stringWithFormat:@"%@℃",tempInfo.b];
     self.statusLab3.text = [NSString stringWithFormat:@"%@℃",tempInfo.a];
