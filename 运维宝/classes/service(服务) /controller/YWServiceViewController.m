@@ -39,6 +39,10 @@
     }
     return _services;
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [YWNotificationCenter addObserver:self selector:@selector(myStation:) name:YWMystationChangeNotification object:nil];
+}
 
 - (void)viewDidLoad
 {
@@ -55,7 +59,7 @@
     
     //self.navigationItem.rightBarButtonItem  = [UIBarButtonItem itemWithImageName:@"scan_icon" highImageName:nil target:self action:@selector(scanIconClick)];
     //登陆成功通知
-    [YWNotificationCenter addObserver:self selector:@selector(myStation:) name:YWMystationChangeNotification object:nil];
+
     
 }
 
@@ -79,11 +83,10 @@
     //刷新页面
     
     //创建头部尾部
-    [self setupFrenshHeaderandFooter];
+    [self autoRefresh];
     
     [self.tableView reloadData];
     
-    YWLog(@"myStations%@",myStations);
     
 }
 
@@ -98,10 +101,7 @@
         self.services = [NSMutableArray array];
         [self getServices];
     }];
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        self.currentPage++;
-        [self getServices];
-    }];
+
     
 }
 

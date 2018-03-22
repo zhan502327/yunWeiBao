@@ -414,7 +414,6 @@
 
 #pragma mark ---  判断是否需要提示更新App
 - (void)shareAppVersionAlert {
-//    if(![self judgeNeedVersionUpdate])  return ;
     
     if ([self judgeNeedVersionUpdate] == NO) {
         return;
@@ -471,11 +470,11 @@
     //获取年-月-日
     NSString *dateString = [formatter stringFromDate:[NSDate date]];
     NSString *currentDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentDate"];
-
     if ([currentDate isEqualToString:dateString]) {
         return NO;
     }else{
         [[NSUserDefaults standardUserDefaults] setObject:dateString forKey:@"currentDate"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         return YES;
     }
 
@@ -484,15 +483,17 @@
 - (BOOL)judgeNewVersion:(NSString *)newVersion withOldVersion:(NSString *)oldVersion {
     NSArray *newArray = [newVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
     NSArray *oldArray = [oldVersion componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"."]];
-    for (NSInteger i = 0; i < newArray.count; i ++) {
-        if ([newArray[i] integerValue] > [oldArray[i] integerValue]) {
+    
+    NSUInteger count = (newArray.count > oldArray.count) ? (oldArray.count) : (newArray.count);
+    
+    for (NSUInteger i = 0; i < count; i++) {
+        if ([newArray[i] intValue] > [oldArray[i] intValue]) {
             return YES;
-        } else if ([newArray[i] integerValue] < [oldArray[i] integerValue]) {
-            return NO;
-        } else{
+        } else {
             
         }
     }
+    
     return NO;
 }
 

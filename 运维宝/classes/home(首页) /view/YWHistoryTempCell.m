@@ -163,13 +163,13 @@
     
     _tempInfo = tempInfo;
    
-    NSString *astr = [NSString stringWithFormat:@"%@℃",tempInfo.c];
+    NSString *astr = [NSString stringWithFormat:@"%@℃",tempInfo.a];
    [self.tempBtn3 setTitle:astr forState:UIControlStateNormal];
 
      NSString *bstr = [NSString stringWithFormat:@"%@℃",tempInfo.b];
     [self.tempBtn2 setTitle:bstr forState:UIControlStateNormal];
 
-     NSString *cstr = [NSString stringWithFormat:@"%@℃",tempInfo.a];
+     NSString *cstr = [NSString stringWithFormat:@"%@℃",tempInfo.c];
     [self.tempBtn1 setTitle:cstr forState:UIControlStateNormal];
     
 }
