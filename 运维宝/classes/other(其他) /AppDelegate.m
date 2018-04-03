@@ -466,10 +466,11 @@
 //每天进行一次版本判断
 - (BOOL)judgeNeedVersionUpdate {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH"];
     //获取年-月-日
     NSString *dateString = [formatter stringFromDate:[NSDate date]];
     NSString *currentDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentDate"];
+    
     if ([currentDate isEqualToString:dateString]) {
         return NO;
     }else{
@@ -493,7 +494,6 @@
             
         }
     }
-    
     return NO;
 }
 
