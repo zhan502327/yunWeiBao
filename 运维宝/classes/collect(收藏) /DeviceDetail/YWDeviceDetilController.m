@@ -157,10 +157,13 @@
 
 #pragma mark -- 电站点击事件
 - (void)titleButtonClicked{
-
-    
     //电站详情
     YWSataionDetilController *stationDetil = [[YWSataionDetilController alloc] init];
+    
+    
+    //发出通知保存用户电站信息
+    [YWNotificationCenter postNotificationName:YWMystationChangeNotification object:nil userInfo:@{YWMystationChange:self.station}];
+    
     stationDetil.s_id = self.station.s_id;
     stationDetil.station = self.station;
     [self.navigationController pushViewController:stationDetil animated:YES];

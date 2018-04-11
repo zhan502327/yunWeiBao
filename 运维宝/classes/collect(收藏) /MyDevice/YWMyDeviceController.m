@@ -35,8 +35,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    // 首先自动刷新一次
-    [self autoRefresh];
+    self.myDevices = [NSMutableArray array];
+    [self getMyDevices];
 }
 
 - (void)viewDidLoad
@@ -48,6 +48,7 @@
     [self setupFrenshHeaderandFooter];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     
 }
 //创建刷新头部和尾部控件
@@ -61,12 +62,7 @@
 
     
 }
-/**自动刷新一次*/
-- (void)autoRefresh
-{
-    [self.tableView.mj_header beginRefreshing];
-    
-}
+
 //发送请求获取网络数据
 - (void)getMyDevices
 {

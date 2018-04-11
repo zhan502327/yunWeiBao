@@ -112,6 +112,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 //    时间button显示的title
 @property (nonatomic, copy) NSString *timeTitleStr;
 
+@property (nonatomic, strong) UIButton *temButton;
 
 @end
 
@@ -199,6 +200,9 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
             
             //温升
             self.deviceTemp = [YWDeviceTemp mj_objectWithKeyValues:temperatureDict];
+            NSString *cstr = [NSString stringWithFormat:@"%@℃",self.deviceTemp.ambient];
+            [self.temButton setTitle:cstr forState:UIControlStateNormal];
+
             //获得模型数据
             [self.tempTableView reloadData];
             
@@ -347,10 +351,11 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     
     //曲线图 webview
     CGFloat lineChartY = CGRectGetMaxY(dateBar.frame)+15;
+    CGFloat temButtonHeight = 25;
     
-    CGRect rect = CGRectMake(0,lineChartY,SCREEN_WIDTH, bgView.height-lineChartY);
+    CGRect rect = CGRectMake(0,lineChartY,SCREEN_WIDTH, bgView.height-lineChartY - temButtonHeight);
     UIWebView *webview = [[UIWebView alloc] init];
-    webview.backgroundColor = [UIColor clearColor];
+    webview.backgroundColor = [UIColor whiteColor];
     webview.opaque = NO;
     webview.frame = rect;
     webview.scalesPageToFit = YES;
@@ -366,6 +371,25 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&model=%@&num=%@&time=%@&a_id=%@",baseurl, @"h", @"avg", @"1,2,3,4,5,6", timeStr, self.a_id]];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
+    
+    UILabel *temlabel = [[UILabel alloc] init];
+    temlabel.frame = CGRectMake(CGRectGetMinX(titleButton.frame)+10, CGRectGetMaxY(webview.frame), 100, temButtonHeight);
+    temlabel.font = [UIFont boldSystemFontOfSize:14];
+    temlabel.text =@"环境温度：";
+    temlabel.textAlignment = NSTextAlignmentCenter;
+    temlabel.backgroundColor = [UIColor whiteColor];
+    temlabel.textColor = [UIColor darkGrayColor];
+    [self.temHistoryView addSubview:temlabel];
+    
+    UIButton *temButton = [[UIButton alloc] init];
+    temButton.frame = CGRectMake(CGRectGetMaxX(temlabel.frame), CGRectGetMinY(temlabel.frame), 45, temButtonHeight);
+    temButton.backgroundColor = YWColor(65,105,225);
+    temButton.layer.masksToBounds = YES;
+    temButton.layer.cornerRadius = 3;
+    temButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+
+    [self.temHistoryView addSubview:temButton];
+    self.temButton = temButton;
     
 }
 #pragma mark - UIWebViewDelegate

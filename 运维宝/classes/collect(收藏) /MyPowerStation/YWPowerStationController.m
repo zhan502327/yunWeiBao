@@ -37,20 +37,26 @@
     [super viewWillAppear:animated];
     // 首先自动刷新一次
     [self getMyStations];
+    
+    [YWNotificationCenter addObserver:self selector:@selector(collectStateChange) name:YWCollectStateChangeNotification object:nil];
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.title = @"我的电站l";
+    self.title = @"我的电站";
     //创建头部尾部
     [self setupFrenshHeaderandFooter];
     // 监听收藏状态改变的通知
-
-    [YWNotificationCenter addObserver:self selector:@selector(collectStateChange) name:YWCollectStateChangeNotification object:nil];
+    
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    
+    
+    
     
 }
 
@@ -73,7 +79,7 @@
         self.myStations = [NSMutableArray array];
         [self getMyStations];
     }];
-
+    
     
 }
 
@@ -101,7 +107,7 @@
             self.myStations = [YWMyStations mj_objectArrayWithKeyValuesArray:dict];
             //获得模型数据
             [self.tableView reloadData];
-
+            
             
         }
         /**停止刷新*/
@@ -157,9 +163,15 @@
     YWSataionDetilController *stationDetil = [[YWSataionDetilController alloc] init];
     
     YWMyStations *stataion = self.myStations[indexPath.row];
+    
+    //发出通知保存用户电站信息
+    [YWNotificationCenter postNotificationName:YWMystationChangeNotification object:nil userInfo:@{YWMystationChange:stataion}];
+    
     stationDetil.s_id = stataion.s_id;
     stationDetil.station = stataion;
     [self.navigationController pushViewController:stationDetil animated:YES];
+    
+    
     
 }
 

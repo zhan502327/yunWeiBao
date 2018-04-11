@@ -11,6 +11,12 @@
 
 @interface YWDeviceTemp : NSObject
 
+
+/**
+ 温度
+ */
+@property (nonatomic, copy) NSString *ambient;
+
 /**上触指*/
 @property (nonatomic, strong) YWDeviceTempInfo *up;
 /**下触指*/
