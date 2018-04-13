@@ -60,6 +60,7 @@
     //self.navigationItem.rightBarButtonItem  = [UIBarButtonItem itemWithImageName:@"scan_icon" highImageName:nil target:self action:@selector(scanIconClick)];
     //登陆成功通知
 
+
     
 }
 

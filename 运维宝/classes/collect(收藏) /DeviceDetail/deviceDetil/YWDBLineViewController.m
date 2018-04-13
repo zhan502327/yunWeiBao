@@ -134,6 +134,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     
     
     [self initSectionOneDate];
+    
 //    初始化pickView表盘
     [self initSectionThirdDate];
     [self initPickerViewDate];
@@ -368,7 +369,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     self.yearStr = timeStr;
     NSString *urlStr = @"assets_history_html.php";
     NSString *baseurl = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&model=%@&num=%@&time=%@&a_id=%@",baseurl, @"h", @"avg", @"1,2,3,4,5,6", timeStr, self.a_id]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&model=%@&num=%@&time=%@&a_id=%@",baseurl, @"h", @"avg", @"1,2,3,4,5,6,10", timeStr, self.a_id]];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
     
@@ -384,14 +385,38 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     UIButton *temButton = [[UIButton alloc] init];
     temButton.frame = CGRectMake(CGRectGetMaxX(temlabel.frame), CGRectGetMinY(temlabel.frame), 45, temButtonHeight);
     temButton.backgroundColor = YWColor(65,105,225);
+    temButton.selected = YES;
     temButton.layer.masksToBounds = YES;
     temButton.layer.cornerRadius = 3;
     temButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-
+    [temButton addTarget:self action:@selector(temButtonCLicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.temHistoryView addSubview:temButton];
     self.temButton = temButton;
     
 }
+
+- (void)temButtonCLicked:(UIButton *)button{
+    button.selected = !button.selected;
+    if (button.selected) {
+        button.backgroundColor = YWColor(65,105,225);
+        if ([self.selectLineArray containsObject:@"10"]) {
+        }else{
+            [self.selectLineArray addObject:@"10"];
+        }
+    } else {
+        button.backgroundColor = YWColor(128,128,128);
+        
+        if ([self.selectLineArray containsObject:@"10"]) {
+            [self.selectLineArray removeObject:@"10"];
+        }else{
+        }
+        
+    }
+    [self loadWebViewData];
+    
+    
+}
+
 #pragma mark - UIWebViewDelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
 }
@@ -1605,7 +1630,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 - (NSMutableArray *)selectLineArray{
     if (_selectLineArray == nil) {
         NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
-        NSArray *numarray = @[@"1",@"2",@"3",@"4",@"5",@"6"];
+        NSArray *numarray = @[@"1",@"2",@"3",@"4",@"5",@"6",@"10"];
         [array addObjectsFromArray:numarray];
         _selectLineArray = array;
     }
