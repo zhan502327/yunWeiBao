@@ -22,6 +22,8 @@
 #import "YWUser.h"
 #import "YWMyStations.h"
 #import "YWCurrentStationCell.h"
+#import "LMLoginController.h"
+#import "YWNavViewController.h"
 
 @interface YWHomeViewController ()<UICollectionViewDataSource, UICollectionViewDelegate , UICollectionViewDelegateFlowLayout>
 
@@ -88,8 +90,6 @@ static NSString *const GridCellID = @"GridCellID";
     
     self.myStations = [NSMutableArray array];
     
-    //进入首页调登录接口，传token给服务器，防止同一个账号，登录多台设备接收不到推送
-    [self postTokenToService];
     
     //头部view
     
@@ -130,10 +130,19 @@ static NSString *const GridCellID = @"GridCellID";
 //        NSDictionary *dict = responseObj[@"data"];
         NSString *status = responseObj[@"code"];
         NSString *msg = responseObj[@"tip"];
-        if ([status  isEqual:@1] && msg){
+        if ([status  isEqual:@1]){
             
         }else{
             
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isLogin"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            LMLoginController *login = [[LMLoginController alloc] init];
+            YWNavViewController *nav = [[YWNavViewController alloc] initWithRootViewController:login];
+            [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+
         }
         
     } failure:^(NSError *error) {
@@ -144,6 +153,10 @@ static NSString *const GridCellID = @"GridCellID";
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self autoRefresh];
+    
+    //进入首页调登录接口，传token给服务器，防止同一个账号，登录多台设备接收不到推送
+    [self postTokenToService];
+
 
 }
 //用户模型数据
@@ -439,9 +452,9 @@ static NSString *const GridCellID = @"GridCellID";
         //电站详情
         YWSataionDetilController *stationDetil = [[YWSataionDetilController alloc] init];
         if (self.currentStations) {
-            stationDetil.station = self.currentStations;
+            stationDetil.s_id = self.currentStations.s_id;
         } else {
-            stationDetil.station = self.stations;
+            stationDetil.s_id = self.stations.station_id;
         }
         [self.navigationController pushViewController:stationDetil animated:YES];
     }

@@ -109,8 +109,7 @@
     
     _statusInfo = statusInfo;
     
-    self.statusLab3.text = [NSString stringWithFormat:@"%@MS",statusInfo.time];
-    
+    self.statusLab3.text = [NSString stringWithFormat:@"%@s",statusInfo.time];
     
     self.statusLab2.text = [NSString stringWithFormat:@"%@A",statusInfo.a];
     

@@ -107,10 +107,12 @@
     //（注意：图片必须要在Xcode左边目录里面，名称必须要传正确，如果要分享网络图片，可以这样传iamge参数 images:@[@"http://mob.com/Assets/images/logo.png?v=20150320"]）
     if (imageArray1) {
         
+        //苹果下载地址 ：https://itunes.apple.com/us/app/ep%E8%BF%90%E7%BB%B4%E5%AE%9D/id1331837742?l=zh&ls=1&mt=8
+        
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
         [shareParams SSDKSetupShareParamsByText:@"“运维宝”是电力设备在线状态监测预警与电力设备运维管理移动应用平台。"
                                          images:imageArray1
-                                            url:[NSURL URLWithString:@"https://itunes.apple.com/us/app/ep%E8%BF%90%E7%BB%B4%E5%AE%9D/id1331837742?l=zh&ls=1&mt=8"]
+                                            url:[NSURL URLWithString:@"http://app.connel.cn/app_down.php"]
                                           title:@"“运维宝”"
                                            type:SSDKContentTypeAuto];
     

@@ -2,4 +2,243 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x8fd0;&#x7ef4;&#x5b9d;/classes/collect(&#x6536;&#x85cf;) /DeviceDetail/deviceDetil/YWDBLineViewController.m"
+            timestampString = "556187206.916265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
+            landmarkName = "-loadWebViewData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x8fd0;&#x7ef4;&#x5b9d;/classes/profile(&#x6211;&#x7684;) /controller/loginRegister/LMLoginController.m"
+            timestampString = "556187206.916574"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
+            landmarkName = "-loginBtnDidClick"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x8fd0;&#x7ef4;&#x5b9d;/classes/profile(&#x6211;&#x7684;) /controller/loginRegister/LMLoginController.m"
+            timestampString = "556187206.916808"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
+            landmarkName = "-loginBtnDidClick"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x8fd0;&#x7ef4;&#x5b9d;/classes/Main(&#x4e3b;&#x8981;)/controller/search/YWSerchViewController.m"
+            timestampString = "556813413.113157"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "-getDeviceInfo"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[YWSerchViewController getDeviceInfo]"
+                  moduleName = "&#x8fd0;&#x7ef4;&#x5b9d;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangshuai/Desktop/zdb-SourceTree/yunWeiBao/%E8%BF%90%E7%BB%B4%E5%AE%9D/classes/Main(%E4%B8%BB%E8%A6%81)/controller/search/YWSerchViewController.m"
+                  timestampString = "556813700.591565"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "734">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[YWSerchViewController getDeviceInfo]_block_invoke"
+                  moduleName = "&#x8fd0;&#x7ef4;&#x5b9d;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangshuai/Desktop/zdb-SourceTree/yunWeiBao/%E8%BF%90%E7%BB%B4%E5%AE%9D/classes/Main(%E4%B8%BB%E8%A6%81)/controller/search/YWSerchViewController.m"
+                  timestampString = "556813700.593379"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "19">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.132"
+                  moduleName = "&#x8fd0;&#x7ef4;&#x5b9d;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangshuai/Desktop/zdb-SourceTree/yunWeiBao/%E8%BF%90%E7%BB%B4%E5%AE%9D/classes/Main(%E4%B8%BB%E8%A6%81)/controller/search/YWSerchViewController.m"
+                  timestampString = "556813700.59578"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x8fd0;&#x7ef4;&#x5b9d;/classes/profile(&#x6211;&#x7684;) /controller/loginRegister/LMLoginController.m"
+            timestampString = "556187206.917094"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
+            landmarkName = "-loginBtnDidClick"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[LMLoginController loginBtnDidClick]"
+                  moduleName = "&#x8fd0;&#x7ef4;&#x5b9d;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangshuai/Desktop/zdb-SourceTree/yunWeiBao/%E8%BF%90%E7%BB%B4%E5%AE%9D/classes/profile(%E6%88%91%E7%9A%84)%20/controller/loginRegister/LMLoginController.m"
+                  timestampString = "556813700.602535"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "233"
+                  endingLineNumber = "233"
+                  offsetFromSymbolStart = "921">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__37-[LMLoginController loginBtnDidClick]_block_invoke"
+                  moduleName = "&#x8fd0;&#x7ef4;&#x5b9d;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangshuai/Desktop/zdb-SourceTree/yunWeiBao/%E8%BF%90%E7%BB%B4%E5%AE%9D/classes/profile(%E6%88%91%E7%9A%84)%20/controller/loginRegister/LMLoginController.m"
+                  timestampString = "556813700.604393"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "234"
+                  endingLineNumber = "234"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.285"
+                  moduleName = "&#x8fd0;&#x7ef4;&#x5b9d;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangshuai/Desktop/zdb-SourceTree/yunWeiBao/%E8%BF%90%E7%BB%B4%E5%AE%9D/classes/profile(%E6%88%91%E7%9A%84)%20/controller/loginRegister/LMLoginController.m"
+                  timestampString = "556813700.606207"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "233"
+                  endingLineNumber = "233"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x8fd0;&#x7ef4;&#x5b9d;/classes/collect(&#x6536;&#x85cf;) /DeviceDetail/deviceDetil/YWDBLineViewController.m"
+            timestampString = "556813698.7206"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "-getDeviceDetil"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[YWDBLineViewController getDeviceDetil]"
+                  moduleName = "&#x8fd0;&#x7ef4;&#x5b9d;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangshuai/Desktop/zdb-SourceTree/yunWeiBao/%E8%BF%90%E7%BB%B4%E5%AE%9D/classes/collect(%E6%94%B6%E8%97%8F)%20/DeviceDetail/deviceDetil/YWDBLineViewController.m"
+                  timestampString = "556813700.568073"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
+                  offsetFromSymbolStart = "528">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40-[YWDBLineViewController getDeviceDetil]_block_invoke"
+                  moduleName = "&#x8fd0;&#x7ef4;&#x5b9d;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangshuai/Desktop/zdb-SourceTree/yunWeiBao/%E8%BF%90%E7%BB%B4%E5%AE%9D/classes/collect(%E6%94%B6%E8%97%8F)%20/DeviceDetail/deviceDetil/YWDBLineViewController.m"
+                  timestampString = "556813700.571097"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "54">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "&#x8fd0;&#x7ef4;&#x5b9d;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangshuai/Desktop/zdb-SourceTree/yunWeiBao/%E8%BF%90%E7%BB%B4%E5%AE%9D/classes/collect(%E6%94%B6%E8%97%8F)%20/DeviceDetail/deviceDetil/YWDBLineViewController.m"
+                  timestampString = "556813700.573572"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

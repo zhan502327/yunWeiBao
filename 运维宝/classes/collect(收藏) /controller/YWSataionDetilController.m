@@ -69,7 +69,7 @@
     if (self.s_id) {
         params[@"s_id"] = self.s_id;
     }else{
-        params[@"s_id"] = self.station.station_id;
+        params[@"s_id"] = self.station.s_id;
     }
     //请求数据
     [HMHttpTool post:url params:params success:^(id responseObj) {

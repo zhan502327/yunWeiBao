@@ -415,9 +415,9 @@
 #pragma mark ---  判断是否需要提示更新App
 - (void)shareAppVersionAlert {
     
-    if ([self judgeNeedVersionUpdate] == NO) {
-        return;
-    }
+//    if ([self judgeNeedVersionUpdate] == NO) {
+//        return;
+//    }
     
     //App内info.plist文件里面版本号
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];

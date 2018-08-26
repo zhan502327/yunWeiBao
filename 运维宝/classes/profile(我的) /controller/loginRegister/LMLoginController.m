@@ -264,6 +264,8 @@ singleton_implementation(LMLoginController)
                 //存储登录
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isLogin"];
                 
+        
+                
                 //存储用户token
                 kDataPersistence(user.token,@"token");
                 //存储用户ID

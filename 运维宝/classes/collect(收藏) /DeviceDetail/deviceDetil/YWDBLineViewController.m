@@ -245,7 +245,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     NSString *num = [self.selectLineArray componentsJoinedByString:@","];
     
     
-    /**h小时 d天 w周 m月  hy半年 y年*/
+    /**h小时 d天 w周 m月 q季度 hy半年 y年*/
     
     
     NSString *urlStr = @"assets_history_html.php";
@@ -606,7 +606,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
         self.yearStr = [self.yearStr substringToIndex:6];
     } else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"]){//月
         self.yearStr = [self.yearStr substringToIndex:6];
-    }else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m3"]){//季度
+    }else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"]){//季度
         self.yearStr = [self.yearStr substringToIndex:6];
     }else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"hy"]){//半年
         self.yearStr = [self.yearStr substringToIndex:6];
@@ -746,7 +746,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
             timeStr = [NSString stringWithFormat:@"%@-%.2ld",year,
                        self.pick1compentfocusIndex+1];  //月的时标显示
             
-        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m3"]) {//一季度
+        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"]) {//一季度
             NSString *str;
             switch (self.pick1compentfocusIndex) {
                 case 0:
@@ -796,7 +796,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
         
         componentWidth =100;
     }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"hy"]
-              ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m3"]
+              ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"]
               ) {
         componentWidth = 150;
     }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"]
@@ -909,7 +909,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
             count = self.pickviewMonthArray.count;
         }
     }
-    else if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m3"]){
+    else if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"]){
         //年
         if (component == 0) {
             count = [self.pickviewYearArray count];
@@ -948,7 +948,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     }
     else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"]
              ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"]
-             ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m3"]
+             ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"]
              ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"hy"])
     {
         number = 2;
@@ -1045,7 +1045,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
                 break;
         }
     }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m3"])
+    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"])
     {
         switch (component)
         {
@@ -1162,7 +1162,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     }
     else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"]
              ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"]
-             ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m3"]
+             ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"]
              ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"hy"])
     {
         if (component ==0) {//年
@@ -1676,7 +1676,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 
 - (NSArray *)timekey{
     if (_timekey == nil) {
-        NSArray *array = [NSArray arrayWithObjects:@"h",@"d",@"w",@"m",@"m3",@"hy",@"y",nil];
+        NSArray *array = [NSArray arrayWithObjects:@"h",@"d",@"w",@"m",@"q",@"hy",@"y",nil];
         _timekey = array;
     }
     return _timekey;
