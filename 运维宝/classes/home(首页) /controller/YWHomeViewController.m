@@ -452,10 +452,32 @@ static NSString *const GridCellID = @"GridCellID";
         //电站详情
         YWSataionDetilController *stationDetil = [[YWSataionDetilController alloc] init];
         if (self.currentStations) {
-            stationDetil.s_id = self.currentStations.s_id;
-        } else {
-            stationDetil.s_id = self.stations.station_id;
+            
+            stationDetil.station = self.currentStations;
+            if (self.currentStations.station_id.length > 0) {
+                stationDetil.s_id = self.currentStations.station_id;
+            }
+            
+            if (self.currentStations.s_id.length > 0) {
+                stationDetil.s_id = self.currentStations.s_id;
+            }
+            
+        }else{
+            stationDetil.station = self.stations;
+            
+            if (self.stations.s_id.length > 0) {
+                stationDetil.s_id = self.stations.s_id;
+                
+            }
+            
+            if (self.stations.station_id.length > 0) {
+                stationDetil.s_id = self.stations.station_id;
+            }
         }
+        
+   
+        
+      
         [self.navigationController pushViewController:stationDetil animated:YES];
     }
 }

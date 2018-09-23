@@ -60,6 +60,8 @@
     [self addOneChlildVc:shop title:@"收藏" imageName:@"icon_menu_dynamic_normal" selectedImageName:@"icon_menu_dynamic_press"];
     YWServiceViewController *cooperate = [[YWServiceViewController alloc] init];//发现
     [self addOneChlildVc:cooperate title:@"服务" imageName:@"icon_menu_content_normal" selectedImageName:@"icon_menu_content_press"];
+    
+    
     YWEventViewController *event = [[YWEventViewController alloc] init];
     [self addOneChlildVc:event title:@"事件" imageName:@"WechatIMG5" selectedImageName:@"WechatIMG6"];
     

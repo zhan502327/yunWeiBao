@@ -66,11 +66,21 @@
     NSString *url = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
     params[@"token"] = kGetData(@"token");
     params[@"account_id"] = kGetData(@"account_id");
-    if (self.s_id) {
+
+    
+    if (self.s_id.length > 0) {
         params[@"s_id"] = self.s_id;
-    }else{
-        params[@"s_id"] = self.station.s_id;
     }
+    
+    if (self.station.s_id.length > 0) {
+        params[@"s_id"] = self.station.s_id;
+
+    }
+    
+    if (self.station.station_id.length > 0) {
+        params[@"s_id"] = self.station.station_id;
+    }
+    
     //请求数据
     [HMHttpTool post:url params:params success:^(id responseObj) {
         NSDictionary *dict = responseObj[@"data"];
