@@ -241,18 +241,36 @@
     }
 }
 
+
 /**个推 远程通知注册成功委托 */
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSLog(@"\n>>>[DeviceToken Success]:%@\n\n", token);
     
-    kDataPersistence(token, @"token");
+    NSString *str = [self getHexStringForData:deviceToken];
+    
+    kDataPersistence(str, @"token");
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     
     // 向个推服务器注册deviceToken
     [GeTuiSdk registerDeviceToken:token];
+}
+
+//data 转换成16进制字符串  NSData->HexString
+- (NSString *)getHexStringForData:(NSData *)data{
+    
+    NSUInteger len = [data length];
+    char *chars = (char *)[data bytes];
+    NSMutableString *hexString = [[NSMutableString alloc] init];
+    for (NSUInteger i=0; i<len; i++) {
+        
+        [hexString appendString:[NSString stringWithFormat:@"%0.2hhx", chars[i]]];
+        
+    }
+    return hexString;
+    
 }
 
 /** APP已经接收到“远程”通知(推送) - 透传推送消息  */

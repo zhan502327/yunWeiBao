@@ -15,7 +15,7 @@
 + (NSDictionary *)mj_replacedKeyFromPropertyName
 {
     
-    return @{@"chart1":@"1",@"chart2":@"2",@"chart3":@"3",@"chart4":@"4",@"chart5":@"5",@"chart6":@"6"};
+    return @{@"chart1":@"1",@"chart2":@"2",@"chart3":@"3",@"chart4":@"4",@"chart5":@"5",@"chart10":@"10"};
     
     
 }
@@ -28,7 +28,8 @@
              @"chart3" : [YWChartLine class],
              @"chart4" : [YWChartLine class],
              @"chart5" : [YWChartLine class],
-             @"chart6" : [YWChartLine class]
+             @"chart6" : [YWChartLine class],
+             @"chart10" : [YWChartLine class]
             };
 }
 

@@ -10,6 +10,9 @@
 #import "YWHistoryTempCell.h"
 #import "YWDeviceTempInfo.h"
 
+
+
+
 @implementation YWHistoryTempCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView{
@@ -107,20 +110,20 @@
     [self.tempBtn1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self);
         make.right.mas_equalTo(self).offset(-20);
-        make.size.mas_equalTo(CGSizeMake(45, 25));
+        make.size.mas_equalTo(CGSizeMake(kTemperatureButtonWidth, 25));
     }];
     
     [self.tempBtn2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self);
         make.right.mas_equalTo(self.tempBtn1.mas_left).offset(-20);
-        make.size.mas_equalTo(CGSizeMake(45, 25));
+        make.size.mas_equalTo(CGSizeMake(kTemperatureButtonWidth, 25));
         
     }];
     
     [self.tempBtn3 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self);
         make.right.mas_equalTo(self.tempBtn2.mas_left).offset(-20);;
-        make.size.mas_equalTo(CGSizeMake(45, 25));
+        make.size.mas_equalTo(CGSizeMake(kTemperatureButtonWidth, 25));
         
     }];
     

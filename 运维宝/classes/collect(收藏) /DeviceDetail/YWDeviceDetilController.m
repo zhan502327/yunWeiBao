@@ -17,6 +17,7 @@
 #import "YWDBLineViewController.h"//
 #import "YWDeviceInfo.h"
 #import "YWSataionDetilController.h"
+#import "DBTempreatureLineViewController.h"
 
 @interface YWDeviceDetilController ()<SGPageTitleViewDelegate,SGPageContentViewDelegate>
 
@@ -282,14 +283,22 @@
     docInfo.a_id = self.a_id;
    
     //趋势分析
+//    YWDBLineViewController *lineHistory = [[YWDBLineViewController alloc] init];
+    
 //    YWLineHistoryController *lineHistory = [[YWLineHistoryController alloc] init];
-//    lineHistory.a_id = self.a_id;
-//
-    YWDBLineViewController *lineHistory = [[YWDBLineViewController alloc] init];
+    
+    DBTempreatureLineViewController *lineHistory = [[DBTempreatureLineViewController alloc] init];
+  
+    
+    
     lineHistory.a_id = self.a_id;
+
+
     
     
+//    NSArray *childArr = @[deviceStatus,deviceInfo,docInfo,h5, lineHistory];
     NSArray *childArr = @[deviceStatus,deviceInfo,docInfo,lineHistory];
+
     /// pageContentView
     CGFloat contentViewHeight = SCREEN_HEIGHT - HEADER_HEIGHT - 84;
     self.pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0,84, SCREEN_WIDTH, contentViewHeight) parentVC:self childVCs:childArr];
@@ -297,7 +306,9 @@
     _pageContentView.delegatePageContentView = self;
     [self.view addSubview:_pageContentView];
     
+//    NSArray *titleArr = @[@"状态监测",@"设备信息",@"文档信息",@"趋势分析", @"h5"];
     NSArray *titleArr = @[@"状态监测",@"设备信息",@"文档信息",@"趋势分析"];
+
     /// pageTitleView
     self.pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(0,40, SCREEN_WIDTH, 44) delegate:self titleNames:titleArr];
     [self.view addSubview:_pageTitleView];

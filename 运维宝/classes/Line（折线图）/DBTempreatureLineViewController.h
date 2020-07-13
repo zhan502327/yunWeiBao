@@ -1,17 +1,21 @@
 //
-//  YWDBLineViewController.h
+//  DBTempreatureLineViewController.h
 //  运维宝
 //
-//  Created by zhandb on 2017/12/24.
-//  Copyright © 2017年 com.stlm. All rights reserved.
+//  Created by zhandb on 2020/7/9.
+//  Copyright © 2020 com.stlm. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 @class YWMyDevice,YXLineChartView;
 
+NS_ASSUME_NONNULL_BEGIN
 
-@interface YWDBLineViewController : UIViewController
+@interface DBTempreatureLineViewController : UIViewController
+
+
+
 /** 我的电站*/
 @property (nonatomic, copy) NSString *a_id;
 
@@ -70,5 +74,6 @@
 -(NSString*)getTimeButtonBG:(NSString *)title;
 
 
-
 @end
+
+NS_ASSUME_NONNULL_END

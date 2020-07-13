@@ -19,8 +19,7 @@
 
 @property (nonatomic,retain) UITableView *table;
 @property (nonatomic,retain) NSArray *sectionOneArray;
-@property (nonatomic,retain) NSArray *itemArray;
-@property (nonatomic,retain) NSArray *preItemArray;
+
 @property (nonatomic,retain) NSMutableArray *bOpenArray;
 
 @property (nonatomic) BOOL landspace;
@@ -38,7 +37,7 @@
 @property (nonatomic,retain) NSMutableArray *temperature;
 
 @property (nonatomic,retain) UIPickerView *datePickerView;
-//@property (nonatomic,retain) NSArray *dateFormaterArray;
+@property (nonatomic,retain) NSArray *dateFormaterArray;
 
 @property (nonatomic, retain) NSString *pId;
 @property (nonatomic, retain) NSString *dateParams;
@@ -59,10 +58,10 @@
 @property (nonatomic, retain) NSMutableArray *pickviewYearArray;
 @property (nonatomic, retain) NSMutableArray *pickviewMonthArray;
 
-//@property (nonatomic) NSInteger pick0compentfocusIndex;
-//@property (nonatomic) NSInteger pick1compentfocusIndex;
-//@property (nonatomic) NSInteger pick2compentfocusIndex;
-//@property (nonatomic) NSInteger pick3compentfocusIndex;
+@property (nonatomic) NSInteger pick0compentfocusIndex;
+@property (nonatomic) NSInteger pick1compentfocusIndex;
+@property (nonatomic) NSInteger pick2compentfocusIndex;
+@property (nonatomic) NSInteger pick3compentfocusIndex;
 
 @property (nonatomic,retain) NSString *NewbaseUrl;
 
@@ -77,7 +76,6 @@
 -(NSInteger)getWeek;
 
 
-//选择日期
-//@property (nonatomic,retain) UIPickerView *datePickerView;
+
 
 @end

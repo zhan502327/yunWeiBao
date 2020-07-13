@@ -10,6 +10,9 @@
 @class YWDeviceTempInfo;
 
 
+#define kTemperatureButtonWidth 60
+
+
 @interface YWHistoryTempCell : UITableViewCell
 
 

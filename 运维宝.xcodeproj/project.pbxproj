@@ -415,6 +415,8 @@
 		12FCB4A11FB0345300B4CA1B /* YWDeviceDetilInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FCB4A01FB0345300B4CA1B /* YWDeviceDetilInfo.m */; };
 		4D088DA11FED475F00ABE8DC /* YWWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D088DA01FED475F00ABE8DC /* YWWebViewController.m */; };
 		4D088DA41FEFB59B00ABE8DC /* YWDBLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D088DA31FEFB59B00ABE8DC /* YWDBLineViewController.m */; };
+		4D12A1EB24B6F87300E1E182 /* DBTempreatureLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D12A1EA24B6F87300E1E182 /* DBTempreatureLineViewController.m */; };
+		4D12A1EE24B6FCAB00E1E182 /* DBLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D12A1ED24B6FCAB00E1E182 /* DBLineView.m */; };
 		4DB860251FF90C390051374A /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB860241FF90C390051374A /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4DB860271FF90C460051374A /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB860261FF90C460051374A /* libstdc++.6.0.9.tbd */; };
 		4DB8602B1FF90FEE0051374A /* GTExtensionSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB860291FF90FEE0051374A /* GTExtensionSDK.framework */; };
@@ -1253,6 +1255,10 @@
 		4D088DA01FED475F00ABE8DC /* YWWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWWebViewController.m; sourceTree = "<group>"; };
 		4D088DA21FEFB59B00ABE8DC /* YWDBLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWDBLineViewController.h; sourceTree = "<group>"; };
 		4D088DA31FEFB59B00ABE8DC /* YWDBLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWDBLineViewController.m; sourceTree = "<group>"; };
+		4D12A1E924B6F87300E1E182 /* DBTempreatureLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBTempreatureLineViewController.h; sourceTree = "<group>"; };
+		4D12A1EA24B6F87300E1E182 /* DBTempreatureLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBTempreatureLineViewController.m; sourceTree = "<group>"; };
+		4D12A1EC24B6FCAB00E1E182 /* DBLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBLineView.h; sourceTree = "<group>"; };
+		4D12A1ED24B6FCAB00E1E182 /* DBLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBLineView.m; sourceTree = "<group>"; };
 		4DB860231FF90BC60051374A /* 运维宝.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "运维宝.entitlements"; sourceTree = "<group>"; };
 		4DB860241FF90C390051374A /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		4DB860261FF90C460051374A /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
@@ -1783,6 +1789,7 @@
 		12287F111F983CDC007D67D5 /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				4D12A1E824B6F81900E1E182 /* Line（折线图） */,
 				12287F281F983CDC007D67D5 /* Main(主要) */,
 				12287F2E1F983CDC007D67D5 /* other(其他)  */,
 				12287F1E1F983CDC007D67D5 /* home(首页)  */,
@@ -3322,6 +3329,17 @@
 			path = MyPowerStation;
 			sourceTree = "<group>";
 		};
+		4D12A1E824B6F81900E1E182 /* Line（折线图） */ = {
+			isa = PBXGroup;
+			children = (
+				4D12A1E924B6F87300E1E182 /* DBTempreatureLineViewController.h */,
+				4D12A1EA24B6F87300E1E182 /* DBTempreatureLineViewController.m */,
+				4D12A1EC24B6FCAB00E1E182 /* DBLineView.h */,
+				4D12A1ED24B6FCAB00E1E182 /* DBLineView.m */,
+			);
+			path = "Line（折线图）";
+			sourceTree = "<group>";
+		};
 		4DB860281FF90FEE0051374A /* GtSdkLib */ = {
 			isa = PBXGroup;
 			children = (
@@ -3523,7 +3541,7 @@
 					12287EAD1F9838B8007D67D5 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = QK3H5LN4MT;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3865,6 +3883,7 @@
 				122881391F984E7F007D67D5 /* UIView+Extend.m in Sources */,
 				122881E61F984E7F007D67D5 /* UIImage+MultiFormat.m in Sources */,
 				1228818E1F984E7F007D67D5 /* XWDrawerAnimator.m in Sources */,
+				4D12A1EB24B6F87300E1E182 /* DBTempreatureLineViewController.m in Sources */,
 				122881691F984E7F007D67D5 /* UIView+Extension.m in Sources */,
 				1224237A1F9C8C64007DE5DE /* UIView+FrameSet.m in Sources */,
 				129FFE501FAD5D530021CC4D /* YWHistoryTempCell.m in Sources */,
@@ -4008,6 +4027,7 @@
 				129FFE761FADD2D40021CC4D /* YWMaintenanceLogDetilController.m in Sources */,
 				122881DC1F984E7F007D67D5 /* NSData+ImageContentType.m in Sources */,
 				12A6135E1FA6C7F800A8191C /* YWUser.m in Sources */,
+				4D12A1EE24B6FCAB00E1E182 /* DBLineView.m in Sources */,
 				1218E9B61FA9A17500C48B91 /* UIView+Frame.m in Sources */,
 				122881941F984E7F007D67D5 /* XWFilterAnimator+XWMod.m in Sources */,
 				127D66941FB948D900FDB24B /* WSLineChartView.m in Sources */,
@@ -4170,8 +4190,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "运维宝/运维宝.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QK3H5LN4MT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4203,8 +4223,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ylsoft.zdl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b412eec2-7467-43ce-81f6-030e9e69c864";
-				PROVISIONING_PROFILE_SPECIFIER = zhongdianlian.AdHoc;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4215,9 +4234,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "运维宝/运维宝.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QK3H5LN4MT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4249,8 +4268,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ylsoft.zdl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b412eec2-7467-43ce-81f6-030e9e69c864";
-				PROVISIONING_PROFILE_SPECIFIER = zhongdianlian.development;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

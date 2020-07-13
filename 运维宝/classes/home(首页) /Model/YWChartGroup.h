@@ -28,4 +28,6 @@
 /**储能*/
 @property (nonatomic, strong) NSArray *chart6;
 
+/**储能*/
+@property (nonatomic, strong) NSArray *chart10;
 @end
