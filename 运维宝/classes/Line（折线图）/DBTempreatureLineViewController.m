@@ -9,7 +9,6 @@
 #import "DBTempreatureLineViewController.h"
 #import "DBLineView.h"
 #import "YWHistoryTempCell.h"
-#import "YWMyDevice.h"
 #import "YWDeviceTemp.h"
 #import "JHChartHeader.h"
 #import "SYLJDatePickerView.h"
@@ -23,17 +22,17 @@
 
 
 //日期选择枚举
-typedef NS_ENUM(NSInteger, YXDatePickerMode) {
-    
-    YXDatePickerModeHour, //年月日时
-    YXDatePickerModeDay, //年月日
-    YXDatePickerModeWeek, //第几周
-    YXDatePickerModeMonth, //年月
-    YXDatePickerModeQuarter, //季度
-    YXDatePickerModeHalfYear, //半年
-    YXDatePickerModeYear, //年
-    
-};
+//typedef NS_ENUM(NSInteger, YXDatePickerMode) {
+//
+//    YXDatePickerModeHour, //年月日时
+//    YXDatePickerModeDay, //年月日
+//    YXDatePickerModeWeek, //第几周
+//    YXDatePickerModeMonth, //年月
+//    YXDatePickerModeQuarter, //季度
+//    YXDatePickerModeHalfYear, //半年
+//    YXDatePickerModeYear, //年
+//
+//};
 
 /**
  A上254，124，0    A下250，181，26
@@ -47,75 +46,108 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 {
     
     //pickerview的第一单元focus
-    NSInteger pick0compentfocusIndex;
-    NSInteger pick1compentfocusIndex;
-    NSInteger pick2compentfocusIndex;
-    NSInteger pick3compentfocusIndex;
+    //    NSInteger pick0compentfocusIndex;
+    //    NSInteger pick1compentfocusIndex;
+    //    NSInteger pick2compentfocusIndex;
+    //    NSInteger pick3compentfocusIndex;
     
     
-    
+    //当前时间角标 年月日周季度
+    NSInteger _currentYear;
+    NSInteger _yearIndex;
+    NSInteger _monthIndex;
+    NSInteger _dayIndex;
+    NSInteger _hourIndex;
+    NSInteger _weekIndex;
+    NSInteger _quarterIndex;
+    NSInteger _halfYearIndex;
 }
 
 
 /// 曲线图
 @property (nonatomic, strong) DBLineView *lineView;
-
-
 /**日期枚举*/
-@property (nonatomic,assign) YXDatePickerMode datePickerMode;
-/**状态监测图*/
-@property (nonatomic,weak) UIView *statusView;
+//@property (nonatomic,assign) YXDatePickerMode datePickerMode;
+
 /**温升历史曲线*/
 @property (nonatomic,weak) UIView *temHistoryView;
 /** 温度检测 */
 @property(nonatomic, strong) YWDeviceTemp *deviceTemp;
-/**温升历史*/
+/**底部温度*/
 @property (nonatomic,strong) UITableView *tempTableView;
 /**遮盖*/
 @property (weak, nonatomic) UIView *cover;
-/**遮盖*/
-@property (weak, nonatomic) UIView *avgeLine;
-/**遮盖*/
-@property (weak, nonatomic) UIView *weekLine;
-/**遮盖*/
-@property (weak, nonatomic) UIView *dataLine;
-/**温升历史*/
-@property (nonatomic,strong) UITableView *avgeTableView;
-/**平均 最大值 最小值*/
-@property (nonatomic,strong) NSArray *avgeArray;
-/**温升历史*/
-@property (nonatomic,strong) UITableView *timeTableView;
-/**时间类型数组  1小时 1天 1周 1月 3个月 6个月 1年*/
-@property (nonatomic,strong) NSArray *timeTypeArray;
-/**平均button*/
-@property (nonatomic,strong) UIButton *avgeBtn;
-/**时间类型button*/
-@property (nonatomic,strong) UIButton *timeTypeButton;
-/**日期button*/
-@property (nonatomic,strong) UIButton *yearBtn;
-
-/**平均值*/
-@property (nonatomic,copy) NSString *avgeStr;
-/**时间类型*/
-@property (nonatomic,copy) NSString *timeTypeStr;
-/**时间*/
-@property (nonatomic,copy) NSString *timeStr;
-
 
 /**温升历史*/
 @property (nonatomic,strong) YWChartGroup *chartData;
 
-
-
+/// 记录需要展示的温度曲线
 @property (nonatomic, strong) NSMutableArray *selectLineArray;
 //获取默认的时间（当前时间）
 @property (nonatomic, copy) NSString *defaultTimeStr;
 
-//    时间button显示的title
-@property (nonatomic, copy) NSString *timeTitleStr;
 
+
+/// 环境温度button
 @property (nonatomic, strong) UIButton *temButton;
 
+
+/// x坐标轴数组
+@property (nonatomic, strong) NSArray *xArray;
+
+
+#pragma mark -- 平均
+/**平均 最大值 最小值*/
+@property (nonatomic,strong) NSArray *avgeArray;
+/**参数数组 avg平均 max最大 min最小 */
+@property (nonatomic,strong) NSArray *avgeKeyArray;
+/**平均值*/
+@property (nonatomic,copy) NSString *avgeStr;
+/**平均button*/
+@property (nonatomic,strong) UIButton *avgeBtn;
+/**平均tableView*/
+@property (nonatomic,strong) UITableView *avgeTableView;
+/**遮盖*/
+@property (weak, nonatomic) UIView *avgeLine;
+/// 角标
+@property (nonatomic, assign) NSInteger avgeSelectIndex;
+
+#pragma mark -- 日期类型
+/**时间类型*/
+@property (nonatomic,copy) NSString *timeTypeStr;
+/**时间类型数组  1小时 1天 1周 1月 3个月 6个月 1年*/
+@property (nonatomic,strong) NSArray *timeTypeArray;
+/**时间类型button*/
+@property (nonatomic,strong) UIButton *timeTypeButton;
+/**遮盖*/
+@property (weak, nonatomic) UIView *timeTypeLine;
+/**时间类型tableView*/
+@property (nonatomic,strong) UITableView *timeTypeTableView;
+/// 角标
+@property (nonatomic, assign) NSInteger timeTypeSelectIndex;
+/// 时间类型  参数数组
+@property (nonatomic,retain) NSArray *timeTypeKeyArray;
+
+
+#pragma mark -- 日期
+/**日期button*/
+@property (nonatomic,strong) UIButton *timeButton;
+/**时间*/
+@property (nonatomic,copy) NSString *timeStr;
+/**遮盖*/
+@property (weak, nonatomic) UIView *timeLine;
+/// 日期选择器
+@property (nonatomic,retain) UIPickerView *datePickerView;
+
+
+//日期数组
+@property (nonatomic, strong) NSArray *yearArray;
+@property (nonatomic, strong) NSArray *monthArray;
+@property (nonatomic, strong) NSArray *dayArray;
+@property (nonatomic, strong) NSArray *hourArray;
+@property (nonatomic, strong) NSArray *weekArray;
+@property (nonatomic, strong) NSArray *halfYearArray;
+@property (nonatomic, strong) NSArray *quartArray;
 
 
 
@@ -129,10 +161,15 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     self.view.backgroundColor = [UIColor whiteColor];
     
     
-    [self initData];//此方法必须写在开始
-    //    趋势分析
-    //温升历史曲线
-    [self setupTopSelectButton];
+    
+    //配置默认初始值 （此方法必须写在开始）
+    [self configDefaultSetting];
+    
+    //获取曲线数据
+    [self getHistorycharData];
+    
+    //布局UI界面
+    [self createUI];
     
     //状态监测图(button)
     [self setupTempView];
@@ -146,14 +183,74 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     [self initPickerViewDate];
     [self createPickerView];
     
-    //获取数据
-    [self getHistorycharData];
+    
     
     //监听通知
     [YWNotificationCenter addObserver:self selector:@selector(avegeChange:) name:YWAvegeValueDidChangeNotification object:nil];
     
-    [YWNotificationCenter addObserver:self selector:@selector(weekChange:) name:YWWeekValueDidChangeNotification object:nil];
+    [YWNotificationCenter addObserver:self selector:@selector(timeTypeChange:) name:YWWeekValueDidChangeNotification object:nil];
     
+    
+}
+
+#pragma mark -- 获取当前时间
+- (void)getCurrentTime{
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    //    NSCalendar *gregorian = [NSCalendar currentCalendar];
+    
+    // 获取当前日期
+    NSDate* dt = [NSDate date];
+    // 指定获取指定年、月、日、时、分、秒的信息
+    unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay | NSCalendarUnitHour | kCFCalendarUnitQuarter | NSCalendarUnitWeekOfYear | NSCalendarUnitQuarter;
+    
+    // 获取不同时间字段的信息
+    NSDateComponents* comp = [gregorian components:unitFlags fromDate:dt];
+    
+    YWLog(@"%ld年%ld月%ld日%ld时%ld周%ld季度", comp.year, comp.month, comp.day, comp.hour, comp.weekOfYear, comp.quarter);
+    
+    _currentYear = comp.year;
+    _yearIndex = [self.yearArray indexOfObject:[NSString stringWithFormat:@"%ld", comp.year]];
+    _monthIndex = [self.monthArray indexOfObject:[NSString stringWithFormat:@"%.2ld", comp.month]];
+    _dayIndex = [self.dayArray indexOfObject:[NSString stringWithFormat:@"%.2ld", comp.day]];
+    _hourIndex = [self.hourArray indexOfObject:[NSString stringWithFormat:@"%.2ld", comp.hour]];
+    _weekIndex = [self.weekArray indexOfObject:[NSString stringWithFormat:@"%.2ld", comp.weekOfYear]];
+    if (_monthIndex >= 0 && _monthIndex < 3) {
+        _quarterIndex = 0;
+        _halfYearIndex = 0;
+        
+    }else if (_monthIndex >= 3 && _monthIndex < 6){
+        _quarterIndex = 1;
+        _halfYearIndex = 0;
+        
+    }else if (_monthIndex >= 6 && _monthIndex < 9){
+        _quarterIndex = 2;
+        _halfYearIndex = 1;
+        
+    }else{
+        _quarterIndex = 3;
+        _halfYearIndex = 1;
+    }
+    
+}
+
+
+#pragma mark -- 初始化数据
+- (void)configDefaultSetting{
+    //获取当前时间
+    [self getCurrentTime];
+    
+    self.selectIndex = 1;//时间的初始值在d上
+    //默认平均值
+    self.avgeSelectIndex = 0;
+    //默认当天
+    self.timeTypeSelectIndex = 1;
+    
+}
+
+- (void)setTimeTypeSelectIndex:(NSInteger)timeTypeSelectIndex{
+    _timeTypeSelectIndex = timeTypeSelectIndex;
+    self.lineView.xLabelTitleArray = self.xArray[timeTypeSelectIndex];
+
     
     
 }
@@ -163,23 +260,47 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 //发送请求获取曲线数据
 - (void)getHistorycharData{
     
-    
     //组装参数
     NSMutableDictionary *params = [NSMutableDictionary  dictionary];
     NSString *urlStr = @"/assets_history.php";
     NSString *url = [YWBaseURL stringByAppendingFormat:@"%@",urlStr];
     params[@"a_id"] = self.a_id;
-    //说明是哪条曲线
-    params[@"num"] = @"1,2,3,4,5,6,10";
-    //    params[@"num"] = @"1";
-    /**h小时 d天 w周 m月  hy半年 y年*/
-    params[@"type"] = @"h";
-    params[@"time"] = @"2020071315";
-    
-    
     /**avg平均 max最大 min最小*/
-    params[@"model"] = @"avg";
+    params[@"model"] = self.avgeKeyArray[self.avgeSelectIndex];
+    /**h小时 d天 w周 m月  hy半年 y年*/
+    params[@"type"] = self.timeTypeKeyArray[self.timeTypeSelectIndex];
     
+   if (self.timeTypeSelectIndex == 0) {//h
+       params[@"time"] = [NSString stringWithFormat:@"%@%@%@%@", [self currentYear], [self currentMonth], [self currentDay], [self currentHour]];
+    }
+    
+    if (self.timeTypeSelectIndex == 1) {//d
+        params[@"time"] = [NSString stringWithFormat:@"%@%@%@", [self currentYear], [self currentMonth], [self currentDay]];
+    }
+    
+    if (self.timeTypeSelectIndex == 2) {//w
+        params[@"time"] = [NSString stringWithFormat:@"%@%@", [self currentYear], [self currentWeek]];
+    }
+    
+    if (self.timeTypeSelectIndex == 3) {//m
+        params[@"time"] = [NSString stringWithFormat:@"%@%@", [self currentYear], [self currentMonth]];
+    }
+    
+    if (self.timeTypeSelectIndex == 4) {//q
+        params[@"time"] = [NSString stringWithFormat:@"%@%@", [self currentYear], [self currentQuart]];
+    }
+    
+    if (self.timeTypeSelectIndex == 5) {//hy
+        params[@"time"] = [NSString stringWithFormat:@"%@%@", [self currentYear], [self currentHalfYear]];
+    }
+    
+    if (self.timeTypeSelectIndex == 6) {//y
+        params[@"time"] = [NSString stringWithFormat:@"%@", [self currentYear]];
+    }
+    
+    
+    //说明是哪条曲线
+    params[@"num"] = [self.selectLineArray componentsJoinedByString:@","];
     
     [SVProgressHUD showWithStatus:@"正在加载"];
     
@@ -199,12 +320,8 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
             
             self.lineView.chartData = self.chartData;
             
-            [self.lineView setNeedsDisplay];
-            //            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            //
-            //                [SVProgressHUD dismiss];
-            //
-            //            });
+
+         
             
         }else{
             
@@ -217,6 +334,9 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
             
         }
         
+        [self.lineView setNeedsDisplay];
+
+        
     } failure:^(NSError *error) {
         
         YWLog(@"历史曲线--%@",error);
@@ -227,10 +347,6 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 
 
 
-#pragma mark -- 初始化数据
-- (void)initData{
-    self.selectIndex = 1;//时间的初始值在d上
-}
 
 //用户模型数据
 - (void)avegeChange:(NSNotification *)notifacation
@@ -241,124 +357,120 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     //用户昵称
     if (self.avgeStr) {
         
-        [self loadWebViewData];
+        [self getHistorycharData];
     }
     
 }
 
 #pragma mark -- 中间button的通知shi'jian
-- (void)weekChange:(NSNotification *)notifacation
+- (void)timeTypeChange:(NSNotification *)notifacation
 {
     //取出用户模型
     NSString *timeTypeStr = notifacation.userInfo[YWWeekValueDidChange];
     self.timeTypeStr  = timeTypeStr;
     
-    [self setThirdButtonTitle:self.yearBtn];
-    
-    
-    
-    NSString *str = [self.yearBtn.currentTitle stringByReplacingOccurrencesOfString:@"-"withString:@""];
-    self.timeStr = [str stringByReplacingOccurrencesOfString:@" " withString:@""];
-    //获取选中的时间
-    if ([[self.timekey objectAtIndex:self.selectIndex] isEqual:@"h"]){//小时
-        self.timeStr = [self.timeStr substringToIndex:10];;
-    } else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"d"]){//天
-        self.timeStr = [self.timeStr substringToIndex:8];
-    } else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"]) {//周
-        self.timeStr = [self.timeStr substringToIndex:6];
-    } else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"]){//月
-        self.timeStr = [self.timeStr substringToIndex:6];
-    }else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"]){//季度
-        self.timeStr = [self.timeStr substringToIndex:6];
-    }else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"hy"]){//半年
-        self.timeStr = [self.timeStr substringToIndex:6];
-    }else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"y"]){//年
-        self.timeStr = [self.timeStr substringToIndex:4];
-    }else{
-        
-    }
-    
-    
-    //用户昵称
-    if (self.timeTypeStr) {
-        [self loadWebViewData];
-    }
-    
+    //    [self setThirdButtonTitle:self.timeButton];
+    [self configTimeButtonTitle:self.timeButton];
+    //    NSString *str = [self.timeButton.currentTitle stringByReplacingOccurrencesOfString:@"-"withString:@""];
+    //    self.timeStr = [str stringByReplacingOccurrencesOfString:@" " withString:@""];
+    //    //获取选中的时间
+    //    if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual:@"h"]){//小时
+    //        self.timeStr = [self.timeStr substringToIndex:10];;
+    //    } else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"d"]){//天
+    //        self.timeStr = [self.timeStr substringToIndex:8];
+    //    } else  if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"w"]) {//周
+    //        self.timeStr = [self.timeStr substringToIndex:6];
+    //    } else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"m"]){//月
+    //        self.timeStr = [self.timeStr substringToIndex:6];
+    //    }else  if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"q"]){//季度
+    //        self.timeStr = [self.timeStr substringToIndex:6];
+    //    }else  if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"hy"]){//半年
+    //        self.timeStr = [self.timeStr substringToIndex:6];
+    //    }else  if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"y"]){//年
+    //        self.timeStr = [self.timeStr substringToIndex:4];
+    //    }else{
+    //
+    //    }
+    //
+    //    if (self.timeTypeStr) {
+    //        [self loadWebViewData];
+    //    }
+    //
     
 }
 
 
-- (void)setThirdButtonTitle:(UIButton *)button{
-    
-    NSString *titleStr = nil;
-    NSInteger year = [self currentComp].year;//年
-    NSInteger month = [self currentComp].month;//月
-    NSInteger day = [self currentComp].day;//日
-    NSInteger hour = [self currentComp].hour;//时
-    //    NSInteger minute = [self currentComp].minute;//分
-    //    NSInteger second = [self currentComp].second;//秒
-    //    NSInteger quarter = [self currentComp].quarter;//季度
-    NSInteger weekOfYear = [self currentComp].weekOfYear;//这一年的第几周
-    
-    NSInteger quarter = 01;//季度
-    if (month == 1 || month == 2 || month == 3) {
-        quarter = 01;
-    }else if (month == 4 || month == 5 || month == 6){
-        quarter = 02;
-    }else if (month == 7 || month == 8 || month == 9){
-        quarter = 03;
-    }else if (month == 10 || month == 11 || month == 12){
-        quarter = 04;
-    }else{
-        quarter = 01;
-    }
-    
-    
-    //获取选中的时间
-    if ([[self.timekey objectAtIndex:self.selectIndex] isEqual:@"h"]){//小时
-        titleStr = [NSString stringWithFormat:@"%ld-%.2ld-%.2ld %.2ld",year, month, day, hour];
-        
-    } else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"d"]){//天
-        titleStr = [NSString stringWithFormat:@"%ld-%.2ld-%.2ld",year, month, day];
-        
-    } else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"]) {//周
-        titleStr = [NSString stringWithFormat:@"%ld %.2ld",year, weekOfYear];
-        
-    } else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"]){//月
-        titleStr = [NSString stringWithFormat:@"%ld-%.2ld",year, month];
-        
-    }else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"]){//季度
-        
-        
-        titleStr = [NSString stringWithFormat:@"%ld %.2ld",year, quarter];
-        
-    }else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"hy"]){//半年
-        if (quarter == 1 || quarter == 2) {
-            
-            titleStr = [NSString stringWithFormat:@"%ld 01",year];
-            
-        }else if (quarter == 3 || quarter == 4){
-            titleStr = [NSString stringWithFormat:@"%ld 02",year];
-            
-        }else{
-            titleStr = [NSString stringWithFormat:@"%ld 01",year];
-            
-        }
-        
-    }else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"y"]){//年
-        titleStr = [NSString stringWithFormat:@"%ld",year];
-        
-    }else{
-        
-    }
-    
-    button.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [button setTitle:titleStr forState:UIControlStateNormal];
-    
-    
-    
-    
-}
+//- (void)setThirdButtonTitle:(UIButton *)button{
+//
+//    NSString *titleStr = nil;
+//    NSInteger year = [self currentComp].year;//年
+//    NSInteger month = [self currentComp].month;//月
+//    NSInteger day = [self currentComp].day;//日
+//    NSInteger hour = [self currentComp].hour;//时
+//    //    NSInteger minute = [self currentComp].minute;//分
+//    //    NSInteger second = [self currentComp].second;//秒
+//    //    NSInteger quarter = [self currentComp].quarter;//季度
+//    NSInteger weekOfYear = [self currentComp].weekOfYear;//这一年的第几周
+//
+//    NSInteger quarter = 01;//季度
+//    if (month == 1 || month == 2 || month == 3) {
+//        quarter = 01;
+//    }else if (month == 4 || month == 5 || month == 6){
+//        quarter = 02;
+//    }else if (month == 7 || month == 8 || month == 9){
+//        quarter = 03;
+//    }else if (month == 10 || month == 11 || month == 12){
+//        quarter = 04;
+//    }else{
+//        quarter = 01;
+//    }
+//
+//
+//    //获取选中的时间
+//    if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual:@"h"]){//小时
+//        titleStr = [NSString stringWithFormat:@"%ld-%.2ld-%.2ld %.2ld",year, month, day, hour];
+//
+//    } else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"d"]){//天
+//        titleStr = [NSString stringWithFormat:@"%ld-%.2ld-%.2ld",year, month, day];
+//
+//    } else  if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"w"]) {//周
+//        titleStr = [NSString stringWithFormat:@"%ld %.2ld",year, weekOfYear];
+//
+//    } else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"m"]){//月
+//        titleStr = [NSString stringWithFormat:@"%ld-%.2ld",year, month];
+//
+//    }else  if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"q"]){//季度
+//
+//
+//        titleStr = [NSString stringWithFormat:@"%ld %.2ld",year, quarter];
+//
+//    }else  if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"hy"]){//半年
+//        if (quarter == 1 || quarter == 2) {
+//
+//            titleStr = [NSString stringWithFormat:@"%ld 01",year];
+//
+//        }else if (quarter == 3 || quarter == 4){
+//            titleStr = [NSString stringWithFormat:@"%ld 02",year];
+//
+//        }else{
+//            titleStr = [NSString stringWithFormat:@"%ld 01",year];
+//
+//        }
+//
+//    }else  if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"y"]){//年
+//        titleStr = [NSString stringWithFormat:@"%ld",year];
+//
+//    }else{
+//
+//    }
+//
+//    button.titleLabel.textAlignment = NSTextAlignmentCenter;
+//    [button setTitle:titleStr forState:UIControlStateNormal];
+//
+//
+//
+//
+//}
 //发送请求获取网络数据
 - (void)getDeviceDetil
 {
@@ -401,7 +513,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 - (void)loadWebViewData{
     
     /**h小时 d天 w周 m月  hy半年 y年*/
-    NSString *type = [self.timekey objectAtIndex:self.selectIndex];
+    NSString *type = [self.timeTypeKeyArray objectAtIndex:self.selectIndex];
     
     if (type.length == 0) {
         type = @"h";
@@ -441,9 +553,8 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 }
 
 
-//温升历史曲线
-- (void)setupTopSelectButton
-{
+//布局UI界面
+- (void)createUI{
     //曲线图
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(10,0, SCREEN_WIDTH-20, SCREEN_HEIGHT*0.55)];
     bgView.userInteractionEnabled = YES;
@@ -482,7 +593,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     [average addTarget:self action:@selector(averageBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     CGFloat averageW = SCREEN_WIDTH*0.20;
     average.frame = CGRectMake(YWMargin, 5, averageW, dateBar.height - 5);
-    [average setTitle:@"平均" forState:UIControlStateNormal];
+    [average setTitle:self.avgeArray[self.avgeSelectIndex] forState:UIControlStateNormal];
     [average setTitle:@"确定" forState:UIControlStateSelected];
     UIView *line1 = [[UIView alloc] init];
     self.avgeLine = line1;
@@ -498,37 +609,37 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     self.timeTypeButton = timeTypeButton;
     timeTypeButton.titleLabel.font = FONT_13;
     [timeTypeButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [timeTypeButton addTarget:self action:@selector(weekBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [timeTypeButton addTarget:self action:@selector(timeTypeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     timeTypeButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
     timeTypeButton.layer.borderWidth = 0.8;
     timeTypeButton.frame = CGRectMake(YWMargin+5+averageW, 5, averageW, dateBar.height - 5);
-    [timeTypeButton setTitle:@"1天" forState:UIControlStateNormal];
+    [timeTypeButton setTitle:self.timeTypeArray[self.timeTypeSelectIndex] forState:UIControlStateNormal];
     [timeTypeButton setTitle:@"确定" forState:UIControlStateSelected];
-    UIView *line2 = [[UIView alloc] init];
-    self.weekLine = line2;
-    line2.backgroundColor = [UIColor lightGrayColor];
-    line2.frame = CGRectMake(0, 0,averageW, 5);
-    [timeTypeButton addSubview:line2];
+    UIView *timeTypeLine = [[UIView alloc] init];
+    self.timeTypeLine = timeTypeLine;
+    timeTypeLine.backgroundColor = [UIColor lightGrayColor];
+    timeTypeLine.frame = CGRectMake(0, 0,averageW, 5);
+    [timeTypeButton addSubview:timeTypeLine];
     [dateBar addSubview:timeTypeButton];
     
     //具体时间
-    UIButton *yearBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    yearBtn.titleLabel.font = FONT_13;
-    self.yearBtn = yearBtn;
-    [yearBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    yearBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    yearBtn.layer.borderWidth = 0.8;
+    UIButton *timeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    timeButton.titleLabel.font = FONT_13;
+    self.timeButton = timeButton;
+    [timeButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    timeButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    timeButton.layer.borderWidth = 0.8;
     CGFloat allBtnW = dateBar.width-averageW*2-YWMargin*2-10;
-    yearBtn.frame = CGRectMake(YWMargin+10+averageW*2, 5, allBtnW, dateBar.height - 5);
-    [yearBtn addTarget:self action:@selector(allYearClick:) forControlEvents:UIControlEventTouchUpInside];
-    [yearBtn setTitle:self.defaultTimeStr forState:UIControlStateNormal];
-    [yearBtn setTitle:@"确定" forState:UIControlStateSelected];
-    UIView *line3 = [[UIView alloc] init];
-    line3.backgroundColor = [UIColor lightGrayColor];
-    line3.frame = CGRectMake(0, 0, allBtnW, 5);
-    self.dataLine = line3;
-    [yearBtn addSubview:line3];
-    [dateBar addSubview:yearBtn];
+    timeButton.frame = CGRectMake(YWMargin+10+averageW*2, 5, allBtnW, dateBar.height - 5);
+    [timeButton addTarget:self action:@selector(timebuttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self configTimeButtonTitle:timeButton];
+    [timeButton setTitle:@"确定" forState:UIControlStateSelected];
+    UIView *timeLine = [[UIView alloc] init];
+    timeLine.backgroundColor = [UIColor lightGrayColor];
+    timeLine.frame = CGRectMake(0, 0, allBtnW, 5);
+    self.timeLine = timeLine;
+    [timeButton addSubview:timeLine];
+    [dateBar addSubview:timeButton];
     
     
     //曲线图
@@ -538,11 +649,11 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     CGRect rect = CGRectMake(0,lineChartY,SCREEN_WIDTH, bgView.height-lineChartY - temButtonHeight);
     
     DBLineView *lineView = [[DBLineView alloc] initWithFrame:rect];
-    NSMutableArray *xarray = [NSMutableArray array];
-    for (int i = 0; i<25; i++) {
-        [xarray addObject:[NSString stringWithFormat:@"%d", i]];
-    }
-    lineView.xLabelTitleArray = [NSArray arrayWithArray:xarray];
+//    NSMutableArray *xarray = [NSMutableArray array];
+//    for (int i = 0; i<25; i++) {
+//        [xarray addObject:[NSString stringWithFormat:@"%d", i]];
+//    }
+//    lineView.xLabelTitleArray = [NSArray arrayWithArray:xarray];
     [self.temHistoryView addSubview:lineView];
     
     _lineView = lineView;
@@ -589,8 +700,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
         }
         
     }
-    [self loadWebViewData];
-    
+    [self getHistorycharData];
     
 }
 
@@ -630,13 +740,13 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 {
     if (self.timeTypeButton.isSelected == YES) {//选中
         self.timeTypeButton.selected = NO;
-        self.weekLine.backgroundColor = [UIColor lightGrayColor];
-        self.timeTableView.hidden = YES;
+        self.timeTypeLine.backgroundColor = [UIColor lightGrayColor];
+        self.timeTypeTableView.hidden = YES;
         [self weekViewViewPop];
     }
-    if (self.yearBtn.selected == YES) {//选中年
-        self.yearBtn.selected = NO;
-        self.dataLine.backgroundColor = [UIColor lightGrayColor];
+    if (self.timeButton.selected == YES) {//选中年
+        self.timeButton.selected = NO;
+        self.timeLine.backgroundColor = [UIColor lightGrayColor];
         self.datePickerView.hidden = YES;
     }
     
@@ -688,8 +798,8 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     }
     
 }
-#pragma mark -- 时间点击事项
-- (void)weekBtnClick:(UIButton *)btn
+#pragma mark -- 时间类型点击事项
+- (void)timeTypeButtonClick:(UIButton *)btn
 {
     if (self.avgeBtn.isSelected == YES) {//选中
         self.avgeBtn.selected = NO;
@@ -699,9 +809,9 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
         
     }
     
-    if (self.yearBtn.selected == YES) {//选中年
-        self.yearBtn.selected = NO;
-        self.dataLine.backgroundColor = [UIColor lightGrayColor];
+    if (self.timeButton.selected == YES) {//选中年
+        self.timeButton.selected = NO;
+        self.timeLine.backgroundColor = [UIColor lightGrayColor];
         self.datePickerView.hidden = YES;
     }
     
@@ -713,11 +823,11 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     UIButton *button = (UIButton *)btn;
     button.selected = !button.selected;
     if (button.isSelected == YES) {//选中
-        self.weekLine.backgroundColor = YWColor(28, 144, 231);
-        self.timeTableView.hidden = NO;
+        self.timeTypeLine.backgroundColor = YWColor(28, 144, 231);
+        self.timeTypeTableView.hidden = NO;
     }else{
-        self.weekLine.backgroundColor = [UIColor lightGrayColor];
-        self.timeTableView.hidden = YES;
+        self.timeTypeLine.backgroundColor = [UIColor lightGrayColor];
+        self.timeTypeTableView.hidden = YES;
     }
     [self weekViewViewPop];
 }
@@ -735,31 +845,31 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
         cover.alpha = 0;
         [cover addTarget:self action:@selector(weekViewViewPop) forControlEvents:UIControlEventTouchUpInside];
         self.cover = cover;
-        self.timeTableView.hidden = NO;
+        self.timeTypeTableView.hidden = NO;
         // 2.添加View到最中间
-        [self.view bringSubviewToFront:self.timeTableView];
-        [self.view insertSubview:cover belowSubview:self.timeTableView];
+        [self.view bringSubviewToFront:self.timeTypeTableView];
+        [self.view insertSubview:cover belowSubview:self.timeTypeTableView];
         
         [UIView animateWithDuration:duration animations:^{
             
-            [self.view addSubview:self.timeTableView];
+            [self.view addSubview:self.timeTypeTableView];
             
         }];
     } else {
         
         [self.cover removeFromSuperview];
-        self.timeTableView.hidden = YES;
-        [self.timeTableView removeFromSuperview];
+        self.timeTypeTableView.hidden = YES;
+        [self.timeTypeTableView removeFromSuperview];
         self.cover = nil;
     }
 }
 
 #pragma mark -- 选择日期点击事项
-- (void)allYearClick:(UIButton *)btn{
+- (void)timebuttonClick:(UIButton *)btn{
     if (self.timeTypeButton.isSelected == YES) {//选中
         self.timeTypeButton.selected = NO;
-        self.weekLine.backgroundColor = [UIColor lightGrayColor];
-        self.timeTableView.hidden = YES;
+        self.timeTypeLine.backgroundColor = [UIColor lightGrayColor];
+        self.timeTypeTableView.hidden = YES;
         [self weekViewViewPop];
         
     }
@@ -771,37 +881,39 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     }
     
     UIButton *button = (UIButton *)btn;
-    [self setTimeButtonInfo: button];
+    [self configTimeButtonTitle: button];
     NSString *str = [button.currentTitle stringByReplacingOccurrencesOfString:@"-"withString:@""];
     self.timeStr = [str stringByReplacingOccurrencesOfString:@" " withString:@""];
     //获取选中的时间
-    if ([[self.timekey objectAtIndex:self.selectIndex] isEqual:@"h"]){//小时
+    if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual:@"h"]){//小时
         self.timeStr = [self.timeStr substringToIndex:10];;
-    } else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"d"]){//天
+    } else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"d"]){//天
         self.timeStr = [self.timeStr substringToIndex:8];
-    } else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"]) {//周
+    } else  if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"w"]) {//周
         self.timeStr = [self.timeStr substringToIndex:6];
-    } else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"]){//月
+    } else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"m"]){//月
         self.timeStr = [self.timeStr substringToIndex:6];
-    }else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"]){//季度
+    }else  if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"q"]){//季度
         self.timeStr = [self.timeStr substringToIndex:6];
-    }else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"hy"]){//半年
+    }else  if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"hy"]){//半年
         self.timeStr = [self.timeStr substringToIndex:6];
-    }else  if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"y"]){//年
+    }else  if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"y"]){//年
         self.timeStr = [self.timeStr substringToIndex:4];
     }else{
         
     }
     
-    [self loadWebViewData];
     
     button.selected = !button.selected;
     if (button.isSelected == YES) {//选中
-        self.dataLine.backgroundColor = YWColor(28, 144, 231);
+        self.timeLine.backgroundColor = YWColor(28, 144, 231);
         self.datePickerView.hidden = NO;
     }else{
-        self.dataLine.backgroundColor = [UIColor lightGrayColor];
+        self.timeLine.backgroundColor = [UIColor lightGrayColor];
         self.datePickerView.hidden = YES;
+        
+        [self getHistorycharData];
+        
     }
 }
 
@@ -828,7 +940,6 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     
     //温度的状态
     self.temperature = [[NSMutableArray alloc] initWithObjects:@"",@"",@"",@"",@"",@"",@"",@"",nil];
-    NSLog(@"self.dataserver %@",self.dataserver);
 }
 
 
@@ -836,17 +947,16 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 
 - (void)initSectionThirdDate{
     [self dataserverinit];
-    self.timeArray = [NSMutableArray arrayWithArray:self.timeTypeArray];
     
 }
 
 //初始化日期选择器数据
 - (void)initpickerViewCompontSelectIndex
 {
-    self.pick0compentfocusIndex = 0;
-    self.pick1compentfocusIndex = 0;
-    self.pick2compentfocusIndex = 0;
-    self.pick3compentfocusIndex = 0;
+    //    self.pick0compentfocusIndex = 0;
+    //    self.pick1compentfocusIndex = 0;
+    //    self.pick2compentfocusIndex = 0;
+    //    self.pick3compentfocusIndex = 0;
 }
 
 - (void)initPickerViewDate
@@ -864,491 +974,141 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     [dateFormater setDateFormat:@"YYYY"];
     year = [[dateFormater stringFromDate:today] intValue];
     
-    self.pickviewYearArray = [[NSMutableArray alloc] init];
-    
-    for (int i=year;i>2009;i--) {
-        NSString *yearStr = [NSString stringWithFormat:@"%d", i];
-        [self.pickviewYearArray addObject:yearStr];
-    }
     
 }
 
--  (void)createPickerView
-{
-    CGFloat pickerY = CGRectGetMaxY(self.yearBtn.frame)+35;
-    self.datePickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0,pickerY, SCREEN_WIDTH,300)];
-    self.datePickerView.backgroundColor = BGCLOLOR;
-    self.datePickerView.dataSource = self;
-    self.datePickerView.delegate = self;
-    self.datePickerView.showsSelectionIndicator = YES;
-    self.datePickerMode = YXDatePickerModeHour;
-    self.datePickerView.hidden = YES;
-    [self.view addSubview:self.datePickerView];
+- (NSString *)currentYear{
+    return self.yearArray[_yearIndex];
 }
 
-- (void)setTimeButtonInfo: (UIButton *)button
-{
-    if ([self.pickviewYearArray count]>0){
-        NSString *year = [[self.pickviewYearArray objectAtIndex:self.pick0compentfocusIndex] substringToIndex:4];
-        
-        NSString *timeStr;
-        if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"h"]) {//一小时
-            timeStr = [NSString stringWithFormat:@"%@-%.2ld-%.2ld %.2ld",year,self.pick1compentfocusIndex+1,self.pick2compentfocusIndex+1, self.pick3compentfocusIndex];
-            
-        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"y"]) {//一年
-            timeStr = [NSString stringWithFormat:@"%@",year];  //年的时标显示
-        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"d"]) {//一天
-            timeStr = [NSString stringWithFormat:@"%@-%.2ld-%.2ld",year,
-                       self.pick1compentfocusIndex+1,
-                       self.pick2compentfocusIndex+1];  //天的时标显示
-            
-        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"]) {//一周
-            timeStr = [NSString stringWithFormat:@"%@ %.2ld" ,year,
-                       self.pick1compentfocusIndex+1];  //周的时标显示
-            
-        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"]) {//一月
-            timeStr = [NSString stringWithFormat:@"%@-%.2ld",year,
-                       self.pick1compentfocusIndex+1];  //月的时标显示
-            
-        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"]) {//一季度
-            NSString *str;
-            switch (self.pick1compentfocusIndex) {
-                case 0:
-                    str = @"01";
-                    break;
-                case 1:
-                    str = @"02";
-                    break;
-                case 2:
-                    str = @"03";
-                    break;
-                default:
-                    str = @"04";
-                    break;
-            }
-            timeStr = [NSString stringWithFormat:@"%@ %@",year, str];
-            
-        }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"hy"]) {//六个月
-            if (self.pick1compentfocusIndex ==0) {
-                timeStr = [NSString stringWithFormat:@"%@ 01",year];
-            }
-            else {
-                timeStr = [NSString stringWithFormat:@"%@ 02",year];
-            }
-            
-        }
-        button.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [button setTitle:timeStr forState:UIControlStateNormal];
-    }
+- (NSString *)currentMonth{
+    return self.monthArray[_monthIndex];
 }
 
+- (NSString *)currentDay{
+    return self.dayArray[_dayIndex];
+}
 
+- (NSString *)currentHour{
+    return self.hourArray[_hourIndex];
+}
 
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
-{
-    CGFloat componentWidth = 0.0;
+- (NSString *)currentWeek{
+    return self.weekArray[_weekIndex];
+}
+
+- (NSString *)currentQuart{
+    return self.quartArray[_quarterIndex];
+}
+
+- (NSString *)currentHalfYear{
+    return self.halfYearArray[_halfYearIndex];
+}
+
+#pragma mark -- 设置时间button 标题
+- (void)configTimeButtonTitle: (UIButton *)button{
     
-    if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"h"]) {
-        
-        componentWidth =75;
-    }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"y"]) {
-        
-        componentWidth =300;
-    }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"d"]) {
-        
-        componentWidth =100;
-    }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"hy"]
-              ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"]
-              ) {
-        componentWidth = 150;
-    }else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"]
-              ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"]
-              ) {
-        componentWidth =150;
-    }
-    else {
-        
-    }
-    return componentWidth;
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-{
-    return 35.0;
-}
-//指定每个表盘上有几行数据
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    NSInteger count = 0;
-    if (self.pickviewYearArray==nil) {
-        return 0;
-    }
-    if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"h"])
-    {
-        //年
-        if (component == 0) {
-            count = [self.pickviewYearArray count];
-        }
-        else if(component==1){//月
-            count = self.pickviewMonthArray.count;
-        }
-        else if(component ==2){//日，初始月分在1月份
-            if (self.pick1compentfocusIndex +1==1
-                ||self.pick1compentfocusIndex+1 ==3
-                ||self.pick1compentfocusIndex +1==5
-                ||self.pick1compentfocusIndex +1==7
-                ||self.pick1compentfocusIndex +1==8
-                ||self.pick1compentfocusIndex +1==10
-                ||self.pick1compentfocusIndex +1==12) {
-                count = 31;
-            }
-            else if(self.pick1compentfocusIndex +1==2){
-                NSArray *yd = [(NSString *)[self.pickviewYearArray objectAtIndex:self.pick0compentfocusIndex] componentsSeparatedByString:@"年"];
-                NSInteger y = [(NSString *)[yd objectAtIndex:0] intValue];
-                if(y%4==0 && y%100!=0)
-                    count = 29;
-                else
-                    count = 28;
-            }
-            else {
-                count = 30;
-            }
-        }
-        else {//时
-            count =24;
-        }
-    }
-    else if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"y"]){
-        count = [self.pickviewYearArray count];
-    }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"d"])
-    {
-        //年
-        if (component == 0) {
-            count = [self.pickviewYearArray count];
-        }
-        else if(component==1){//月
-            count = self.pickviewMonthArray.count;
-        }
-        else{//日，初始月分在1月份
-            if (self.pick1compentfocusIndex +1==1
-                ||self.pick1compentfocusIndex+1 ==3
-                ||self.pick1compentfocusIndex +1==5
-                ||self.pick1compentfocusIndex +1==7
-                ||self.pick1compentfocusIndex +1==8
-                ||self.pick1compentfocusIndex +1==10
-                ||self.pick1compentfocusIndex +1==12) {
-                count = 31;
-            }
-            else if(self.pick1compentfocusIndex +1==2){
-                NSArray *yd = [(NSString *)[self.pickviewYearArray objectAtIndex:self.pick0compentfocusIndex] componentsSeparatedByString:@"年"];
-                NSInteger y = [(NSString *)[yd objectAtIndex:0] intValue];
-                if(y%4==0 && y%100!=0)
-                    count = 29;
-                else
-                    count = 28;
-            }
-            else {
-                count = 30;
-            }
-        }
-    }
-    else if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"]){
-        //年
-        if (component == 0) {
-            count = [self.pickviewYearArray count];
-        }
-        else if(component==1){//周
-            count = 52;
-        }
-    }
-    else if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"]){
-        //年
-        if (component == 0) {
-            count = [self.pickviewYearArray count];
-        }
-        else if(component==1){//月
-            count = self.pickviewMonthArray.count;
-        }
-    }
-    else if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"]){
-        //年
-        if (component == 0) {
-            count = [self.pickviewYearArray count];
-        }
-        else if(component==1){//季度
-            count = 4;
-        }
-    }
-    else if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"hy"]){
-        //年
-        if (component == 0) {
-            count = [self.pickviewYearArray count];
-        }
-        else if(component==1){//上半年
-            count = 2;
-        }
+    if (self.timeTypeSelectIndex == 0) {//h
+        NSString *h = [NSString stringWithFormat:@"%@-%@-%@ %@:00", [self currentYear], [self currentMonth], [self currentDay], [self currentHour]];
+        [button setTitle:h forState:UIControlStateNormal];
     }
     
-    return count;
-}
-//指定pickerview有几个表盘
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    NSInteger number = 0;
-    if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"h"])
-    {
-        number = 4;
+    if (self.timeTypeSelectIndex == 1) {//d
+        NSString *d = [NSString stringWithFormat:@"%@-%@-%@", [self currentYear], [self currentMonth], [self currentDay]];
+        [button setTitle:d forState:UIControlStateNormal];
     }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"y"])
-    {
-        number = 1;
-    }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"d"])
-    {
-        number = 3;
-    }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"]
-             ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"]
-             ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"]
-             ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"hy"])
-    {
-        number = 2;
-    }
-    return number;
-    return 2;
-}
-
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row
-          forComponent:(NSInteger)component reusingView:(UIView *)view{
     
-    YXCustomDateView *dateView = [[YXCustomDateView alloc] initWithFrame:CGRectMake(0, 0, 75, 40)];
-    //cView.fontdisplay=[GlobalInfo getFont:18];
-    if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"h"])
-    {
-        switch (component)
-        {
-            case 0://year
-                dateView.titleStr = [self.pickviewYearArray objectAtIndex:row];
-                break;
-            case 1://month
-                dateView.titleStr = [self.pickviewMonthArray objectAtIndex:row];
-                break;
-            case 2://day
-                if (row == 0)
-                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%d", ""),row+1];
-                else if (row == 1)
-                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%d", ""),row+1];
-                else if (row == 2)
-                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%d", ""),row+1];
-                else
-                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%d", ""),row+1];
-                break;
-            case 3://h
-                dateView.titleStr = [NSString stringWithFormat:@"%ld:00",(long)row];
-                break;
-            default:
-                break;
-        }
+    if (self.timeTypeSelectIndex == 2) {//w
+        NSString *w = [NSString stringWithFormat:@"%@年第%@周", [self currentYear], [self currentWeek]];
+        [button setTitle:w forState:UIControlStateNormal];
+        
     }
-    else if([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"y"]){
-        dateView.titleStr = [self.pickviewYearArray objectAtIndex:row];
+    
+    if (self.timeTypeSelectIndex == 3) {//m
+        NSString *m = [NSString stringWithFormat:@"%@年%@月", [self currentYear], [self currentMonth]];
+        [button setTitle:m forState:UIControlStateNormal];
+        
     }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"d"])
-    {
-        switch (component)
-        {
-            case 0://year
-                dateView.titleStr = [self.pickviewYearArray objectAtIndex:row];
-                break;
-            case 1://month
-                dateView.titleStr = [self.pickviewMonthArray objectAtIndex:row];
-                break;
-            case 2://day
-                if (row == 0)
-                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%dst", ""),row+1];
-                else if (row == 1)
-                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%dnd", ""),row+1];
-                else if (row == 2)
-                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%drd", ""),row+1];
-                else
-                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%dth", ""),row+1];
-                break;
-            default:
-                break;
-        }
+    
+    if (self.timeTypeSelectIndex == 4) {//q
+        NSString *q = [NSString stringWithFormat:@"%@年第%@季度", [self currentYear], [self currentQuart]];
+        [button setTitle:q forState:UIControlStateNormal];
     }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"])
-    {
-        switch (component)
-        {
-            case 0://year
-                dateView.titleStr = [self.pickviewYearArray objectAtIndex:row];
-                break;
-            case 1://week
-                dateView.frame = CGRectMake(0, 0, 150,40);
-                dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"第%d周", ""),row+1];
-                break;
-            default:
-                break;
-        }
+    
+    if (self.timeTypeSelectIndex == 5) {//hy
+        
+        NSString *str = ([[self currentHalfYear] intValue] > 0) ? @"下半年" : @"下半年";
+        NSString *hy = [NSString stringWithFormat:@"%@年%@", [self currentYear], str];
+        [button setTitle:hy forState:UIControlStateNormal];
+        
     }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"])
-    {
-        switch (component)
-        {
-            case 0://year
-                dateView.titleStr = [self.pickviewYearArray objectAtIndex:row];
-                break;
-            case 1://month
-                dateView.titleStr = [self.pickviewMonthArray objectAtIndex:row];
-                break;
-            default:
-                break;
-        }
+    
+    if (self.timeTypeSelectIndex == 6) {//y
+        NSString *y = [NSString stringWithFormat:@"%@年", [self currentYear]];
+        [button setTitle:y forState:UIControlStateNormal];
     }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"])
-    {
-        switch (component)
-        {
-            case 0://year
-                dateView.titleStr = [self.pickviewYearArray objectAtIndex:row];
-                break;
-            case 1://quarter
-            {
-                NSString *str =nil;
-                if (row ==0) {
-                    str = NSLocalizedString(@"第一季度", "");
-                }
-                else if (row ==1)
-                {
-                    str = NSLocalizedString(@"第二季度", "");
-                }
-                else if (row ==2)
-                {
-                    str = NSLocalizedString(@"第三季度", "");
-                }
-                else
-                {
-                    str = NSLocalizedString(@"第四季度", "");
-                }
-                dateView.frame = CGRectMake(0, 0, 150,40);
-                dateView.titleStr = str;
-                
-            }
-                break;
-            default:
-                break;
-        }
-    }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"hy"])
-    {
-        switch (component)
-        {
-            case 0://year
-                dateView.titleStr = [self.pickviewYearArray objectAtIndex:row];
-                break;
-            case 1://半年
-            {
-                NSString *str =nil;
-                if (row ==0) {
-                    str = NSLocalizedString(@"上半年", "");
-                }
-                else {
-                    str = NSLocalizedString(@"下半年", "");
-                }
-                dateView.frame = CGRectMake(0, 0, 150,40);
-                dateView.titleStr = str;
-            }
-                break;
-            default:
-                break;
-        }
-    }
-    return dateView;
+    
+    
+    
+    
+    
+    //    if ([self.yearArray count]>0){
+    //        NSString *year = [[self.yearArray objectAtIndex:self.pick0compentfocusIndex] substringToIndex:4];
+    //
+    //        NSString *timeStr;
+    //        if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"h"]) {//一小时
+    //            timeStr = [NSString stringWithFormat:@"%@-%.2ld-%.2ld %.2ld",year,self.pick1compentfocusIndex+1,self.pick2compentfocusIndex+1, self.pick3compentfocusIndex];
+    //
+    //        }else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"y"]) {//一年
+    //            timeStr = [NSString stringWithFormat:@"%@",year];  //年的时标显示
+    //        }else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"d"]) {//一天
+    //            timeStr = [NSString stringWithFormat:@"%@-%.2ld-%.2ld",year,
+    //                       self.pick1compentfocusIndex+1,
+    //                       self.pick2compentfocusIndex+1];  //天的时标显示
+    //
+    //        }else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"w"]) {//一周
+    //            timeStr = [NSString stringWithFormat:@"%@ %.2ld" ,year,
+    //                       self.pick1compentfocusIndex+1];  //周的时标显示
+    //
+    //        }else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"m"]) {//一月
+    //            timeStr = [NSString stringWithFormat:@"%@-%.2ld",year,
+    //                       self.pick1compentfocusIndex+1];  //月的时标显示
+    //
+    //        }else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"q"]) {//一季度
+    //            NSString *str;
+    //            switch (self.pick1compentfocusIndex) {
+    //                case 0:
+    //                    str = @"01";
+    //                    break;
+    //                case 1:
+    //                    str = @"02";
+    //                    break;
+    //                case 2:
+    //                    str = @"03";
+    //                    break;
+    //                default:
+    //                    str = @"04";
+    //                    break;
+    //            }
+    //            timeStr = [NSString stringWithFormat:@"%@ %@",year, str];
+    //
+    //        }else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"hy"]) {//六个月
+    //            if (self.pick1compentfocusIndex ==0) {
+    //                timeStr = [NSString stringWithFormat:@"%@ 01",year];
+    //            }
+    //            else {
+    //                timeStr = [NSString stringWithFormat:@"%@ 02",year];
+    //            }
+    //
+    //        }
+    //        button.titleLabel.textAlignment = NSTextAlignmentCenter;
+    //        [button setTitle:timeStr forState:UIControlStateNormal];
+    //    }
 }
 
-- (void)pickerView:(UIPickerView *)pickerView
-      didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"h"])
-    {
-        if (component ==0) {//年
-            self.pick0compentfocusIndex = row;
-            self.pick1compentfocusIndex  = 0;
-            [self.datePickerView  reloadComponent:1];//重新load日
-            [self.datePickerView selectRow:self.pick1compentfocusIndex inComponent:1 animated:YES];
-            
-        }
-        else if(component ==1)
-        {
-            self.pick1compentfocusIndex = row;
-            self.pick2compentfocusIndex  = 0;
-            [self.datePickerView  reloadComponent:2];//重新load日
-            [self.datePickerView selectRow:self.pick2compentfocusIndex inComponent:2 animated:YES];
-        }
-        else if(component ==2){//日
-            self.pick2compentfocusIndex = row;
-        }
-        else if(component ==3){//小时
-            self.pick3compentfocusIndex = row;
-        }
-        
-    }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"y"])
-    {
-        self.pick0compentfocusIndex = row;
-        //[self.tempTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-    }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"d"])
-    {
-        if (component ==0) {//年
-            self.pick0compentfocusIndex = row;
-            self.pick1compentfocusIndex  = 0;
-            [self.datePickerView  reloadComponent:1];//重新load日
-            [self.datePickerView selectRow:self.pick1compentfocusIndex inComponent:1 animated:YES];
-            
-        }
-        else if(component ==1)
-        {
-            self.pick1compentfocusIndex = row;
-            self.pick2compentfocusIndex  = 0;
-            [self.datePickerView  reloadComponent:2];//重新load日
-            [self.datePickerView selectRow:self.pick2compentfocusIndex inComponent:2 animated:YES];
-        }
-        else{//日
-            self.pick2compentfocusIndex = row;
-        }
-        //[self.table reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
-        
-    }
-    else if ([[self.timekey objectAtIndex:self.selectIndex] isEqual: @"w"]
-             ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"m"]
-             ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"q"]
-             ||[[self.timekey objectAtIndex:self.selectIndex] isEqual: @"hy"])
-    {
-        if (component ==0) {//年
-            self.pick0compentfocusIndex = row;
-        }
-        else//week
-        {
-            self.pick1compentfocusIndex = row;
-        }
-        
-        
-    }
-}
 
 
 #pragma mark ---------------------------------------------initloading----------------------------------------------
-
-- (void)removeActiveIndictor:(NSString *)aletmsg
-{
-    
-    
-}
 
 - (NSString*) getTimeButtonBG:(NSString *)title
 {
@@ -1381,37 +1141,6 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     return timeButtonBg;
 }
 
-#pragma mark buttonclick
--(void)timebuttonClick:(id)obj
-{
-    UIButton *bt =(UIButton *)obj;
-    NSInteger tag =bt.tag -500;
-    if (tag == self.selectIndex) {//和之前相等
-        return;
-    }else {
-        [obj setBackgroundImage:[UIImage imageNamed:[self getTimeButtonBG:bt.titleLabel.text]] forState:UIControlStateNormal];
-        [obj setTitleColor:YWColor(51,71,114)  forState:UIControlStateNormal];
-        bt.titleLabel.shadowColor = [UIColor clearColor];
-        bt.titleLabel.shadowOffset = CGSizeMake(0, 0);
-        
-        UIButton *preBtn = (UIButton *)[self.timeArray objectAtIndex:self.selectIndex];
-        [preBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-        [preBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        preBtn.titleLabel.shadowColor = [UIColor grayColor];
-        preBtn.titleLabel.shadowOffset = CGSizeMake(1, 1);
-        
-        self.selectIndex = tag;
-        
-        
-        if (self.bg.hidden)
-        {
-            self.bg.hidden = NO;
-            [self.loading startAnimating];
-        }
-    }
-    
-    
-}
 
 
 #pragma mark - Table view data source
@@ -1422,10 +1151,9 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
     if (tableView == self.avgeTableView) {
         return self.avgeArray.count;
-    } else if (tableView == self.timeTableView) {
+    } else if (tableView == self.timeTypeTableView) {
         return self.timeTypeArray.count;
     }
     return 4;
@@ -1446,7 +1174,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
         return cell;
         
         
-    } else if (tableView == self.timeTableView) {
+    } else if (tableView == self.timeTypeTableView) {
         
         //创建cell
         YXButtonViewCell *cell = [YXButtonViewCell cellWithTableView:tableView];
@@ -1480,7 +1208,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
                 }
             }
             
-            [self loadWebViewData];
+            [self getHistorycharData];
         };
         
         //调用B回调方法
@@ -1499,8 +1227,8 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
                 }else{
                 }
             }
-            [self loadWebViewData];
-            
+            [self getHistorycharData];
+
         };
         
         //调用C回调方法
@@ -1519,8 +1247,8 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
                 }
                 
             }
-            [self loadWebViewData];
-            
+            [self getHistorycharData];
+
         };
     } else if (indexPath.row == 2){
         //调用A回调方法
@@ -1540,8 +1268,8 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
                 }
                 
             }
-            [self loadWebViewData];
-            
+            [self getHistorycharData];
+
         };
         
         //调用B回调方法
@@ -1559,8 +1287,8 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
                 }else{
                 }
             }
-            [self loadWebViewData];
-            
+            [self getHistorycharData];
+
         };
         
         //调用C回调方法
@@ -1579,8 +1307,8 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
                 }else{
                 }
             }
-            [self loadWebViewData];
-            
+            [self getHistorycharData];
+
         };
     }
     //设置数据
@@ -1642,7 +1370,7 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //cell的高度
-    if (tableView == self.avgeTableView ||tableView == self.timeTableView) {
+    if (tableView == self.avgeTableView ||tableView == self.timeTypeTableView) {
         return 30;
     } else{
         if (indexPath.row == 0) {
@@ -1656,6 +1384,9 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.avgeTableView) {//平均值
+        
+        self.avgeSelectIndex = indexPath.row;
+        
         self.avgeBtn.selected = !self.avgeBtn.selected;
         if (self.avgeBtn.isSelected == YES) {//选中
             self.avgeLine.backgroundColor = YWColor(28, 144, 231);
@@ -1674,15 +1405,19 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
         //平均值改变
         [YWNotificationCenter postNotificationName:YWAvegeValueDidChangeNotification object:self userInfo:@{YWAvegeValueDidChange:avgeStr}];
         
+        [self getHistorycharData];
         
-    } else if (tableView == self.timeTableView)  {//日期
+    } else if (tableView == self.timeTypeTableView)  {//日期
+        
+        self.timeTypeSelectIndex = indexPath.row;
+        
         self.timeTypeButton.selected = !self.timeTypeButton.selected;
         if (self.timeTypeButton.isSelected == YES) {//选中
-            self.weekLine.backgroundColor = YWColor(28, 144, 231);
-            self.timeTableView.hidden = NO;
+            self.timeTypeLine.backgroundColor = YWColor(28, 144, 231);
+            self.timeTypeTableView.hidden = NO;
         }else{
-            self.weekLine.backgroundColor = [UIColor lightGrayColor];
-            self.timeTableView.hidden = YES;
+            self.timeTypeLine.backgroundColor = [UIColor lightGrayColor];
+            self.timeTypeTableView.hidden = YES;
         }
         
         NSString *weakStr = self.timeTypeArray[indexPath.row];
@@ -1698,76 +1433,38 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
         //创建pickView
         [self createPickerView];
         
-        //日期选择器模式
-        //                if (indexPath.row == 0) {
-        //                    self.datePickerMode = YXDatePickerModeHour;
-        //                } else  if (indexPath.row == 1){
-        //                    self.datePickerMode = YXDatePickerModeDay;
-        //                }else  if (indexPath.row == 2){
-        //                    self.datePickerMode = YXDatePickerModeWeek;
-        //                }else  if (indexPath.row == 3){
-        //                    self.datePickerMode = YXDatePickerModeMonth;
-        //                }else  if (indexPath.row == 4){
-        //                    self.datePickerMode = YXDatePickerModeQuarter;
-        //                }else  if (indexPath.row == 5){
-        //                    self.datePickerMode = YXDatePickerModeHalfYear;
-        //                }else if (indexPath.row == 6){
-        //                    self.datePickerMode = YXDatePickerModeYear;
-        //                }
+        
         
         //日期改变
         [YWNotificationCenter postNotificationName:YWWeekValueDidChangeNotification object:self userInfo:@{YWWeekValueDidChange:weakStr}];
-    }
-    
-}
-
-- (UITableView *)avgeTableView
-{
-    CGFloat averageW = SCREEN_WIDTH*0.20;
-    
-    if (!_avgeTableView) {
-        _avgeTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _avgeTableView.delegate = self;
-        _avgeTableView.hidden = YES;
-        _avgeTableView.dataSource = self;
-        _avgeTableView.scrollEnabled = NO;
-        _avgeTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _avgeTableView.backgroundColor = BGCLOLOR;
-        _avgeTableView.showsVerticalScrollIndicator = NO;
-        [self.view addSubview:_avgeTableView];
-        _avgeTableView.frame = CGRectMake(20,68,averageW,90);
         
+        [self getHistorycharData];
     }
-    return _avgeTableView;
-}
-
-- (NSArray *)avgeArray
-{
-    if (!_avgeArray) {
-        _avgeArray = @[@"平均",@"最大值",@"最小值"];
-    }
-    return _avgeArray;
+    
 }
 
 
 
-- (UITableView *)timeTableView
+
+
+
+- (UITableView *)timeTypeTableView
 {
     CGFloat averageW = SCREEN_WIDTH*0.20;
     
-    if (!_timeTableView) {
-        _timeTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _timeTableView.delegate = self;
-        _timeTableView.hidden = YES;
-        _timeTableView.dataSource = self;
-        _timeTableView.scrollEnabled = NO;
-        _timeTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _timeTableView.backgroundColor = BGCLOLOR;
-        _timeTableView.showsVerticalScrollIndicator = NO;
-        [self.view addSubview:_timeTableView];
-        _timeTableView.frame = CGRectMake(20 + averageW + 5,68,averageW,210);
+    if (!_timeTypeTableView) {
+        _timeTypeTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _timeTypeTableView.delegate = self;
+        _timeTypeTableView.hidden = YES;
+        _timeTypeTableView.dataSource = self;
+        _timeTypeTableView.scrollEnabled = NO;
+        _timeTypeTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _timeTypeTableView.backgroundColor = BGCLOLOR;
+        _timeTypeTableView.showsVerticalScrollIndicator = NO;
+        [self.view addSubview:_timeTypeTableView];
+        _timeTypeTableView.frame = CGRectMake(20 + averageW + 5,68,averageW,210);
     }
-    return _timeTableView;
+    return _timeTypeTableView;
 }
 
 - (NSArray *)timeTypeArray{
@@ -1816,59 +1513,673 @@ typedef NS_ENUM(NSInteger, YXDatePickerMode) {
     return _defaultTimeStr;
 }
 
-- (NSDateComponents *)currentComp{
+//- (NSDateComponents *)currentComp{
+//
+//    NSCalendar *gregorian = [[NSCalendar alloc]
+//                             initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+//    // 获取当前日期
+//    NSDate* dt = [NSDate date];
+//    // 指定获取指定年、月、日、时、分、秒的信息
+//    unsigned unitFlags = NSCalendarUnitYear |
+//    NSCalendarUnitMonth |  NSCalendarUnitDay |
+//    NSCalendarUnitHour |  NSCalendarUnitMinute |
+//    NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitQuarter | NSCalendarUnitWeekOfYear;
+//
+//    // 获取不同时间字段的信息
+//    NSDateComponents* comp = [gregorian components: unitFlags fromDate:dt];
+//    return comp;
+//
+//}
+
+
+
+
+
+#pragma mark -- 日期选择 UIPickerView 代理方法
+-  (void)createPickerView{
+    CGFloat pickerY = CGRectGetMaxY(self.timeButton.frame)+35;
+    self.datePickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0,pickerY, SCREEN_WIDTH,300)];
+    self.datePickerView.backgroundColor = BGCLOLOR;
+    self.datePickerView.dataSource = self;
+    self.datePickerView.delegate = self;
+    self.datePickerView.showsSelectionIndicator = YES;
+    self.datePickerView.hidden = YES;
     
-    NSCalendar *gregorian = [[NSCalendar alloc]
-                             initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    // 获取当前日期
-    NSDate* dt = [NSDate date];
-    // 指定获取指定年、月、日、时、分、秒的信息
-    unsigned unitFlags = NSCalendarUnitYear |
-    NSCalendarUnitMonth |  NSCalendarUnitDay |
-    NSCalendarUnitHour |  NSCalendarUnitMinute |
-    NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitQuarter | NSCalendarUnitWeekOfYear;
+    [self configPickerViewDefaultDate];
     
-    // 获取不同时间字段的信息
-    NSDateComponents* comp = [gregorian components: unitFlags fromDate:dt];
-    return comp;
-    
+    [self.view addSubview:self.datePickerView];
 }
 
-- (NSArray *)pickviewMonthArray{
+- (void)configPickerViewDefaultDate{
     
-    if (_pickviewMonthArray == nil) {
-        NSArray *array = @[@"一月",@"二月",@"三月",@"四月",@"五月",@"六月",@"七月",@"八月",@"九月",@"十月",@"十一月",@"十二月"];
-        _pickviewMonthArray = array;
+    if (self.timeTypeSelectIndex == 0) {//h 年月日 时
+        
+        [self.datePickerView selectRow:_yearIndex inComponent:0 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_yearIndex inComponent:0];
+        
+        [self.datePickerView selectRow:_monthIndex inComponent:1 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_monthIndex inComponent:1];
+        
+        [self.datePickerView selectRow:_dayIndex inComponent:2 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_dayIndex inComponent:2];
+        
+        [self.datePickerView selectRow:_hourIndex inComponent:3 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_hourIndex inComponent:3];
+        
     }
-    return _pickviewMonthArray;
+    
+    if (self.timeTypeSelectIndex == 1) {//d
+        [self.datePickerView selectRow:_yearIndex inComponent:0 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_yearIndex inComponent:0];
+        
+        [self.datePickerView selectRow:_monthIndex inComponent:1 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_monthIndex inComponent:1];
+        
+        [self.datePickerView selectRow:_dayIndex inComponent:2 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_dayIndex inComponent:2];
+    }
+    
+    if (self.timeTypeSelectIndex == 2) {//w
+        [self.datePickerView selectRow:_yearIndex inComponent:0 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_yearIndex inComponent:0];
+        
+        [self.datePickerView selectRow:_weekIndex inComponent:1 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_weekIndex inComponent:1];
+        
+    }
+    
+    if (self.timeTypeSelectIndex == 3) {//m
+        [self.datePickerView selectRow:_yearIndex inComponent:0 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_yearIndex inComponent:0];
+        
+        [self.datePickerView selectRow:_monthIndex inComponent:1 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_monthIndex inComponent:1];
+    }
+    
+    if (self.timeTypeSelectIndex == 4) {//q
+        [self.datePickerView selectRow:_yearIndex inComponent:0 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_yearIndex inComponent:0];
+        
+        [self.datePickerView selectRow:_quarterIndex inComponent:1 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_quarterIndex inComponent:1];
+        
+    }
+    
+    if (self.timeTypeSelectIndex == 5) {//hy
+        [self.datePickerView selectRow:_yearIndex inComponent:0 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_yearIndex inComponent:0];
+        
+        [self.datePickerView selectRow:_halfYearIndex inComponent:1 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_halfYearIndex inComponent:1];
+        
+    }
+    
+    if (self.timeTypeSelectIndex == 6) {//y
+        [self.datePickerView selectRow:_yearIndex inComponent:0 animated:YES];
+        [self pickerView:self.datePickerView didSelectRow:_yearIndex inComponent:0];
+        
+        
+    }
+    
+    
 }
 
-- (NSArray *)timekey{
-    if (_timekey == nil) {
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    
+    if (self.timeTypeSelectIndex == 0) {//h
+        
+        if (component ==0) {//年
+            _yearIndex = row;
+            //               self.pick0compentfocusIndex = row;
+            //               self.pick1compentfocusIndex  = 0;
+            //               [self.datePickerView  reloadComponent:1];//重新load日
+            //               [self.datePickerView selectRow:self.pick1compentfocusIndex inComponent:1 animated:YES];
+            
+        }
+        if(component == 1){
+            _monthIndex = row;
+            //               self.pick1compentfocusIndex = row;
+            //               self.pick2compentfocusIndex  = 0;
+            //               [self.datePickerView  reloadComponent:2];//重新load日
+            //               [self.datePickerView selectRow:self.pick2compentfocusIndex inComponent:2 animated:YES];
+            
+        }
+        if(component == 2){//日
+            //               self.pick2compentfocusIndex = row;
+            _dayIndex = row;
+        }
+        if(component == 3){//小时
+            _hourIndex = row;
+            //            self.pick3compentfocusIndex = row;
+            
+        }
+    }
+    
+    if (self.timeTypeSelectIndex == 1) {//d
+        if (component ==0) {//年
+            _yearIndex = row;
+        }
+        if(component == 1){
+            _monthIndex = row;
+        }
+        if(component == 2){//日
+            _dayIndex = row;
+        }
+        
+    }
+    
+    if (self.timeTypeSelectIndex == 2) {//w
+        if (component == 0) {
+            _yearIndex = row;
+        }
+        if (component == 1) {
+            _weekIndex = row;
+        }
+    }
+    
+    if (self.timeTypeSelectIndex == 3) {//m
+        if (component == 0) {
+            _yearIndex = row;
+        }
+        if (component == 1) {
+            _monthIndex = row;
+        }
+    }
+    
+    if (self.timeTypeSelectIndex == 4) {//q
+        if (component == 0) {
+            _yearIndex = row;
+        }
+        if (component == 1) {
+            _quarterIndex = row;
+        }
+    }
+    
+    if (self.timeTypeSelectIndex == 5) {//hy
+        if (component == 0) {
+            _yearIndex = row;
+        }
+        if (component == 1) {
+            _halfYearIndex = row;
+        }
+        
+    }
+    
+    if (self.timeTypeSelectIndex == 6) {//y
+        _yearIndex = row;
+    }
+    
+    
+    
+    
+    
+    
+}
+
+
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
+    
+    if (self.timeTypeSelectIndex == 0) {//h
+        return 75;
+    }
+    
+    if (self.timeTypeSelectIndex == 1) {//d
+        return 100;
+    }
+    
+    if (self.timeTypeSelectIndex == 2) {//w
+        return 150;
+    }
+    
+    if (self.timeTypeSelectIndex == 3) {//m
+        return 150;
+    }
+    
+    if (self.timeTypeSelectIndex == 4) {//q
+        return 150;
+    }
+    
+    if (self.timeTypeSelectIndex == 5) {//hy
+        return 150;
+    }
+    
+    if (self.timeTypeSelectIndex == 6) {//y
+        return 300;
+    }
+    
+    
+    return 0;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
+    return 35.0;
+}
+//指定每个表盘上有几行数据
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    
+    if (self.timeTypeSelectIndex == 0) {//h
+        
+        if (component ==0) {//年
+            return self.yearArray.count;
+            
+        }
+        if(component == 1){//月
+            return self.monthArray.count;
+            
+        }
+        if(component == 2){//日
+            return self.dayArray.count;
+        }
+        if(component == 3){//小时
+            return self.hourArray.count;
+        }
+    }
+    
+    if (self.timeTypeSelectIndex == 1) {//d
+        if (component ==0) {//年
+            return self.yearArray.count;
+            
+        }
+        if(component == 1){//月
+            return self.monthArray.count;
+            
+        }
+        if(component == 2){//日
+            return self.dayArray.count;
+        }
+        
+    }
+    
+    if (self.timeTypeSelectIndex == 2) {//w
+        if (component == 0) {
+            return self.yearArray.count;
+        }
+        if (component == 1) {
+            return self.weekArray.count;
+        }
+    }
+    
+    if (self.timeTypeSelectIndex == 3) {//m
+        if (component == 0) {
+            return self.yearArray.count;
+        }
+        if (component == 1) {
+            return self.monthArray.count;
+        }
+    }
+    
+    if (self.timeTypeSelectIndex == 4) {//q
+        if (component == 0) {
+            return self.yearArray.count;
+        }
+        if (component == 1) {
+            return self.quartArray.count;
+        }
+    }
+    
+    if (self.timeTypeSelectIndex == 5) {//hy
+        if (component == 0) {
+            return self.yearArray.count;
+        }
+        if (component == 1) {
+            return self.halfYearArray.count;
+            
+        }
+        
+    }
+    
+    if (self.timeTypeSelectIndex == 6) {//y
+        return self.yearArray.count;
+    }
+    
+    return 0;
+    
+    
+}
+//指定pickerview有几个表盘
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    if (self.timeTypeSelectIndex == 0) {//h
+        return 4;
+    }
+    
+    if (self.timeTypeSelectIndex == 1) {//d
+        return 3;
+    }
+    
+    if (self.timeTypeSelectIndex == 2) {//w
+        return 2;
+    }
+    
+    if (self.timeTypeSelectIndex == 3) {//m
+        return 2;
+    }
+    
+    if (self.timeTypeSelectIndex == 4) {//q
+        return 2;
+    }
+    
+    if (self.timeTypeSelectIndex == 5) {//hy
+        return 2;
+    }
+    
+    if (self.timeTypeSelectIndex == 6) {//y
+        return 1;
+    }
+    return 0;
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row
+          forComponent:(NSInteger)component reusingView:(UIView *)view{
+    
+    YXCustomDateView *dateView = [[YXCustomDateView alloc] initWithFrame:CGRectMake(0, 0, 75, 40)];
+    if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"h"])
+    {
+        switch (component)
+        {
+            case 0://year
+                dateView.titleStr = [self.yearArray objectAtIndex:row];
+                break;
+            case 1://month
+                dateView.titleStr = [self.monthArray objectAtIndex:row];
+                break;
+            case 2://day
+                if (row == 0)
+                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%d", ""),row+1];
+                else if (row == 1)
+                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%d", ""),row+1];
+                else if (row == 2)
+                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%d", ""),row+1];
+                else
+                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%d", ""),row+1];
+                break;
+            case 3://h
+                dateView.titleStr = [NSString stringWithFormat:@"%ld:00",(long)row];
+                break;
+            default:
+                break;
+        }
+    }
+    else if([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"y"]){
+        dateView.titleStr = [self.yearArray objectAtIndex:row];
+    }
+    else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"d"])
+    {
+        switch (component)
+        {
+            case 0://year
+                dateView.titleStr = [self.yearArray objectAtIndex:row];
+                break;
+            case 1://month
+                dateView.titleStr = [self.monthArray objectAtIndex:row];
+                break;
+            case 2://day
+                if (row == 0)
+                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%dst", ""),row+1];
+                else if (row == 1)
+                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%dnd", ""),row+1];
+                else if (row == 2)
+                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%drd", ""),row+1];
+                else
+                    dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"%dth", ""),row+1];
+                break;
+            default:
+                break;
+        }
+    }
+    else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"w"])
+    {
+        switch (component)
+        {
+            case 0://year
+                dateView.titleStr = [self.yearArray objectAtIndex:row];
+                break;
+            case 1://week
+                dateView.frame = CGRectMake(0, 0, 150,40);
+                dateView.titleStr = [NSString stringWithFormat:NSLocalizedString(@"第%d周", ""),row+1];
+                break;
+            default:
+                break;
+        }
+    }
+    else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"m"])
+    {
+        switch (component)
+        {
+            case 0://year
+                dateView.titleStr = [self.yearArray objectAtIndex:row];
+                break;
+            case 1://month
+                dateView.titleStr = [self.monthArray objectAtIndex:row];
+                break;
+            default:
+                break;
+        }
+    }
+    else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"q"])
+    {
+        switch (component)
+        {
+            case 0://year
+                dateView.titleStr = [self.yearArray objectAtIndex:row];
+                break;
+            case 1://quarter
+            {
+                NSString *str =nil;
+                if (row ==0) {
+                    str = NSLocalizedString(@"第一季度", "");
+                }
+                else if (row ==1)
+                {
+                    str = NSLocalizedString(@"第二季度", "");
+                }
+                else if (row ==2)
+                {
+                    str = NSLocalizedString(@"第三季度", "");
+                }
+                else
+                {
+                    str = NSLocalizedString(@"第四季度", "");
+                }
+                dateView.frame = CGRectMake(0, 0, 150,40);
+                dateView.titleStr = str;
+                
+            }
+                break;
+            default:
+                break;
+        }
+    }
+    else if ([[self.timeTypeKeyArray objectAtIndex:self.selectIndex] isEqual: @"hy"])
+    {
+        switch (component)
+        {
+            case 0://year
+                dateView.titleStr = [self.yearArray objectAtIndex:row];
+                break;
+            case 1://半年
+            {
+                NSString *str =nil;
+                if (row ==0) {
+                    str = NSLocalizedString(@"上半年", "");
+                }
+                else {
+                    str = NSLocalizedString(@"下半年", "");
+                }
+                dateView.frame = CGRectMake(0, 0, 150,40);
+                dateView.titleStr = str;
+            }
+                break;
+            default:
+                break;
+        }
+    }
+    return dateView;
+}
+
+
+
+
+
+#pragma mark -- 初始化数据
+
+
+- (NSArray *)timeTypeKeyArray{
+    if (_timeTypeKeyArray == nil) {
         NSArray *array = [NSArray arrayWithObjects:@"h",@"d",@"w",@"m",@"q",@"hy",@"y",nil];
-        _timekey = array;
+        _timeTypeKeyArray = array;
     }
-    return _timekey;
+    return _timeTypeKeyArray;
 }
 
-#pragma mark -- 获取时间
-- (void)getDate{
-    //    NSDate *today = [NSDate date];
-    NSTimeZone* GMT8zone = [NSTimeZone timeZoneForSecondsFromGMT:28800]; //获取GMT8中国时差
-    NSDateFormatter *dateFormater = [[NSDateFormatter alloc]init];
-    dateFormater.timeZone = GMT8zone;
+
+
+- (UITableView *)avgeTableView{
+    CGFloat averageW = SCREEN_WIDTH*0.20;
     
-    [dateFormater setDateFormat:@"YYYY"];
-    //    int year = [[dateFormater stringFromDate:today] intValue];
-    [dateFormater setDateFormat:@"MM"];
-    //    int month = [[dateFormater stringFromDate:today] intValue];
-    [dateFormater setDateFormat:@"dd"];
-    //    int day = [[dateFormater stringFromDate:today] intValue];
-    [dateFormater setDateFormat:@"HH"];
-    //    int hour = [[dateFormater stringFromDate:today] intValue];
+    if (!_avgeTableView) {
+        _avgeTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _avgeTableView.delegate = self;
+        _avgeTableView.hidden = YES;
+        _avgeTableView.dataSource = self;
+        _avgeTableView.scrollEnabled = NO;
+        _avgeTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _avgeTableView.backgroundColor = BGCLOLOR;
+        _avgeTableView.showsVerticalScrollIndicator = NO;
+        [self.view addSubview:_avgeTableView];
+        _avgeTableView.frame = CGRectMake(20,68,averageW,90);
+        
+    }
+    return _avgeTableView;
 }
 
+- (NSArray *)avgeArray{
+    if (!_avgeArray) {
+        _avgeArray = @[@"平均",@"最大值",@"最小值"];
+    }
+    return _avgeArray;
+}
 
+- (NSArray *)avgeKeyArray{
+    if (_avgeKeyArray == nil) {//avg平均 max最大 min最小
+        NSArray *array = @[@"avg",@"max",@"min"];
+        _avgeKeyArray = array;
+    }
+    return _avgeKeyArray;;
+}
+
+//年份数组
+- (NSArray *)yearArray{
+    if (_yearArray == nil) {
+        NSMutableArray *array = [NSMutableArray array];
+        for (NSInteger i=_currentYear;i>2009;i--) {
+            NSString *yearStr = [NSString stringWithFormat:@"%ld", i];
+            [array addObject:yearStr];
+        }
+        
+        _yearArray = array;
+    }
+    return _yearArray;
+}
+//月份数组
+- (NSArray *)monthArray{
+    
+    if (_monthArray == nil) {
+        NSArray *array = @[@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12"];
+        _monthArray = array;
+    }
+    return _monthArray;
+}
+
+- (NSArray *)dayArray{
+    if (_dayArray == nil) {
+        NSMutableArray *array = [NSMutableArray array];
+        for (int i = 1; i<=31; i++) {
+            [array addObject:[NSString stringWithFormat:@"%.2d",i]];
+        }
+        
+        _dayArray = array;
+    }
+    return _dayArray;
+}
+
+- (NSArray *)weekArray{
+    if (_weekArray == nil) {
+        NSMutableArray *array = [NSMutableArray array];
+        for (int i = 1; i<=53; i++) {
+            [array addObject:[NSString stringWithFormat:@"%.2d",i]];
+        }
+        _weekArray = array;
+    }
+    return _weekArray;
+}
+
+- (NSArray *)quartArray{
+    if (_quartArray == nil) {
+        NSArray *array = @[@"01",@"02",@"03",@"04"];
+        _quartArray = array;
+    }
+    return _quartArray;
+}
+
+- (NSArray *)halfYearArray{
+    if (_halfYearArray == nil) {
+        NSArray *array = @[@"01",@"02"];
+        _halfYearArray = array;
+    }
+    return _halfYearArray;
+}
+
+- (NSArray *)hourArray{
+    if (_hourArray == nil) {
+        NSMutableArray *array = [NSMutableArray array];
+        for (int i = 0; i<24; i++) {
+            [array addObject:[NSString stringWithFormat:@"%.2d",i]];
+        }
+        _hourArray = array;
+    }
+    return _hourArray;
+}
+
+- (NSArray *)xArray{
+    if (_xArray == nil) {
+//        NSArray *array = [NSArray arrayWithObjects:@"h",@"d",@"w",@"m",@"q",@"hy",@"y",nil];
+        NSMutableArray *array = [NSMutableArray array];
+     
+        NSArray *harray = @[@"0",@"10",@"20",@"30",@"40",@"50",@"60"];
+        [array addObject:harray];
+        
+        NSMutableArray *dArray = [NSMutableArray array];
+        for (int i = 0; i<=24; i++) {
+            [dArray addObject:[NSString stringWithFormat:@"%d", i]];
+        }
+        [array addObject:dArray];
+        
+        NSArray *wArray = @[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7"];
+        [array addObject:wArray];
+        
+        NSMutableArray *mArray = [NSMutableArray array];
+        for (int i = 0; i<=31; i++) {
+            [mArray addObject:[NSString stringWithFormat:@"%d", i]];
+        }
+        [array addObject:mArray];
+        
+        NSArray *qArray = @[@"0",@"1",@"2",@"3"];
+        [array addObject:qArray];
+        
+        
+        NSArray *hyArray = @[@"0",@"1",@"2",@"3",@"4",@"5",@"6"];
+        [array addObject:hyArray];
+        
+        NSArray *yArray = @[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12"];
+        [array addObject:yArray];
+        
+        _xArray = array;
+        
+    }
+    return _xArray;
+}
 
 
 @end

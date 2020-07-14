@@ -55,6 +55,12 @@
 
 - (void)drawRect:(CGRect)rect{
     
+
+    //清除原有的坐标label
+    for (UILabel *label in self.subviews) {
+        [label removeFromSuperview];
+    }
+    
     //直接继承UIView 不需要调用  [super drawRect:rect];
     /*******画出坐标轴********/
     _xlength = rect.size.width - kYuanDianX * 2;
@@ -106,10 +112,14 @@
         
         NSInteger count = self.yLabelTitleArray.count;
         CGFloat width = 25;
-        CGFloat height = (kYuanDianY - 30)/(count-1);
-        for (int i = 0; i<count; i++) {
-            
-            CGFloat y = kYuanDianY - i * height - height/2;
+        CGFloat height = 20;
+        if (count == 1) {
+            height = 20;
+        }else{
+            height = (kYuanDianY - 30)/(count-1);
+        }
+        for (int i = 0; i<count; i++) {            
+            CGFloat y = kYuanDianY - height/2 - i * height ;
             //创建坐标值
             UILabel *label = [[UILabel alloc] init];
             label.frame = CGRectMake(0, y, width, height);
@@ -313,6 +323,10 @@
     }
     _yMax = ceil(yMax/10) * 10;
     
+//    if (_yMax == 0) {
+//        return;
+//    }
+//
     NSMutableArray *array = [NSMutableArray array];
     for (int i = 0; i<(_yMax/10) + 1; i++) {
         

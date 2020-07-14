@@ -15,7 +15,7 @@
 + (NSDictionary *)mj_replacedKeyFromPropertyName
 {
     
-    return @{@"chart1":@"1",@"chart2":@"2",@"chart3":@"3",@"chart4":@"4",@"chart5":@"5",@"chart10":@"10"};
+    return @{@"chart1":@"1",@"chart2":@"2",@"chart3":@"3",@"chart4":@"4",@"chart5":@"5",@"chart6":@"6", @"chart10":@"10"};
     
     
 }
