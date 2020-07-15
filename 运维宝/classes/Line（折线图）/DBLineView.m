@@ -55,7 +55,6 @@
 
 - (void)drawRect:(CGRect)rect{
     
-
     //清除原有的坐标label
     for (UILabel *label in self.subviews) {
         [label removeFromSuperview];
@@ -74,6 +73,15 @@
     CGContextAddLineToPoint(context,rect.size.width - kYuanDianX , kYuanDianY);
     CGContextStrokePath(context);
     
+    
+    //绘制折线
+    [self drawLineWithArray:self.chartData.chart1 type:@"1"];
+    [self drawLineWithArray:self.chartData.chart2 type:@"2"];
+    [self drawLineWithArray:self.chartData.chart3 type:@"3"];
+    [self drawLineWithArray:self.chartData.chart4 type:@"4"];
+    [self drawLineWithArray:self.chartData.chart5 type:@"5"];
+    [self drawLineWithArray:self.chartData.chart6 type:@"6"];
+    [self drawLineWithArray:self.chartData.chart10 type:@"10"];
     
     if (self.xLabelTitleArray.count > 0) {
         NSInteger count = self.xLabelTitleArray.count;
@@ -118,7 +126,7 @@
         }else{
             height = (kYuanDianY - 30)/(count-1);
         }
-        for (int i = 0; i<count; i++) {            
+        for (int i = 0; i<count; i++) {
             CGFloat y = kYuanDianY - height/2 - i * height ;
             //创建坐标值
             UILabel *label = [[UILabel alloc] init];
@@ -133,28 +141,25 @@
             if (!(i == 0 || i == count - 1)) {
                 CGContextRef context = UIGraphicsGetCurrentContext();
                 CGContextSetLineWidth(context, 0.5);
-                CGContextSetRGBStrokeColor(context, 0.9, 0.9, 0.9, 1);
+                CGContextSetRGBStrokeColor(context, 0.8, 0.8, 0.8, 1);
                 CGContextMoveToPoint(context, kYuanDianX, kYuanDianY - i * height);
                 CGContextAddLineToPoint(context, self.frame.size.width - 30, kYuanDianY - i * height);
+                CGFloat dashArray[] = {8, 1};
+                CGContextSetLineDash(context, 1, dashArray, 1);
                 CGContextStrokePath(context);
             }
         }
     }
     
+
     
-    [self drawLineWithArray:self.chartData.chart1 type:@"1"];
-    [self drawLineWithArray:self.chartData.chart2 type:@"2"];
-    [self drawLineWithArray:self.chartData.chart3 type:@"3"];
-    [self drawLineWithArray:self.chartData.chart4 type:@"4"];
-    [self drawLineWithArray:self.chartData.chart5 type:@"5"];
-    [self drawLineWithArray:self.chartData.chart6 type:@"6"];
-    [self drawLineWithArray:self.chartData.chart10 type:@"10"];
 }
 
 - (void)drawLineWithArray:(NSArray *)array type:(NSString *)type{
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 0.5);
+    
     if ([type isEqualToString:@"1"]) {
         CGContextSetRGBStrokeColor(context, 0.996, 0.486, 0, 1);
     }else if ([type isEqualToString:@"2"]){
@@ -177,11 +182,20 @@
     for (int i = 0; i<array.count; i++) {
         
         YWChartLine *chart  = array[i];
-        if (i == 0) {
-            CGContextMoveToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
-        }else{
-            CGContextAddLineToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
+        
+        CGFloat x = (([chart.x floatValue]*_xlength)/530) + kYuanDianX;
+        CGFloat y = kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax);
+        if (_yMax == 0) {
+            y = kYuanDianY - (([@"10" floatValue]*_ylength)/40);
         }
+        
+        if (i == 0) {
+            CGContextMoveToPoint(context, x, y);
+        }else{
+            CGContextAddLineToPoint(context, x, y);
+        }
+        
+        
     }
     
     CGContextStrokePath(context);
@@ -203,82 +217,6 @@
     
 }
 
-- (void)drawLine{
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetLineWidth(context, 0.5);
-    CGContextSetRGBStrokeColor(context, 0.5, 0.5, 0, 1);
-    
-    
-    for (int i = 0; i<self.chartData.chart1.count; i++) {
-        
-        YWChartLine *chart  = self.chartData.chart1[i];
-        if (i == 0) {
-            CGContextMoveToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
-        }else{
-            CGContextAddLineToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
-        }
-    }
-    
-    
-    for (int i = 0; i<self.chartData.chart2.count; i++) {
-        YWChartLine *chart  = self.chartData.chart2[i];
-        if (i == 0) {
-            CGContextMoveToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
-        }else{
-            CGContextAddLineToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
-        }
-    }
-    
-    for (int i = 0; i<self.chartData.chart3.count; i++) {
-        YWChartLine *chart  = self.chartData.chart3[i];
-        if (i == 0) {
-            CGContextMoveToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
-        }else{
-            CGContextAddLineToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
-        }
-    }
-    
-    for (int i = 0; i<self.chartData.chart4.count; i++) {
-        YWChartLine *chart  = self.chartData.chart4[i];
-        if (i == 0) {
-            CGContextMoveToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
-        }else{
-            CGContextAddLineToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
-        }
-    }
-    
-    for (int i = 0; i<self.chartData.chart5.count; i++) {
-        YWChartLine *chart  = self.chartData.chart5[i];
-        if (i == 0) {
-            CGContextMoveToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
-        }else{
-            CGContextAddLineToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
-        }
-    }
-    
-    for (int i = 0; i<self.chartData.chart6.count; i++) {
-        YWChartLine *chart  = self.chartData.chart6[i];
-        if (i == 0) {
-            CGContextMoveToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
-        }else{
-            CGContextAddLineToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
-        }
-    }
-    
-    for (int i = 0; i<self.chartData.chart10.count; i++) {
-        YWChartLine *chart  = self.chartData.chart10[i];
-        if (i == 0) {
-            CGContextMoveToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
-        }else{
-            CGContextAddLineToPoint(context, (([chart.x floatValue]*_xlength)/530) + kYuanDianX, kYuanDianY - (([chart.y floatValue]*_ylength)/_yMax));
-        }
-    }
-    
-    
-    CGContextStrokePath(context);
-    
-}
 
 - (void)setChartData:(YWChartGroup *)chartData{
     _chartData = chartData;
@@ -322,21 +260,23 @@
         yMax = yMax > [model.y floatValue] ? yMax : [model.y floatValue];
     }
     _yMax = ceil(yMax/10) * 10;
-    
-//    if (_yMax == 0) {
-//        return;
-//    }
-//
     NSMutableArray *array = [NSMutableArray array];
-    for (int i = 0; i<(_yMax/10) + 1; i++) {
+    
+    if (_yMax == 0) {
         
-        [array addObject:[NSString stringWithFormat:@"%d", i*10]];
+        [array addObject:@"0"];
+        [array addObject:@"0"];
+        [array addObject:@"10"];
+        [array addObject:@"20"];
+        [array addObject:@"30"];
         
-        
+    }else{
+        for (int i = 0; i<(_yMax/10) + 1; i++) {
+            [array addObject:[NSString stringWithFormat:@"%d", i*10]];
+        }
     }
     
     _yLabelTitleArray = array;
-    
     
 }
 

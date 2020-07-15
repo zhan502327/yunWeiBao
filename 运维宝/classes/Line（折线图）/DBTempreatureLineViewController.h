@@ -18,26 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** 我的电站*/
 @property (nonatomic, copy) NSString *a_id;
 
-@property (nonatomic) NSInteger selectIndex;
-
-@property (nonatomic,retain) NSMutableDictionary *dataserver;
-@property (nonatomic,retain) NSMutableArray *temperature;
-
-
-@property (nonatomic, retain) UIActivityIndicatorView    *loading;
-@property (nonatomic, retain) UIView *bg;
-
-
-
-
-@property (nonatomic) NSInteger pick0compentfocusIndex;
-@property (nonatomic) NSInteger pick1compentfocusIndex;
-@property (nonatomic) NSInteger pick2compentfocusIndex;
-@property (nonatomic) NSInteger pick3compentfocusIndex;
-
-
--(void)setTimeButtonInfo:(UIButton *)cell;
--(NSString*)getTimeButtonBG:(NSString *)title;
 
 
 @end
