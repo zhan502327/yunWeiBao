@@ -13,7 +13,6 @@
 #import "YWDocInfoController.h"
 #import "YWServiceDetilController.h"
 #import "YWMyStations.h"
-#import "YWLineHistoryController.h"//
 #import "YWDBLineViewController.h"//
 #import "YWDeviceInfo.h"
 #import "YWSataionDetilController.h"
@@ -285,7 +284,6 @@
     //趋势分析
 //    YWDBLineViewController *lineHistory = [[YWDBLineViewController alloc] init];
     
-//    YWLineHistoryController *lineHistory = [[YWLineHistoryController alloc] init];
     
     DBTempreatureLineViewController *lineHistory = [[DBTempreatureLineViewController alloc] init];
   

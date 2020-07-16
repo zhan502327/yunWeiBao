@@ -260,6 +260,7 @@
         vc.filePath = urlString;
         [self.navigationController pushViewController:vc animated:YES];
         
+        
     }else if (indexPath.section == 2 && self.docInfos.count>0){
         YWDeviceDocs *deviceModel = self.assetInfos[indexPath.row];;
         
@@ -275,6 +276,17 @@
     //添加定时器
     //    [self addTimer];
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 /**
